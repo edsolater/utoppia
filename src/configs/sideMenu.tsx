@@ -3,6 +3,7 @@ import { BilibiHome } from '../components/Bilibidi/home'
 import { EditPlayground } from '../components/EditPlayround'
 import { MotionGrid } from '../components/MotionGrid'
 import { MatureTodoList } from '../components/TodoList/example/MatureTodoList'
+import { UikitExhibition } from '../components/uikitExamples/examples'
 
 export type SideMenuEntryItem = {
   group: string
@@ -20,6 +21,13 @@ export const sideMenu = {
   entries: [
     {
       group: 'Playground',
+      name: 'uikit exhibitions',
+      entryIcon: '/example.svg',
+      component: () => <UikitExhibition />,
+      defaultActive: true
+    },
+    {
+      group: 'Examples',
       name: 'motion grid',
       entryIcon: '/todo_list.svg',
       component: () => <MotionGrid />
@@ -32,16 +40,9 @@ export const sideMenu = {
     },
     {
       group: 'Examples',
-      name: 'EditPlayground',
-      entryIcon: '/example.svg',
-      component: () => <EditPlayground />
-    },
-    {
-      group: 'Examples',
       name: 'Bilibi',
       entryIcon: '/bilibili.svg',
-      component: () => <BilibiHome />,
-      defaultActive: true
+      component: () => <BilibiHome />
     }
   ]
 } as SideMenuEntries
