@@ -1,4 +1,4 @@
-import { Button, componentKit, Div, Input, Row } from '@edsolater/uikit'
+import { Button, createKit, Div, Input, Row } from '@edsolater/uikit'
 import { keyboardShortcut } from '@edsolater/uikit/plugins'
 import { useState } from 'react'
 import { TodoListDisplayerProps, TodoListItemTable } from './TodoListItemTable'
@@ -9,7 +9,7 @@ export type TodoListProps<T extends Record<string, any>> = {
   onRedo?: () => void
 } & Pick<TodoListDisplayerProps<T>, 'items' | 'getItemKey' | 'onDeleteItem' | 'onClickClearBtn'>
 
-export const TodoList = componentKit(
+export const TodoList = createKit(
   'TodoList',
     <T extends Record<string, any>>({ onInsert, onUndo, onRedo, ...props }: TodoListProps<T>) => {
       const [newTodoTitle, setNewTodoTitle] = useState<string>()

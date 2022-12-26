@@ -3,18 +3,18 @@ import {
   Accordion,
   AccordionButton,
   AccordionPanel,
-  componentKit,
+  createKit,
   Div,
   For,
   Icon,
-  makeOpenAutoHandled,
+  letOpenAutoHandled,
   Row,
   Text
 } from '@edsolater/uikit'
 import { SideMenuEntryItem } from '../configs/sideMenu'
 import { useTheme } from '../theme/ThemeProvider'
 
-export const SideMenuBar = componentKit(
+export const SideMenuBar = createKit(
   'SideMenuBar',
   ({
     activeEntryItem,
@@ -31,7 +31,7 @@ export const SideMenuBar = componentKit(
       <Div icss={{ background: theme.colors.sideBarBg }}>
         <For each={tree} getKey={pickProperty('groupName')}>
           {({ groupName, entries }) => (
-            <Accordion plugin={makeOpenAutoHandled({ defaultOpen: true })}>
+            <Accordion plugin={letOpenAutoHandled({ defaultOpen: true })}>
               <AccordionButton>
                 <Div>{groupName}</Div>
               </AccordionButton>

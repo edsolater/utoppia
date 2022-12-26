@@ -1,9 +1,9 @@
-import { componentKit, Div, Link } from '@edsolater/uikit'
+import { createKit, Div, Link } from '@edsolater/uikit'
 
 /**
  * like https://playground.solidjs.com/
  */
-export const EditPlayground = componentKit('EditPlayground', () => {
+export const EditPlayground = createKit('EditPlayground', () => {
   return (
     <Div>
       see <Link>https://playground.solidjs.com/</Link>

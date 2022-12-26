@@ -1,4 +1,4 @@
-import { componentKit, Div } from '@edsolater/uikit'
+import { createKit, Div } from '@edsolater/uikit'
 import { useAsyncEffect, useDOM } from '@edsolater/uikit/hooks'
 import { jFetch } from '@edsolater/uikit/jFetch'
 import { useEffect, useMemo, useState } from 'react'
@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from 'react'
 /**
  * see https://github.com/SocialSisterYi/bilibili-API-collect for bilibili API
  */
-export const BilibiHome = componentKit('BilibiHome', () => {
+export const BilibiHome = createKit('BilibiHome', () => {
   const [iframeDom, setIframeDom] = useDOM<HTMLIFrameElement>()
   const [innerFetchedResult, setInnerFetchedResult] = useState()
 

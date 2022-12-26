@@ -1,4 +1,4 @@
-import { AddProps, componentKit, Div, DivChildNode, DivProps, For, Group } from '@edsolater/uikit'
+import { AddProps, createKit, Div, DivChildNode, DivProps, For, Group } from '@edsolater/uikit'
 
 export type ItemsListBasicProps<T extends Record<string, any> = Record<string, any>> = {
   items: T[]
@@ -17,7 +17,7 @@ export type ItemsListBasicProps<T extends Record<string, any> = Record<string, a
 }
 
 /** basic  */
-export const ItemsListBasic = componentKit(
+export const ItemsListBasic = createKit(
   'ItemsListBasic',
     <T extends Record<string, any>>({
       items,

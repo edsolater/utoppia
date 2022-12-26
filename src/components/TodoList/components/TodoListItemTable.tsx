@@ -1,4 +1,4 @@
-import { componentKit, Div, For, Icon, ICSS, Tooltip } from '@edsolater/uikit'
+import { createKit, Div, For, Icon, ICSS, Tooltip } from '@edsolater/uikit'
 import { click, Kit } from '@edsolater/uikit/plugins'
 import { ItemsListBasic, ItemsListBasicProps } from './ItemsDisplayer'
 import { stringify } from '../../../utils/stringify'
@@ -17,7 +17,7 @@ export type TodoListDisplayerProps<Item extends Record<string, any>> = {
 >
 /** just basic layout  */
 
-export const TodoListItemTable = componentKit(
+export const TodoListItemTable = createKit(
   'TodoListItemsDisplayer',
   <Item extends Record<string, any>>({
     items,

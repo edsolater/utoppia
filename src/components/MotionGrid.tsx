@@ -1,11 +1,11 @@
 import { addItem, loopSelf } from '@edsolater/fnkit'
-import { Button, Col, componentKit, Div, For, Grid, Motion, Tabs } from '@edsolater/uikit'
+import { Button, Col, createKit, Div, For, Grid, Motion, Tabs } from '@edsolater/uikit'
 import { WrappedBy } from '@edsolater/uikit/plugins'
 import { useState } from 'react'
 
 export type MotionGridProps = {}
 
-export const MotionGrid = componentKit('MotionGrid', () => {
+export const MotionGrid = createKit('MotionGrid', () => {
   const [items, setItems] = useState(['hello:0'])
   const insertItem = () => {
     setItems((s) => addItem(s, 'hello:' + s.length))
