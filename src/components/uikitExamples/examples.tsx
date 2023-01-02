@@ -1,4 +1,6 @@
 import { createKit, Grid } from '@edsolater/uikit'
+import { DrawerExample } from './components/DrawerExample'
+import { DevExample } from "./components/DevExample"
 import { MenuExample } from './components/MenuExample'
 import { SwitchExample } from './components/SwitchExample'
 import { TabsExample } from './components/TabExample'
@@ -8,5 +10,7 @@ export const UikitExhibition = createKit('UikitExhibition', () => (
     <SwitchExample />
     <TabsExample />
     <MenuExample />
+    <DrawerExample />
+    <DevExample />
   </Grid>
 ))
