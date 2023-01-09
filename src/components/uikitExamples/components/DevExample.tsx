@@ -17,21 +17,12 @@ export function DevExample() {
             left: 0,
             right: 0,
             top: 0,
-            transform: `translateY(clamp(-100%, var(${scrollDetecter.cssVariable['--speed-y-in-500ms']}) * 1000000%, 0px))`,
-            transition: '300ms'
+            transform: `translateY(clamp(-100%, var(${scrollDetecter.cssVariable['--speed-y-in-500ms']}) * -10000%, 0px))`,
+            transition: '200ms'
           }}
         ></Div>
 
-        <Div
-          icss={[
-            {
-              height: 300,
-              overflow: 'auto'
-            },
-            icssFloatScrollbar
-          ]}
-          plugin={scrollDetecter({ detectTargetDOM: bar })}
-        >
+        <Div icss={[{ height: 300 }, icssFloatScrollbar]} plugin={scrollDetecter({ detectTargetDOM: bar })}>
           <Div icss={{ width: 200, height: 200, background: 'linear-gradient(dodgerblue, skyblue)' }}></Div>
           <Div icss={{ width: 200, height: 200, background: 'linear-gradient(dodgerblue, skyblue)' }}></Div>
           <Div icss={{ width: 200, height: 200, background: 'linear-gradient(dodgerblue, skyblue)' }}></Div>

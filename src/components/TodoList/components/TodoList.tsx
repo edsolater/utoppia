@@ -11,38 +11,40 @@ export type TodoListProps<T extends Record<string, any>> = {
 
 export const TodoList = createKit(
   'TodoList',
-    <T extends Record<string, any>>({ onInsert, onUndo, onRedo, ...props }: TodoListProps<T>) => {
-      const [newTodoTitle, setNewTodoTitle] = useState<string>()
-      const uploadNewTodoItem = () => {
-        if (!newTodoTitle) return
-        onInsert?.(newTodoTitle)
-        setNewTodoTitle(undefined)
-      }
-      return (
-        <Div>
-          <Div
-            icss={{
-              display: 'grid',
-              justifyItems: 'center',
-              gap: 8,
-              padding: 16,
-              marginInline: 'auto'
-            }}
-            plugin={keyboardShortcut({
+  <T extends Record<string, any>>({ onInsert, onUndo, onRedo, ...props }: TodoListProps<T>) => {
+    const [newTodoTitle, setNewTodoTitle] = useState<string>()
+    const uploadNewTodoItem = () => {
+      if (!newTodoTitle) return
+      onInsert?.(newTodoTitle)
+      setNewTodoTitle(undefined)
+    }
+    return (
+      <Div>
+        <Div
+          icss={{
+            display: 'grid',
+            justifyItems: 'center',
+            gap: 8,
+            padding: 16,
+            marginInline: 'auto'
+          }}
+          plugin={keyboardShortcut({
+            keyboardShortcutSetting: {
               'ctrl + z': onUndo,
               'ctrl + shift + z': onRedo
-            })}
-          >
-            <Row icss={{ alignItems: 'center', gap: 4 }}>
-              <Input value={newTodoTitle} onUserInput={(t) => setNewTodoTitle(t)} onEnter={uploadNewTodoItem} />
-              <Button size='sm' onClick={uploadNewTodoItem}>
-                Insert Item
-              </Button>
-            </Row>
+            }
+          })}
+        >
+          <Row icss={{ alignItems: 'center', gap: 4 }}>
+            <Input value={newTodoTitle} onUserInput={(t) => setNewTodoTitle(t)} onEnter={uploadNewTodoItem} />
+            <Button size='sm' onClick={uploadNewTodoItem}>
+              Insert Item
+            </Button>
+          </Row>
 
-            <TodoListItemTable {...props} />
-          </Div>
+          <TodoListItemTable {...props} />
         </Div>
-      )
-    }
+      </Div>
+    )
+  }
 )
