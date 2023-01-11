@@ -11,7 +11,7 @@ import {
   Row,
   Text
 } from '@edsolater/uikit'
-import { SideMenuEntryItem } from '../configs/sideMenu'
+import { SideMenuEntryItem } from '../routes/sideMenuRouteConfig'
 import { useTheme } from '../theme/ThemeProvider'
 
 export const SideMenuBar = createKit(

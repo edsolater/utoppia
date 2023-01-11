@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { MainContentArea } from './components/MainContentArea'
 import { SideMenuBar } from './components/SideMenuBar'
 import { TopNavBar } from './components/TopNavBar'
-import { sideMenu, SideMenuEntryItem } from './configs/sideMenu'
+import { sideMenu, SideMenuEntryItem } from './routes/sideMenuRouteConfig'
 import { lightTheme } from './theme/lightTheme'
 import { ThemeProvider } from './theme/ThemeProvider'
 

@@ -46,7 +46,7 @@ export const TodoListItemTable = createKit(
                     <For each={Object.keys(firstItem)} getKey={(_, idx) => idx}>
                       {(v) => <Div icss={{ marginBlock: 4, fontSize: 18, fontWeight: 'bold' }}>{stringify(v)}</Div>}
                     </For>
-                    <Div plugin={click(() => onClickClearBtn?.())}> Clear </Div>
+                    <Div plugin={click({ onClick: () => onClickClearBtn?.() })}> Clear </Div>
                   </Div>
                 ))
             }
@@ -61,7 +61,7 @@ export const TodoListItemTable = createKit(
                     src='/delete.svg'
                     icss={{ color: 'crimson' }}
                     plugin={[
-                      click(() => onDeleteItem?.(item)),
+                      click({ onClick: () => onDeleteItem?.(item) }),
                       Kit((self) => (
                         <Tooltip placement='right' renderButton={self}>
                           delete

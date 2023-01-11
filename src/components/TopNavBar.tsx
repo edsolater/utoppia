@@ -13,7 +13,7 @@ export const TopNavBar = createKit('TopNavBar', () => {
     <Row icss={{ backgroundColor: theme?.colors.navBarBg, justifyContent: 'end', gap: 16 }}>
       <Row>
         <Div>Default Theme</Div>
-        <Switch defaultCheck={flag} onToggle={(open) => (open ? setTheme(defaultTheme) : setTheme(lightTheme))} />
+        <Switch defaultChecked={flag} onToggle={(open) => (open ? setTheme(defaultTheme) : setTheme(lightTheme))} />
       </Row>
       <Grid icss={{ width: 200, border: '1px solid black', justifyContent: flag ? 'end' : 'start' }}>
         <Div
