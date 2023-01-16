@@ -1,49 +1,36 @@
-import { Button, createKit, Grid, Row } from '@edsolater/uikit'
+import { Button, createKit, Row } from '@edsolater/uikit'
 import { autoFocus } from '@edsolater/uikit/plugins'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { getDirectoryEntries } from '../utils/getDirectoryEntries'
+import { getDirectoryHandle } from '../utils/getDirectoryHandle'
 import { ListTable } from './ListTable'
 
 export type WebFileWatcherProps = {}
 
-const getDirectoryHandle = async () => {
-  const dirHandle = await showDirectoryPicker({})
-  for await (const [key, value] of dirHandle.entries()) {
-    console.log({ key, value })
-  }
-  return dirHandle
-}
-
-type FileSystemItemPair = {
+export type FileSystemItemPair = {
   filename: string
   value: FileSystemFileHandle | FileSystemDirectoryHandle
 }
 
-const getDirectoryEntries = async (dirHandle: FileSystemDirectoryHandle) => {
-  const pairs = [] as FileSystemItemPair[]
-  for await (const [key, value] of dirHandle.entries()) {
-    pairs.push({ filename: key, value })
-  }
-  return pairs
-}
-
 export const WebFileWatcher = createKit('WebFileWatcher', (props: WebFileWatcherProps) => {
-  const [pairs, setPairs] = useState<FileSystemItemPair[]>([])
+  const [rootDirHandle, setRootDirHandle] = useState<FileSystemDirectoryHandle>()
+  const [breadcrumbList, setBreadcrumbList] = useState<string[]>([])
+  useEffect(() => {
+    if (rootDirHandle) setBreadcrumbList([rootDirHandle.name])
+  }, [rootDirHandle])
   return (
     <>
       <Button
         plugin={autoFocus}
         onClick={async () => {
           const dirHandle = await getDirectoryHandle()
-          console.log('dirHandle: ', dirHandle)
-          const pairs = await getDirectoryEntries(dirHandle)
-          console.log('pairs: ', pairs)
-          setPairs(pairs)
+          setRootDirHandle(dirHandle)
         }}
       >
         Pick directory
       </Button>
-
-      <ListTable items={pairs} />
+      <Row>Path: {breadcrumbList.join(' > ')}</Row>
+      <ListTable items={getDirectoryEntries(rootDirHandle)} />
     </>
   )
 })
