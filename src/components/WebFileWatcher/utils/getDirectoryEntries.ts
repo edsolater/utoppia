@@ -1,4 +1,4 @@
-import { FileSystemItemPair } from '../components/WebFileWatcher'
+import { FileSystemItemPair } from "../type"
 
 export async function getDirectoryEntries(dirHandle: FileSystemDirectoryHandle | undefined) {
   if (!dirHandle) return []

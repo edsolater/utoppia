@@ -1,36 +1,73 @@
-import { Button, createKit, Row } from '@edsolater/uikit'
+import { MayPromise } from '@edsolater/fnkit'
+import { Button, createKit, Div, DivChildNode, Row } from '@edsolater/uikit'
+import { useToggle } from '@edsolater/uikit/hooks'
 import { autoFocus } from '@edsolater/uikit/plugins'
-import { useEffect, useState } from 'react'
+import { isFileHandle, isFileOrDirectoryHandle } from '../utils/adjest'
 import { getDirectoryEntries } from '../utils/getDirectoryEntries'
-import { getDirectoryHandle } from '../utils/getDirectoryHandle'
-import { ListTable } from './ListTable'
-
-export type WebFileWatcherProps = {}
-
-export type FileSystemItemPair = {
-  filename: string
-  value: FileSystemFileHandle | FileSystemDirectoryHandle
-}
+import { ListTable } from './BasicListTable'
+import { useHandleBreadcrumb } from '../hooks/useHandleBreadcrumb'
+import { useWebDirHandle } from '../hooks/useWebDirHandle'
+import { FileSystemItemPair, WebFileWatcherProps } from '../type'
 
 export const WebFileWatcher = createKit('WebFileWatcher', (props: WebFileWatcherProps) => {
-  const [rootDirHandle, setRootDirHandle] = useState<FileSystemDirectoryHandle>()
-  const [breadcrumbList, setBreadcrumbList] = useState<string[]>([])
-  useEffect(() => {
-    if (rootDirHandle) setBreadcrumbList([rootDirHandle.name])
-  }, [rootDirHandle])
+  const { rootDirHandle, triggerDirPicker } = useWebDirHandle()
+  const { breadcrumbList } = useHandleBreadcrumb({ root: rootDirHandle })
   return (
     <>
-      <Button
-        plugin={autoFocus}
-        onClick={async () => {
-          const dirHandle = await getDirectoryHandle()
-          setRootDirHandle(dirHandle)
-        }}
-      >
+      <Button plugin={autoFocus} onClick={triggerDirPicker}>
         Pick directory
       </Button>
       <Row>Path: {breadcrumbList.join(' > ')}</Row>
-      <ListTable items={getDirectoryEntries(rootDirHandle)} />
+      <FileWatcherList pairs={getDirectoryEntries(rootDirHandle)}></FileWatcherList>
     </>
+  )
+})
+
+function FileWatcherList({ pairs, noHeader }: { pairs: MayPromise<FileSystemItemPair[]>; noHeader?: boolean }) {
+  return (
+    <ListTable
+      items={pairs}
+      showHeader={!noHeader}
+      anatomy={{
+        itemRow: {
+          icss: {
+            alignItems: 'start'
+          }
+        },
+        renderItemCell: ({ value, key, item }) =>
+          key === 'filename' ? (
+            isFileOrDirectoryHandle(value) ? (
+              isFileHandle(item.value) ? (
+                <Div
+                  icss={{
+                    textDecoration: 'underline'
+                  }}
+                >
+                  {item.filename}
+                </Div>
+              ) : (
+                <Div>{item.filename}</Div>
+              )
+            ) : (
+              value
+            )
+          ) : isFileOrDirectoryHandle(value) ? (
+            isFileHandle(value) ? null : (
+              <DirectoryItemCell handler={value} />
+            )
+          ) : (
+            value
+          )
+      }}
+    />
+  )
+}
+
+const DirectoryItemCell = createKit('DirectoryItemCell', ({ handler }: { handler: FileSystemDirectoryHandle }) => {
+  const [hasToggled, controller] = useToggle()
+  return hasToggled ? (
+    <FileWatcherList noHeader pairs={getDirectoryEntries(handler)} />
+  ) : (
+    <Div onClick={controller.on}>(click)</Div>
   )
 })
