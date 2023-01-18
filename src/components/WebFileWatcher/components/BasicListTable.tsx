@@ -1,6 +1,7 @@
 import { MayPromise } from '@edsolater/fnkit'
 import {
   AddProps,
+  Col,
   createKit,
   Div,
   DivChildNode,
@@ -45,7 +46,7 @@ export const ListTable = createKit(
     const itemPropertyNames = getItemsProperties(items)
     const { createTabelCellRef, hasDetected, getCellWidth } = useTableCellWidthDetector()
     return (
-      <Div>
+      <Col>
         {/* header */}
         <Show when={showHeader}>
           <Group shadowProps={anatomy?.headerGroup} name='list-header'>
@@ -65,7 +66,7 @@ export const ListTable = createKit(
         </Show>
 
         {/* list */}
-        <Group name='list-item-group' shadowProps={anatomy?.itemGroup}>
+        <Group name='list-item-group' shadowProps={anatomy?.itemGroup} icss={{ flex: 1 }}>
           <For each={items} getKey={(item, idx) => getItemKey?.({ item, idx })}>
             {(item) => (
               <AddProps shadowProps={anatomy?.itemCell}>
@@ -90,7 +91,7 @@ export const ListTable = createKit(
             )}
           </For>
         </Group>
-      </Div>
+      </Col>
     )
   }
 )

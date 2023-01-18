@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { getDirectoryHandle } from '../utils/getDirectoryHandle'
 
-export function useWebDirHandle() {
+export function useDirHandleTrigger() {
   const [rootDirHandle, setRootDirHandle] = useState<FileSystemDirectoryHandle>()
 
   async function triggerDirPicker() {

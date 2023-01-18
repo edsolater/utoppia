@@ -19,7 +19,10 @@ export function App() {
           gridTemplateColumns: '300px 1fr',
           gridTemplate: `
             "nav  nav" 48px
-            "side con" 1fr / 12em 1fr`
+            "side con" 1fr / 12em 1fr`,
+          '> *': {
+            overflow: 'overlay'
+          }
         }}
       >
         <TopNavBar icss={{ gridArea: 'nav' }} />

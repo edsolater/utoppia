@@ -1,1 +1,1 @@
-export * from './components/WebFileWatcher'
+export * from './components/FileWatcher'
