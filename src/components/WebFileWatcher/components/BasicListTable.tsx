@@ -8,7 +8,8 @@ import {
   For,
   GridProps,
   Group,
-  GroupProps, Row,
+  GroupProps,
+  Row,
   Show
 } from '@edsolater/uikit'
 import { useAsyncValue } from '@edsolater/uikit/hooks'
@@ -70,16 +71,16 @@ export const ListTable = createKit(
               <AddProps shadowProps={anatomy?.itemCell}>
                 <Row shadowProps={anatomy?.itemRow} icss={{ paddingBlock: 4 }}>
                   <For each={Object.entries(item)}>
-                    {([itemKey, itemValue], idx) => (
+                    {([key, value], idx) => (
                       <AddProps
                         shadowProps={anatomy?.itemCell}
                         icss={{ width: getCellWidth(idx) }}
                         domRef={createTabelCellRef(idx)}
                       >
                         {anatomy?.renderItemCell ? (
-                          anatomy.renderItemCell({ idx, item, key: itemKey, value: itemValue })
+                          anatomy.renderItemCell({ idx, item, key, value })
                         ) : (
-                          <Div>{String(itemValue)}</Div>
+                          <Div>{String(value)}</Div>
                         )}
                       </AddProps>
                     )}
