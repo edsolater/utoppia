@@ -4,7 +4,7 @@ import { EditPlayground } from '../components/EditPlayround'
 import { MotionGrid } from '../components/MotionGrid'
 import { MatureTodoList } from '../components/TodoList/example/MatureTodoList'
 import { UikitExhibition } from '../components/uikitExamples/examples'
-import { FileWatcher } from '../components/WebFileWatcher'
+import { FileWatcherBox } from '../components/WebFileWatcher'
 
 export type SideMenuEntryItem = {
   group: string
@@ -30,7 +30,7 @@ export const sideMenu = {
       group: 'Playground',
       name: 'WebFileWatcher',
       entryIcon: '/example.svg',
-      component: () => <FileWatcher />,
+      component: () => <FileWatcherBox />,
       defaultActive: true
     },
     {

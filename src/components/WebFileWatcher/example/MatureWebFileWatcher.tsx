@@ -1,5 +1,5 @@
 import { Row } from '@edsolater/uikit'
-import { FileWatcher } from '..'
+import { FileWatcherBox } from '..'
 import { useXDBList } from './dataHooks'
 
 // should be a `<WebFileWatcher>` component
@@ -9,7 +9,7 @@ export function MatureWebFileWatcher() {
 
   return (
     <Row icss={{ justifyContent: 'center' }}>
-      <FileWatcher
+      <FileWatcherBox
         items={webFileWatcher}
         getItemKey={({ item }) => item.createAt.getTime()}
         onInsert={(text) => {

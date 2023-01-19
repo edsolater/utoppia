@@ -1,1 +1,1 @@
-export * from './components/FileWatcher'
+export * from './components/FileWatcherBox'
