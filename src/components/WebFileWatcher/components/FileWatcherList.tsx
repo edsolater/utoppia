@@ -9,16 +9,15 @@ import { ListTable } from './BasicListTable'
 
 export type FileWatcherListProps = {
   pairs: MayPromise<FileSystemItemPair[]>
-  noHeader?: boolean
   onOpenFile?: ComponentProps<typeof FilenameItemFilenameCell>['onOpenFile']
 }
 
-export const FileWatcherList = createKit('FileWatcherList', ({ pairs, noHeader, onOpenFile }: FileWatcherListProps) => {
+export const FileWatcherList = createKit('FileWatcherList', ({ pairs, onOpenFile }: FileWatcherListProps) => {
   return (
     <ListTable
       icss={{ overflow: 'layout', flex: 1 }}
       items={pairs}
-      showHeader={!noHeader}
+      showHeader={false}
       anatomy={{
         itemRow: {
           icss: {
@@ -79,7 +78,7 @@ const DirectoryItemValueCell = createKit(
   }) => {
     const [hasToggled, controller] = useToggle()
     return hasToggled ? (
-      <FileWatcherList noHeader onOpenFile={onOpenFile} pairs={getDirectoryEntries(handler)} />
+      <FileWatcherList onOpenFile={onOpenFile} pairs={getDirectoryEntries(handler)} />
     ) : (
       <Div onClick={controller.on}>▶️</Div>
     )

@@ -19,6 +19,8 @@ import { useTableCellWidthDetector } from '../hooks/useTableCellWidthDetector'
 export type ListTableProps<T extends Record<string, any> = Record<string, any>> = {
   items: MayPromise<T[]>
   showHeader?: boolean
+  /** let too large height cell have floating key */
+  letCellSticky?: boolean
   getItemKey?: (info: { item: T; idx: number }) => string | number
 
   // -------- sub --------
@@ -39,6 +41,7 @@ export const ListTable = createKit(
   <T extends Record<string, any>>({
     items: mayPromiseItems,
     showHeader = true,
+    letCellSticky = true,
     getItemKey,
     anatomy
   }: ListTableProps<T>) => {
@@ -70,12 +73,15 @@ export const ListTable = createKit(
           <For each={items} getKey={(item, idx) => getItemKey?.({ item, idx })}>
             {(item) => (
               <AddProps shadowProps={anatomy?.itemCell}>
-                <Row shadowProps={anatomy?.itemRow} icss={{ paddingBlock: 4 }}>
+                <Row
+                  shadowProps={anatomy?.itemRow}
+                  icss={[letCellSticky && { position: 'relative' }, { paddingBlock: 4 }]}
+                >
                   <For each={Object.entries(item)}>
                     {([key, value], idx) => (
                       <AddProps
                         shadowProps={anatomy?.itemCell}
-                        icss={{ width: getCellWidth(idx) }}
+                        icss={[letCellSticky && { position: 'sticky', top: 0 }, { width: getCellWidth(idx) }]}
                         domRef={createTabelCellRef(idx)}
                       >
                         {anatomy?.renderItemCell ? (
