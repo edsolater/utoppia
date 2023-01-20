@@ -1,7 +1,7 @@
 import { assert, MayEnum } from '@edsolater/fnkit'
 import { useAsyncMemo, useEvent } from '@edsolater/uikit/hooks'
 import produce from 'immer'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import { isDirectoryHandle, isFileHandle } from '../utils/adjest'
 import { getDirectoryHandle } from '../utils/getDirectoryHandle'
 

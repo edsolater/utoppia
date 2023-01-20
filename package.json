@@ -12,7 +12,6 @@
   "dependencies": {
     "@babel/core": "^7.20.5",
     "@edsolater/fnkit": "^0.1.10",
-    "@edsolater/hookit": "^0.1.11",
     "@edsolater/uikit": "^0.1.14",
     "@edsolater/xstore": "^0.1.9",
     "immer": "^9.0.16",

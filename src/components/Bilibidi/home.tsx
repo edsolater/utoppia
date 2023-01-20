@@ -1,6 +1,5 @@
 import { createKit, Div } from '@edsolater/uikit'
 import { useAsyncEffect, useDOM } from '@edsolater/uikit/hooks'
-import { jFetch } from '@edsolater/uikit/jFetch'
 import { useEffect, useMemo, useState } from 'react'
 
 /**

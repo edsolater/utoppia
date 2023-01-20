@@ -1,4 +1,5 @@
-import { mergeFunction, useAsyncEffect } from '@edsolater/hookit'
+import { mergeFunction } from '@edsolater/fnkit'
+import { useAsyncEffect } from '@edsolater/uikit/hooks'
 import { RefObject, useRef, useState } from 'react'
 import { getXDBObjectStore } from '../../../xdb'
 import { XDBObjectStore } from '../../../xdb/type'

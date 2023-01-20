@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@babel/core': ^7.20.5
   '@edsolater/fnkit': ^0.1.10
-  '@edsolater/hookit': ^0.1.11
   '@edsolater/uikit': ^0.1.14
   '@edsolater/xstore': ^0.1.9
   '@types/react': ^18.0.26
@@ -20,13 +19,12 @@ specifiers:
 dependencies:
   '@babel/core': 7.20.5
   '@edsolater/fnkit': 0.1.10
-  '@edsolater/hookit': 0.1.11_ntb6fqh42gqqrxtm7j3ckupuz4
-  '@edsolater/uikit': 0.1.14_z5p226gz3tfdhaogifsldxnbre
+  '@edsolater/uikit': 0.1.14_@babel+core@7.20.5
   '@edsolater/xstore': 0.1.9
   immer: 9.0.16
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  rxjs: 7.6.0
+  rxjs: 7.8.0
 
 devDependencies:
   '@types/react': 18.0.26
@@ -248,8 +246,8 @@ packages:
       '@babel/types': 7.20.5
     dev: true
 
-  /@babel/runtime/7.20.6:
-    resolution: {integrity: sha512-Q+8MqP7TiHMWzSfwiJwXCjyf4GYA4Dgw3emg/7xmwsdLJOZUp+nMqcOwOzzYheuM1rhDu8FSj2l0aoMygEuXuA==}
+  /@babel/runtime/7.20.7:
+    resolution: {integrity: sha512-UF0tvkUtxwAgZ5W/KrkHf0Rn0fdnLDU9ScxBrEVNUprE/MzirjK4MJUX1/BVDv00Sv8cljtukVK1aky++X1SjQ==}
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
@@ -292,32 +290,24 @@ packages:
     resolution: {integrity: sha512-VFzjuwNU78//YJMAqqITeSiYgYC4SYKycIlAXjg8Ius13BvtBCwwB6AM+joYRTHZSDutuVmOav4F+TMHpRxDxw==}
     dev: false
 
-  /@edsolater/hookit/0.1.11_ntb6fqh42gqqrxtm7j3ckupuz4:
+  /@edsolater/hookit/0.1.11:
     resolution: {integrity: sha512-7pTJAESc2TnUQacbDhe4RoJxqqeUY3CyFMUSFnaLLi3wDDPerYZmSBxXJVXuY4Ecb8U02ZgujD+3fBuogTKDIg==}
-    peerDependencies:
-      '@edsolater/fnkit': '>=0.0.4'
-      react: '>=18.0.0'
     dependencies:
       '@edsolater/fnkit': 0.1.10
       react: 18.2.0
     dev: false
 
-  /@edsolater/uikit/0.1.14_z5p226gz3tfdhaogifsldxnbre:
+  /@edsolater/uikit/0.1.14_@babel+core@7.20.5:
     resolution: {integrity: sha512-eh/LkpQkCQzYLA/SAbTZjqLpmMqfWFaM8TVq2CknFVfF0iORWqrG9qZJtoWbrlhmqjB9iNCqSomtK0H8Kmtnew==}
     peerDependencies:
       '@babel/core': '>7.0.0'
-      '@edsolater/fnkit': '*'
-      '@edsolater/hookit': '*'
-      '@edsolater/xstore': '*'
-      react: '>18.0.0'
-      react-dom: '>18.0.0'
     dependencies:
       '@babel/core': 7.20.5
       '@edsolater/fnkit': 0.1.10
-      '@edsolater/hookit': 0.1.11_ntb6fqh42gqqrxtm7j3ckupuz4
-      '@edsolater/xstore': 0.1.9_ntb6fqh42gqqrxtm7j3ckupuz4
+      '@edsolater/hookit': 0.1.11
+      '@edsolater/xstore': 0.1.9
       '@emotion/css': 11.10.5_@babel+core@7.20.5
-      '@headlessui/react': 1.7.4_biqbaboplfbrettd7655fr4n2y
+      '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
       immer: 9.0.16
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -325,16 +315,6 @@ packages:
 
   /@edsolater/xstore/0.1.9:
     resolution: {integrity: sha512-tCiIejuEclFuFRDYVpSQWrAYtgNAyuuEZDpeIzQdUvcuqJfDgSyRAOvwrXUCzb5wopMhHGvPWsz6LnL6Imm51A==}
-    dependencies:
-      '@edsolater/fnkit': 0.1.10
-      react: 18.2.0
-    dev: false
-
-  /@edsolater/xstore/0.1.9_ntb6fqh42gqqrxtm7j3ckupuz4:
-    resolution: {integrity: sha512-tCiIejuEclFuFRDYVpSQWrAYtgNAyuuEZDpeIzQdUvcuqJfDgSyRAOvwrXUCzb5wopMhHGvPWsz6LnL6Imm51A==}
-    peerDependencies:
-      '@edsolater/fnkit': '>=0.0.5'
-      react: '>=18.0.0'
     dependencies:
       '@edsolater/fnkit': 0.1.10
       react: 18.2.0
@@ -348,7 +328,7 @@ packages:
       '@babel/core': 7.20.5
       '@babel/helper-module-imports': 7.18.6
       '@babel/plugin-syntax-jsx': 7.18.6_@babel+core@7.20.5
-      '@babel/runtime': 7.20.6
+      '@babel/runtime': 7.20.7
       '@emotion/hash': 0.9.0
       '@emotion/memoize': 0.8.0
       '@emotion/serialize': 1.1.1
@@ -438,8 +418,8 @@ packages:
     dev: true
     optional: true
 
-  /@headlessui/react/1.7.4_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-D8n5yGCF3WIkPsjEYeM8knn9jQ70bigGGb5aUvN6y4BGxcT3OcOQOKcM3zRGllRCZCFxCZyQvYJF6ZE7bQUOyQ==}
+  /@headlessui/react/1.7.7_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-BqDOd/tB9u2tA0T3Z0fn18ktw+KbVwMnkxxsGPIH2hzssrQhKB5n/6StZOyvLYP/FsYtvuXfi9I0YowKPv2c1w==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16 || ^17 || ^18
@@ -540,7 +520,7 @@ packages:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
     engines: {node: '>=10', npm: '>=6'}
     dependencies:
-      '@babel/runtime': 7.20.6
+      '@babel/runtime': 7.20.7
       cosmiconfig: 7.1.0
       resolve: 1.22.1
     dev: false
@@ -1028,8 +1008,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /rxjs/7.6.0:
-    resolution: {integrity: sha512-DDa7d8TFNUalGC9VqXvQ1euWNN7sc63TrUCuM9J998+ViviahMIjKSOU7rfcgFOF+FCD71BhDRv4hrFz+ImDLQ==}
+  /rxjs/7.8.0:
+    resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
     dependencies:
       tslib: 2.4.1
     dev: false
