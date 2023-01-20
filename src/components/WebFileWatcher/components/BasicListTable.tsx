@@ -18,8 +18,12 @@ import { useTableCellWidthDetector } from '../hooks/useTableCellWidthDetector'
 
 export type ListTableProps<T extends Record<string, any> = Record<string, any>> = {
   items: MayPromise<T[]>
+  visiableProterties?: (keyof T)[]
   showHeader?: boolean
-  /** let too large height cell have floating key */
+  /**
+   * let too large height cell have floating key
+   * note sticky may cause **performance issue**
+   */
   letCellSticky?: boolean
   getItemKey?: (info: { item: T; idx: number }) => string | number
 
@@ -27,7 +31,17 @@ export type ListTableProps<T extends Record<string, any> = Record<string, any>> 
   // renderHeader?: (info: { items: T[]; firstItem?: T }) => DivChildNode
 
   anatomy?: {
-    renderItemCell?: (info: { item: T; value: T[keyof T]; key: keyof T; idx: number }) => DivChildNode
+    /** ItemRow
+     * if set this, `renderItemCell` will be ignored
+     */
+    renderItem?: (info: { item: T; idx: number }) => DivChildNode
+    renderItemCell?: (info: {
+      item: T
+      value: T[keyof T]
+      key: keyof T
+      itemIdx: number
+      cellIdx: number
+    }) => DivChildNode
     itemCell?: DivProps
     itemRow?: DivProps
     headerCell?: DivProps
@@ -41,12 +55,13 @@ export const ListTable = createKit(
   <T extends Record<string, any>>({
     items: mayPromiseItems,
     showHeader = true,
-    letCellSticky = true,
+    letCellSticky = false,
+    visiableProterties,
     getItemKey,
     anatomy
   }: ListTableProps<T>) => {
     const items = useAsyncValue(mayPromiseItems) ?? []
-    const itemPropertyNames = getItemsProperties(items)
+    const itemPropertyNames = visiableProterties ?? getItemsProperties(items)
     const { createTabelCellRef, hasDetected, getCellWidth } = useTableCellWidthDetector()
     return (
       <Col>
@@ -55,12 +70,12 @@ export const ListTable = createKit(
           <Group shadowProps={anatomy?.headerGroup} name='list-header'>
             <Row shadowProps={anatomy?.headerCell}>
               <For each={itemPropertyNames}>
-                {(n, idx) => (
+                {(propertyNames, idx) => (
                   <Div
                     domRef={createTabelCellRef(idx)}
                     icss={{ paddingBlock: 4, fontSize: 18, fontWeight: 'bold', width: getCellWidth(idx) }}
                   >
-                    {n}
+                    {String(propertyNames)}
                   </Div>
                 )}
               </For>
@@ -71,21 +86,28 @@ export const ListTable = createKit(
         {/* list */}
         <Group name='list-item-group' shadowProps={anatomy?.itemGroup} icss={{ flex: 1 }}>
           <For each={items} getKey={(item, idx) => getItemKey?.({ item, idx })}>
-            {(item) => (
-              <AddProps shadowProps={anatomy?.itemCell}>
+            {(item, itemIdx) =>
+              anatomy?.renderItem ? (
+                <>{anatomy.renderItem({ item, idx: itemIdx })}</>
+              ) : (
                 <Row
                   shadowProps={anatomy?.itemRow}
                   icss={[letCellSticky && { position: 'relative' }, { paddingBlock: 4 }]}
                 >
-                  <For each={Object.entries(item)}>
-                    {([key, value], idx) => (
+                  <For
+                    each={
+                      /* visiablePropertyPairs */
+                      Object.entries(item).filter(([propertyName]) => itemPropertyNames.includes(propertyName))
+                    }
+                  >
+                    {([propertyName, value], cellIdx) => (
                       <AddProps
                         shadowProps={anatomy?.itemCell}
-                        icss={[letCellSticky && { position: 'sticky', top: 0 }, { width: getCellWidth(idx) }]}
-                        domRef={createTabelCellRef(idx)}
+                        icss={[letCellSticky && { position: 'sticky', top: 0 }, { width: getCellWidth(cellIdx) }]}
+                        domRef={createTabelCellRef(cellIdx)}
                       >
                         {anatomy?.renderItemCell ? (
-                          anatomy.renderItemCell({ idx, item, key, value })
+                          anatomy.renderItemCell({ item, key: propertyName, value, itemIdx, cellIdx })
                         ) : (
                           <Div>{String(value)}</Div>
                         )}
@@ -93,8 +115,8 @@ export const ListTable = createKit(
                     )}
                   </For>
                 </Row>
-              </AddProps>
-            )}
+              )
+            }
           </For>
         </Group>
       </Col>

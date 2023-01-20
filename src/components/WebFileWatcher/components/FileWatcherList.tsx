@@ -1,22 +1,21 @@
-import { MayPromise } from '@edsolater/fnkit'
 import { createKit, Div } from '@edsolater/uikit'
 import { useToggle } from '@edsolater/uikit/hooks'
 import { ComponentProps } from 'react'
-import { FileSystemItemPair } from '../type'
-import { isFileHandle, isFileOrDirectoryHandle } from '../utils/adjest'
-import { getDirectoryEntries } from '../utils/getDirectoryEntries'
+import { isFileHandle } from '../utils/adjest'
+import { getDirectoryChildren } from '../utils/getDirectoryChildren'
 import { ListTable } from './BasicListTable'
 
 export type FileWatcherListProps = {
-  pairs: MayPromise<FileSystemItemPair[]>
-  onOpenFile?: ComponentProps<typeof FilenameItemFilenameCell>['onOpenFile']
+  root: FileSystemDirectoryHandle
+  onOpenFile?: ComponentProps<typeof FileHandleRow>['onOpenFile']
+  onOpenDirectory?: ComponentProps<typeof DirectoryHandleRow>['onOpenDirectory']
 }
 
-export const FileWatcherList = createKit('FileWatcherList', ({ pairs, onOpenFile }: FileWatcherListProps) => {
-  return (
+export const FileWatcherList = createKit(
+  { name: 'FileWatcherList', reactMemo: true },
+  ({ root, onOpenFile, onOpenDirectory }: FileWatcherListProps) => (
     <ListTable
-      icss={{ overflow: 'layout', flex: 1 }}
-      items={pairs}
+      items={getDirectoryChildren(root)}
       showHeader={false}
       anatomy={{
         itemRow: {
@@ -24,37 +23,20 @@ export const FileWatcherList = createKit('FileWatcherList', ({ pairs, onOpenFile
             alignItems: 'start'
           }
         },
-        renderItemCell: ({ value, key, item }) =>
-          key === 'filename' ? (
-            isFileOrDirectoryHandle(item.value) ? (
-              isFileHandle(item.value) ? (
-                <FilenameItemFilenameCell onOpenFile={onOpenFile} handler={item.value} />
-              ) : (
-                <Div>{item.filename}</Div> //TODO <-- use <Text>
-              )
-            ) : (
-              String(value)
-            )
-          ) : isFileOrDirectoryHandle(item.value) ? (
-            isFileHandle(item.value) ? null : (
-              <DirectoryItemValueCell onOpenFile={onOpenFile} handler={item.value} />
-            )
+        renderItem: ({ item: handle }) =>
+          isFileHandle(handle) ? (
+            <FileHandleRow handler={handle} onOpenFile={onOpenFile} />
           ) : (
-            String(value)
+            <DirectoryHandleRow handler={handle} onOpenDirectory={onOpenDirectory} />
           )
       }}
     />
   )
-})
-const FilenameItemFilenameCell = createKit(
+)
+
+const FileHandleRow = createKit(
   'FilenameItemFilenameCell',
-  ({
-    handler,
-    onOpenFile
-  }: {
-    handler: FileSystemFileHandle
-    onOpenFile?: (fileHandle: FileSystemFileHandle) => void
-  }) => {
+  ({ handler, onOpenFile }: { handler: FileSystemFileHandle; onOpenFile?: (handle: FileSystemFileHandle) => void }) => {
     return (
       <Div
         icss={{ textDecoration: 'underline' }}
@@ -67,20 +49,28 @@ const FilenameItemFilenameCell = createKit(
     )
   }
 )
-const DirectoryItemValueCell = createKit(
+const DirectoryHandleRow = createKit(
   'DirectoryItemValueCell',
   ({
     handler,
-    onOpenFile
+    onOpenDirectory
   }: {
     handler: FileSystemDirectoryHandle
-    onOpenFile?: ComponentProps<typeof FilenameItemFilenameCell>['onOpenFile']
+    onOpenDirectory?: (handle: FileSystemDirectoryHandle) => void
   }) => {
-    const [hasToggled, controller] = useToggle()
-    return hasToggled ? (
-      <FileWatcherList onOpenFile={onOpenFile} pairs={getDirectoryEntries(handler)} />
-    ) : (
-      <Div onClick={controller.on}>▶️</Div>
+    return (
+      <Div
+        onClick={() => {
+          onOpenDirectory?.(handler)
+        }}
+      >
+        {handler.name} ▶️
+      </Div>
     )
+    // return hasToggled ? (
+    //   <FileWatcherList onOpenFile={onOpenFile} root={handler} />
+    // ) : (
+    //   <Div onClick={controller.on}>▶️</Div>
+    // )
   }
 )

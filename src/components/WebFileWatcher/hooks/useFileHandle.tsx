@@ -35,7 +35,7 @@ export function useFileHandle() {
         : mimeType.startsWith('audio')
         ? 'audio'
         : 'unknown'
-      return { type, mimeType }
+      return { type, mimeType } as const 
     }, [fileHandle]) ?? {}
 
   return { url, type, mimeType, setFileHandle }
