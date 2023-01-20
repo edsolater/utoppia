@@ -5,10 +5,10 @@ export function useDirectoryHandle() {
   const [rootDirectoryHandle, setRootDirectoryHandle] = useState<FileSystemDirectoryHandle>()
   const [directoryHandle, setDirectoryHandle] = useState<FileSystemDirectoryHandle>()
 
-  async function triggerDirPicker() {
+  async function triggerRootDirectoryPicker() {
     const dirHandle = await getDirectoryHandle()
     setDirectoryHandle(dirHandle)
   }
 
-  return { directoryHandle, triggerDirPicker, setDirectoryHandle }
+  return { directoryHandle, triggerRootDirectoryPicker, setDirectoryHandle }
 }

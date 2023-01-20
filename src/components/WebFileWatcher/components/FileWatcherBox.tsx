@@ -1,4 +1,4 @@
-import { Button, Col, createKit, Div, Grid, Group, Image, Row } from '@edsolater/uikit'
+import { Button, Col, createKit, Div, For, Grid, Group, Image, Row } from '@edsolater/uikit'
 import { autoFocus } from '@edsolater/uikit/plugins'
 import { useMemo } from 'react'
 import { useFileSystem } from '../hooks/useFileSystem'
@@ -9,7 +9,7 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
   const {
     currentDirectoryHandle,
     activeFileHandle,
-    triggerDirPicker,
+    triggerRootDirectoryPicker,
     addHandle,
     navBack,
     breadcrumbList,
@@ -27,12 +27,16 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
   return (
     <Grid icss={{ gridTemplateColumns: '2fr 1fr', height: '100%', padding: 8, gap: 4 }}>
       <Col icss={{ contain: 'size' }}>
-        <Button plugin={autoFocus} onClick={triggerDirPicker}>
+        <Button plugin={autoFocus} onClick={triggerRootDirectoryPicker}>
           Pick directory
         </Button>
-        <Button onClick={navBack}>Go back</Button>
+        {breadcrumbList.length > 0 && <Button onClick={navBack}>Go back</Button>}
 
-        <Row>Path: {breadcrumbList.map((i) => i.name).join(' > ')}</Row>
+        <Row renderSpaceEl={<Div>{'>'}</Div>}>
+          <For each={breadcrumbList}>{(item) => <Div icss={{ textDecoration: 'underline' }} onClick={()=>{
+            /* TODO */
+          }}>{item.name}</Div>}</For>
+        </Row>
 
         {currentDirectoryHandle && (
           <FileWatcherList

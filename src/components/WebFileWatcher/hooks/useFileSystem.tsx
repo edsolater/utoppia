@@ -17,13 +17,22 @@ type MIMEType =
     | 'image/webp' //Web Picture format (WEBP)
   >
 
+  type FileSystemTreeNode = {
+    handler:FileSystemHandle
+  }
+  type TreeStructure<Node> = {
+    
+  }
 export function useFileSystem() {
+  const [tree, setTree] = useState()
+  // TODO: should be a memo result of tree
   const [root, setRoot] = useState<FileSystemDirectoryHandle>()
+  // TODO: should be a memo result of tree
   const [breadcrumbList, setBreadcrumbList] = useState<FileSystemDirectoryHandle[]>([])
   const [currentDirectoryHandle, setDirectoryHandle] = useState<FileSystemDirectoryHandle>()
   const [activeFileHandle, setFileHandle] = useState<FileSystemFileHandle>()
 
-  const triggerDirPicker = useEvent(async () => {
+  const triggerRootDirectoryPicker = useEvent(async () => {
     const root = await getDirectoryHandle()
     setRoot(root)
     setDirectoryHandle(root)
@@ -99,7 +108,7 @@ export function useFileSystem() {
     url,
     type,
     mimeType,
-    triggerDirPicker,
+    triggerRootDirectoryPicker,
     addHandle,
     navBack
   }
