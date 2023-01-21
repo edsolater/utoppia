@@ -1,7 +1,6 @@
-import { assert, MayEnum } from '@edsolater/fnkit'
-import { useAsyncMemo, useEvent } from '@edsolater/uikit/hooks'
-import produce from 'immer'
-import { useState } from 'react'
+import { MayEnum, TreeStructure, tryCatch } from '@edsolater/fnkit'
+import { useAsyncMemo, useEvent, useForceUpdate } from '@edsolater/uikit/hooks'
+import { useMemo, useRef, useState } from 'react'
 import { isDirectoryHandle, isFileHandle } from '../utils/adjest'
 import { getDirectoryHandle } from '../utils/getDirectoryHandle'
 
@@ -17,68 +16,45 @@ type MIMEType =
     | 'image/webp' //Web Picture format (WEBP)
   >
 
-  type FileSystemTreeNode = {
-    handler:FileSystemHandle
-  }
-  type TreeStructure<Node> = {
-    
-  }
 export function useFileSystem() {
-  const [tree, setTree] = useState()
-  // TODO: should be a memo result of tree
-  const [root, setRoot] = useState<FileSystemDirectoryHandle>()
-  // TODO: should be a memo result of tree
-  const [breadcrumbList, setBreadcrumbList] = useState<FileSystemDirectoryHandle[]>([])
-  const [currentDirectoryHandle, setDirectoryHandle] = useState<FileSystemDirectoryHandle>()
-  const [activeFileHandle, setFileHandle] = useState<FileSystemFileHandle>()
+  const [forceUpdateCount, forceUpdate] = useForceUpdate()
+  const tree = useRef(new TreeStructure<FileSystemHandle>())
+  const root = useMemo(() => tree.current.rootNode?.info, [forceUpdateCount])
+  const [currentDirectoryHandle, setCurrentDirectoryHandle] = useState<FileSystemDirectoryHandle>()
+  const breadcrumbList = useMemo(
+    () =>
+      currentDirectoryHandle &&
+      tryCatch(() => tree.current.getPathFromRoot(currentDirectoryHandle).filter(isDirectoryHandle)),
+    [currentDirectoryHandle, root, forceUpdateCount]
+  )
+  const [activeFileHandle, setActiveFileHandle] = useState<FileSystemFileHandle>()
 
   const triggerRootDirectoryPicker = useEvent(async () => {
     const root = await getDirectoryHandle()
-    setRoot(root)
-    setDirectoryHandle(root)
-    setBreadcrumbList([root])
+    tree.current.setRoot(root)
+    setCurrentDirectoryHandle(root)
   })
 
-  const addHandle = useEvent(async (handle: FileSystemFileHandle | FileSystemDirectoryHandle) => {
-    if (isFileHandle(handle)) {
-      setFileHandle(handle)
-    } else {
-      setDirectoryHandle(handle)
-      addHandleToBreadcrumb(handle)
+  const addHandle = useEvent(
+    async (
+      handle: FileSystemFileHandle | FileSystemDirectoryHandle,
+      parent: FileSystemFileHandle | FileSystemDirectoryHandle
+    ) => {
+      if (isFileHandle(handle)) {
+        setActiveFileHandle(handle)
+      } else {
+        setCurrentDirectoryHandle(handle)
+      }
+      tree.current.addNode(handle, parent)
     }
-  })
-
-  const addHandleToBreadcrumb = useEvent(async (handle: FileSystemDirectoryHandle) => {
-    /**
-     * case 0: handle is not child of root ❌
-     * case 1: handle is child of root , but not direct child of breadcrumb last Item // TEMP ❌
-     * case 2: handle is child of root , and is direct child of breadcrumb last Item
-     * case 3: handle is child of root , but it's parent is not in breadcrumb ❌
-     */
-
-    assert(root, 'should pick root directory first')
-    const relativePath = await root.resolve(handle)
-    assert(relativePath, 'handle must be the child of root')
-
-    const lastItem = breadcrumbList.at(-1)
-    assert(lastItem, 'breadcrumbList must exist at least one item')
-
-    const isDirectChild = Boolean(await lastItem.resolve(handle))
-    assert(isDirectChild, 'currently(to evolve) last item of breadcrumb must be the direct parent of ')
-
-    setBreadcrumbList((b) => [...b, handle])
-  })
+  )
 
   const navBack = useEvent(async () => {
-    const newLast = breadcrumbList.at(-2)
-    isDirectoryHandle(newLast) && setDirectoryHandle(newLast)
-
-    setBreadcrumbList(
-      produce(breadcrumbList, (l) => {
-        l.pop()
-      })
-    )
+    const newLast = breadcrumbList?.at(-2)
+    isDirectoryHandle(newLast) && setCurrentDirectoryHandle(newLast)
   })
+
+  const canNavBack = Number(breadcrumbList?.length) >= 2
 
   const url = useAsyncMemo(async () => {
     if (!activeFileHandle) return undefined
@@ -109,7 +85,9 @@ export function useFileSystem() {
     type,
     mimeType,
     triggerRootDirectoryPicker,
+    setCurrentDirectoryHandle,
     addHandle,
-    navBack
+    navBack,
+    canNavBack
   }
 }

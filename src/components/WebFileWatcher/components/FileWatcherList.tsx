@@ -1,5 +1,4 @@
 import { createKit, Div } from '@edsolater/uikit'
-import { useToggle } from '@edsolater/uikit/hooks'
 import { ComponentProps } from 'react'
 import { isFileHandle } from '../utils/adjest'
 import { getDirectoryChildren } from '../utils/getDirectoryChildren'
@@ -25,9 +24,9 @@ export const FileWatcherList = createKit(
         },
         renderItem: ({ item: handle }) =>
           isFileHandle(handle) ? (
-            <FileHandleRow handler={handle} onOpenFile={onOpenFile} />
+            <FileHandleRow handler={handle} parent={root} onOpenFile={onOpenFile} />
           ) : (
-            <DirectoryHandleRow handler={handle} onOpenDirectory={onOpenDirectory} />
+            <DirectoryHandleRow handler={handle} parent={root} onOpenDirectory={onOpenDirectory} />
           )
       }}
     />
@@ -36,12 +35,20 @@ export const FileWatcherList = createKit(
 
 const FileHandleRow = createKit(
   'FilenameItemFilenameCell',
-  ({ handler, onOpenFile }: { handler: FileSystemFileHandle; onOpenFile?: (handle: FileSystemFileHandle) => void }) => {
+  ({
+    handler,
+    parent,
+    onOpenFile
+  }: {
+    handler: FileSystemFileHandle
+    parent: FileSystemDirectoryHandle
+    onOpenFile?: (handle: FileSystemFileHandle, parent: FileSystemDirectoryHandle) => void
+  }) => {
     return (
       <Div
         icss={{ textDecoration: 'underline' }}
         onClick={() => {
-          onOpenFile?.(handler)
+          onOpenFile?.(handler, parent)
         }}
       >
         {handler.name}
@@ -53,15 +60,17 @@ const DirectoryHandleRow = createKit(
   'DirectoryItemValueCell',
   ({
     handler,
+    parent,
     onOpenDirectory
   }: {
     handler: FileSystemDirectoryHandle
-    onOpenDirectory?: (handle: FileSystemDirectoryHandle) => void
+    parent: FileSystemDirectoryHandle
+    onOpenDirectory?: (handle: FileSystemDirectoryHandle, parent: FileSystemDirectoryHandle) => void
   }) => {
     return (
       <Div
         onClick={() => {
-          onOpenDirectory?.(handler)
+          onOpenDirectory?.(handler, parent)
         }}
       >
         {handler.name} ▶️

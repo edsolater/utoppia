@@ -10,9 +10,11 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
     currentDirectoryHandle,
     activeFileHandle,
     triggerRootDirectoryPicker,
+    setCurrentDirectoryHandle,
     addHandle,
     navBack,
     breadcrumbList,
+    canNavBack,
     url: urlType,
     type: fileType
   } = useFileSystem()
@@ -30,12 +32,21 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
         <Button plugin={autoFocus} onClick={triggerRootDirectoryPicker}>
           Pick directory
         </Button>
-        {breadcrumbList.length > 0 && <Button onClick={navBack}>Go back</Button>}
+        {canNavBack && <Button onClick={navBack}>Go back</Button>}
 
         <Row renderSpaceEl={<Div>{'>'}</Div>}>
-          <For each={breadcrumbList}>{(item) => <Div icss={{ textDecoration: 'underline' }} onClick={()=>{
-            /* TODO */
-          }}>{item.name}</Div>}</For>
+          <For each={breadcrumbList}>
+            {(item) => (
+              <Div
+                icss={{ textDecoration: 'underline' }}
+                onClick={() => {
+                  setCurrentDirectoryHandle(item)
+                }}
+              >
+                {item.name}
+              </Div>
+            )}
+          </For>
         </Row>
 
         {currentDirectoryHandle && (
