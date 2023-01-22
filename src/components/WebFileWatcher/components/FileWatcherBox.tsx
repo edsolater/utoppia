@@ -65,7 +65,6 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
       <Group name='preview' icss={{ overflow: 'overlay' }}>
         {/* active filename */}
         <Div>{activeFileHandle?.name}</Div>
-
         <PreviewPanel handle={activeFileHandle} />
       </Group>
     </Grid>
