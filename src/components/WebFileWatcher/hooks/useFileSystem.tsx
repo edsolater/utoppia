@@ -2,7 +2,7 @@ import { MayEnum, TreeStructure, tryCatch } from '@edsolater/fnkit'
 import { useAsyncMemo, useEvent, useForceUpdate } from '@edsolater/uikit/hooks'
 import { useMemo, useRef, useState } from 'react'
 import { isDirectoryHandle, isFileHandle } from '../utils/adjest'
-import { getDirectoryHandle } from '../utils/getDirectoryHandle'
+import { pickSystemDirectory } from '../utils/pickSystemDirectory'
 
 type MIMEType =
   /* TODO：complete this */
@@ -30,7 +30,7 @@ export function useFileSystem() {
   const [activeFileHandle, setActiveFileHandle] = useState<FileSystemFileHandle>()
 
   const triggerRootDirectoryPicker = useEvent(async () => {
-    const root = await getDirectoryHandle()
+    const root = await pickSystemDirectory()
     tree.current.setRoot(root)
     setCurrentDirectoryHandle(root)
   })

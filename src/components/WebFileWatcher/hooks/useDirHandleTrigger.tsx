@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { getDirectoryHandle } from '../utils/getDirectoryHandle'
+import { pickSystemDirectory } from '../utils/pickSystemDirectory'
 
 export function useDirectoryHandle() {
   const [rootDirectoryHandle, setRootDirectoryHandle] = useState<FileSystemDirectoryHandle>()
   const [directoryHandle, setDirectoryHandle] = useState<FileSystemDirectoryHandle>()
 
   async function triggerRootDirectoryPicker() {
-    const dirHandle = await getDirectoryHandle()
+    const dirHandle = await pickSystemDirectory()
     setDirectoryHandle(dirHandle)
   }
 
