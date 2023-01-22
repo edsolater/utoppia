@@ -9,7 +9,7 @@ export type FileWatcherListProps = {
   onOpenDirectory?: ComponentProps<typeof DirectoryHandleRow>['onOpenDirectory']
 }
 
-export const FileWatcherList = createKit(
+export const HandleList = createKit(
   { name: 'FileWatcherList', reactMemo: true },
   ({ root, onOpenFile, onOpenDirectory }: FileWatcherListProps) => (
     <ListTable

@@ -1,9 +1,10 @@
-import { Button, Col, createKit, Div, For, Grid, Group, Image, Row } from '@edsolater/uikit'
+import { Button, Col, createKit, Div, For, Grid, Group, Row } from '@edsolater/uikit'
 import { autoFocus } from '@edsolater/uikit/plugins'
 import { useMemo } from 'react'
 import { useFileSystem } from '../hooks/useFileSystem'
 import { WebFileWatcherProps } from '../type'
-import { FileWatcherList } from './FileWatcherList'
+import { HandleList } from './HandleList'
+import { PreviewPanel } from './PreviewPanel'
 
 export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcherProps) => {
   const {
@@ -14,9 +15,7 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
     addHandle,
     navBack,
     breadcrumbList,
-    canNavBack,
-    url: urlType,
-    type: fileType
+    canNavBack
   } = useFileSystem()
 
   const filcss = useMemo(
@@ -26,6 +25,7 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
     }),
     []
   ) // JSS cause re-render
+
   return (
     <Grid icss={{ gridTemplateColumns: '2fr 1fr', height: '100%', padding: 8, gap: 4 }}>
       <Col icss={{ contain: 'size' }}>
@@ -52,7 +52,7 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
         </Row>
 
         {currentDirectoryHandle && (
-          <FileWatcherList
+          <HandleList
             icss={filcss}
             root={currentDirectoryHandle}
             onOpenFile={addHandle}
@@ -66,16 +66,10 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
         {/* active filename */}
         <Div>{activeFileHandle?.name}</Div>
 
-        {fileType === 'image' && urlType ? (
-          <Image icss={{ width: '100%' }} src={urlType} />
-        ) : fileType === 'video' && urlType ? (
-          <video controls style={{ width: '100%' }} src={urlType} />
-        ) : fileType === 'audio' && urlType ? (
-          <audio style={{ width: '100%' }} src={urlType} />
-        ) : (
-          '[preview panel]'
-        )}
+        <PreviewPanel handle={activeFileHandle} />
       </Group>
     </Grid>
   )
 })
+
+

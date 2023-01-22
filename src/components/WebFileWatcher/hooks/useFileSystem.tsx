@@ -1,22 +1,10 @@
-import { MayEnum, TreeStructure, tryCatch } from '@edsolater/fnkit'
-import { useAsyncMemo, useEvent, useForceUpdate } from '@edsolater/uikit/hooks'
+import { TreeStructure, tryCatch } from '@edsolater/fnkit'
+import { useEvent, useForceUpdate } from '@edsolater/uikit/hooks'
 import { useMemo, useRef, useState } from 'react'
 import { isDirectoryHandle, isFileHandle } from '../utils/adjest'
-import { pickSystemDirectory } from '../utils/pickSystemDirectory'
+import { pickSystemDirectory, PickSystemDirectoryOptions } from '../utils/pickSystemDirectory'
 
-type MIMEType =
-  /* TODO：complete this */
-  MayEnum<
-    | 'image/apng' //Animated Portable Network Graphics (APNG)
-    | 'image/avif' //AV1 Image File Format (AVIF)
-    | 'image/gif' //Graphics Interchange Format (GIF)
-    | 'image/jpeg' //Joint Photographic Expert Group image (JPEG)
-    | 'image/png' //Portable Network Graphics (PNG)
-    | 'image/svg+xml' //Scalable Vector Graphics (SVG)
-    | 'image/webp' //Web Picture format (WEBP)
-  >
-
-export function useFileSystem() {
+export function useFileSystem(options?: { triggerOptions?: PickSystemDirectoryOptions }) {
   const [forceUpdateCount, forceUpdate] = useForceUpdate()
   const tree = useRef(new TreeStructure<FileSystemHandle>())
   const root = useMemo(() => tree.current.rootNode?.info, [forceUpdateCount])
@@ -30,7 +18,7 @@ export function useFileSystem() {
   const [activeFileHandle, setActiveFileHandle] = useState<FileSystemFileHandle>()
 
   const triggerRootDirectoryPicker = useEvent(async () => {
-    const root = await pickSystemDirectory()
+    const root = await pickSystemDirectory(options?.triggerOptions)
     tree.current.setRoot(root)
     setCurrentDirectoryHandle(root)
   })
@@ -56,34 +44,10 @@ export function useFileSystem() {
 
   const canNavBack = Number(breadcrumbList?.length) >= 2
 
-  const url = useAsyncMemo(async () => {
-    if (!activeFileHandle) return undefined
-    const file = await activeFileHandle.getFile()
-    return URL.createObjectURL(file)
-  }, [activeFileHandle])
-
-  const { type, mimeType } =
-    useAsyncMemo(async () => {
-      if (!activeFileHandle) return undefined
-      const file = await activeFileHandle.getFile()
-      const mimeType = file.type as MIMEType
-      const type = mimeType.startsWith('video')
-        ? 'video'
-        : mimeType.startsWith('image')
-        ? 'image'
-        : mimeType.startsWith('audio')
-        ? 'audio'
-        : 'unknown'
-      return { type, mimeType } as const
-    }, [activeFileHandle]) ?? {}
-
   return {
     currentDirectoryHandle,
     activeFileHandle,
     breadcrumbList,
-    url,
-    type,
-    mimeType,
     triggerRootDirectoryPicker,
     setCurrentDirectoryHandle,
     addHandle,
