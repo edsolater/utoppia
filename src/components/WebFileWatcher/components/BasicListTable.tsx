@@ -13,11 +13,11 @@ import {
   Row,
   Show
 } from '@edsolater/uikit'
-import { useAsyncValue } from '@edsolater/uikit/hooks'
+import { useIterable } from '@edsolater/uikit/hooks'
 import { useTableCellWidthDetector } from '../hooks/useTableCellWidthDetector'
 
 export type ListTableProps<T extends Record<string, any> = Record<string, any>> = {
-  items: MayPromise<T[]>
+  items: MayPromise<AsyncIterable<T> | Iterable<T>>
   visiableProterties?: (keyof T)[]
   showHeader?: boolean
   /**
@@ -53,14 +53,14 @@ export type ListTableProps<T extends Record<string, any> = Record<string, any>> 
 export const ListTable = createKit(
   'ListTable',
   <T extends Record<string, any>>({
-    items: mayPromiseItems,
+    items: iterable,
     showHeader = true,
     letCellSticky = false,
     visiableProterties,
     getItemKey,
     anatomy
   }: ListTableProps<T>) => {
-    const items = useAsyncValue(mayPromiseItems) ?? []
+    const items = useIterable(iterable)
     const itemPropertyNames = visiableProterties ?? getItemsProperties(items)
     const { createTabelCellRef, hasDetected, getCellWidth } = useTableCellWidthDetector()
     return (

@@ -1,7 +1,6 @@
 import { createKit, Div } from '@edsolater/uikit'
 import { ComponentProps } from 'react'
 import { isFileHandle } from '../utils/adjest'
-import { getDirectoryChildren } from '../utils/getDirectoryChildren'
 import { ListTable } from './BasicListTable'
 
 export type FileWatcherListProps = {
@@ -14,7 +13,7 @@ export const FileWatcherList = createKit(
   { name: 'FileWatcherList', reactMemo: true },
   ({ root, onOpenFile, onOpenDirectory }: FileWatcherListProps) => (
     <ListTable
-      items={getDirectoryChildren(root)}
+      items={root.values()}
       showHeader={false}
       anatomy={{
         itemRow: {

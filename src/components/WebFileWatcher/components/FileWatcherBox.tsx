@@ -29,13 +29,15 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
   return (
     <Grid icss={{ gridTemplateColumns: '2fr 1fr', height: '100%', padding: 8, gap: 4 }}>
       <Col icss={{ contain: 'size' }}>
-        <Button plugin={autoFocus} onClick={triggerRootDirectoryPicker}>
-          Pick directory
-        </Button>
-        {canNavBack && <Button onClick={navBack}>Go back</Button>}
+        <Row>
+          <Button plugin={autoFocus} onClick={triggerRootDirectoryPicker}>
+            Pick directory
+          </Button>
+          {canNavBack && <Button onClick={navBack}>Go back</Button>}
+        </Row>
 
-        <Row renderSpaceEl={<Div>{'>'}</Div>}>
-          <For each={breadcrumbList}>
+        <Row>
+          <For each={breadcrumbList} renderGap={<Div>{'>'}</Div>}>
             {(item) => (
               <Div
                 icss={{ textDecoration: 'underline' }}
