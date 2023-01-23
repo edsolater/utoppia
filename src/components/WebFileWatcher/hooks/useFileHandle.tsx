@@ -25,32 +25,12 @@ export function useFileHandle(options?: { /* usually it's default */ fileHandle?
 
   const file = useAsyncMemo(() => fileHandle?.getFile(), [fileHandle])
 
-  const url = useAsyncMemo(async () => {
-    if (!fileHandle) return undefined
-    const file = await fileHandle.getFile()
-    return URL.createObjectURL(file)
-  }, [fileHandle])
+  const url = useAsyncMemo(() => getFileUrl(fileHandle), [fileHandle])
 
-  const { type, mimeType } =
-    useAsyncMemo(async () => {
-      if (!file) return
-      const mimeType = file.type as MIMEType
-      const type = mimeType.startsWith('video')
-        ? 'video'
-        : mimeType.startsWith('image')
-        ? 'image'
-        : mimeType.startsWith('audio')
-        ? 'audio'
-        : 'unknown'
-      return { type, mimeType } as const
-    }, [file]) ?? {}
+  const { type, mimeType } = useAsyncMemo(() => getFileType(file), [file]) ?? {}
 
   const { width: imageWidth, height: imageHeight } =
-    useAsyncMemo(async () => {
-      if (!url || type !== 'image') return
-      const imageSize = await getImageSize(url)
-      return imageSize
-    }, [url, type]) ?? {}
+    useAsyncMemo(async () => (url && type === 'image' ? getImageSize(url) : undefined), [url, type]) ?? {}
 
   return {
     url,
@@ -66,6 +46,27 @@ export function useFileHandle(options?: { /* usually it's default */ fileHandle?
     mimeType,
     setFileHandle
   }
+}
+
+async function getFileUrl(handle: FileSystemFileHandle | undefined): Promise<string | undefined> {
+  if (!handle) return undefined
+  const file = await handle.getFile()
+  return URL.createObjectURL(file)
+}
+
+async function getFileType(
+  file: File | undefined
+): Promise<{ type: 'video' | 'image' | 'audio' | 'unknown'; mimeType: MIMEType } | undefined> {
+  if (!file) return
+  const mimeType = file.type as MIMEType
+  const type = mimeType.startsWith('video')
+    ? 'video'
+    : mimeType.startsWith('image')
+    ? 'image'
+    : mimeType.startsWith('audio')
+    ? 'audio'
+    : 'unknown'
+  return { type, mimeType } as const
 }
 
 async function getImageSize(url: string): Promise<{ width: number; height: number } | undefined> {
