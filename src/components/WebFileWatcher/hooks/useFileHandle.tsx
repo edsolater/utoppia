@@ -1,4 +1,4 @@
-import { useAsyncMemo } from '@edsolater/uikit/hooks'
+import { useAsyncMemo, useAsyncValue } from '@edsolater/uikit/hooks'
 import { useLayoutEffect, useState } from 'react'
 import { getFileInfo } from '../utils/getFileInfo'
 
@@ -11,8 +11,9 @@ export function useFileHandle(options?: { /* usually it's default */ fileHandle?
 
   const { file, genFileUrl, getFileDetailInfos, mimeType, name, type } =
     useAsyncMemo(() => getFileInfo(fileHandle), [fileHandle]) ?? {}
-  const url = useAsyncMemo(genFileUrl, [genFileUrl])
-  const defaultInfos = useAsyncMemo(getFileDetailInfos, [getFileDetailInfos])
+  const url = useAsyncValue(genFileUrl)
+  const defaultInfos = useAsyncValue(getFileDetailInfos)
+  
   return {
     name,
     file,
