@@ -1,4 +1,4 @@
-import { FileInfo, FileDetailInfo, MIMEType } from '../type'
+import { FileInfo, FileInfoDetails, MIMEType } from '../type'
 
 export async function getFileInfo(handle: FileSystemFileHandle): Promise<FileInfo>
 export async function getFileInfo(handle: FileSystemFileHandle | undefined): Promise<FileInfo | undefined>
@@ -7,7 +7,7 @@ export async function getFileInfo(handle: FileSystemFileHandle | undefined): Pro
   const file = await handle.getFile()
   const genFileUrl = () => getFileUrl(handle)
 
-  const getFileDetailInfos = async () => {
+  const getFileDetails = async () => {
     const name = handle?.name
     const lastModified = file?.lastModified
     const size = file?.size
@@ -15,7 +15,7 @@ export async function getFileInfo(handle: FileSystemFileHandle | undefined): Pro
     /** only if file is image */
     const { width: imageWidth, height: imageHeight } =
       (await (url && type === 'image' ? getImageSize(url) : undefined)) ?? {}
-    const a: FileDetailInfo = {
+    const a: FileInfoDetails = {
       name,
       lastModified,
       size,
@@ -28,7 +28,7 @@ export async function getFileInfo(handle: FileSystemFileHandle | undefined): Pro
   const name = handle?.name
 
   const { type, mimeType } = (await getFileType(file)) ?? {}
-  const a: FileInfo = { file, type, mimeType, genFileUrl, name, getFileDetailInfos }
+  const a: FileInfo = { file, type, mimeType, genFileUrl, name, getFileDetails }
   return a
 }
 

@@ -1,14 +1,15 @@
 import { createKit, Div, Image } from '@edsolater/uikit'
-import { useFileHandle } from '../hooks/useFileHandle'
+import { useAsyncMemo, useAsyncValue } from '@edsolater/uikit/hooks'
+import { getFileInfo } from '../utils/getFileInfo'
 
 export interface PreviewPanelProps {
   handle?: FileSystemFileHandle
 }
 
 export const PreviewPanel = createKit('PreviewPanel', ({ handle }: PreviewPanelProps) => {
-  const { type, url, imageHeight, imageWidth, lastModified, mimeType, name, size } = useFileHandle({
-    fileHandle: handle
-  })
+  const { genFileUrl, getFileDetails, file, name, type, mimeType } = useAsyncMemo(() => getFileInfo(handle)) ?? {}
+  const url = useAsyncValue(genFileUrl)
+  const { imageWidth, imageHeight, size } = useAsyncValue(getFileDetails) ?? {}
   return (
     <Div>
       {/* active filename */}

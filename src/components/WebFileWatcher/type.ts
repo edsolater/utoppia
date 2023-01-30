@@ -15,22 +15,23 @@ export type MIMEType =
 export type FileType = 'video' | 'image' | 'audio' | 'unknown'
 export type WebFileWatcherProps = {}
 
-export type FileSystemItemPair = {
-  filename: string
-  value: FileSystemFileHandle | FileSystemDirectoryHandle
-}
 export interface FileInfo {
   file: File
   type: 'video' | 'image' | 'audio' | 'unknown' | undefined
   mimeType: MIMEType | undefined
   genFileUrl: () => Promise<string | undefined>
   name: string
-  getFileDetailInfos: () => Promise<FileDetailInfo>
+  getFileDetails: () => Promise<FileInfoDetails>
 }
-export interface FileDetailInfo {
+
+export interface FileInfoDetails {
   name: string
   lastModified: number
   size: number
   imageWidth: number | undefined
   imageHeight: number | undefined
+}
+
+export interface FileSystemHandleView {
+  handle?: FileSystemHandle
 }

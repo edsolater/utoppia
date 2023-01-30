@@ -3,6 +3,7 @@ import { autoFocus } from '@edsolater/uikit/plugins'
 import { useMemo } from 'react'
 import { useFileSystem } from '../hooks/useFileSystem'
 import { WebFileWatcherProps } from '../type'
+import { isDirectoryHandle } from '../utils/adjest'
 import { HandleList } from './HandleList'
 import { PreviewPanel } from './PreviewPanel'
 
@@ -42,33 +43,24 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
               <Div
                 icss={{ textDecoration: 'underline' }}
                 onClick={() => {
-                  setCurrentDirectoryHandle(item)
+                  isDirectoryHandle(item.handle) && setCurrentDirectoryHandle(item.handle)
                 }}
               >
-                {item.name}
+                {item.handle?.name}
               </Div>
             )}
           </For>
         </Row>
 
         {currentDirectoryHandle && (
-          <HandleList
-            icss={filcss}
-            root={currentDirectoryHandle}
-            onOpenFile={addHandle}
-            onOpenDirectory={addHandle}
-          />
+          <HandleList icss={filcss} root={currentDirectoryHandle} onOpenFile={addHandle} onOpenDirectory={addHandle} />
         )}
       </Col>
 
       {/* TODO: add <InnerBox> to handle `height: 100%` and `overflow: overlay`  */}
       <Group name='preview' icss={{ overflow: 'overlay' }}>
-        {/* active filename */}
-        <Div>{activeFileHandle?.name}</Div>
         <PreviewPanel handle={activeFileHandle} />
       </Group>
     </Grid>
   )
 })
-
-
