@@ -1,4 +1,4 @@
-import { TreeStructure, tryCatch } from '@edsolater/fnkit'
+import { assert, TreeStructure, tryCatch } from '@edsolater/fnkit'
 import { useEvent, useForceUpdate } from '@edsolater/uikit/hooks'
 import { useMemo, useRef, useState } from 'react'
 import { FileSystemHandleView } from '../type'
@@ -43,6 +43,7 @@ export function useFileSystem(options?: { triggerOptions?: PickSystemDirectoryOp
 
   const triggerRootDirectoryPicker = useEvent(async () => {
     const root = await pickSystemDirectory(options?.triggerOptions)
+    assert(root.name === '\\', 'only root (such as F:\\)')
     const rootSystemHandleView = getFileSystemHandleView(root)
     tree.current.setRoot(rootSystemHandleView)
     setCurrentDirectoryHandleView(rootSystemHandleView)

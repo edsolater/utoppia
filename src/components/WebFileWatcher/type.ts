@@ -15,16 +15,16 @@ export type MIMEType =
 export type FileType = 'video' | 'image' | 'audio' | 'unknown'
 export type WebFileWatcherProps = {}
 
-export interface FileInfo {
+export interface FileDetail {
   file: File
   type: 'video' | 'image' | 'audio' | 'unknown' | undefined
   mimeType: MIMEType | undefined
   genFileUrl: () => Promise<string | undefined>
   name: string
-  getFileDetails: () => Promise<FileInfoDetails>
+  getMoreFileDetails: () => Promise<FileMoreDetail>
 }
 
-export interface FileInfoDetails {
+export interface FileMoreDetail {
   name: string
   lastModified: number
   size: number

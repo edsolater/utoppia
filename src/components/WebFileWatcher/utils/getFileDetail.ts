@@ -1,13 +1,13 @@
-import { FileInfo, FileInfoDetails, MIMEType } from '../type'
+import { FileDetail, FileMoreDetail, MIMEType } from '../type'
 
-export async function getFileInfo(handle: FileSystemFileHandle): Promise<FileInfo>
-export async function getFileInfo(handle: FileSystemFileHandle | undefined): Promise<FileInfo | undefined>
-export async function getFileInfo(handle: FileSystemFileHandle | undefined): Promise<FileInfo | undefined> {
+export async function getFileInfo(handle: FileSystemFileHandle): Promise<FileDetail>
+export async function getFileInfo(handle: FileSystemFileHandle | undefined): Promise<FileDetail | undefined>
+export async function getFileInfo(handle: FileSystemFileHandle | undefined): Promise<FileDetail | undefined> {
   if (!handle) return undefined
   const file = await handle.getFile()
   const genFileUrl = () => getFileUrl(handle)
 
-  const getFileDetails = async () => {
+  const getMoreFileDetails = async () => {
     const name = handle?.name
     const lastModified = file?.lastModified
     const size = file?.size
@@ -15,20 +15,19 @@ export async function getFileInfo(handle: FileSystemFileHandle | undefined): Pro
     /** only if file is image */
     const { width: imageWidth, height: imageHeight } =
       (await (url && type === 'image' ? getImageSize(url) : undefined)) ?? {}
-    const a: FileInfoDetails = {
+    return {
       name,
       lastModified,
       size,
       imageWidth,
       imageHeight
-    }
-    return a
+    } satisfies FileMoreDetail
   }
 
   const name = handle?.name
 
   const { type, mimeType } = (await getFileType(file)) ?? {}
-  const a: FileInfo = { file, type, mimeType, genFileUrl, name, getFileDetails }
+  const a: FileDetail = { file, type, mimeType, genFileUrl, name, getMoreFileDetails }
   return a
 }
 
