@@ -2,9 +2,10 @@ import { assert, TreeStructure, tryCatch } from '@edsolater/fnkit'
 import { useEvent, useForceUpdate } from '@edsolater/uikit/hooks'
 import { useMemo, useRef, useState } from 'react'
 import { FileSystemHandleView } from '../type'
-import { isDirectoryHandle, isFileHandle } from '../utils/adjest'
-import { pickSystemDirectory, PickSystemDirectoryOptions } from '../utils/pickSystemDirectory'
+import { isDirectoryHandle, isFileHandle, isHandleRoot } from '../utils/adjest'
+import { PickSystemDirectoryOptions } from '../utils/pickSystemDirectory'
 import { getFileSystemHandleView } from '../utils/getFileSystemHandleView'
+import { triggerDirectoryPicker } from '../utils/triggerDirectoryPicker'
 
 export function useFileSystem(options?: { triggerOptions?: PickSystemDirectoryOptions }) {
   const [forceUpdateCount, forceUpdate] = useForceUpdate()
@@ -12,12 +13,9 @@ export function useFileSystem(options?: { triggerOptions?: PickSystemDirectoryOp
   // store file expleror structure
   const tree = useRef(new TreeStructure<FileSystemHandleView>())
 
-  // shortcut
-  const root = tree.current.rootNode?.info
-
-  //
-  // directory handle and directory handle info
-  //
+  /**
+   * directory handle and directory handle info
+   */
   const [currentDirectoryHandleInfo, setCurrentDirectoryHandleView] = useState<FileSystemHandleView>()
   const setCurrentDirectoryHandle = useEvent((handle: FileSystemDirectoryHandle) => {
     const fileInfo = getFileSystemHandleView(handle)
@@ -28,9 +26,9 @@ export function useFileSystem(options?: { triggerOptions?: PickSystemDirectoryOp
     [currentDirectoryHandleInfo]
   )
 
-  //
-  // file handle and file handle info
-  //
+  /**
+   * file handle and file handle info
+   */
   const [activeFileHandleInfo, setActiveFileHandleInfo] = useState<FileSystemHandleView>()
   const setActiveFileHandle = useEvent((handle: FileSystemFileHandle) => {
     const fileInfo = getFileSystemHandleView(handle)
@@ -41,9 +39,12 @@ export function useFileSystem(options?: { triggerOptions?: PickSystemDirectoryOp
     [activeFileHandleInfo]
   )
 
+  /**
+   * pick root
+   */
   const triggerRootDirectoryPicker = useEvent(async () => {
-    const root = await pickSystemDirectory(options?.triggerOptions)
-    assert(root.name === '\\', 'only root (such as F:\\)')
+    const root = await triggerDirectoryPicker({ triggerOptions: options?.triggerOptions })
+    if (!isHandleRoot(root)) console.warn(`prefer root (such as F:\\), but get ${root.name}`)
     const rootSystemHandleView = getFileSystemHandleView(root)
     tree.current.setRoot(rootSystemHandleView)
     setCurrentDirectoryHandleView(rootSystemHandleView)
@@ -55,8 +56,9 @@ export function useFileSystem(options?: { triggerOptions?: PickSystemDirectoryOp
       tryCatch(() =>
         tree.current.getPathFromRoot(currentDirectoryHandleInfo).filter((i) => isDirectoryHandle(i.handle))
       ),
-    [currentDirectoryHandleInfo, root, forceUpdateCount]
+    [currentDirectoryHandleInfo, forceUpdateCount]
   )
+
   const addHandle = useEvent(
     async (
       handle: FileSystemFileHandle | FileSystemDirectoryHandle,

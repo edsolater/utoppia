@@ -34,4 +34,5 @@ export interface FileMoreDetail {
 
 export interface FileSystemHandleView {
   handle?: FileSystemHandle
+  detail?: FileDetail
 }

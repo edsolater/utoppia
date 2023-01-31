@@ -31,12 +31,18 @@ export async function getFileInfo(handle: FileSystemFileHandle | undefined): Pro
   return a
 }
 
+/**
+ * {@link getFileInfo}'s URL part
+ */
 async function getFileUrl(handle: FileSystemFileHandle | undefined): Promise<string | undefined> {
   if (!handle) return undefined
   const file = await handle.getFile()
   return URL.createObjectURL(file)
 }
 
+/**
+ * {@link getFileInfo}'s part
+ */
 async function getFileType(
   file: File | undefined
 ): Promise<{ type: 'video' | 'image' | 'audio' | 'unknown'; mimeType: MIMEType } | undefined> {
@@ -52,6 +58,9 @@ async function getFileType(
   return { type, mimeType } as const
 }
 
+/**
+ * {@link getFileInfo}'s part
+ */
 async function getImageSize(url: string): Promise<{ width: number; height: number } | undefined> {
   const inBrowser = 'document' in globalThis
   if (!inBrowser) return

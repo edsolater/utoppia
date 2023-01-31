@@ -11,3 +11,7 @@ export function isDirectoryHandle(handle: any): handle is FileSystemDirectoryHan
 export function isFileOrDirectoryHandle(handle: any): handle is FileSystemFileHandle | FileSystemDirectoryHandle {
   return isFileHandle(handle) || isDirectoryHandle(handle)
 }
+
+export function isHandleRoot(handle: any): boolean {
+  return isDirectoryHandle(handle) && handle.name === '\\'
+}
