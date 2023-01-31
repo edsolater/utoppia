@@ -1,5 +1,6 @@
 import { createKit, Div, Image } from '@edsolater/uikit'
 import { useAsyncMemo, useAsyncValue } from '@edsolater/uikit/hooks'
+import { ImagePreviewer } from '../../ImagePreviewer'
 import { getFileInfo } from '../utils/getFileDetail'
 
 export interface PreviewPanelProps {
@@ -17,7 +18,7 @@ export const PreviewPanel = createKit('PreviewPanel', ({ handle }: PreviewPanelP
 
       <Div>
         {type === 'image' && url ? (
-          <Image icss={{ width: '100%' }} src={url} />
+          <ImagePreviewer icss={{ width: '100%' }} src={url} />
         ) : type === 'video' && url ? (
           <video controls style={{ width: '100%' }} src={url} />
         ) : type === 'audio' && url ? (
