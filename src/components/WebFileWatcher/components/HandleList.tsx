@@ -1,6 +1,6 @@
 import { createKit, Div } from '@edsolater/uikit'
 import { ComponentProps } from 'react'
-import { isFileHandle } from '../utils/adjest'
+import { isFileHandle } from '../utils/judge'
 import { ListTable } from './BasicListTable'
 
 export type FileWatcherListProps = {

@@ -32,7 +32,7 @@ export async function getFileInfo(handle: FileSystemFileHandle | undefined): Pro
 }
 
 /**
- * {@link getFileInfo}'s URL part
+ * {@link getFileInfo}'s URL function part
  */
 async function getFileUrl(handle: FileSystemFileHandle | undefined): Promise<string | undefined> {
   if (!handle) return undefined
@@ -41,7 +41,7 @@ async function getFileUrl(handle: FileSystemFileHandle | undefined): Promise<str
 }
 
 /**
- * {@link getFileInfo}'s part
+ * {@link getFileInfo}'s function part
  */
 async function getFileType(
   file: File | undefined
@@ -59,7 +59,7 @@ async function getFileType(
 }
 
 /**
- * {@link getFileInfo}'s part
+ * {@link getFileInfo}'s function part
  */
 async function getImageSize(url: string): Promise<{ width: number; height: number } | undefined> {
   const inBrowser = 'document' in globalThis

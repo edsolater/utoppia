@@ -5,7 +5,7 @@ import { HandleList } from './components/HandleList'
 import { PreviewPanel } from './components/PreviewPanel'
 import { useFileSystem } from './hooks/useFileSystem'
 import { WebFileWatcherProps } from './type'
-import { isDirectoryHandle } from './utils/adjest'
+import { isDirectoryHandle } from './utils/judge'
 
 export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcherProps) => {
   const {
