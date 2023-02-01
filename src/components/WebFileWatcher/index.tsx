@@ -1,7 +1,7 @@
 import { Button, Col, createKit, Div, For, Grid, Group, Row } from '@edsolater/uikit'
 import { autoFocus } from '@edsolater/uikit/plugins'
 import { useMemo } from 'react'
-import { HandleList } from './components/HandleList'
+import { FileHandleList } from './components/FileHandleList'
 import { PreviewPanel } from './components/PreviewPanel'
 import { useFileSystem } from './hooks/useFileSystem'
 import { WebFileWatcherProps } from './type'
@@ -28,7 +28,7 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
   ) // JSS cause re-render
 
   return (
-    <Grid icss={{ gridTemplateColumns: '2fr 1fr', height: '100%', padding: 8, gap: 4 }}>
+    <Grid icss={{ gridTemplateColumns: '2fr 1fr 1fr', height: '100%', padding: 8, gap: 4 }}>
       <Col icss={{ contain: 'size' }}>
         <Row>
           <Button plugin={autoFocus} onClick={triggerRootDirectoryPicker}>
@@ -53,12 +53,25 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
         </Row>
 
         {currentDirectoryHandle && (
-          <HandleList icss={filcss} root={currentDirectoryHandle} onOpenFile={addHandle} onOpenDirectory={addHandle} />
+          <FileHandleList
+            icss={filcss}
+            root={currentDirectoryHandle}
+            onOpenFile={(currentHandle) => {
+              addHandle(currentHandle.handle, currentDirectoryHandle)
+            }}
+            onOpenDirectory={(currentHandle) => {
+              addHandle(currentHandle.handle, currentDirectoryHandle)
+            }}
+          />
         )}
       </Col>
 
+      <Group name='smart-folder' icss={{ overflow: 'overlay' }}>
+        todo
+      </Group>
+
       {/* TODO: add <InnerBox> to handle `height: 100%` and `overflow: overlay`  */}
-      <Group name='preview' icss={{ overflow: 'overlay' }}>
+      <Group name='preview-panel' icss={{ overflow: 'overlay' }}>
         <PreviewPanel handle={activeFileHandle} />
       </Group>
     </Grid>

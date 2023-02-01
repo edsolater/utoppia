@@ -1,8 +1,8 @@
-import { FileDetail, FileMoreDetail, MIMEType } from '../type'
+import { FileDetailGenerator, FileMoreDetail, MIMEType } from '../type'
 
-export async function getFileInfo(handle: FileSystemFileHandle): Promise<FileDetail>
-export async function getFileInfo(handle: FileSystemFileHandle | undefined): Promise<FileDetail | undefined>
-export async function getFileInfo(handle: FileSystemFileHandle | undefined): Promise<FileDetail | undefined> {
+export async function getFileDetail(handle: FileSystemFileHandle): Promise<FileDetailGenerator>
+export async function getFileDetail(handle: FileSystemFileHandle | undefined): Promise<FileDetailGenerator | undefined>
+export async function getFileDetail(handle: FileSystemFileHandle | undefined): Promise<FileDetailGenerator | undefined> {
   if (!handle) return undefined
   const file = await handle.getFile()
   const genFileUrl = () => getFileUrl(handle)
@@ -27,12 +27,12 @@ export async function getFileInfo(handle: FileSystemFileHandle | undefined): Pro
   const name = handle?.name
 
   const { type, mimeType } = (await getFileType(file)) ?? {}
-  const a: FileDetail = { file, type, mimeType, genFileUrl, name, getMoreFileDetails }
+  const a: FileDetailGenerator = { file, type, mimeType, genFileUrl, name, getMoreFileDetails }
   return a
 }
 
 /**
- * {@link getFileInfo}'s URL function part
+ * {@link getFileDetail}'s URL function part
  */
 async function getFileUrl(handle: FileSystemFileHandle | undefined): Promise<string | undefined> {
   if (!handle) return undefined
@@ -41,7 +41,7 @@ async function getFileUrl(handle: FileSystemFileHandle | undefined): Promise<str
 }
 
 /**
- * {@link getFileInfo}'s function part
+ * {@link getFileDetail}'s function part
  */
 async function getFileType(
   file: File | undefined
@@ -59,7 +59,7 @@ async function getFileType(
 }
 
 /**
- * {@link getFileInfo}'s function part
+ * {@link getFileDetail}'s function part
  */
 async function getImageSize(url: string): Promise<{ width: number; height: number } | undefined> {
   const inBrowser = 'document' in globalThis

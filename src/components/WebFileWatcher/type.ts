@@ -15,7 +15,7 @@ export type MIMEType =
 export type FileType = 'video' | 'image' | 'audio' | 'unknown'
 export type WebFileWatcherProps = {}
 
-export interface FileDetail {
+export interface FileDetailGenerator {
   file: File
   type: 'video' | 'image' | 'audio' | 'unknown' | undefined
   mimeType: MIMEType | undefined
@@ -32,7 +32,13 @@ export interface FileMoreDetail {
   imageHeight: number | undefined
 }
 
-export interface FileSystemHandleView {
-  handle?: FileSystemHandle
-  detail?: FileDetail
+export type FileSystemHandleView = FileSystemFileHandleView | FileSystemDirectoryHandleView
+export interface FileSystemFileHandleView {
+  handle: FileSystemFileHandle
+  isDirectory: false
+  detail: Promise<FileDetailGenerator>
+}
+export interface FileSystemDirectoryHandleView {
+  handle: FileSystemDirectoryHandle
+  isDirectory: true
 }
