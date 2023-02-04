@@ -19,9 +19,9 @@ export interface FileDetailGenerator {
   file: File
   type: 'video' | 'image' | 'audio' | 'unknown' | undefined
   mimeType: MIMEType | undefined
-  genFileUrl: () => Promise<string | undefined>
+  asyncUrl: Promise<string | undefined>
   name: string
-  getMoreFileDetails: () => Promise<FileMoreDetail>
+  asyncMoreFileDetails: Promise<FileMoreDetail>
 }
 
 export interface FileMoreDetail {

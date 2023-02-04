@@ -1,18 +1,18 @@
-import { createKit, Div, Image } from '@edsolater/uikit'
+import { createKit, Div } from '@edsolater/uikit'
 import { useAsyncMemo, useAsyncValue } from '@edsolater/uikit/hooks'
-import { ImagePreviewer } from '../../ImagePreviewer'
-import { FileSystemHandleView } from '../type'
 import { getFileDetail } from '../utils/getFileDetail'
-import { ListTable } from './BasicListTable'
 
 export interface SmartFolderProps {
   handle?: FileSystemFileHandle
 }
 
 export const SmartFolder = createKit('SmartFolder', ({ handle }: SmartFolderProps) => {
-  const { genFileUrl, getMoreFileDetails, file, name, type, mimeType } = useAsyncMemo(() => getFileDetail(handle)) ?? {}
-  const url = useAsyncValue(genFileUrl)
-  const { imageWidth, imageHeight, size } = useAsyncValue(getMoreFileDetails) ?? {}
+  const { asyncMoreFileDetails, asyncUrl, name } =
+    useAsyncMemo(async () => {
+      return getFileDetail(handle)
+    }, [handle]) ?? {}
+  const url = useAsyncValue(asyncUrl)
+  const { imageWidth, imageHeight, size } = useAsyncValue(asyncMoreFileDetails) ?? {}
   return (
     <Div>
       {/* active filename */}

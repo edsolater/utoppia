@@ -1,17 +1,21 @@
+import { LazyPromise } from '@edsolater/fnkit'
 import { FileDetailGenerator, FileMoreDetail, MIMEType } from '../type'
 
 export async function getFileDetail(handle: FileSystemFileHandle): Promise<FileDetailGenerator>
 export async function getFileDetail(handle: FileSystemFileHandle | undefined): Promise<FileDetailGenerator | undefined>
-export async function getFileDetail(handle: FileSystemFileHandle | undefined): Promise<FileDetailGenerator | undefined> {
+export async function getFileDetail(
+  handle: FileSystemFileHandle | undefined
+): Promise<FileDetailGenerator | undefined> {
   if (!handle) return undefined
   const file = await handle.getFile()
-  const genFileUrl = () => getFileUrl(handle)
 
-  const getMoreFileDetails = async () => {
+  const asyncUrl = LazyPromise.resolve(() => getFileUrl(handle))
+
+  const getAsyncMoreFileDetails = async () => {
     const name = handle?.name
     const lastModified = file?.lastModified
     const size = file?.size
-    const url = await genFileUrl()
+    const url = await asyncUrl
     /** only if file is image */
     const { width: imageWidth, height: imageHeight } =
       (await (url && type === 'image' ? getImageSize(url) : undefined)) ?? {}
@@ -27,8 +31,14 @@ export async function getFileDetail(handle: FileSystemFileHandle | undefined): P
   const name = handle?.name
 
   const { type, mimeType } = (await getFileType(file)) ?? {}
-  const a: FileDetailGenerator = { file, type, mimeType, genFileUrl, name, getMoreFileDetails }
-  return a
+  return LazyPromise.resolve({
+    file,
+    type,
+    mimeType,
+    name,
+    asyncUrl,
+    asyncMoreFileDetails: getAsyncMoreFileDetails()
+  } as FileDetailGenerator)
 }
 
 /**

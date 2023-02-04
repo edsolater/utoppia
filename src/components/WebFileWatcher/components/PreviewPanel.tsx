@@ -8,10 +8,10 @@ export interface PreviewPanelProps {
 }
 
 export const PreviewPanel = createKit('PreviewPanel', ({ handle }: PreviewPanelProps) => {
-  const { genFileUrl, getMoreFileDetails, file, name, type, mimeType } =
+  const { asyncUrl, asyncMoreFileDetails, file, name, type, mimeType } =
     useAsyncMemo(() => getFileDetail(handle), [handle]) ?? {}
-  const url = useAsyncValue(genFileUrl)
-  const { imageWidth, imageHeight, size } = useAsyncValue(getMoreFileDetails) ?? {}
+  const url = useAsyncValue(asyncUrl)
+  const { imageWidth, imageHeight, size } = useAsyncValue(asyncMoreFileDetails) ?? {}
   return (
     <Div>
       {/* active filename */}

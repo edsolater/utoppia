@@ -1,5 +1,4 @@
 import { Optional } from '@edsolater/fnkit'
-import { useAsyncMemo } from '@edsolater/uikit/hooks'
 import { useMemo } from 'react'
 import { FileSystemFileHandleView } from '../type'
 import { getFileDetail } from '../utils/getFileDetail'

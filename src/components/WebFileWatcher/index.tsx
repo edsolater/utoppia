@@ -3,6 +3,7 @@ import { autoFocus } from '@edsolater/uikit/plugins'
 import { useMemo } from 'react'
 import { FileHandleList } from './components/FileHandleList'
 import { PreviewPanel } from './components/PreviewPanel'
+import { SmartFolder } from './components/SmartFolder'
 import { useFileSystem } from './hooks/useFileSystem'
 import { WebFileWatcherProps } from './type'
 import { isDirectoryHandle } from './utils/judge'
@@ -67,7 +68,7 @@ export const FileWatcherBox = createKit('FileWatcherBox', (props: WebFileWatcher
       </Col>
 
       <Group name='smart-folder' icss={{ overflow: 'overlay' }}>
-        todo
+        <SmartFolder handle={activeFileHandle}></SmartFolder>
       </Group>
 
       {/* TODO: add <InnerBox> to handle `height: 100%` and `overflow: overlay`  */}
