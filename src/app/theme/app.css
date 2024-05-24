@@ -1,0 +1,200 @@
+html,
+body,
+#root,
+.app {
+  height: 100%;
+}
+body {
+  font-family:
+    "Space Grotesk",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  font-feature-settings:
+    "ss04",
+    "tnum" 1;
+  color: var(--primary);
+  background-color: var(--app-bg);
+  margin: 0;
+}
+/* make it not scroll to like a app */
+body {
+  position: fixed;
+  overflow: hidden;
+  width: 100%;
+  height: 100dvh;
+
+  /* https://developer.mozilla.org/zh-CN/docs/Web/CSS/touch-action#manipulation */
+  touch-action: manipulation;
+}
+
+:root {
+  font-size: 16px;
+}
+:root.dark {
+  color-scheme: dark;
+}
+* {
+  box-sizing: border-box;
+
+  /* for app-like web page */
+  touch-action: manipulation;
+}
+
+input {
+  font: inherit;
+}
+input::placeholder {
+  color: color-mix(in srgb, currentcolor, transparent 50%);
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox
+input[type='number'] {
+  -moz-appearance: textfield;
+} */
+
+@media (min-width: 1000px) {
+  ::-webkit-scrollbar {
+    background-color: transparent;
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(110, 110, 110, 0.5);
+    border-radius: 8px;
+  }
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/SpaceGrotesk[wght].woff2") format("woff2");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/SpaceGrotesk[wght].woff2") format("woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/SpaceGrotesk[wght].woff2") format("woff2");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/SpaceGrotesk[wght].woff2") format("woff2");
+  font-weight: 700;
+}
+
+/* reset default style */
+input:focus-visible {
+  outline: none;
+}
+
+/* For the darkmode, or tailwindcss urgly and tedious `:dark` */
+/* default colorMode is light */
+/* source color */
+:root {
+  --primary: #e3e3e3;
+  /* this value will auto get by icssTextColor */
+  --secondary: #bebebe;
+  --ternary: #39d0d8;
+  --app-bg: #f2f4f9;
+  --card-bg: #fffc;
+  --cyber-card-bg: linear-gradient(140.14deg, rgba(0, 182, 191, 0.15) 0%, rgba(27, 22, 89, 0.1) 86.61%),
+    linear-gradient(321.82deg, #18134d 0%, #1b1659 100%);
+
+  /* text */
+  --text-primary: #0b1022;
+  --text-secondary: #474abb;
+  --text-ternary: #474abb99;
+  --text-link: #22d1f8;
+  --text-revert-primary: #ecf5ff;
+
+  --style-color-fuchsia: #da2eef;
+  --style-color-blue: #2b6aff;
+  --style-color-cyan: #39d0d8;
+
+  --status-active: #aadefe;
+  --text-home-page-primary: hsl(0deg, 0%, 100%);
+  --text-home-page-secondary: hsl(222deg, 100%, 84%);
+
+  --ground-color-light-solid: hsla(227, 25%, 34%, 0.95);
+  --ground-color-light: rgba(57, 65, 106, 0.8);
+  --ground-color-slim: hsla(230, 65%, 15%, 0.54); /* bonsai main color */
+  --ground-color: #161c3982;
+  --ground-color-dark: hsla(231, 43%, 15%, 0.6);
+  --ground-color-dark-solid: hsla(230, 43%, 16%, 0.9);
+
+  --pop-over-bg-low: hsla(187, 25%, 34%, 0.75);
+  --pop-over-bg-high: #1e2848ab; /* for <Drawer> and <Dialog> */
+  --pop-over-ring: #756aeccc;
+  --pop-over-ring-2: hsla(220, 49%, 30%, 0.4); /* for <Drawer> and <Dialog> */
+
+  --formkit-label-text-active: white;
+  --formkit-label-text-normal: #ffffffa6;
+  --formkit-thumb-text-normal: #ffffff;
+  --formkit-thumb-text-disabled: #ffffffb8;
+  --formkit-bg-active: #7e9db5b0;
+  --formkit-bg-normal: #d8d8d80f;
+  --formkit-thumb-color: #0993ecd9; /* button primary color、max、select coin */
+  --formkit-thumb-color-disable: #6a739796; /* button primary */
+  --formkit-thumb-color-transparent: hsla(204, 93%, 48%, 0.1);
+
+  --app-line-color: rgba(255, 255, 255, 0.1);
+  --link-color: #5ac4be;
+  --link-decorator: hsla(251, 99%, 64%, 0.9);
+  --card-color: hsl(0deg, 0%, 100%);
+
+  --formkit-ground-color: hsl(264deg, 31%, 94%);
+  --formkit-line-color: hsl(263deg, 47%, 86%);
+  --formkit-text-color: #0993ec; /* button primary color、max、select coin */
+  --formkit-text-color-disable: #292d41; /* button primary */
+}
+
+:root.dark {
+  --primary: hsl(210deg, 6%, 76%);
+  /* this value will auto get by icssTextColor */
+  --secondary: #abc4ff;
+  --secondary-half: rgb(from var(--secondary) r g b / 0.5);
+  --ternary: #39d0d8;
+  --ternary-pale: #ace3e5;
+
+  /* text */
+  --text-primary: #ecf5ff;
+  --text-secondary: #abc4ff;
+  --text-ternary: #abc4ff88;
+  --text-link: #22d1f8;
+  --text-revert-primary: #181f35;
+
+  /* list */
+  --list-item-bg: #141041;
+
+  --app-bg: #131a35;
+  --card-bg: #2b2f34;
+
+  --content-bg__01: rgb(12, 9, 39);
+  --content-bg__02: rgb(17, 13, 54);
+  --status-active: hsl(252deg, 100%, 65%);
+
+  --ground-color: hsl(240deg, 4%, 11%);
+  --app-line-color: hsl(187deg, 3%, 12%);
+  --link-color: hsl(226deg, 100%, 84%);
+  --card-color: hsl(238deg, 5%, 19%);
+  --formkit-ground-color: hsl(260deg, 2%, 30%);
+  --formkit-line-color: hsl(263deg, 9%, 29%);
+}

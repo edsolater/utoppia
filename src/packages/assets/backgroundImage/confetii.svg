@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="background:var(--bg)" width="1612" height="945"
+  preserveAspectRatio="xMidYMid" class="image" viewBox="0 0 1612 945">
+  <defs>
+
+    <style>
+      svg.image {
+        --bg: #ffe47b;
+        --c1: #a3e048;
+        --c2: #eb7532;
+        --c3: #f7d038;
+        --c4: #d23be7;
+        --c5: #e6261f;
+        --c6: #4355db;
+        --c7: #34bbe6;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translate(0, 0px) rotate3d(1, 1, 1, 0deg);
+        }
+
+        16.6% {
+          transform: translate(0, 159.5px) rotate3d(1, 1, 1, 180deg);
+        }
+
+        33.3% {
+          transform: translate(0, 319px) rotate3d(1, 1, 1, 360deg);
+        }
+
+        50.0% {
+          transform: translate(0, 478.5px) rotate3d(1, 1, 1, 540deg);
+        }
+
+        66.6% {
+          transform: translate(0, 638px) rotate3d(1, 1, 1, 720deg);
+        }
+
+        83.3% {
+          transform: translate(0, 797.5px) rotate3d(1, 1, 1, 900deg);
+        }
+
+        100% {
+          transform: translate(0, 957px) rotate3d(1, 1, 1, 1080deg);
+        }
+      }
+
+
+
+      rect {
+        x: calc(var(--s, 0) * 2px);
+        y: calc(var(--s, 0) * -3px);
+        width: calc(var(--s, 1) * 12px);
+        height: calc(var(--s, 1) * 12px);
+        fill: var(--fill, #000);
+      }
+
+      g.anime-box {
+        animation: fall var(--dt, 4s) linear infinite;
+        animation-delay: var(--d, 0s);
+      }
+
+      g.layout-box {
+        transform: translate(var(--x, 0), var(--y, 0));
+      }
+    </style>
+  </defs>
+  <g class="layout-box" style="--x:20%">
+    <g class="anime-box" style="--dt:2s; --d:-3s">
+      <rect style="--s:2;--fill:var(--c1)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:40%">
+    <g class="anime-box" style="--dt:2s; --d:-2.3s">
+      <rect style="--s:3.5;--fill:var(--c2)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:50%">
+    <g class="anime-box" style="--dt:2s; --d:-.5s">
+      <rect style="--s:1;--fill:var(--c3)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:60%;">
+    <g class="anime-box" style="--dt:2s; --d:-4s">
+      <rect style="--s:6;--fill:var(--c4)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:80%;">
+    <g class="anime-box" style="--dt:2s; --d:-2.8s">
+      <rect style="--s:2.5;--fill:var(--c5)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:90%;">
+    <g class="anime-box" style="--dt:2s; --d:-1.2s">
+      <rect style="--s:1.5;--fill:var(--c6)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:10%;">
+    <g class="anime-box" style="--dt:2s; --d:-3.5s">
+      <rect style="--s:3;--fill:var(--c7)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:30%;">
+    <g class="anime-box" style="--dt:2s; --d:-1.8s">
+      <rect style="--s:2;--fill:var(--c1)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:70%;">
+    <g class="anime-box" style="--dt:2s; --d:-2.5s">
+      <rect style="--s:1.5;--fill:var(--c2)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:90%;">
+    <g class="anime-box" style="--dt:2s; --d:-3.8s">
+      <rect style="--s:2.5;--fill:var(--c3)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:10%;">
+    <g class="anime-box" style="--dt:2s; --d:-1s">
+      <rect style="--s:1.5;--fill:var(--c4)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:30%;">
+    <g class="anime-box" style="--dt:2s; --d:-2.8s">
+      <rect style="--s:2.5;--fill:var(--c5)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:50%;">
+    <g class="anime-box" style="--dt:2s; --d:-3.2s">
+      <rect style="--s:1.5;--fill:var(--c6)"></rect>
+    </g>
+  </g>
+  <g class="layout-box" style="--x:70%;">
+    <g class="anime-box" style="--dt:2s; --d:-1.8s">
+      <rect style="--s:2.5;--fill:var(--c7)"></rect>
+    </g>
+  </g>
+</svg>

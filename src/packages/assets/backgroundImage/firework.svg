@@ -1,0 +1,2632 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  style="background: rgb(255, 80, 80); display: block; position: relative; shape-rendering: auto;" width="130"
+  height="130" preserveAspectRatio="xMidYMid" viewBox="0 0 130 130">
+  <g transform="scale(0.51)">
+    <g transform="translate(113.38,215.83)">
+      <g transform="rotate(0)">
+        <g transform="translate(13.28 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.66 0.66)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.29s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.29s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(13.28 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.66 0.66)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.29s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.29s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(13.28 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.66 0.66)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.29s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.29s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(13.28 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.66 0.66)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.29s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.29s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(13.28 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.66 0.66)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.29s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.29s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(13.28 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.66 0.66)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.29s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.29s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(13.28 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.66 0.66)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.29s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.29s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(13.28 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.66 0.66)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.29s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.29s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(13.28 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.66 0.66)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.29s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.29s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(208.20,150.51)">
+      <g transform="rotate(0)">
+        <g transform="translate(34.32 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.28 0.28)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(34.32 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.28 0.28)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(34.32 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.28 0.28)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(34.32 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.28 0.28)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(34.32 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.28 0.28)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(34.32 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.28 0.28)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(34.32 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.28 0.28)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(34.32 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.28 0.28)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(34.32 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.28 0.28)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(50.85,175.35)">
+      <g transform="rotate(0)">
+        <g transform="translate(30.59 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.47 0.47)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.73s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.73s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(30.59 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.47 0.47)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.73s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.73s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(30.59 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.47 0.47)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.73s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.73s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(30.59 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.47 0.47)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.73s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.73s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(30.59 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.47 0.47)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.73s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.73s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(30.59 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.47 0.47)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.73s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.73s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(30.59 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.47 0.47)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.73s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.73s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(30.59 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.47 0.47)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.73s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.73s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(30.59 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.47 0.47)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.73s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.73s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(247.81,211.91)">
+      <g transform="rotate(0)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(-8.18,211.91)">
+      <g transform="rotate(0)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(4.30 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.21 0.21)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.07s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.07s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(157.57,250.03)">
+      <g transform="rotate(0)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(157.57,-5.96)">
+      <g transform="rotate(0)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(25.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.71 0.71)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.60s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.60s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(241.36,32.21)">
+      <g transform="rotate(0)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(-14.63,32.21)">
+      <g transform="rotate(0)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(241.36,288.21)">
+      <g transform="rotate(0)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(1.19 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.05 0.05)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.99s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.99s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(171.50,105.47)">
+      <g transform="rotate(0)">
+        <g transform="translate(17.94 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.89 0.89)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.41s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.41s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(17.94 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.89 0.89)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.41s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.41s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(17.94 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.89 0.89)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.41s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.41s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(17.94 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.89 0.89)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.41s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.41s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(17.94 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.89 0.89)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.41s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.41s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(17.94 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.89 0.89)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.41s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.41s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(17.94 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.89 0.89)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.41s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.41s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(17.94 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.89 0.89)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.41s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.41s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(17.94 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.89 0.89)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.41s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.41s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(100.33,149.48)">
+      <g transform="rotate(0)">
+        <g transform="translate(15.58 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.77 0.77)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.35s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.35s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(15.58 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.77 0.77)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.35s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.35s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(15.58 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.77 0.77)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.35s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.35s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(15.58 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.77 0.77)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.35s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.35s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(15.58 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.77 0.77)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.35s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.35s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(15.58 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.77 0.77)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.35s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.35s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(15.58 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.77 0.77)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.35s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.35s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(15.58 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.77 0.77)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.35s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.35s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(15.58 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.77 0.77)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.35s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.35s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(219.08,117.87)">
+      <g transform="rotate(0)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(-36.91,117.87)">
+      <g transform="rotate(0)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(29.45 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.52 0.52)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.70s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.70s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(24.07,103.69)">
+      <g transform="rotate(0)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(280.07,103.69)">
+      <g transform="rotate(0)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(34.48 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.27 0.27)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.82s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.82s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(35.66,229.15)">
+      <g transform="rotate(0)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(291.66,229.15)">
+      <g transform="rotate(0)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(35.66,-26.84)">
+      <g transform="rotate(0)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(0.49 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.02 0.02)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.97s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.97s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(252.63,21.42)">
+      <g transform="rotate(0)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(-3.36,21.42)">
+      <g transform="rotate(0)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(252.63,277.42)">
+      <g transform="rotate(0)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(14.03 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.70 0.70)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.31s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.31s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(42.50,255.34)">
+      <g transform="rotate(0)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(42.50,-0.65)">
+      <g transform="rotate(0)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(19.68 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffffff" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.98 0.98)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.45s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.45s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(95.68,98.25)">
+      <g transform="rotate(0)">
+        <g transform="translate(7.05 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.35 0.35)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.14s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.14s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(7.05 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.35 0.35)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.14s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.14s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(7.05 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.35 0.35)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.14s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.14s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(7.05 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.35 0.35)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.14s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.14s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(7.05 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.35 0.35)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.14s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.14s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(7.05 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.35 0.35)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.14s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.14s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(7.05 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.35 0.35)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.14s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.14s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(7.05 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.35 0.35)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.14s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.14s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(7.05 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#ffb38c" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.35 0.35)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.14s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.14s" />
+        </g>
+      </g>
+    </g>
+    <g transform="translate(186.75,206.99)">
+      <g transform="rotate(0)">
+        <g transform="translate(12.76 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.63 0.63)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.28s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.28s" />
+        </g>
+      </g>
+      <g transform="rotate(40)">
+        <g transform="translate(12.76 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.63 0.63)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.28s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.28s" />
+        </g>
+      </g>
+      <g transform="rotate(80)">
+        <g transform="translate(12.76 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.63 0.63)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.28s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.28s" />
+        </g>
+      </g>
+      <g transform="rotate(120)">
+        <g transform="translate(12.76 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.63 0.63)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.28s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.28s" />
+        </g>
+      </g>
+      <g transform="rotate(160)">
+        <g transform="translate(12.76 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.63 0.63)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.28s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.28s" />
+        </g>
+      </g>
+      <g transform="rotate(200)">
+        <g transform="translate(12.76 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.63 0.63)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.28s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.28s" />
+        </g>
+      </g>
+      <g transform="rotate(240)">
+        <g transform="translate(12.76 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.63 0.63)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.28s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.28s" />
+        </g>
+      </g>
+      <g transform="rotate(280)">
+        <g transform="translate(12.76 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.63 0.63)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.28s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.28s" />
+        </g>
+      </g>
+      <g transform="rotate(320)">
+        <g transform="translate(12.76 0)">
+          <line x1="-5" x2="5" y1="0" y2="0" stroke="#d4ff9e" stroke-linecap="round" stroke-width="5"
+            transform="scale(0.63 0.63)">
+            <animateTransform attributeName="transform" type="scale" dur="1s" repeatCount="indefinite"
+              keyTimes="0;0.5;1" values="0;1;0" begin="-0.28s" />
+          </line>
+          <animateTransform attributeName="transform" type="translate" dur="1s" repeatCount="indefinite" keyTimes="0;1"
+            values="0 0;40 0" begin="-0.28s" />
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

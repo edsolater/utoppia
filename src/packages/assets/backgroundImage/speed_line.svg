@@ -1,0 +1,325 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  style="margin: auto; background: rgb(11, 19, 29); display: block; z-index: 1; position: relative; shape-rendering: auto;"
+  width="3000" height="1321" preserveAspectRatio="xMidYMid" viewBox="0 0 3000 1321">
+  <g transform="translate(1500,660.5) scale(1,1) translate(-1500,-660.5)">
+    <style>
+      @keyframes ld-speed-dash {
+        0% {
+          transform: translate(0, -3907.96px);
+        }
+
+        100% {
+          transform: translate(0, 3907.96px);
+        }
+      }
+
+      .ld.ld-speed-dash {
+        animation: ld-speed-dash 0ms linear infinite;
+      }
+    </style>
+    <g transform="translate(1500,660.5)">
+      <g style="transform:rotate(45deg)">
+        <line x1="1277.73" x2="1277.73" y1="0" y2="-396.67" stroke="#884242"
+          stroke-width="2.32" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.57s;animation-duration:2s"></line>
+        <line x1="697.55" x2="697.55" y1="0" y2="-423.09" stroke="#884242"
+          stroke-width="0.83" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.82s;animation-duration:2s"></line>
+        <line x1="-873.69" x2="-873.69" y1="0" y2="-442.71" stroke="#ffffff"
+          stroke-width="3.45" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.26s;animation-duration:1s"></line>
+        <line x1="945.93" x2="945.93" y1="0" y2="-349.62" stroke="#884242"
+          stroke-width="0.92" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.88s;animation-duration:1s"></line>
+        <line x1="-314.26" x2="-314.26" y1="0" y2="-605.87" stroke="#884242"
+          stroke-width="1.34" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.37s;animation-duration:2s"></line>
+        <line x1="-567.70" x2="-567.70" y1="0" y2="-221.21" stroke="#884242"
+          stroke-width="3.85" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.86s;animation-duration:1s"></line>
+        <line x1="-393.75" x2="-393.75" y1="0" y2="-221.88" stroke="#ffffff"
+          stroke-width="3.41" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.47s;animation-duration:1s"></line>
+        <line x1="-548.40" x2="-548.40" y1="0" y2="-371.07" stroke="#ffffff"
+          stroke-width="4.74" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.55s;animation-duration:2s"></line>
+        <line x1="-264.96" x2="-264.96" y1="0" y2="-422.94" stroke="#884242"
+          stroke-width="0.74" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.96s;animation-duration:2s"></line>
+        <line x1="88.00" x2="88.00" y1="0" y2="-489.29" stroke="#884242"
+          stroke-width="1.69" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.53s;animation-duration:2s"></line>
+        <line x1="907.19" x2="907.19" y1="0" y2="-289.39" stroke="#ffffff"
+          stroke-width="4.09" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.19s;animation-duration:1s"></line>
+        <line x1="-196.60" x2="-196.60" y1="0" y2="-605.99" stroke="#884242"
+          stroke-width="2.56" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.37s;animation-duration:1s"></line>
+        <line x1="-631.85" x2="-631.85" y1="0" y2="-604.06" stroke="#884242"
+          stroke-width="3.82" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.80s;animation-duration:1s"></line>
+        <line x1="1443.52" x2="1443.52" y1="0" y2="-623.41" stroke="#884242"
+          stroke-width="0.33" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.11s;animation-duration:2s"></line>
+        <line x1="727.71" x2="727.71" y1="0" y2="-566.43" stroke="#ffffff"
+          stroke-width="4.33" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.67s;animation-duration:2s"></line>
+        <line x1="286.25" x2="286.25" y1="0" y2="-331.80" stroke="#ffffff"
+          stroke-width="4.88" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.08s;animation-duration:2s"></line>
+        <line x1="362.04" x2="362.04" y1="0" y2="-308.79" stroke="#884242"
+          stroke-width="4.78" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.70s;animation-duration:1s"></line>
+        <line x1="-965.11" x2="-965.11" y1="0" y2="-310.28" stroke="#884242"
+          stroke-width="2.74" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.11s;animation-duration:2s"></line>
+        <line x1="444.33" x2="444.33" y1="0" y2="-530.29" stroke="#884242"
+          stroke-width="1.22" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.76s;animation-duration:2s"></line>
+        <line x1="1148.92" x2="1148.92" y1="0" y2="-234.69" stroke="#884242"
+          stroke-width="1.56" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.54s;animation-duration:2s"></line>
+        <line x1="1340.26" x2="1340.26" y1="0" y2="-180.53" stroke="#ffffff"
+          stroke-width="0.43" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.61s;animation-duration:2s"></line>
+        <line x1="-1112.93" x2="-1112.93" y1="0" y2="-495.97" stroke="#ffffff"
+          stroke-width="0.96" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.69s;animation-duration:2s"></line>
+        <line x1="588.53" x2="588.53" y1="0" y2="-211.69" stroke="#884242"
+          stroke-width="1.19" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.03s;animation-duration:2s"></line>
+        <line x1="-485.51" x2="-485.51" y1="0" y2="-463.09" stroke="#ffffff"
+          stroke-width="3.10" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.40s;animation-duration:2s"></line>
+        <line x1="-989.68" x2="-989.68" y1="0" y2="-532.03" stroke="#884242"
+          stroke-width="2.57" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.86s;animation-duration:2s"></line>
+        <line x1="324.01" x2="324.01" y1="0" y2="-564.09" stroke="#884242"
+          stroke-width="2.91" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.93s;animation-duration:1s"></line>
+        <line x1="687.11" x2="687.11" y1="0" y2="-363.18" stroke="#ffffff"
+          stroke-width="0.66" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.85s;animation-duration:1s"></line>
+        <line x1="498.78" x2="498.78" y1="0" y2="-300.59" stroke="#884242"
+          stroke-width="4.46" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.20s;animation-duration:2s"></line>
+        <line x1="-440.20" x2="-440.20" y1="0" y2="-278.39" stroke="#884242"
+          stroke-width="1.13" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.08s;animation-duration:1s"></line>
+        <line x1="607.55" x2="607.55" y1="0" y2="-198.28" stroke="#884242"
+          stroke-width="2.15" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.18s;animation-duration:2s"></line>
+        <line x1="707.47" x2="707.47" y1="0" y2="-623.36" stroke="#ffffff"
+          stroke-width="1.96" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.91s;animation-duration:2s"></line>
+        <line x1="-1326.59" x2="-1326.59" y1="0" y2="-375.55" stroke="#ffffff"
+          stroke-width="0.37" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.18s;animation-duration:2s"></line>
+        <line x1="-561.29" x2="-561.29" y1="0" y2="-195.16" stroke="#ffffff"
+          stroke-width="0.31" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.37s;animation-duration:2s"></line>
+        <line x1="-534.89" x2="-534.89" y1="0" y2="-280.87" stroke="#ffffff"
+          stroke-width="3.62" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.10s;animation-duration:2s"></line>
+        <line x1="-879.07" x2="-879.07" y1="0" y2="-281.62" stroke="#ffffff"
+          stroke-width="3.97" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.78s;animation-duration:2s"></line>
+        <line x1="790.55" x2="790.55" y1="0" y2="-542.14" stroke="#ffffff"
+          stroke-width="0.24" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.90s;animation-duration:2s"></line>
+        <line x1="-486.25" x2="-486.25" y1="0" y2="-386.82" stroke="#ffffff"
+          stroke-width="4.79" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.36s;animation-duration:1s"></line>
+        <line x1="917.16" x2="917.16" y1="0" y2="-422.15" stroke="#ffffff"
+          stroke-width="3.53" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.80s;animation-duration:1s"></line>
+        <line x1="-1167.47" x2="-1167.47" y1="0" y2="-614.92" stroke="#884242"
+          stroke-width="1.24" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.70s;animation-duration:2s"></line>
+        <line x1="-512.92" x2="-512.92" y1="0" y2="-409.31" stroke="#884242"
+          stroke-width="1.34" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.68s;animation-duration:1s"></line>
+        <line x1="379.94" x2="379.94" y1="0" y2="-616.71" stroke="#ffffff"
+          stroke-width="2.38" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.12s;animation-duration:2s"></line>
+        <line x1="767.99" x2="767.99" y1="0" y2="-484.90" stroke="#884242"
+          stroke-width="3.13" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.31s;animation-duration:1s"></line>
+        <line x1="678.04" x2="678.04" y1="0" y2="-623.13" stroke="#884242"
+          stroke-width="2.27" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.83s;animation-duration:2s"></line>
+        <line x1="-779.69" x2="-779.69" y1="0" y2="-342.62" stroke="#884242"
+          stroke-width="2.21" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.71s;animation-duration:2s"></line>
+        <line x1="1485.44" x2="1485.44" y1="0" y2="-248.83" stroke="#884242"
+          stroke-width="0.39" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.14s;animation-duration:2s"></line>
+        <line x1="-1037.31" x2="-1037.31" y1="0" y2="-465.45" stroke="#884242"
+          stroke-width="0.17" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.10s;animation-duration:2s"></line>
+        <line x1="-233.06" x2="-233.06" y1="0" y2="-475.34" stroke="#ffffff"
+          stroke-width="2.58" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.28s;animation-duration:2s"></line>
+        <line x1="698.11" x2="698.11" y1="0" y2="-359.44" stroke="#ffffff"
+          stroke-width="4.90" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.53s;animation-duration:2s"></line>
+        <line x1="-1194.95" x2="-1194.95" y1="0" y2="-256.04" stroke="#884242"
+          stroke-width="3.24" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.03s;animation-duration:2s"></line>
+        <line x1="1469.80" x2="1469.80" y1="0" y2="-618.26" stroke="#884242"
+          stroke-width="2.99" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.07s;animation-duration:1s"></line>
+        <line x1="1262.13" x2="1262.13" y1="0" y2="-270.15" stroke="#884242"
+          stroke-width="4.73" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.42s;animation-duration:1s"></line>
+        <line x1="1134.64" x2="1134.64" y1="0" y2="-339.21" stroke="#884242"
+          stroke-width="3.36" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.24s;animation-duration:2s"></line>
+        <line x1="-798.33" x2="-798.33" y1="0" y2="-615.03" stroke="#ffffff"
+          stroke-width="4.69" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.59s;animation-duration:2s"></line>
+        <line x1="-1306.31" x2="-1306.31" y1="0" y2="-451.86" stroke="#ffffff"
+          stroke-width="1.47" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.44s;animation-duration:1s"></line>
+        <line x1="-374.17" x2="-374.17" y1="0" y2="-325.17" stroke="#ffffff"
+          stroke-width="2.39" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.36s;animation-duration:2s"></line>
+        <line x1="-1358.62" x2="-1358.62" y1="0" y2="-441.97" stroke="#884242"
+          stroke-width="1.88" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.21s;animation-duration:2s"></line>
+        <line x1="910.81" x2="910.81" y1="0" y2="-456.65" stroke="#ffffff"
+          stroke-width="4.94" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.11s;animation-duration:1s"></line>
+        <line x1="438.09" x2="438.09" y1="0" y2="-472.47" stroke="#884242"
+          stroke-width="2.88" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.10s;animation-duration:1s"></line>
+        <line x1="1002.28" x2="1002.28" y1="0" y2="-490.04" stroke="#ffffff"
+          stroke-width="1.44" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.56s;animation-duration:2s"></line>
+        <line x1="-1080.50" x2="-1080.50" y1="0" y2="-336.70" stroke="#ffffff"
+          stroke-width="2.26" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.16s;animation-duration:1s"></line>
+        <line x1="-583.28" x2="-583.28" y1="0" y2="-607.35" stroke="#884242"
+          stroke-width="4.27" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.90s;animation-duration:2s"></line>
+        <line x1="1076.48" x2="1076.48" y1="0" y2="-409.17" stroke="#ffffff"
+          stroke-width="2.66" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.67s;animation-duration:2s"></line>
+        <line x1="-1250.75" x2="-1250.75" y1="0" y2="-505.34" stroke="#884242"
+          stroke-width="4.37" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.93s;animation-duration:1s"></line>
+        <line x1="-1043.10" x2="-1043.10" y1="0" y2="-598.30" stroke="#ffffff"
+          stroke-width="2.19" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.00s;animation-duration:1s"></line>
+        <line x1="-967.59" x2="-967.59" y1="0" y2="-439.55" stroke="#884242"
+          stroke-width="0.54" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.67s;animation-duration:1s"></line>
+        <line x1="-1441.86" x2="-1441.86" y1="0" y2="-479.01" stroke="#884242"
+          stroke-width="3.30" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.68s;animation-duration:2s"></line>
+        <line x1="-951.39" x2="-951.39" y1="0" y2="-590.41" stroke="#ffffff"
+          stroke-width="1.14" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.45s;animation-duration:2s"></line>
+        <line x1="-1418.66" x2="-1418.66" y1="0" y2="-280.87" stroke="#884242"
+          stroke-width="0.85" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.31s;animation-duration:2s"></line>
+        <line x1="-84.84" x2="-84.84" y1="0" y2="-490.40" stroke="#ffffff"
+          stroke-width="0.64" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.10s;animation-duration:1s"></line>
+        <line x1="-115.44" x2="-115.44" y1="0" y2="-426.44" stroke="#ffffff"
+          stroke-width="4.64" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.63s;animation-duration:1s"></line>
+        <line x1="-663.27" x2="-663.27" y1="0" y2="-357.39" stroke="#884242"
+          stroke-width="2.06" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.87s;animation-duration:2s"></line>
+        <line x1="-774.83" x2="-774.83" y1="0" y2="-285.01" stroke="#ffffff"
+          stroke-width="2.99" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.19s;animation-duration:2s"></line>
+        <line x1="572.75" x2="572.75" y1="0" y2="-470.44" stroke="#ffffff"
+          stroke-width="4.49" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.15s;animation-duration:1s"></line>
+        <line x1="170.53" x2="170.53" y1="0" y2="-562.31" stroke="#884242"
+          stroke-width="2.10" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.73s;animation-duration:2s"></line>
+        <line x1="197.30" x2="197.30" y1="0" y2="-500.74" stroke="#884242"
+          stroke-width="2.03" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.83s;animation-duration:2s"></line>
+        <line x1="982.22" x2="982.22" y1="0" y2="-215.40" stroke="#884242"
+          stroke-width="3.82" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.19s;animation-duration:2s"></line>
+        <line x1="862.40" x2="862.40" y1="0" y2="-392.40" stroke="#ffffff"
+          stroke-width="4.65" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.65s;animation-duration:1s"></line>
+        <line x1="-677.94" x2="-677.94" y1="0" y2="-423.54" stroke="#ffffff"
+          stroke-width="0.41" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.77s;animation-duration:2s"></line>
+        <line x1="551.83" x2="551.83" y1="0" y2="-363.65" stroke="#884242"
+          stroke-width="2.96" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.79s;animation-duration:1s"></line>
+        <line x1="377.93" x2="377.93" y1="0" y2="-609.33" stroke="#ffffff"
+          stroke-width="2.11" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.33s;animation-duration:1s"></line>
+        <line x1="187.50" x2="187.50" y1="0" y2="-372.71" stroke="#884242"
+          stroke-width="3.76" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.63s;animation-duration:2s"></line>
+        <line x1="922.51" x2="922.51" y1="0" y2="-446.06" stroke="#884242"
+          stroke-width="0.64" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.36s;animation-duration:1s"></line>
+        <line x1="-393.43" x2="-393.43" y1="0" y2="-529.96" stroke="#884242"
+          stroke-width="1.75" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.96s;animation-duration:1s"></line>
+        <line x1="607.75" x2="607.75" y1="0" y2="-587.55" stroke="#884242"
+          stroke-width="2.28" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.35s;animation-duration:1s"></line>
+        <line x1="916.09" x2="916.09" y1="0" y2="-197.90" stroke="#ffffff"
+          stroke-width="3.63" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.90s;animation-duration:2s"></line>
+        <line x1="-698.35" x2="-698.35" y1="0" y2="-413.72" stroke="#ffffff"
+          stroke-width="4.25" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.60s;animation-duration:1s"></line>
+        <line x1="-209.08" x2="-209.08" y1="0" y2="-436.94" stroke="#884242"
+          stroke-width="0.21" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.32s;animation-duration:1s"></line>
+        <line x1="-1386.51" x2="-1386.51" y1="0" y2="-392.26" stroke="#ffffff"
+          stroke-width="2.06" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.05s;animation-duration:2s"></line>
+        <line x1="-47.55" x2="-47.55" y1="0" y2="-351.87" stroke="#884242"
+          stroke-width="0.20" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.07s;animation-duration:2s"></line>
+        <line x1="387.08" x2="387.08" y1="0" y2="-330.03" stroke="#ffffff"
+          stroke-width="2.73" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.48s;animation-duration:1s"></line>
+        <line x1="738.53" x2="738.53" y1="0" y2="-590.14" stroke="#884242"
+          stroke-width="0.04" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.47s;animation-duration:2s"></line>
+        <line x1="1120.75" x2="1120.75" y1="0" y2="-621.67" stroke="#884242"
+          stroke-width="0.31" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.68s;animation-duration:2s"></line>
+        <line x1="92.07" x2="92.07" y1="0" y2="-526.01" stroke="#ffffff"
+          stroke-width="4.57" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.93s;animation-duration:2s"></line>
+        <line x1="277.19" x2="277.19" y1="0" y2="-487.22" stroke="#ffffff"
+          stroke-width="2.94" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.54s;animation-duration:2s"></line>
+        <line x1="183.82" x2="183.82" y1="0" y2="-530.90" stroke="#884242"
+          stroke-width="2.34" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.78s;animation-duration:1s"></line>
+        <line x1="-151.78" x2="-151.78" y1="0" y2="-615.77" stroke="#ffffff"
+          stroke-width="4.09" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.52s;animation-duration:1s"></line>
+        <line x1="1305.87" x2="1305.87" y1="0" y2="-551.88" stroke="#ffffff"
+          stroke-width="3.60" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.94s;animation-duration:2s"></line>
+        <line x1="-467.42" x2="-467.42" y1="0" y2="-419.58" stroke="#ffffff"
+          stroke-width="4.89" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -0.99s;animation-duration:2s"></line>
+        <line x1="-1480.35" x2="-1480.35" y1="0" y2="-542.60" stroke="#884242"
+          stroke-width="3.64" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.64s;animation-duration:1s"></line>
+        <line x1="823.28" x2="823.28" y1="0" y2="-271.86" stroke="#884242"
+          stroke-width="3.74" stroke-linecap="round" class="ld ld-speed-dash"
+          style="animation-delay: -1.90s;animation-duration:2s"></line>
+      </g>
+    </g>
+  </g>
+</svg>
