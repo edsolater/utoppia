@@ -18,7 +18,12 @@ export function Link(rawProps: LinkProps) {
   const navigate = useNavigate()
   return (
     <Piv<"a">
-      icss={{ textDecoration: "none", transition: "150ms", cursor: "pointer" }}
+      icss={{
+        textDecoration: "none",
+        transition: "150ms",
+        cursor: "pointer",
+        "&:hover": { textDecoration: "underline" },
+      }}
       render:self={(selfProps) =>
         props.innerRoute
           ? renderHTMLDOM("span", selfProps)

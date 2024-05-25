@@ -1,6 +1,7 @@
 import { JSX } from "solid-js"
 import HomePage from "../pages"
 import PlaygroundPage from "../pages/playground"
+import DailySchedulePage from "../pages/daily-schedule"
 
 type RouteItem = {
   name: string
@@ -8,7 +9,12 @@ type RouteItem = {
   component: () => JSX.Element
   icon?: string
 
-  visiable: boolean
+  /**
+   * hiddenLink is only visiable through type in url directly
+   * @default false
+   */
+  isHiddenLink?: boolean
+
   needAppKeeper: boolean
 }
 
@@ -18,28 +24,33 @@ function createRouteItem(options: RouteItem): RouteItem {
     path: options.path,
     component: options.component,
     icon: options.icon,
-    visiable: options.visiable,
+    isHiddenLink: options.isHiddenLink,
     needAppKeeper: options.needAppKeeper,
   }
 }
 
-export const homeRoutePath = "/"
-export const playgroundRoutePath = "/playground"
+export const routeItems = {
+  home: createRouteItem({
+    name: "home",
+    path: "/",
+    component: HomePage,
+    needAppKeeper: false,
+    isHiddenLink: true,
+  }),
+  playground: createRouteItem({
+    name: "playground",
+    path: "/playground",
+    component: PlaygroundPage,
+    needAppKeeper: true,
+  }),
+  dailySchedule: createRouteItem({
+    name: "daily schedule",
+    path: "/daily-schedule",
+    component: DailySchedulePage,
+    needAppKeeper: true,
+  }),
+}
 
-export const homeRouteItem = createRouteItem({
-  name: "home",
-  path: homeRoutePath,
-  component: HomePage,
-  needAppKeeper: false,
-  visiable: false,
-})
-export const playgroundRouteItem = createRouteItem({
-  name: "playground",
-  path: playgroundRoutePath,
-  component: PlaygroundPage,
-  visiable: true,
-  needAppKeeper: true,
-})
-export const routes = [homeRouteItem, playgroundRouteItem]
+export const routes = Object.values(routeItems)
 
 export const isLocalhost = () => window.location.hostname === "localhost"

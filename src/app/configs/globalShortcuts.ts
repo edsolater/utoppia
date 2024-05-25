@@ -1,13 +1,13 @@
-import { KeybordShortcutKeys } from "@edsolater/pivkit"
-import { homeRoutePath, playgroundRoutePath } from "./routes"
+import { KeybordShortcutKeys } from "@edsolater/pivkit";
+import { routeItems } from "./routes";
 
 export const globalRouteShortcuts = {
   "go to home": {
     shortcut: "alt + /",
-    to: homeRoutePath,
+    to: routeItems.home.path,
   },
   "go to playgound": {
     shortcut: "alt + p",
-    to: playgroundRoutePath,
+    to: routeItems.playground.path,
   },
 } satisfies Record<string, { to: string; shortcut: KeybordShortcutKeys }>

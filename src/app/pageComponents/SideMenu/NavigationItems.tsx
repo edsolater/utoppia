@@ -38,7 +38,7 @@ export function NavRouteItems() {
       ]}
     >
       {(route) => (
-        <Show when={route.visiable}>
+        <Show when={!route.isHiddenLink}>
           <LinkItem
             icss={{ textTransform: "capitalize" }}
             icon={route.icon}
