@@ -1,6 +1,6 @@
 import { Route, Router } from "@solidjs/router"
 import { render } from "solid-js/web"
-import { App } from "./app/pages/App"
+import { AppRoutLayout } from "./app/components/AppRoutLayout"
 import { routes } from "./app/configs/routes"
 
 const root = document.getElementById("root")
@@ -13,7 +13,7 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 
 render(
   () => (
-    <Router root={App} singleFlight={false}>
+    <Router root={AppRoutLayout} singleFlight={false}>
       {routes.map(({ path, component }) => (
         <Route path={path} component={component} />
       ))}

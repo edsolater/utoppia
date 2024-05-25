@@ -20,14 +20,14 @@ import { setStore, shuck_rpc } from "../stores/data/store"
 initAppContextConfig({ themeMode: "dark", onlyAltSelect: true })
 configUIKitTheme(uikitConfig)
 
-export function App(props: RouteSectionProps) {
+export function AppRoutLayout(props: RouteSectionProps) {
   const location = props.location
   const title = createMemo(() =>
     switchCase(location.pathname, { "/": "Home" }, (pathname) => pathname.split("/").map(capitalize).join(" ")),
   )
   const needLayout = createMemo(() => routes.find(({ path }) => path === location.pathname)?.needAppKeeper)
   useExperimentalCode()
-  useLocalStorageRpc()
+  // useLocalStorageRpc()
   return (
     <Show when={needLayout()} fallback={props.children}>
       <AppKeeper
