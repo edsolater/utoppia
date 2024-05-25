@@ -81,12 +81,3 @@ function objectlyToPub<T extends object>(target: T): ReplaceType<T, _PublicKey, 
     })
   })
 }
-const original = {
-  a: {
-    content: defaultPublicKey,
-  },
-}
-
-const parsed = objectlyToPubString(original)
-
-console.log("original: ", original.a, parsed.a)

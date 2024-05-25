@@ -1,4 +1,5 @@
 import { shrinkFn, type Collection, type GetCollectionValue, type MayFn } from "@edsolater/fnkit"
+import type { ICSSObject } from "@edsolater/pivkit"
 import {
   Box,
   Col,
@@ -7,27 +8,25 @@ import {
   ICSS,
   Icon,
   InfiniteScrollList,
-  KitProps,
   List,
-  PivChild,
   Row,
   Text,
   createICSS,
   icssCenterY,
   icssClickable,
+  icssThreeSlotGrid,
   parseICSSToClassName,
+  useElementResize,
   useKitProps,
   type InfiniteScrollListKitProps,
-  icssThreeSlotGrid,
+  type KitProps,
+  type PivChild,
 } from "@edsolater/pivkit"
-import { Accessor, createContext, createMemo, createSignal, useContext } from "solid-js"
-import { icssClmmItemRow, icssClmmItemRowCollapse } from "../../pages/clmm"
-import { DatabaseItemFacePartTextDetail } from "../../pages/pool"
+import { createContext, createMemo, createSignal, useContext, type Accessor } from "solid-js"
 import { colors } from "../../theme/colors"
 import { scrollbarWidth } from "../../theme/misc"
 import { Title } from "../BoardTitle"
 import { CyberPanel } from "../CyberPanel"
-import type { ICSSObject } from "@edsolater/pivkit"
 
 // for sort and search
 export type TabelHeaderConfigs<T extends Collection> = {
@@ -195,6 +194,12 @@ type DatabaseTabelItemRenderConfig<T> = {
   collapseTransitionDuration?: number | ((item: T) => number)
 }
 
+const icssClmmItemRow = parseICSSToClassName({ paddingBlock: "4px" })
+const icssClmmItemRowCollapse = parseICSSToClassName({
+  borderRadius: "20px",
+  overflow: "hidden",
+})
+
 /**
  * components to show clmm info
  */
@@ -266,6 +271,24 @@ function DatabaseTableItemCollapseFace<T>(
         </List>
       </Group>
     </Row>
+  )
+}
+
+const databaseItemFacePartTextDetailInnerStyle = parseICSSToClassName({ width: "fit-content" })
+
+function DatabaseItemFacePartTextDetail(
+  kitProps: KitProps<{ onResize?({ entry, el }): void; name: string; value?: any }>,
+) {
+  const { props, shadowProps } = useKitProps(kitProps, { name: "DatabaseListItemFaceDetailInfoBoard" })
+  const { ref: resizeRef } = useElementResize(({ entry, el }) => {
+    props.onResize?.({ entry, el })
+  })
+  return (
+    <Box shadowProps={shadowProps}>
+      <Box class={"itemInnerBox"} domRef={resizeRef} icss={databaseItemFacePartTextDetailInnerStyle}>
+        {props.value || "--"}
+      </Box>
+    </Box>
   )
 }
 /**

@@ -23,12 +23,8 @@ function createRouteItem(options: RouteItem): RouteItem {
   }
 }
 
-export const poolsRoutePath = "/pools"
 export const homeRoutePath = "/"
-export const farmsRoutePath = "/farms"
 export const playgroundRoutePath = "/playground"
-export const swapRoutePath = "/swap"
-export const clmmRoutePath = "/clmm"
 
 export const homeRouteItem = createRouteItem({
   name: "home",
