@@ -41,5 +41,5 @@ function initMessageReceiver() {
 }
 
 // only need to regist once in the worker thread
-invokeOnce(initMessageReceiver)
-invokeOnce(applyWebworkerRegisters, { getMessagePort, getMessageReceiver, getMessageSender })
+// invokeOnce(initMessageReceiver)
+// invokeOnce(applyWebworkerRegisters, { getMessagePort, getMessageReceiver, getMessageSender })

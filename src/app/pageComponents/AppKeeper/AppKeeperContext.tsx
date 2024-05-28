@@ -11,5 +11,7 @@ export const AppKeeperContext = createComponentContext<
     isTopBarOpen?: Accessor<boolean>
     isTopBarFloating?: Accessor<boolean>
     toggleTopBar?: () => void
-  } & AppKeeperProps
+
+    props?: AppKeeperProps
+  } 
 >()

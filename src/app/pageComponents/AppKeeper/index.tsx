@@ -47,7 +47,7 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
   useMetaTitle(props.metaTitle)
   // const isSideMenuOpen = createIntervalSignal({ intervalDelay: 3000, default: true, run: false })
   return (
-    <AppKeeperContext.Provider value={props}>
+    <AppKeeperContext.Provider value={{ props }}>
       <Box
         shadowProps={shadowProps}
         icss={{

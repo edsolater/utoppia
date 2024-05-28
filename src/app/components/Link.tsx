@@ -1,36 +1,47 @@
-import { useNavigate } from "@solidjs/router"
-import { KitProps, Piv, renderHTMLDOM, useKitProps } from "@edsolater/pivkit"
+import { KitProps, Piv, parseICSSToClassName, renderHTMLDOM, useKitProps } from "@edsolater/pivkit"
+import { createMemo } from "solid-js"
 
 export interface LinkRawProps {
   href?: string
   boxWrapper?: boolean
-  // TODO: should auto-detect, not manually set
+
+  /**
+   * @default true/false base on if href is same host
+   */
   innerRoute?: boolean
 }
 
 export type LinkProps = KitProps<LinkRawProps>
 
+const linkDefaultIcss = () =>
+  parseICSSToClassName({
+    transition: "150ms",
+    cursor: "pointer",
+    "&:hover": { textDecoration: "underline" },
+  })
+
 /**
  * tag: `<a>` or `<span>`
  */
 export function Link(rawProps: LinkProps) {
-  const { props } = useKitProps(rawProps, { name: "Link" })
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
+  const { props, shadowProps } = useKitProps(rawProps, { name: "Link" })
+  const innerRoute = createMemo(() => props.innerRoute ?? (props.href ? isSameHostUrl(props.href) : false))
   return (
     <Piv<"a">
-      icss={{
-        textDecoration: "none",
-        transition: "150ms",
-        cursor: "pointer",
-        "&:hover": { textDecoration: "underline" },
-      }}
+      icss={linkDefaultIcss}
       render:self={(selfProps) =>
-        props.innerRoute
-          ? renderHTMLDOM("span", selfProps)
-          : renderHTMLDOM("a", selfProps, { href: props.href, rel: "nofollow noopener noreferrer", target: "_blank" })
+        renderHTMLDOM("a", selfProps, {
+          href: props.href,
+          rel: innerRoute() ? undefined : "nofollow noopener noreferrer",
+          target: innerRoute() ? undefined : "_blank",
+        })
       }
-      shadowProps={props}
-      onClick={() => props.innerRoute && props.href && navigate(props.href)}
+      shadowProps={shadowProps}
+      // onClick={() => props.innerRoute && props.href && navigate(props.href)}
     />
   )
+}
+function isSameHostUrl(url: string) {
+  return url.startsWith(window.location.origin)
 }

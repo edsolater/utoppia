@@ -1,7 +1,4 @@
-import { JSX } from "solid-js"
-import HomePage from "../pages"
-import PlaygroundPage from "../pages/playground"
-import DailySchedulePage from "../pages/daily-schedule"
+import { JSX, lazy } from "solid-js"
 
 type RouteItem = {
   name: string
@@ -33,20 +30,20 @@ export const routeItems = {
   home: createRouteItem({
     name: "home",
     path: "/",
-    component: HomePage,
-    needAppKeeper: false,
+    component: lazy(() => import("../pages/app")),
+    needAppKeeper: true,
     isHiddenLink: true,
   }),
   playground: createRouteItem({
     name: "playground",
     path: "/playground",
-    component: PlaygroundPage,
+    component: lazy(() => import("../pages/playground")),
     needAppKeeper: true,
   }),
   dailySchedule: createRouteItem({
     name: "daily schedule",
     path: "/daily-schedule",
-    component: DailySchedulePage,
+    component: lazy(() => import("../pages/daily-schedule")),
     needAppKeeper: true,
   }),
 }

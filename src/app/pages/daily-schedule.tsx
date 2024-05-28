@@ -1,25 +1,49 @@
-import { Box, Button, Group } from "@edsolater/pivkit"
+import { createSubscribable, type ID, type Subscribable } from "@edsolater/fnkit"
+import { Box, Button, Input, Row, Text } from "@edsolater/pivkit"
+import { For, Show, createEffect, createSignal, on, onCleanup, onMount, type Accessor, type Setter } from "solid-js"
+import { createStore, unwrap, type SetStoreFunction } from "solid-js/store"
+import { createIDBStoreManager } from "../../packages/cacheManager/storageManagers"
 import { Link } from "../components/Link"
-import { createSubscribable, type Subscribable } from "@edsolater/fnkit"
-import { type Accessor, type Setter, createSignal, createEffect, onCleanup, For } from "solid-js"
-import { createStore, type SetStoreFunction } from "solid-js/store"
 import { downloadJSON, importJSONFile } from "../utils/download"
 
-const dailyScheduleData = createSubscribable({
-  links: [
-    {
-      name: "光速观察站",
-      url: "https://space.bilibili.com/383354609",
-    },
-  ],
-})
+type LinkItem = {
+  id: ID
+  name: string
+  url: string
+}
+
+type ScheduleSchema = {
+  links?: LinkItem[]
+}
+
+const dailyScheduleData = createSubscribable<ScheduleSchema>({})
+
 export default function DailySchedulePage() {
-  const [data, setData] = useSubscribableStore(dailyScheduleData)
+  const [data, setData] = useSubscribableStore(dailyScheduleData, { cachedByIndexDB: true, name: "daily-schedule" })
+
+  function handleDeleteLink(link: LinkItem) {
+    setData((prev) => ({
+      links: prev.links?.filter((l) => l.id !== link.id),
+    }))
+  }
+
   return (
     <Box>
       <Box>
-        <For each={data.links}>{(link) => <Link href={link.url}>{link.name}</Link>}</For>
+        <Show when={data.links}>
+          <For each={data.links}>
+            {(link) => <RecordedLinkItem link={link} onDelete={() => handleDeleteLink(link)} />}
+          </For>
+        </Show>
       </Box>
+
+      <NewLinkInputBox
+        onSubmit={({ name, url }) => {
+          setData((prev) => ({
+            links: [...(prev.links ?? []), { id: name, name, url }],
+          }))
+        }}
+      />
 
       <Box>
         <Button
@@ -33,7 +57,7 @@ export default function DailySchedulePage() {
         <Button
           onClick={() => {
             importJSONFile().then((jsonData) => {
-              console.log("parsed jsonData: ", jsonData)
+              setData(jsonData)
             })
           }}
         >
@@ -41,6 +65,58 @@ export default function DailySchedulePage() {
         </Button>
       </Box>
     </Box>
+  )
+}
+
+function RecordedLinkItem(props: { link: LinkItem; onDelete?: () => void }) {
+  function handleDelete() {
+    props.onDelete?.()
+  }
+
+  return (
+    <Row>
+      <Link href={props.link.url}>{props.link.name}</Link>
+      <Button size={"sm"} onClick={handleDelete}>
+        🔥
+      </Button>
+    </Row>
+  )
+}
+
+function NewLinkInputBox(props: { onSubmit?: (link: { name: string; url: string }) => void }) {
+  const [name, setName] = createSignal<string | undefined>()
+  const [url, setUrl] = createSignal<string | undefined>()
+  function handleSubmit() {
+    if (name() && url()) {
+      props.onSubmit?.({ name: name()!, url: url()! })
+      setName(undefined)
+      setUrl(undefined)
+    }
+  }
+  return (
+    <Row>
+      <Row>
+        <Text>name:</Text>
+        <Input
+          onInput={(v) => {
+            setName(v)
+          }}
+          value={name}
+        ></Input>
+      </Row>
+
+      <Row>
+        <Text>url:</Text>
+        <Input
+          onInput={(v) => {
+            setUrl(v)
+          }}
+          value={url}
+        ></Input>
+      </Row>
+
+      <Button onClick={handleSubmit}>Add</Button>
+    </Row>
   )
 }
 
@@ -56,6 +132,15 @@ function useSubscribable<T>(subscribable: Subscribable<T>): [Accessor<T>, Setter
     const { unsubscribe } = subscribable.subscribe(setValue)
     onCleanup(unsubscribe)
   })
+  createEffect(
+    on(
+      value,
+      () => {
+        subscribable.set(value)
+      },
+      { defer: true },
+    ),
+  )
   return [value, setValue]
 }
 
@@ -65,11 +150,57 @@ function useSubscribable<T>(subscribable: Subscribable<T>): [Accessor<T>, Setter
  * @param subscribable
  * @returns
  */
-function useSubscribableStore<T extends object>(subscribable: Subscribable<T>): [T, SetStoreFunction<T>] {
+function useSubscribableStore<T extends object>(
+  subscribable: Subscribable<T>,
+  options?: { cachedByIndexDB?: boolean; name?: string },
+): [T, SetStoreFunction<T>] {
   const [store, setStore] = createStore(subscribable())
+
+  const wrappedSet = (...args) => {
+    // @ts-expect-error
+    const result = setStore(...args)
+    subscribable.set(unwrap(store))
+    return result
+  }
+
   createEffect(() => {
-    const { unsubscribe } = subscribable.subscribe(setStore)
+    console.log("23: ", 23)
+    const { unsubscribe } = subscribable.subscribe(
+      (s) => {
+        if (s != unwrap(store)) {
+          return setStore(s)
+        }
+      },
+      { immediately: false },
+    )
     onCleanup(unsubscribe)
   })
-  return [store, setStore]
+
+  //  alse use indexedDB
+  if (options?.cachedByIndexDB) {
+    const idbManager = createIDBStoreManager<T>({
+      dbName: options.name ?? "default",
+      onStoreLoaded: async ({ get }) => {
+        const valueStore = await get("store")
+        if (valueStore) {
+          console.log("on idb connected: valueStore: ", Reflect.ownKeys(valueStore), subscribable())
+          subscribable.set(valueStore)
+        }
+      },
+    })
+    onMount(() => {
+      const { unsubscribe } = subscribable.subscribe(
+        (value) => {
+          console.log("🎉subscribe and set to indexedDB: ", value) // FIXME why render 4 times🤔🤔🤔
+          if (Object.keys(value).length) {
+            idbManager.set("store", value)
+          }
+        },
+        { immediately: false },
+      )
+      onCleanup(unsubscribe)
+    })
+  }
+
+  return [store, wrappedSet]
 }

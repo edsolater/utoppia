@@ -7,6 +7,11 @@ component name meanings:
 
 svg background: https://loading.io/background/
 
+# Style flow
+- default style use .css
+- basic pivkit have origional .css style (e.g. .Box {xxxx})
+- specific use css-in-js style (e.g. .id_2355543 {xxxx})
+
 # Data flow
 
 worker thread: JSON info ==> JSON info + SDK info ==> Composed info

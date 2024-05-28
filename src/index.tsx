@@ -13,7 +13,7 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 
 render(
   () => (
-    <Router root={AppRoutLayout} singleFlight={false}>
+    <Router root={AppRoutLayout}>
       {routes.map(({ path, component }) => (
         <Route path={path} component={component} />
       ))}
