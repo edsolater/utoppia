@@ -3,12 +3,18 @@ import {
   cssVar,
   icssClickable,
   icssFrostedGlass,
+  icssNewCompositedLayer,
   icssTextColor,
-  parseICSSToClassName
+  parseICSSToClassName,
 } from "@edsolater/pivkit"
 
 const ButtonStyleIcss = () =>
-  parseICSSToClassName([icssFrostedGlass, icssTextColor({ color: cssVar("--ternary") }), icssClickable])
+  parseICSSToClassName([
+    icssFrostedGlass,
+    icssTextColor({ color: cssVar("--ternary") }),
+    icssClickable,
+    icssNewCompositedLayer,
+  ])
 
 export const uikitConfig: UIKitThemeConfig = {
   Button: {
