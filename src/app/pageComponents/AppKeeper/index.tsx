@@ -5,6 +5,7 @@ import {
   Item,
   KitProps,
   Main,
+  Section,
   cssLinearGradient,
   cssVar,
   icssCol,
@@ -65,9 +66,9 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
           willChange: "opacity",
         }}
       >
-        <Item name={"top-banner"} icss={{ gridArea: "ban" }}>
+        <Section name={"top-banner"} icss={{ gridArea: "ban" }}>
           {props["TopbarBanner"]}
-        </Item>
+        </Section>
 
         <AppKeeperPanelManager
           panelName="top-bar"
@@ -99,7 +100,7 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
           {props["Sidebar"]}
         </AppKeeperPanelManager>
 
-        <Item name={"content"} icss={[{ gridArea: "content" }, icssGrid]}>
+        <Section name={"content"} icss={[{ gridArea: "content" }, icssGrid]}>
           <Main
             icss={[
               icssCol,
@@ -129,11 +130,11 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
               {props.children}
             </Box>
           </Main>
-        </Item>
+        </Section>
 
-        <Box icss={{ position: "absolute", right: "2vw", bottom: "2vh", display: "grid", gap: "4px" }}>
+        <Section name="FAB" icss={{ position: "absolute", right: "2vw", bottom: "2vh", display: "grid", gap: "4px" }}>
           {props["FABs"]}
-        </Box>
+        </Section>
       </Box>
     </AppKeeperContext.Provider>
   )

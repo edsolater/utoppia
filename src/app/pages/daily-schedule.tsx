@@ -164,7 +164,6 @@ function useSubscribableStore<T extends object>(
   }
 
   createEffect(() => {
-    console.log("23: ", 23)
     const { unsubscribe } = subscribable.subscribe(
       (s) => {
         if (s != unwrap(store)) {
@@ -183,7 +182,7 @@ function useSubscribableStore<T extends object>(
       onStoreLoaded: async ({ get }) => {
         const valueStore = await get("store")
         if (valueStore) {
-          console.log("on idb connected: valueStore: ", Reflect.ownKeys(valueStore), subscribable())
+          console.log("on idb connected: valueStore: ", subscribable())
           subscribable.set(valueStore)
         }
       },
