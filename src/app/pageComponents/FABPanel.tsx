@@ -3,6 +3,7 @@ import {
   AddProps,
   Box,
   Piv,
+  PopPortal,
   createDisclosure,
   createDomRef,
   cssOpacity,
@@ -49,31 +50,31 @@ export function FloatingInfoPanel(kitProps: KitProps<FloatPanelProps>) {
       <AddProps icss={[icssClickable]} onClick={() => toggle()}>
         {props.thumbnailIcon ?? defaultThumbnail()}
       </AddProps>
-      <Box
-        // shadowProps={shadowProps}
-        icss={[
-          {
-            visibility: isOpened() ? "visible" : "hidden",
-            position: "fixed",
-            borderRadius: "16px",
-            top: "40%",
-            left: "40%",
-            paddingTop: "20px",
-          },
-          icssCardPanel,
-          props.panelIcss,
-        ]}
-        plugin={[
-          plugin,
-          // resizablePlugin.config({
-          //   canResizeX: true,
-          //   canResizeY: true,
-          // }),
-        ]}
-      >
-        <DragHandler domRef={setHandlerDom} icss={props.moveHandlerIcss} />
-        <Box>{props.content ?? props.children}</Box>
-      </Box>
+
+      <PopPortal name="FloatingInfoPanel">
+        <Box
+          // shadowProps={shadowProps}
+          icss={[
+            {
+              visibility: isOpened() ? "visible" : "hidden",
+              borderRadius: "16px",
+              paddingTop: "20px",
+            },
+            icssCardPanel,
+            props.panelIcss,
+          ]}
+          plugin={[
+            plugin,
+            // resizablePlugin.config({
+            //   canResizeX: true,
+            //   canResizeY: true,
+            // }),
+          ]}
+        >
+          <DragHandler domRef={setHandlerDom} icss={props.moveHandlerIcss} />
+          <Box>{props.content ?? props.children}</Box>
+        </Box>
+      </PopPortal>
     </>
   )
 }
