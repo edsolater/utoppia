@@ -1,5 +1,5 @@
 import { KeybordShortcutKeys } from "@edsolater/pivkit";
-import { routeItems } from "./routes";
+import { routeItems } from "../routes/routes";
 
 export const globalRouteShortcuts = {
   "go to home": {

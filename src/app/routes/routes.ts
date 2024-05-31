@@ -30,20 +30,20 @@ export const routeItems = {
   home: createRouteItem({
     name: "home",
     path: "/",
-    component: lazy(() => import("../pages/app")),
+    component: lazy(() => import("./app")),
     needAppKeeper: true,
     isHiddenLink: true,
   }),
   playground: createRouteItem({
     name: "playground",
     path: "/playground",
-    component: lazy(() => import("../pages/playground")),
+    component: lazy(() => import("./playground")),
     needAppKeeper: true,
   }),
   dailySchedule: createRouteItem({
     name: "daily schedule",
     path: "/daily-schedule",
-    component: lazy(() => import("../pages/daily-schedule")),
+    component: lazy(() => import("./daily-schedule")),
     needAppKeeper: true,
   }),
 }
