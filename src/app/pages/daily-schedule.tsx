@@ -3,13 +3,12 @@ import {
   Box,
   Button,
   Grid,
-  Input,
   Item,
   Row,
-  Text,
   createInputDescription,
   icssGrid,
   useFormSchema,
+  type FormSchema,
 } from "@edsolater/pivkit"
 import { For, Show, createEffect, createSignal, on, onCleanup, onMount, type Accessor, type Setter } from "solid-js"
 import { createStore, unwrap, type SetStoreFunction } from "solid-js/store"
@@ -36,10 +35,6 @@ export default function DailySchedulePage() {
     setData((prev) => ({
       links: prev.links?.filter((l) => l.id !== link.id),
     }))
-  }
-
-  const inputFormSchema = {
-    name: { formWidget: "input" },
   }
 
   return (
@@ -79,7 +74,7 @@ export default function DailySchedulePage() {
         </Show>
       </Box>
 
-      <NewLinkItemForm
+      <NewLinkFormSchema
         onSubmit={({ name, url }) => {
           setData((prev) => ({
             links: [...(prev.links ?? []), { id: name, name, url }],
@@ -105,29 +100,30 @@ function RecordedLinkItem(props: { link: LinkItem; onDelete?: () => void }) {
   )
 }
 
-function NewLinkItemForm(props: { onSubmit?: (link: { name: string; url: string }) => void }) {
-  const [name, setName] = createSignal<string | undefined>()
-  const [url, setUrl] = createSignal<string | undefined>()
+function NewLinkFormSchema(props: { onSubmit?: (link: { name: string; url: string }) => void }) {
+  const formSchema = {
+    name: createInputDescription(),
+    url: createInputDescription(),
+    tag: createInputDescription(),
+  }
+
+  const { schemaParsedElement, schemaData, reset } = useFormSchema(formSchema)
+
+  // submit action
   function handleSubmit() {
-    if (name() && url()) {
-      props.onSubmit?.({ name: name()!, url: url()! })
-      setName(undefined)
-      setUrl(undefined)
+    const { name, url } = schemaData() as any
+    if (name && url) {
+      props.onSubmit?.({ name, url })
+      reset()
     }
   }
-  const { schemaParsedElement, schemaData } = useFormSchema(
-    { name: createInputDescription(), url: createInputDescription() },
-    {
-      onDataChange({ newSchema }) {
-        console.log("newSchema: ", newSchema)
-      },
-    },
-  )
+
   return (
-    <Row>
-      {schemaParsedElement}
-      <Button onClick={handleSubmit}>Add</Button>
-    </Row>
+    <Box>
+      <Box icss={{ marginBottom: "32px" }}>{schemaParsedElement}</Box>
+
+      <Button onClick={handleSubmit}>Submit</Button>
+    </Box>
   )
 }
 
@@ -201,7 +197,7 @@ function useSubscribableStore<T extends object>(
     onMount(() => {
       const { unsubscribe } = subscribable.subscribe(
         (value) => {
-          console.log("🎉subscribe and set to indexedDB: ", value) // FIXME why render 4 times🤔🤔🤔
+          console.log("🎉subscribe and set to indexedDB: ", value)
           if (Object.keys(value).length) {
             idbManager.set("store", value)
           }
