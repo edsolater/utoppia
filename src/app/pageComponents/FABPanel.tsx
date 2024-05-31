@@ -3,7 +3,7 @@ import {
   AddProps,
   Box,
   Piv,
-  PopPortal,
+  PopoverPanel,
   createDisclosure,
   createDomRef,
   cssOpacity,
@@ -25,7 +25,7 @@ export type FloatPanelProps = {
 export function FloatingInfoPanel(kitProps: KitProps<FloatPanelProps>) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "FloatPanel" })
   const { dom: handler, setDom: setHandlerDom } = createDomRef()
-  const [isOpened, { open, close, toggle }] = createDisclosure()
+  const [isOpened, { toggle }] = createDisclosure(false)
   const defaultThumbnail = () => (
     <Box
       icss={{
@@ -45,18 +45,18 @@ export function FloatingInfoPanel(kitProps: KitProps<FloatPanelProps>) {
     handlerElement: handler,
     unsetMoveInEnd: false,
   })
+
   return (
     <>
       <AddProps icss={[icssClickable]} onClick={() => toggle()}>
         {props.thumbnailIcon ?? defaultThumbnail()}
       </AddProps>
 
-      <PopPortal name="FloatingInfoPanel">
+      <PopoverPanel shadowProps={shadowProps} open={isOpened}>
         <Box
           // shadowProps={shadowProps}
           icss={[
             {
-              visibility: isOpened() ? "visible" : "hidden",
               borderRadius: "16px",
               paddingTop: "20px",
             },
@@ -74,7 +74,7 @@ export function FloatingInfoPanel(kitProps: KitProps<FloatPanelProps>) {
           <DragHandler domRef={setHandlerDom} icss={props.moveHandlerIcss} />
           <Box>{props.content ?? props.children}</Box>
         </Box>
-      </PopPortal>
+      </PopoverPanel>
     </>
   )
 }
@@ -95,7 +95,7 @@ function DragHandler(additionProps: PivProps) {
 
         // backgroundClip:'content-box',
         borderRadius: "999px",
-
+        zIndex: "99",
         "&::before": {
           content: "''",
           position: "absolute",

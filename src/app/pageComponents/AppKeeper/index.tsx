@@ -132,7 +132,10 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
           </Main>
         </Section>
 
-        <Section name="FAB" icss={{ position: "absolute", right: "2vw", bottom: "2vh", display: "grid", gap: "4px" }}>
+        <Section
+          name="FAB"
+          icss={{ position: "absolute", right: "2vw", bottom: "2vh", display: "grid", gap: "4px", zIndex: 999 }}
+        >
           {props["FABs"]}
         </Section>
       </Box>

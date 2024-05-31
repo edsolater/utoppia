@@ -1,5 +1,16 @@
 import { createSubscribable, type ID, type Subscribable } from "@edsolater/fnkit"
-import { Box, Button, Input, Row, Text } from "@edsolater/pivkit"
+import {
+  Box,
+  Button,
+  Grid,
+  Input,
+  Item,
+  Row,
+  Text,
+  createInputDescription,
+  icssGrid,
+  useFormSchema,
+} from "@edsolater/pivkit"
 import { For, Show, createEffect, createSignal, on, onCleanup, onMount, type Accessor, type Setter } from "solid-js"
 import { createStore, unwrap, type SetStoreFunction } from "solid-js/store"
 import { createIDBStoreManager } from "../../packages/cacheManager/storageManagers"
@@ -27,25 +38,20 @@ export default function DailySchedulePage() {
     }))
   }
 
+  const inputFormSchema = {
+    name: { formWidget: "input" },
+  }
+
   return (
-    <Box>
-      <Box>
-        <Show when={data.links}>
-          <For each={data.links}>
-            {(link) => <RecordedLinkItem link={link} onDelete={() => handleDeleteLink(link)} />}
-          </For>
-        </Show>
-      </Box>
-
-      <NewLinkInputBox
-        onSubmit={({ name, url }) => {
-          setData((prev) => ({
-            links: [...(prev.links ?? []), { id: name, name, url }],
-          }))
-        }}
-      />
-
-      <Box>
+    <Grid
+      icss={icssGrid({
+        gap: "32px",
+        placeContent: "center",
+        placeItems: "center",
+        templateColumn: "1fr 1fr",
+      })}
+    >
+      <Item icss={{ gridColumn: "1 / -1", display: "flex", gap: "8px" }}>
         <Button
           onClick={() => {
             downloadJSON(data, "daily-schedule.json")
@@ -63,8 +69,24 @@ export default function DailySchedulePage() {
         >
           Import
         </Button>
+      </Item>
+
+      <Box>
+        <Show when={data.links}>
+          <For each={data.links}>
+            {(link) => <RecordedLinkItem link={link} onDelete={() => handleDeleteLink(link)} />}
+          </For>
+        </Show>
       </Box>
-    </Box>
+
+      <NewLinkItemForm
+        onSubmit={({ name, url }) => {
+          setData((prev) => ({
+            links: [...(prev.links ?? []), { id: name, name, url }],
+          }))
+        }}
+      />
+    </Grid>
   )
 }
 
@@ -83,7 +105,7 @@ function RecordedLinkItem(props: { link: LinkItem; onDelete?: () => void }) {
   )
 }
 
-function NewLinkInputBox(props: { onSubmit?: (link: { name: string; url: string }) => void }) {
+function NewLinkItemForm(props: { onSubmit?: (link: { name: string; url: string }) => void }) {
   const [name, setName] = createSignal<string | undefined>()
   const [url, setUrl] = createSignal<string | undefined>()
   function handleSubmit() {
@@ -93,28 +115,17 @@ function NewLinkInputBox(props: { onSubmit?: (link: { name: string; url: string 
       setUrl(undefined)
     }
   }
+  const { schemaParsedElement, schemaData } = useFormSchema(
+    { name: createInputDescription(), url: createInputDescription() },
+    {
+      onDataChange({ newSchema }) {
+        console.log("newSchema: ", newSchema)
+      },
+    },
+  )
   return (
     <Row>
-      <Row>
-        <Text>name:</Text>
-        <Input
-          onInput={(v) => {
-            setName(v)
-          }}
-          value={name}
-        ></Input>
-      </Row>
-
-      <Row>
-        <Text>url:</Text>
-        <Input
-          onInput={(v) => {
-            setUrl(v)
-          }}
-          value={url}
-        ></Input>
-      </Row>
-
+      {schemaParsedElement}
       <Button onClick={handleSubmit}>Add</Button>
     </Row>
   )
