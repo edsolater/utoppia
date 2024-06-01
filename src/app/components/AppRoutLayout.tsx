@@ -14,7 +14,6 @@ import { KeyboardShortcutPanel } from "../pageComponents/KeyboardShortcutPanel"
 import { NavBar } from "../pageComponents/NavBar"
 import { ShuckInspectorPanel } from "../pageComponents/ShuckInspectorPanel"
 import { SideMenu } from "../pageComponents/SideMenu"
-import { setStore, shuck_rpc } from "../stores/data/store"
 
 // config uikit theme before render
 initAppContextConfig({ themeMode: "dark", onlyAltSelect: true })
@@ -40,30 +39,6 @@ export function AppRoutLayout(props: RouteSectionProps) {
       </AppKeeper>
     </Show>
   )
-}
-
-/**
- * init rpcs from localStorage
- */
-function useLocalStorageRpc() {
-  const [localStorageRpcs, setlocalStorageRpcs] = useStorageValue({ key: "rpcs" })
-  const rpcs = createMemo(() => localStorageRpcs()?.split(","))
-  const firstUrl = createMemo(() => rpcs()?.at(0))
-  createEffect(() => {
-    const url = firstUrl()
-    if (url) {
-      setStore({ rpc: { url } })
-      shuck_rpc.set({ url })
-    }
-  })
-  onMount(() => {
-    const { unsubscribe } = shuck_rpc.subscribe((rpc) => {
-      if (!rpc) return
-      if (rpcs()?.includes(rpc.url)) return
-      setlocalStorageRpcs((rpcs) => (rpcs ? rpcs + "," + rpc.url : rpc.url))
-    })
-    onCleanup(unsubscribe)
-  })
 }
 
 /** code for test */

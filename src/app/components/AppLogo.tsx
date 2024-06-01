@@ -14,7 +14,7 @@ export function AppLogo(props: {}) {
           fontWeight: "800",
         }}
       >
-        Shear
+        Uttopia
       </Text>
       {/* <Piv shadowProps={{ children: props.title }} /> */}
     </Box>
