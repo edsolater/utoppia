@@ -1,26 +1,19 @@
-import { createSubscribable, type ID, type Subscribable } from "@edsolater/fnkit"
+import { createSubscribable, type Subscribable } from "@edsolater/fnkit"
 import {
   Box,
   Button,
   Grid,
   Item,
-  Row,
   createInputDescription,
   icssGrid,
-  useFormSchema,
-  type FormSchema,
+  useFormSchema
 } from "@edsolater/pivkit"
 import { For, Show, createEffect, createSignal, on, onCleanup, onMount, type Accessor, type Setter } from "solid-js"
 import { createStore, unwrap, type SetStoreFunction } from "solid-js/store"
 import { createIDBStoreManager } from "../../packages/cacheManager/storageManagers"
-import { Link } from "../components/Link"
+import { LinkRecordedItem } from "../pageComponents/LinkItem/LinkRecordedItem"
 import { downloadJSON, importJSONFile } from "../utils/download"
-
-type LinkItem = {
-  id: ID
-  name: string
-  url: string
-}
+import { LinkItem } from "../pageComponents/LinkItem/type"
 
 type ScheduleSchema = {
   links?: LinkItem[]
@@ -43,7 +36,7 @@ export default function DailySchedulePage() {
         gap: "32px",
         placeContent: "center",
         placeItems: "center",
-        templateColumn: "1fr 1fr",
+        templateColumn: ".6fr 1fr",
       })}
     >
       <Item icss={{ gridColumn: "1 / -1", display: "flex", gap: "8px" }}>
@@ -69,12 +62,12 @@ export default function DailySchedulePage() {
       <Box>
         <Show when={data.links}>
           <For each={data.links}>
-            {(link) => <RecordedLinkItem link={link} onDelete={() => handleDeleteLink(link)} />}
+            {(link) => <LinkRecordedItem item={link} onDelete={() => handleDeleteLink(link)} />}
           </For>
         </Show>
       </Box>
 
-      <NewLinkFormSchema
+      <LinkCreatorForm
         onSubmit={({ name, url }) => {
           setData((prev) => ({
             links: [...(prev.links ?? []), { id: name, name, url }],
@@ -85,26 +78,12 @@ export default function DailySchedulePage() {
   )
 }
 
-function RecordedLinkItem(props: { link: LinkItem; onDelete?: () => void }) {
-  function handleDelete() {
-    props.onDelete?.()
-  }
-
-  return (
-    <Row>
-      <Link href={props.link.url}>{props.link.name}</Link>
-      <Button size={"sm"} onClick={handleDelete}>
-        🔥
-      </Button>
-    </Row>
-  )
-}
-
-function NewLinkFormSchema(props: { onSubmit?: (link: { name: string; url: string }) => void }) {
+function LinkCreatorForm(props: { onSubmit?: (link: { name: string; url: string }) => void }) {
   const formSchema = {
     name: createInputDescription(),
     url: createInputDescription(),
     tag: createInputDescription(),
+    comment: createInputDescription(),
   }
 
   const { schemaParsedElement, schemaData, reset } = useFormSchema(formSchema)
@@ -121,8 +100,8 @@ function NewLinkFormSchema(props: { onSubmit?: (link: { name: string; url: strin
   return (
     <Box>
       <Box icss={{ marginBottom: "32px" }}>{schemaParsedElement}</Box>
-
       <Button onClick={handleSubmit}>Submit</Button>
+      <Button onClick={reset}>Reset</Button>
     </Box>
   )
 }
