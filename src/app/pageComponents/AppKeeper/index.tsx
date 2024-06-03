@@ -106,7 +106,7 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
               icssCol,
               { position: "relative", overflow: "hidden" },
               {
-                background: cssLinearGradient({ colors: [cssVar("--content-bg__01"), cssVar("--content-bg__02")] }),
+                background: cssLinearGradient({ colors: [cssVar("--main-content-bg__01"), cssVar("--main-content-bg__02")] }),
                 borderTopLeftRadius: "20px",
               },
             ]}

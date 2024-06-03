@@ -1,13 +1,5 @@
 import { createSubscribable, type Subscribable } from "@edsolater/fnkit"
-import {
-  Box,
-  Button,
-  Grid,
-  Item,
-  createInputDescription,
-  icssGrid,
-  useFormSchema
-} from "@edsolater/pivkit"
+import { Box, Button, Grid, Item, createInputDescription, icssGrid, useFormSchema } from "@edsolater/pivkit"
 import { For, Show, createEffect, createSignal, on, onCleanup, onMount, type Accessor, type Setter } from "solid-js"
 import { createStore, unwrap, type SetStoreFunction } from "solid-js/store"
 import { createIDBStoreManager } from "../../packages/cacheManager/storageManagers"
@@ -68,9 +60,9 @@ export default function DailySchedulePage() {
       </Box>
 
       <LinkCreatorForm
-        onSubmit={({ name, url }) => {
+        onSubmit={(newformData: any) => {
           setData((prev) => ({
-            links: [...(prev.links ?? []), { id: name, name, url }],
+            links: [...(prev.links ?? []), { id: newformData.name, ...newformData }],
           }))
         }}
       />
@@ -78,7 +70,7 @@ export default function DailySchedulePage() {
   )
 }
 
-function LinkCreatorForm(props: { onSubmit?: (link: { name: string; url: string }) => void }) {
+function LinkCreatorForm(props: { onSubmit?: (info: object) => void }) {
   const formSchema = {
     name: createInputDescription(),
     url: createInputDescription(),
@@ -86,13 +78,12 @@ function LinkCreatorForm(props: { onSubmit?: (link: { name: string; url: string 
     comment: createInputDescription(),
   }
 
-  const { schemaParsedElement, schemaData, reset } = useFormSchema(formSchema)
+  const { schemaParsedElement, schemaData, reset, canSubmit } = useFormSchema(formSchema)
 
   // submit action
   function handleSubmit() {
-    const { name, url } = schemaData() as any
-    if (name && url) {
-      props.onSubmit?.({ name, url })
+    if (canSubmit()) {
+      props.onSubmit?.(schemaData() as any)
       reset()
     }
   }
