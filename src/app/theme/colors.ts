@@ -8,8 +8,8 @@ export const colors = {
   transparent: "transparent",
 
   // app main bg color
-  primary: "#abc4ff",
-  secondary: "#22D1F8",
+  primary: cssVar("--primary"),
+  secondary: cssVar("--secondary"),
   secondary10: "rgba(34, 209, 248, 0.1)",
 
   backgroundDark: "#0b1022",
@@ -24,7 +24,7 @@ export const colors = {
 
   // component color
 
-  appPanelBg: "#131a35",
+  appPanelBg: cssVar("--app-panel-bg"),
 
   // text
   textPrimary: cssVar("--text-primary"),
@@ -133,5 +133,5 @@ export const colors = {
 
   panelCardShadow: "0px 8px 24px rgba(79, 83, 243, 0.12)",
   panelCardBorder: "unset",
-  panelCardBg: cssDarken('#abc4ff',.5)
+  panelCardBg: cssDarken("#abc4ff", 0.5),
 }

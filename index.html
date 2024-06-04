@@ -16,8 +16,14 @@
         body {
           --app-bg: #ffffff;
           --primary: hsl(0, 0%, 12%);
+          &.dark {
+            --app-bg: #242528;
+            --primary: hsl(210, 15%, 95%);
+          }
           color: var(--primary);
           background-color: var(--app-bg);
+        }
+        body {
           margin: 0;
           font-family:
             system-ui,
@@ -31,11 +37,6 @@
             "Open Sans",
             "Helvetica Neue",
             sans-serif;
-        }
-
-        body.dark {
-          --app-bg: #161923;
-          --primary: hsl(210, 15%, 95%);
         }
 
         html,

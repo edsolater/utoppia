@@ -1,9 +1,9 @@
 import { createSubscribable, type Subscribable } from "@edsolater/fnkit"
-import { Box, Button, Grid, Item, createInputDescription, icssGrid, useFormSchema } from "@edsolater/pivkit"
+import { Box, Button, Grid, Item, List, createInputDescription, icssGrid, useFormSchema } from "@edsolater/pivkit"
 import { For, Show, createEffect, createSignal, on, onCleanup, onMount, type Accessor, type Setter } from "solid-js"
 import { createStore, unwrap, type SetStoreFunction } from "solid-js/store"
 import { createIDBStoreManager } from "../../packages/cacheManager/storageManagers"
-import { LinkRecordedItem } from "../pageComponents/LinkItem/LinkRecordedItem"
+import { LinkItemInfo } from "../pageComponents/LinkItem/LinkRecordedItem"
 import { downloadJSON, importJSONFile } from "../utils/download"
 import { LinkItem } from "../pageComponents/LinkItem/type"
 
@@ -28,7 +28,7 @@ export default function DailySchedulePage() {
         gap: "32px",
         placeContent: "center",
         placeItems: "center",
-        templateColumn: ".6fr 1fr",
+        templateColumn: "2fr 1fr",
       })}
     >
       <Item icss={{ gridColumn: "1 / -1", display: "flex", gap: "8px" }}>
@@ -51,13 +51,17 @@ export default function DailySchedulePage() {
         </Button>
       </Item>
 
-      <Box>
-        <Show when={data.links}>
-          <For each={data.links}>
-            {(link) => <LinkRecordedItem item={link} onDelete={() => handleDeleteLink(link)} />}
-          </For>
-        </Show>
-      </Box>
+      <List
+        items={data.links}
+        icss={{
+          width: "100%",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))",
+          gap: "16px",
+        }}
+      >
+        {(link) => <LinkItemInfo item={link} onDelete={() => handleDeleteLink(link)} />}
+      </List>
 
       <LinkCreatorForm
         onSubmit={(newformData: any) => {

@@ -5,6 +5,7 @@
   --secondary: #bebebe;
   --ternary: #39d0d8;
   --app-bg: #f2f4f9;
+  --app-panel-bg: #f2f4f9;
   --card-bg: #fffc;
   --cyber-card-bg: linear-gradient(140.14deg, rgba(0, 182, 191, 0.15) 0%, rgba(27, 22, 89, 0.1) 86.61%),
     linear-gradient(321.82deg, #18134d 0%, #1b1659 100%);
@@ -75,11 +76,12 @@
   /* list */
   --list-item-bg: #141041;
 
-  --app-bg: #131a35;
+  --app-bg: #242528;
+  --app-panel-bg: #1e1e1e;
   --card-bg: #2b2f34;
 
-  --main-content-bg__01: rgb(12, 9, 39);
-  --main-content-bg__02: rgb(17, 13, 54);
+  --main-content-bg__01: hsl(244, 20%, 2%);
+  --main-content-bg__02: hsl(246, 5%, 13%);
   --status-active: hsl(252deg, 100%, 65%);
 
   --ground-color: hsl(240deg, 4%, 11%);
@@ -89,3 +91,4 @@
   --formkit-ground-color: hsl(260deg, 2%, 30%);
   --formkit-line-color: hsl(263deg, 9%, 29%);
 }
+
