@@ -1,9 +1,17 @@
 import { Box, Button, Icon, List, Piv, Row, Text, cssOpacity, icssCard, icssGrid } from "@edsolater/pivkit"
 import type { LinkItem } from "./type"
 
-export function LinkItemInfo(props: { item: LinkItem; onDelete?: () => void }) {
+export function LinkItemInfo(props: { item: LinkItem; onDelete?: () => void; onEdit?: () => void }) {
   function handleDelete() {
     props.onDelete?.()
+  }
+
+  function handleClickLink() {
+    openUrl(props.item.url, { blank: true })
+  }
+
+  function handleEdit() {
+    props.onEdit?.()
   }
 
   return (
@@ -13,18 +21,15 @@ export function LinkItemInfo(props: { item: LinkItem; onDelete?: () => void }) {
         {
           display: "grid",
           gridTemplate: `
-            "name    tags    actions" auto
-            "comment comment comment" 1fr / auto 1fr auto`,
+              "name    tags    actions" auto
+              "comment comment comment" 1fr / auto 1fr auto`,
           columnGap: "16px",
           rowGap: "8px",
         },
       ]}
-      onClick={() => {
-        openUrl(props.item.url, { blank: true })
-      }}
     >
       {/* name + links */}
-      <Text icss={{ fontSize: "2em", gridArea: "name" }}>{props.item.name}</Text>
+      <Text icss={{ fontSize: "1.8em", gridArea: "name" }}>{props.item.name}</Text>
 
       {/* tag */}
       <List
@@ -46,8 +51,14 @@ export function LinkItemInfo(props: { item: LinkItem; onDelete?: () => void }) {
       </Box>
 
       <Row icss={{ gridArea: "actions" }}>
-        <Button variant="ghost" size={"sm"} onClick={handleDelete}>
-          <Icon variant='btn' name="trash" src={"/icons/delete.svg"} icss={{ opacity: 0.7 }} />
+        <Button variant="ghost" size={"xs"} onClick={handleDelete}>
+          <Icon name="delete" src={"/icons/delete.svg"} />
+        </Button>
+        <Button variant="ghost" size={"xs"} onClick={handleClickLink}>
+          <Icon name="open-window" src={"/icons/link.svg"} />
+        </Button>
+        <Button variant="ghost" size={"xs"} onClick={handleEdit}>
+          <Icon name="edit" src={"/icons/edit.svg"} />
         </Button>
       </Row>
     </Box>

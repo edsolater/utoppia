@@ -3,5 +3,5 @@ import { UIKitThemeConfig, icssClickable, icssNewCompositedLayer, parseICSSToCla
 const ButtonStyleIcss = () => parseICSSToClassName([icssClickable, icssNewCompositedLayer])
 
 export const uikitConfig: UIKitThemeConfig = {
-  Button: { icss: ButtonStyleIcss },
+  // Button: { icss: ButtonStyleIcss },
 }
