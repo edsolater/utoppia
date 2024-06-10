@@ -2,7 +2,7 @@
 :root {
   --primary: #e3e3e3;
   /* this value will auto get by icssTextColor */
-  --secondary: #bebebe;
+  --secondary: hsl(48, 100%, 63%);
   --ternary: #e4e600;
   --app-bg: #f2f4f9;
   --app-panel-bg: #f2f4f9;
@@ -61,14 +61,14 @@
 :root.dark {
   --primary: hsl(210deg, 6%, 76%);
   /* this value will auto get by icssTextColor */
-  --secondary: #abc4ff;
-  --secondary-half: rgb(from var(--secondary) r g b / 0.5);
-  --ternary: #e4e600;
-  --ternary-pale: hsl(61, 51%, 79%);
+  --secondary: hsl(257, 41%, 35%);
+  --secondary-pale: rgb(from var(--secondary) r g b / 0.5);
+  --ternary: hsl(219 80% 62%);
+  --ternary-pale: hsl(219 60% 80%);
 
   /* text */
-  --text-primary: #ecf5ff;
-  --text-secondary: #abc4ff;
+  --text-primary: color-mix(in srgb, var(--primary), white 60%);
+  --text-secondary: color-mix(in srgb, var(--secondary), white 60%);
   --text-ternary: #abc4ff88;
   --text-link: #22d1f8;
   --text-revert-primary: #181f35;
@@ -91,4 +91,3 @@
   --formkit-ground-color: hsl(260deg, 2%, 30%);
   --formkit-line-color: hsl(263deg, 9%, 29%);
 }
-

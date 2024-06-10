@@ -18,7 +18,7 @@ import {
 import { createEffect, createSignal, on, onCleanup, onMount, type Accessor, type Setter } from "solid-js"
 import { createStore, unwrap, type SetStoreFunction } from "solid-js/store"
 import { createIDBStoreManager } from "../../packages/cacheManager/storageManagers"
-import { LinkItemInfo } from "../pageComponents/LinkItem/LinkRecordedItem"
+import { LinkCard } from "../pageComponents/LinkItem/LinkCard"
 import { LinkItem } from "../pageComponents/LinkItem/type"
 import { downloadJSON, importJSONFile } from "../utils/download"
 
@@ -75,18 +75,17 @@ export default function DailySchedulePage() {
         icss={{
           width: "100%",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(400px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
           gap: "16px",
         }}
       >
-        {(link) => <LinkItemInfo item={link} onDelete={() => handleDeleteLink(link)} onEdit={() => handleEdit(link)} />}
+        {(link) => <LinkCard item={link} onDelete={() => handleDeleteLink(link)} onEdit={() => handleEdit(link)} />}
       </List>
 
       <LinkCreatorForm
         ref={setRef}
         onDone={({ info: newformData, inEditMode }) => {
           if (inEditMode) {
-            console.log('newformData: ', newformData)
             setData((prev) => ({
               links: prev.links?.map((link) => link.id === newformData.id ? newformData : link),
             }))
@@ -130,13 +129,14 @@ function LinkCreatorForm(kitProps: KitProps<LinkCreatorFormProps>) {
   function handleSubmit() {
     if (schemaRef()?.canSubmit()) {
       props.onDone?.({ inEditMode: isInEditMode(), info: schemaRef()?.schemaData() as any })
-      setIsInEditMode(false)
       schemaRef()?.reset()
+      setIsInEditMode(false)
     }
   }
 
   function handleReset() {
     schemaRef()?.reset()
+    setIsInEditMode(false)
   }
 
   return (

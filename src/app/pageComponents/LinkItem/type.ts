@@ -1,9 +1,28 @@
-import { type ID } from "@edsolater/fnkit"
+import type { Float, ID, TimeStamp } from "@edsolater/fnkit"
 
-export type LinkItem = {
-  id: ID
+type HistoryRecordItem = {
+  clockAt: TimeStamp
+}
+
+type BasicItem = {
+  id: ID // (auto-generated)
   name: string
-  url: string
-  tag?: string
   comment?: string
+  createdTime: TimeStamp // (auto-generated)
+  history?: HistoryRecordItem[]
+  rating?: Float<0, 5>
+  icon?: string // can be base64 or url
+}
+
+export type LinkItem = BasicItem & {
+  url?: string
+  // determine outside looks layout
+  is: "link"
+  // determine outside looks color
+  tag?: string
+}
+
+export type TextItem = BasicItem & {
+  // determine outside looks layout
+  is: "text"
 }

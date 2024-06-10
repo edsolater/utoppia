@@ -9,3 +9,8 @@ export function checkUrl(url: string): { isValid: boolean } & Partial<URL> {
     return { isValid: false }
   }
 }
+
+// TODO: move to domkit
+export function navigateToUrl(url: string, options?: {/* new page */ blank?: boolean; }) {
+  window.open(url, options?.blank ? "_blank" : "_self");
+}

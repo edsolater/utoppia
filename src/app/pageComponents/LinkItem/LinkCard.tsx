@@ -1,13 +1,28 @@
-import { Box, Button, Icon, List, Piv, Row, Text, cssOpacity, icssCard, icssGrid } from "@edsolater/pivkit"
+import {
+  Box,
+  Button,
+  Icon,
+  List,
+  Piv,
+  Row,
+  Text,
+  cssOpacity,
+  icssCard,
+  icssContentClickableOpacity,
+  icssGrid,
+} from "@edsolater/pivkit"
+import { navigateToUrl } from "../../utils/url"
 import type { LinkItem } from "./type"
 
-export function LinkItemInfo(props: { item: LinkItem; onDelete?: () => void; onEdit?: () => void }) {
+export function LinkCard(props: { item: LinkItem; onDelete?: () => void; onEdit?: () => void }) {
   function handleDelete() {
     props.onDelete?.()
   }
 
   function handleClickLink() {
-    openUrl(props.item.url, { blank: true })
+    if (props.item.url) {
+      navigateToUrl(props.item.url, { blank: true })
+    }
   }
 
   function handleEdit() {
@@ -21,8 +36,9 @@ export function LinkItemInfo(props: { item: LinkItem; onDelete?: () => void; onE
         {
           display: "grid",
           gridTemplate: `
-              "name    tags    actions" auto
-              "comment comment comment" 1fr / auto 1fr auto`,
+              "name      name     actions1" auto
+              "tags      tags     tags    " auto
+              "comment   comment  actions2" auto / auto auto auto`,
           columnGap: "16px",
           rowGap: "8px",
         },
@@ -46,26 +62,28 @@ export function LinkItemInfo(props: { item: LinkItem; onDelete?: () => void; onE
       </List>
 
       {/* comment */}
-      <Box if={props.item.comment} icss={{ gridArea: "comment" }}>
+      <Box icss={{ gridArea: "comment" }}>
         <Text>{props.item.comment}</Text>
       </Box>
 
-      <Row icss={{ gridArea: "actions" }}>
-        <Button variant="ghost" size={"xs"} onClick={handleDelete}>
+      <Row icss={[{ gridArea: "actions2", justifySelf: "end" }]}>
+        <Button variant="ghost" size={"xs"} onClick={handleEdit} icss={icssContentClickableOpacity}>
+          <Icon name="edit" src={"/icons/edit.svg"} />
+        </Button>
+        
+        <Button variant="ghost" size={"xs"} onClick={handleDelete} icss={icssContentClickableOpacity}>
           <Icon name="delete" src={"/icons/delete.svg"} />
         </Button>
-        <Button variant="ghost" size={"xs"} onClick={handleClickLink}>
+
+      </Row>
+
+      <Row icss={{ gridArea: "actions1", justifySelf: "end" }}>
+        <Button variant="ghost" size={"xs"} icss={icssContentClickableOpacity} onClick={handleClickLink}>
           <Icon name="open-window" src={"/icons/link.svg"} />
-        </Button>
-        <Button variant="ghost" size={"xs"} onClick={handleEdit}>
-          <Icon name="edit" src={"/icons/edit.svg"} />
         </Button>
       </Row>
     </Box>
   )
-}
-function openUrl(url: string, options?: { /* new page */ blank?: boolean }) {
-  window.open(url, options?.blank ? "_blank" : "_self")
 }
 
 export function SiteItem(props: { item: LinkItem; level?: number }) {

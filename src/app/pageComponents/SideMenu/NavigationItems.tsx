@@ -21,7 +21,7 @@ export function NavRouteItems() {
   const pathnameSelector = createSelector(() => location.pathname)
   return (
     <List
-      wrapper={Piv}
+      renderWrapper={Piv}
       items={routes}
       icss={[
         icssCol(),
@@ -73,10 +73,9 @@ function LinkItem(kitProps: KitProps<LinkItemProps>) {
         paddingInline: "1rem",
         borderRadius: "0.5rem",
         transition: "150ms",
-
-        background: props.isCurrentRoutePath ? cssOpacity(cssVar("--ternary"), 0.1) : "transparent",
+        background: props.isCurrentRoutePath ? cssOpacity(cssVar("--secondary"), 0.2) : "transparent",
         "&:hover": {
-          background: cssOpacity(cssVar("--ternary"), 0.1),
+          background: cssOpacity(cssVar("--secondary"), 0.2),
         },
       }}
     >
@@ -84,7 +83,7 @@ function LinkItem(kitProps: KitProps<LinkItemProps>) {
         <Box
           icss={{
             display: "grid",
-            bg: `linear-gradient(135deg, ${cssOpacity(cssVar("--ternary"), 0.2)}, transparent)`,
+            bg: `linear-gradient(135deg, ${cssOpacity(cssVar("--text-secondary"), 0.2)}, transparent)`,
             borderRadius: "0.5rem",
             padding: "0.375rem",
             marginRight: "0.75rem",
@@ -96,7 +95,7 @@ function LinkItem(kitProps: KitProps<LinkItemProps>) {
           icss={{
             flexGrow: 1,
             justifyContent: "space-between",
-            color: props.isCurrentRoutePath ? cssVar("--ternary") : cssVar("--ternary-pale"),
+            color: cssVar("--text-secondary"),
             transition: "80ms",
             fontSize: "0.875rem",
             fontWeight: "500",
