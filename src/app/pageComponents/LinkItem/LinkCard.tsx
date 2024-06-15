@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Icon,
+  Input,
   List,
   Piv,
   Row,
@@ -13,6 +14,7 @@ import {
 } from "@edsolater/pivkit"
 import { navigateToUrl } from "../../utils/url"
 import type { LinkItem } from "./type"
+import { popupWidget } from "./popupWidget"
 
 export function LinkCard(props: { item: LinkItem; onDelete?: () => void; onEdit?: () => void }) {
   function handleDelete() {
@@ -35,6 +37,7 @@ export function LinkCard(props: { item: LinkItem; onDelete?: () => void; onEdit?
         icssCard,
         {
           display: "grid",
+          // TODO: use subgrid
           gridTemplate: `
               "name      name     actions1" auto
               "tags      tags     tags    " auto
@@ -45,7 +48,17 @@ export function LinkCard(props: { item: LinkItem; onDelete?: () => void; onEdit?
       ]}
     >
       {/* name + links */}
-      <Text icss={{ fontSize: "1.8em", gridArea: "name" }}>{props.item.name}</Text>
+      <Text
+        //TODO: defaultValue not work
+        plugin={popupWidget.config({
+          popElement: () => (
+            <Input defaultValue={() => (console.log("parse default value", props.item.name), props.item.name)} />
+          ),
+        })}
+        icss={{ fontSize: "1.8em", gridArea: "name" }}
+      >
+        {props.item.name}
+      </Text>
 
       {/* tag */}
       <List
@@ -67,18 +80,17 @@ export function LinkCard(props: { item: LinkItem; onDelete?: () => void; onEdit?
       </Box>
 
       <Row icss={[{ gridArea: "actions2", justifySelf: "end" }]}>
-        <Button variant="ghost" size={"xs"} onClick={handleEdit} icss={icssContentClickableOpacity}>
+        <Button variant="transparent" size={"xs"} onClick={handleEdit} icss={icssContentClickableOpacity}>
           <Icon name="edit" src={"/icons/edit.svg"} />
         </Button>
-        
-        <Button variant="ghost" size={"xs"} onClick={handleDelete} icss={icssContentClickableOpacity}>
+
+        <Button variant="transparent" size={"xs"} onClick={handleDelete} icss={icssContentClickableOpacity}>
           <Icon name="delete" src={"/icons/delete.svg"} />
         </Button>
-
       </Row>
 
       <Row icss={{ gridArea: "actions1", justifySelf: "end" }}>
-        <Button variant="ghost" size={"xs"} icss={icssContentClickableOpacity} onClick={handleClickLink}>
+        <Button variant="transparent" size={"xs"} icss={icssContentClickableOpacity} onClick={handleClickLink}>
           <Icon name="open-window" src={"/icons/link.svg"} />
         </Button>
       </Row>

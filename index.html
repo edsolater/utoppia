@@ -50,11 +50,14 @@
           font-size: 16px;
           line-height: 1.5;
           letter-spacing: 0.05em;
+          color-scheme: light dark;
+          &.light {
+            color-scheme: light;
+          }
+          &.dark {
+            color-scheme: dark;
+          }
         }
-        :root.dark {
-          color-scheme: dark;
-        }
-
         /*
           Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
           - The "symbol *" part is to solve Firefox SVG sprite bug

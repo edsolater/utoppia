@@ -59,12 +59,12 @@
 }
 
 :root.dark {
-  --primary: hsl(210deg, 6%, 76%);
+  --primary: hsl(210, 15%, 90%);
   /* this value will auto get by icssTextColor */
   --secondary: hsl(257, 41%, 35%);
   --secondary-pale: rgb(from var(--secondary) r g b / 0.5);
-  --ternary: hsl(219 80% 62%);
-  --ternary-pale: hsl(219 60% 80%);
+  --ternary: color-mix(in srgb, var(--secondary), dodgerblue 40%);
+  --ternary-pale: rgb(from var(--ternary) r g b / 0.5);
 
   /* text */
   --text-primary: color-mix(in srgb, var(--primary), white 60%);
