@@ -83,7 +83,6 @@ export function KeyboardShortcutPanel() {
                 <Text icss={cssColors.labelColor}>{description}</Text>
                 <Input
                   value={String(shortcut)}
-                  disableUserInput
                   plugin={keyboardShortcutObserverPlugin({
                     onRecordShortcut({ shortcut: newShortcut, el }) {
                       if (newShortcut !== shortcut) {

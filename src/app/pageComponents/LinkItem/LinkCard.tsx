@@ -13,8 +13,8 @@ import {
   icssGrid,
 } from "@edsolater/pivkit"
 import { navigateToUrl } from "../../utils/url"
-import type { LinkItem } from "./type"
 import { popupWidget } from "./popupWidget"
+import type { LinkItem } from "./type"
 
 export function LinkCard(props: { item: LinkItem; onDelete?: () => void; onEdit?: () => void }) {
   function handleDelete() {
@@ -51,9 +51,7 @@ export function LinkCard(props: { item: LinkItem; onDelete?: () => void; onEdit?
       <Text
         //TODO: defaultValue not work
         plugin={popupWidget.config({
-          popElement: () => (
-            <Input defaultValue={() => (console.log("parse default value", props.item.name), props.item.name)} />
-          ),
+          popElement: () => <Input icss={{ fontSize: "1em" }} defaultValue={() => props.item.name}  />,
         })}
         icss={{ fontSize: "1.8em", gridArea: "name" }}
       >

@@ -1,9 +1,11 @@
 /* default colorMode is light */
+/* TODO: delete🔥 unused css variable */
 :root {
   --primary: #e3e3e3;
   /* this value will auto get by icssTextColor */
   --secondary: hsl(48, 100%, 63%);
   --ternary: #e4e600;
+
   --app-bg: #f2f4f9;
   --app-panel-bg: #f2f4f9;
   --card-bg: #fffc;
@@ -15,63 +17,22 @@
   --text-secondary: #474abb;
   --text-ternary: #474abb99;
   --text-link: #22d1f8;
-  --text-revert-primary: #ecf5ff;
-
-  --style-color-fuchsia: #da2eef;
-  --style-color-blue: #2b6aff;
-  --style-color-cyan: #39d0d8;
-
-  --status-active: #aadefe;
-  --text-home-page-primary: hsl(0deg, 0%, 100%);
-  --text-home-page-secondary: hsl(222deg, 100%, 84%);
-
-  --ground-color-light-solid: hsla(227, 25%, 34%, 0.95);
-  --ground-color-light: rgba(57, 65, 106, 0.8);
-  --ground-color-slim: hsla(230, 65%, 15%, 0.54); /* bonsai main color */
-  --ground-color: #161c3982;
-  --ground-color-dark: hsla(231, 43%, 15%, 0.6);
-  --ground-color-dark-solid: hsla(230, 43%, 16%, 0.9);
-
-  --pop-over-bg-low: hsla(187, 25%, 34%, 0.75);
-  --pop-over-bg-high: #1e2848ab; /* for <Drawer> and <Dialog> */
-  --pop-over-ring: #756aeccc;
-  --pop-over-ring-2: hsla(220, 49%, 30%, 0.4); /* for <Drawer> and <Dialog> */
-
-  --formkit-label-text-active: white;
-  --formkit-label-text-normal: #ffffffa6;
-  --formkit-thumb-text-normal: #ffffff;
-  --formkit-thumb-text-disabled: #ffffffb8;
-  --formkit-bg-active: #7e9db5b0;
-  --formkit-bg-normal: #d8d8d80f;
-  --formkit-thumb-color: #0993ecd9; /* button primary color、max、select coin */
-  --formkit-thumb-color-disable: #6a739796; /* button primary */
-  --formkit-thumb-color-transparent: hsla(204, 93%, 48%, 0.1);
-
-  --app-line-color: rgba(255, 255, 255, 0.1);
-  --link-color: #5ac4be;
-  --link-decorator: hsla(251, 99%, 64%, 0.9);
-  --card-color: hsl(0deg, 0%, 100%);
-
-  --formkit-ground-color: hsl(264deg, 31%, 94%);
-  --formkit-line-color: hsl(263deg, 47%, 86%);
-  --formkit-text-color: #0993ec; /* button primary color、max、select coin */
-  --formkit-text-color-disable: #292d41; /* button primary */
+  --text-revert-primary: hsl(from var(--text-primary) h s calc(100 - l) / 0.8);
 }
 
 :root.dark {
   --primary: hsl(210, 15%, 90%);
   /* this value will auto get by icssTextColor */
   --secondary: hsl(257, 41%, 35%);
-  --secondary-pale: rgb(from var(--secondary) r g b / 0.5);
   --ternary: color-mix(in srgb, var(--secondary), dodgerblue 40%);
-  --ternary-pale: rgb(from var(--ternary) r g b / 0.5);
 
   /* text */
   --text-primary: color-mix(in srgb, var(--primary), white 60%);
   --text-secondary: color-mix(in srgb, var(--secondary), white 60%);
   --text-ternary: #abc4ff88;
+
   --text-link: #22d1f8;
-  --text-revert-primary: #181f35;
+  /* https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl */
 
   /* list */
   --list-item-bg: #141041;
@@ -80,14 +41,6 @@
   --app-panel-bg: #121314;
   --card-bg: #2b2f34;
 
-  --main-content-bg__01: hsl(244, 20%, 2%);
-  --main-content-bg__02: hsl(246, 5%, 13%);
-  --status-active: hsl(252deg, 100%, 65%);
-
-  --ground-color: hsl(240deg, 4%, 11%);
-  --app-line-color: hsl(187deg, 3%, 12%);
-  --link-color: hsl(226deg, 100%, 84%);
-  --card-color: hsl(238deg, 5%, 19%);
-  --formkit-ground-color: hsl(260deg, 2%, 30%);
-  --formkit-line-color: hsl(263deg, 9%, 29%);
+  --app-main-bg__01: hsl(244, 20%, 2%);
+  --app-main-bg__02: hsl(246, 5%, 13%);
 }

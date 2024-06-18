@@ -12,6 +12,7 @@ import {
   useKitProps,
 } from "@edsolater/pivkit"
 import { Link } from "../../../components/Link"
+import { colors } from "../../../theme/colors"
 
 export type OptionItemBoxProps = {
   /** @default true */
@@ -28,10 +29,10 @@ const icssOptionItemBox = createICSS(() => ({
   paddingBlock: "0.75rem",
   paddingInline: "2rem",
   "&:hover": {
-    backgroundColor: cssOpacity(cssVar("--ternary"), 0.1),
+    backgroundColor: cssOpacity(colors.ternary, 0.1),
   },
   "&:active": {
-    backgroundColor: cssOpacity(cssVar("--ternary"), 0.1),
+    backgroundColor: cssOpacity(colors.ternary, 0.1),
   },
   cursor: "pointer",
   position: "relative",
@@ -46,7 +47,7 @@ export function OptionItemBox(kitProps: KitProps<OptionItemBoxProps>) {
       <Box
         icss={[
           { display: "grid", placeItems: "center" },
-          { width: "1rem", height: "1rem", marginInlineEnd: "0.75rem", color: cssVar("--ternary") },
+          { width: "1rem", height: "1rem", marginInlineEnd: "0.75rem", color: colors.ternary },
         ]}
       >
         {switchCase<boolean | PivChild | (() => PivChild), any>(
@@ -66,10 +67,7 @@ export function OptionItemBox(kitProps: KitProps<OptionItemBoxProps>) {
         [
           [(v) => isObject(v), (v) => v],
           [(v) => isFunction(v), (v) => (v as AnyFn)()],
-          [
-            (v) => v === true,
-            () => <Icon icss={{ marginInlineEnd: "0.75rem", color: cssVar("--ternary") }} size={"sm"} />,
-          ],
+          [(v) => v === true, () => <Icon icss={{ marginInlineEnd: "0.75rem", color: colors.ternary }} size={"sm"} />],
         ],
         null,
       ),
@@ -82,7 +80,7 @@ export function OptionItemBox(kitProps: KitProps<OptionItemBoxProps>) {
         <Span
           icss={{
             flexGrow: 1,
-            color: cssVar("--ternary"),
+            color: colors.ternary,
             fontSize: "0.875rem",
             fontWeight: "500",
           }}

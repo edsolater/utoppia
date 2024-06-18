@@ -10,7 +10,7 @@ export type PopupWidgetPlugin = Plugin<PopupWidgetPluginOptions>
 
 export const popupWidget: PopupWidgetPlugin = createPlugin((options) => {
   const { id: uuid } = createUUID()
-  const [isOn, { toggle }] = createDisclosure(options.defaultOpen, {
+  const [isOn, { toggle, open }] = createDisclosure(options.defaultOpen, {
     onToggle(isOn) {
       if (isOn) {
         console.log("open popup widget")
@@ -25,8 +25,7 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((options) => {
       anchorName: `--pop-anchor-${uuid}`,
     },
     "merge:onClick": ({ ev }) => {
-      console.log("ev: ", ev)
-      toggle()
+      open()
     },
     "render:firstChild": (
       <Show when={isOn()}>

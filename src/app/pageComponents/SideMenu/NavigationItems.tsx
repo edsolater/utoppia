@@ -15,6 +15,7 @@ import { useLocation } from "@solidjs/router"
 import { Show, createMemo, createSelector } from "solid-js"
 import { routes } from "../../routes/routes"
 import { Link } from "../../components/Link"
+import { colors } from "../../theme/colors"
 
 export function NavRouteItems() {
   const location = useLocation()
@@ -73,9 +74,9 @@ function LinkItem(kitProps: KitProps<LinkItemProps>) {
         paddingInline: "1rem",
         borderRadius: "0.5rem",
         transition: "150ms",
-        background: props.isCurrentRoutePath ? cssOpacity(cssVar("--secondary"), 0.2) : "transparent",
+        background: props.isCurrentRoutePath ? cssOpacity(colors.secondary, 0.2) : "transparent",
         "&:hover": {
-          background: cssOpacity(cssVar("--secondary"), 0.2),
+          background: cssOpacity(colors.secondary, 0.2),
         },
       }}
     >
@@ -83,7 +84,7 @@ function LinkItem(kitProps: KitProps<LinkItemProps>) {
         <Box
           icss={{
             display: "grid",
-            bg: `linear-gradient(135deg, ${cssOpacity(cssVar("--text-secondary"), 0.2)}, transparent)`,
+            bg: `linear-gradient(135deg, ${cssOpacity(colors.textSecondary, 0.2)}, transparent)`,
             borderRadius: "0.5rem",
             padding: "0.375rem",
             marginRight: "0.75rem",
@@ -95,7 +96,7 @@ function LinkItem(kitProps: KitProps<LinkItemProps>) {
           icss={{
             flexGrow: 1,
             justifyContent: "space-between",
-            color: cssVar("--text-secondary"),
+            color: colors.textSecondary,
             transition: "80ms",
             fontSize: "0.875rem",
             fontWeight: "500",

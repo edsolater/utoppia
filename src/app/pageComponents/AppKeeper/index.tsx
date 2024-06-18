@@ -17,6 +17,7 @@ import {
 import { useMetaTitle } from "../../hooks/useDocumentMetaTitle"
 import { AppKeeperContext } from "./AppKeeperContext"
 import { AppKeeperPanelManager } from "./AppKeeperPanelManager"
+import { colors } from "../../theme/colors"
 
 export type AppKeeperProps = {
   metaTitle?: string
@@ -106,7 +107,7 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
               icssCol,
               { position: "relative", overflow: "hidden" },
               {
-                background: cssLinearGradient({ colors: [cssVar("--main-content-bg__01"), cssVar("--main-content-bg__02")] }),
+                background: cssLinearGradient({ colors: [colors.appMainContentBg__01, colors.appMainContentBg__02] }),
                 borderTopLeftRadius: "20px",
               },
             ]}

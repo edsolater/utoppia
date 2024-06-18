@@ -104,7 +104,6 @@ export function AppKeeperPanelManager(kitprops: KitProps<AppKeeperPanelManagerPr
       domRef={[setDom, resizingHiddenTransactionMask]}
       shadowProps={shadowProps}
       icss={{
-        // width: cssVar("--side-menu-width"),
         width: props.canWidthResized
           ? isPanelOpen() && !isPanelFloating()
             ? cssVar(`--${panelName}-x`)
