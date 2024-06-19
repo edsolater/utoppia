@@ -2,6 +2,7 @@ import type { MayArray } from "@edsolater/fnkit"
 import {
   Box,
   Fragnment,
+  Image,
   Item,
   KitProps,
   Main,
@@ -18,12 +19,17 @@ import { useMetaTitle } from "../../hooks/useDocumentMetaTitle"
 import { AppKeeperContext } from "./AppKeeperContext"
 import { AppKeeperPanelManager } from "./AppKeeperPanelManager"
 import { colors } from "../../theme/colors"
+import { Show } from "solid-js"
 
 export type AppKeeperProps = {
   metaTitle?: string
 
   "render:contentBanner"?: PivChild
   TopbarBanner?: PivChild
+
+  //#region ---------------- root ----------------
+  bgImageSrc?: string
+  //#endregion
 
   // ---------------- topbar ----------------
   Topbar?: PivChild
@@ -67,6 +73,21 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
           willChange: "opacity",
         }}
       >
+        <Show when={props.bgImageSrc}>
+          <Image
+            src={props.bgImageSrc}
+            icss={{
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              zIndex: -1,
+              objectFit: "cover",
+              filter: "brightness(0.4)",
+              background: "white",
+            }}
+          />
+        </Show>
+
         <Section name={"top-banner"} icss={{ gridArea: "ban" }}>
           {props["TopbarBanner"]}
         </Section>
@@ -107,7 +128,7 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
               icssCol,
               { position: "relative", overflow: "hidden" },
               {
-                background: cssLinearGradient({ colors: [colors.appMainContentBg__01, colors.appMainContentBg__02] }),
+                // background: cssLinearGradient({ colors: [colors.appMainContentBg__01, colors.appMainContentBg__02] }),
                 borderTopLeftRadius: "20px",
               },
             ]}

@@ -2,7 +2,7 @@ import { isObject, isUndefined } from "@edsolater/fnkit"
 import { Box, Icon, InfiniteScrollList, Piv, Text, cssColors } from "@edsolater/pivkit"
 import { shuck_isMobile } from "../stores/data/store"
 import { useShuckValue } from "../../packages/conveyor/solidjsAdapter/useShuck"
-import { FloatingInfoPanel } from "./FABPanel"
+import { FABPanel, FABPanelProps } from "./FABPanel"
 import { colors } from "../theme/colors"
 
 /**
@@ -17,7 +17,7 @@ export function ShuckInspectorPanel() {
     isMobile,
   }
   return (
-    <FloatingInfoPanel
+    <FABPanel
       thumbnailIcon={
         <Piv // thumbnail
           icss={{
@@ -63,6 +63,6 @@ export function ShuckInspectorPanel() {
           </InfiniteScrollList>
         </Box>
       }
-    ></FloatingInfoPanel>
+    ></FABPanel>
   )
 }

@@ -30,7 +30,7 @@ export const routeItems = {
   home: createRouteItem({
     name: "home",
     path: "/",
-    component: lazy(() => import("./app")),
+    component: lazy(() => import("./home")),
     needAppKeeper: true,
     isHiddenLink: true,
   }),

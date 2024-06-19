@@ -18,9 +18,10 @@ import {
 import { createEffect, createSignal, on, onCleanup, onMount, type Accessor, type Setter } from "solid-js"
 import { createStore, unwrap, type SetStoreFunction } from "solid-js/store"
 import { createIDBStoreManager } from "../../packages/cacheManager/storageManagers"
-import { LinkCard } from "../pageComponents/LinkItem/LinkCard"
+import { ScheduleItem } from "../pageComponents/LinkItem/ScheduleItem"
 import { LinkItem } from "../pageComponents/LinkItem/type"
 import { downloadJSON, importJSONFile } from "../utils/download"
+import { FABPanel, FABPanelProps } from "../pageComponents/FABPanel"
 
 type ScheduleSchema = {
   links?: LinkItem[]
@@ -79,23 +80,25 @@ export default function DailySchedulePage() {
           gap: "16px",
         }}
       >
-        {(link) => <LinkCard item={link} onDelete={() => handleDeleteLink(link)} onEdit={() => handleEdit(link)} />}
+        {(link) => <ScheduleItem item={link} onDelete={() => handleDeleteLink(link)} onEdit={() => handleEdit(link)} />}
       </List>
 
-      <LinkCreatorForm
-        ref={setRef}
-        onDone={({ info: newformData, inEditMode }) => {
-          if (inEditMode) {
-            setData((prev) => ({
-              links: prev.links?.map((link) => link.id === newformData.id ? newformData : link),
-            }))
-          } else {
-            setData((prev) => ({
-              links: [...(prev.links ?? []), { id: newformData.name, ...newformData }],
-            }))
-          }
-        }}
-      />
+      <FABPanel>
+        <NewScheduleItemCreatorForm
+          ref={setRef}
+          onDone={({ info: newformData, inEditMode }) => {
+            if (inEditMode) {
+              setData((prev) => ({
+                links: prev.links?.map((link) => (link.id === newformData.id ? newformData : link)),
+              }))
+            } else {
+              setData((prev) => ({
+                links: [...(prev.links ?? []), { id: newformData.name, ...newformData }],
+              }))
+            }
+          }}
+        />
+      </FABPanel>
     </Grid>
   )
 }
@@ -107,7 +110,7 @@ type LinkCreatorFormController = {
   injectLinkToEdit(link: object): void
 }
 
-function LinkCreatorForm(kitProps: KitProps<LinkCreatorFormProps>) {
+function NewScheduleItemCreatorForm(kitProps: KitProps<LinkCreatorFormProps>) {
   const { props, shadowProps, loadController } = useKitProps(kitProps, { name: "LinkCreatorForm" })
   const formSchema = {
     name: createInputDescription(),
@@ -140,7 +143,7 @@ function LinkCreatorForm(kitProps: KitProps<LinkCreatorFormProps>) {
   }
 
   return (
-    <Box shadowProps={shadowProps}>
+    <Box shadowProps={shadowProps} icss={{width:'300px', height:"300px"}}>
       <Box icss={{ marginBottom: "32px" }}>
         <SchemaParser schema={formSchema} ref={setSchemaRef} />
       </Box>

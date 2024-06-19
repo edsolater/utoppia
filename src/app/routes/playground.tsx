@@ -50,7 +50,7 @@ import { createStore } from "solid-js/store"
 import { ExamplePanel } from "../components/ExamplePanel"
 import { RefreshCircle } from "../components/RefreshCircle"
 import { ViewTransitionSliderBox } from "../components/ViewTransitionSliderBox"
-import { FloatingInfoPanel } from "../pageComponents/FABPanel"
+import { FABPanel, FABPanelProps } from "../pageComponents/FABPanel"
 import { colors } from "../theme/colors"
 
 export default function PlaygroundPage() {
@@ -840,7 +840,7 @@ const droppableSlotsPlugin = createPlugin(() => () => ({
 
 function FloatPanelExample() {
   return (
-    <FloatingInfoPanel>
+    <FABPanel>
       <Box
         icss={{
           width: "30px",
@@ -850,6 +850,6 @@ function FloatPanelExample() {
       >
         hello world
       </Box>
-    </FloatingInfoPanel>
+    </FABPanel>
   )
 }

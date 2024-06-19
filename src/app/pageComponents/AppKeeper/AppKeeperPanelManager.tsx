@@ -155,6 +155,9 @@ export function AppKeeperPanelManager(kitprops: KitProps<AppKeeperPanelManagerPr
           icss={[
             {
               background: colors.appPanelBg,
+              backdropFilter: "brightness(1.2) contrast(1.3) saturate(4.8) blur(40px)",
+            },
+            {
               position: "absolute",
               display: "grid",
               containerType: "size",

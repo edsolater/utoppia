@@ -15,16 +15,15 @@ import {
 } from "@edsolater/pivkit"
 import { colors } from "../theme/colors"
 
-export type FloatPanelProps = {
+export type FABPanelProps = {
   thumbnailIcon?: PivChild
   content?: PivChild
   moveHandlerIcss?: ICSS
   panelIcss?: ICSS
 }
 
-export function FloatingInfoPanel(kitProps: KitProps<FloatPanelProps>) {
-  const { props, shadowProps } = useKitProps(kitProps, { name: "FloatPanel" })
-  const { dom: handler, setDom: setHandlerDom } = createDomRef()
+export function FABPanel(kitProps: KitProps<FABPanelProps>) {
+  const { props, shadowProps } = useKitProps(kitProps, { name: "FABPanel" })
   const [isOpened, { toggle }] = createDisclosure(false)
   const defaultThumbnail = () => (
     <Box
@@ -41,10 +40,6 @@ export function FloatingInfoPanel(kitProps: KitProps<FloatPanelProps>) {
       open👋
     </Box>
   )
-  const [plugin] = usePlugin(draggablePlugin, {
-    handlerElement: handler,
-    unsetMoveInEnd: false,
-  })
 
   return (
     <>
@@ -52,30 +47,40 @@ export function FloatingInfoPanel(kitProps: KitProps<FloatPanelProps>) {
         {props.thumbnailIcon ?? defaultThumbnail()}
       </AddProps>
 
-      <PopoverPanel shadowProps={shadowProps} open={isOpened}>
-        <Box
-          // shadowProps={shadowProps}
-          icss={[
-            {
-              borderRadius: "16px",
-              paddingTop: "20px",
-            },
-            icssCardPanel,
-            props.panelIcss,
-          ]}
-          plugin={[
-            plugin,
-            // resizablePlugin.config({
-            //   canResizeX: true,
-            //   canResizeY: true,
-            // }),
-          ]}
-        >
-          <DragHandler domRef={setHandlerDom} icss={props.moveHandlerIcss} />
-          <Box>{props.content ?? props.children}</Box>
-        </Box>
-      </PopoverPanel>
+      <FloatingPanel
+        open={isOpened}
+        shadowProps={[shadowProps, { icss: props.panelIcss }]}
+        propsofDragHandler={{ icss: props.moveHandlerIcss }}
+      >
+        {props.content ?? props.children}
+      </FloatingPanel>
     </>
+  )
+}
+
+function FloatingPanel(kitProps: KitProps<{ open?: boolean; propsofDragHandler?: PivProps }>) {
+  const { props, shadowProps } = useKitProps(kitProps, { name: "FloatingPanel" })
+  const { dom: handler, setDom: setHandlerDom } = createDomRef()
+  const [plugin] = usePlugin(draggablePlugin, {
+    handlerElement: handler,
+    unsetMoveInEnd: false,
+  })
+  return (
+    <PopoverPanel
+      shadowProps={shadowProps}
+      open={props.open}
+      plugin={plugin}
+      icss={[
+        {
+          borderRadius: "16px",
+          paddingTop: "20px",
+        },
+        icssCardPanel,
+      ]}
+    >
+      <DragHandler domRef={setHandlerDom} shadowProps={props.propsofDragHandler} />
+      <Box>{props.children}</Box>
+    </PopoverPanel>
   )
 }
 

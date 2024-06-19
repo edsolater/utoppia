@@ -15,8 +15,9 @@ import {
 import { navigateToUrl } from "../../utils/url"
 import { popupWidget } from "./popupWidget"
 import type { LinkItem } from "./type"
+import { colors } from "../../theme/colors"
 
-export function LinkCard(props: { item: LinkItem; onDelete?: () => void; onEdit?: () => void }) {
+export function ScheduleItem(props: { item: LinkItem; onDelete?: () => void; onEdit?: () => void }) {
   function handleDelete() {
     props.onDelete?.()
   }
@@ -34,7 +35,7 @@ export function LinkCard(props: { item: LinkItem; onDelete?: () => void; onEdit?
   return (
     <Box
       icss={[
-        icssCard,
+        icssCard({ bg: colors.cardBg }),
         {
           display: "grid",
           // TODO: use subgrid
@@ -45,13 +46,16 @@ export function LinkCard(props: { item: LinkItem; onDelete?: () => void; onEdit?
           columnGap: "16px",
           rowGap: "8px",
         },
+        {
+          backdropFilter: "brightness(1.2) contrast(1.2) saturate(4.8) blur(20px)",
+        },
       ]}
     >
       {/* name + links */}
       <Text
         //TODO: defaultValue not work
         plugin={popupWidget.config({
-          popElement: () => <Input icss={{ fontSize: "1em" }} defaultValue={() => props.item.name}  />,
+          popElement: () => <Input icss={{ fontSize: "1em" }} defaultValue={() => props.item.name} />,
         })}
         icss={{ fontSize: "1.8em", gridArea: "name" }}
       >

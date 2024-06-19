@@ -38,8 +38,8 @@
   --list-item-bg: #141041;
 
   --app-bg: #242528;
-  --app-panel-bg: #121314;
-  --card-bg: #2b2f34;
+  --app-panel-bg: hsla(210, 5%, 7%, 0.9);
+  --card-bg: hsla(213, 9%, 19%, 0.9);
 
   --app-main-bg__01: hsl(244, 20%, 2%);
   --app-main-bg__02: hsl(246, 5%, 13%);

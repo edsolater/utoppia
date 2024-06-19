@@ -1,23 +1,22 @@
 import { map } from "@edsolater/fnkit"
 import {
   Box,
+  Icon,
   InfiniteScrollList,
   Input,
   KeybordShortcutKeys,
   Piv,
   Text,
-  createIncresingAccessor,
   cssColors,
   keyboardShortcutObserverPlugin,
   useShortcutsInfo,
-  useShortcutsRegister,
+  useShortcutsRegister
 } from "@edsolater/pivkit"
 import { useNavigate } from "@solidjs/router"
 import { globalRouteShortcuts } from "../configs/globalShortcuts"
-import { documentElement } from "../utils/documentElement"
-import { FloatingInfoPanel } from "./FABPanel"
-import { Icon } from "@edsolater/pivkit"
 import { colors } from "../theme/colors"
+import { documentElement } from "../utils/documentElement"
+import { FABPanel } from "./FABPanel"
 
 /**
  *
@@ -41,7 +40,7 @@ export function KeyboardShortcutPanel() {
     updateShortcut(description, { shortcut })
   }
   return (
-    <FloatingInfoPanel
+    <FABPanel
       thumbnailIcon={
         <Piv // thumbnail
           icss={{
@@ -96,6 +95,6 @@ export function KeyboardShortcutPanel() {
           </InfiniteScrollList>
         </Box>
       }
-    ></FloatingInfoPanel>
+    ></FABPanel>
   )
 }

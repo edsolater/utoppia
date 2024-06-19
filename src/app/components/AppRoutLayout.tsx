@@ -19,13 +19,14 @@ import { SideMenu } from "../pageComponents/SideMenu"
 initAppContextConfig({ themeMode: "dark", onlyAltSelect: true })
 configUIKitTheme(uikitConfig)
 
-export function AppRoutLayout(props: RouteSectionProps) {
+export function AppRootLayout(props: RouteSectionProps) {
   const location = props.location
   const title = createMemo(() =>
     switchCase(location.pathname, { "/": "Home" }, (pathname) => pathname.split("/").map(capitalize).join(" ")),
   )
   const needLayout = createMemo(() => routes.find(({ path }) => path === location.pathname)?.needAppKeeper)
   useExperimentalCode()
+  const { src: bgImageSrc } = useBingDailyImage()
   // useLocalStorageRpc()
   return (
     <Show when={needLayout()} fallback={props.children}>
@@ -34,11 +35,18 @@ export function AppRoutLayout(props: RouteSectionProps) {
         Topbar={<NavBar />}
         Sidebar={<SideMenu />}
         FABs={[<KeyboardShortcutPanel />, <ShuckInspectorPanel />]} // FIXME: cause performance issue
+        bgImageSrc={bgImageSrc}
       >
         {props.children}
       </AppKeeper>
     </Show>
   )
+}
+
+function useBingDailyImage() {
+  // https://bing.img.run/api.html
+  const src = "https://bing.img.run/rand.php"
+  return { src }
 }
 
 /** code for test */
