@@ -66,7 +66,7 @@ export function createShuck<T>(
      * visiable, so effect is meaningful for user
      */
     visiable: createSubscribable(Boolean(options?.visiable), {
-      subscribeFns: options?.onChangeToVisiable,
+      onSet: options?.onChangeToVisiable,
     }),
     visiableCheckers: new Map(),
     subscribedExecutors: new Set<TaskRunner>(),

@@ -1,22 +1,38 @@
+import { switchKey } from "@edsolater/fnkit"
 import {
   Box,
   Button,
   Icon,
   Input,
   List,
-  Loop,
   Piv,
   Row,
+  Select,
   Text,
+  cssColorMix,
   cssOpacity,
   icssCard,
   icssContentClickableOpacity,
-  icssGrid,
+  icssRow,
 } from "@edsolater/pivkit"
+import { createSignal } from "solid-js"
+import { colors } from "../../theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { popupWidget } from "./popupWidget"
-import type { ScheduleLinkItem } from "./type"
-import { colors } from "../../theme/colors"
+import type { ScheduleItem, ScheduleLinkItem, ScheduleLinkItemCategories } from "./type"
+
+// user configable
+const scheduleItemColor = {
+  externalLinks: {
+    video: cssColorMix(colors.cardBg, "dodgerblue"), // only theme color
+    resource: cssColorMix(colors.cardBg, "green"), // only theme color
+  } satisfies Record<ScheduleLinkItemCategories, string>,
+  cardText: "#f5f5f5", // only theme color
+}
+
+function getScheduleItemColor(item: ScheduleItem) {
+  return switchKey(item.is, { link: switchKey(item.category, scheduleItemColor.externalLinks) })
+}
 
 export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => void; onEdit?: () => void }) {
   function handleDelete() {
@@ -33,10 +49,12 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
     props.onEdit?.()
   }
 
+  const [itemThemeColor, setItemThemeColor] = createSignal(getScheduleItemColor(props.item))
   return (
     <Box
       icss={[
-        icssCard({ bg: colors.cardBg }),
+        // icssCard({ bg: props.item.is === 'link' scheduleItemColor.cardLink }),
+        icssCard({ bg: itemThemeColor() }),
         {
           display: "grid",
           // TODO: use subgrid
@@ -50,6 +68,23 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
         },
       ]}
     >
+      {/* category */}
+      <Piv
+        icss={{
+          gridArea: "category",
+          color: scheduleItemColor.cardText,
+          padding: "2px 8px",
+          background: "dodgerblue",
+          width: "fit-content",
+          borderRadius: "4px",
+        }}
+        plugin={popupWidget.config({
+          popElement: () => <Select name="color-selector" items={["dodgerblue", "orange"] as const}></Select>,
+        })}
+      >
+        {props.item.category}
+      </Piv>
+
       {/* name + links */}
       <Text
         //TODO: defaultValue not work
@@ -70,7 +105,7 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
           flexWrap: "wrap",
           gap: "8px",
         }}
-        items={props.item.tag?.split(" ")}
+        items={props.item.tags?.split(" ")}
       >
         {(tag) => <Text icss={{ alignContent: "center" }}>{tag}</Text>}
       </List>
@@ -99,36 +134,4 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
   )
 }
 
-export function SiteItem(props: { item: ScheduleLinkItem; level?: number }) {
-  // const {gridContainerICSS, gridItemICSS} = useICSS('Grid')
-  return (
-    <Piv
-      icss={[
-        icssCard,
-        icssGrid({
-          template: `
-            "info" auto 
-            "sub " auto / 1fr
-          `,
-          gap: "1em",
-        }),
-        { color: "#1b1b1d" },
-      ]}
-    >
-      {/* <Box icss={icssGridItem({ area: "info" })}>
-        <Box icss={icssRow({ gap: "8px" })}>
-          <Link href={props.item.url}>
-            <Box icss={icssRow({ gap: "8px" })}>
-              
-              <Text icss={{ fontSize: "2em", fontWeight: "bold" }}>{props.item.name}</Text>
-            </Box>
-          </Link>
-          <Loop of={props.item.keywords} icss={icssRow({ gap: ".5em" })}>
-            {(keyword) => <Text icss={{ fontSize: "1em" }}>{keyword}</Text>}
-          </Loop>
-          <Button onClick={() => props.item.url && parseUrl(props.item.url)}>fetch</Button>
-        </Box>
-      </Box> */}
-    </Piv>
-  )
-}
+

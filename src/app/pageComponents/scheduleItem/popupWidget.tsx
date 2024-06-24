@@ -9,10 +9,10 @@ export type PopupWidgetPluginOptions = {
 export type PopupWidgetPlugin = Plugin<PopupWidgetPluginOptions>
 
 export const popupWidget: PopupWidgetPlugin = createPlugin((options) => {
-  const { id: uuid } = createUUID()
+  const uuid = createUUID()
   const [isOn, { toggle, open }] = createDisclosure(options.defaultOpen, {
-    onToggle(isOn) {
-      if (isOn) {
+    onToggle(toOpen) {
+      if (toOpen) {
         console.log("open popup widget")
       } else {
         console.log("close popup widget")

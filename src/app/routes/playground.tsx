@@ -21,7 +21,7 @@ import {
   ValidProps,
   buildPopover,
   createDisclosure,
-  createIncresingAccessor,
+  createIncreasingSeed,
   createIntervalEffect,
   createPlugin,
   cssLinearGradient,
@@ -83,13 +83,13 @@ function ComponentSpecList() {
         <FloatPanelExample />
       </ExamplePanel>
 
-      <ExamplePanel name="Drawer">
+      {/* <ExamplePanel name="Drawer">
         <DrawerExample />
-      </ExamplePanel>
+      </ExamplePanel> 
 
       <ExamplePanel name="Modal">
         <ModalExample />
-      </ExamplePanel>
+      </ExamplePanel> */}
 
       <ExamplePanel name="IntervalCircle">
         <CircularProgressExample />
@@ -127,9 +127,9 @@ function ComponentSpecList() {
         <ViewTransitionSliderBoxExample />
       </ExamplePanel>
 
-      <ExamplePanel name="Popover">
+      {/* <ExamplePanel name="Popover">
         <PopoverExample />
-      </ExamplePanel>
+      </ExamplePanel> */}
 
       <ExamplePanel name="ComponentFactory">
         <ComponentFactoryExample />
@@ -224,7 +224,7 @@ function DrawerExample() {
 function ModalExample() {
   const modalController = useControllerByID<ModalController>("example-modal")
   const modalController2 = useControllerByID<ModalController>("example-modal2")
-  const couter = createIncresingAccessor()
+  const couter = createIncreasingSeed()
   return (
     <>
       <Button onClick={() => modalController.toggle?.()}>Open</Button>
@@ -449,7 +449,7 @@ function ListExample() {
     { name: "az", count: 26 + 26 },
   ]
   const [data, setData] = createSignal<typeof mockData>([])
-  const increaseCount = createIncresingAccessor()
+  const increaseCount = createIncreasingSeed()
   createEffect(() => {
     setTimeout(() => {
       setData(mockData)

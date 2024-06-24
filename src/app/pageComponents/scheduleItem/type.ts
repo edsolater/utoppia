@@ -4,7 +4,7 @@ type HistoryRecordItem = {
   clockAt: TimeStamp
 }
 
-type BasicItem = {
+export type ScheduleItem = {
   id: ID // (auto-generated)
   name: string
   comment?: string
@@ -12,17 +12,24 @@ type BasicItem = {
   history?: HistoryRecordItem[]
   rating?: Float<0, 5>
   icon?: string // can be base64 or url
+
+  is: string
+  category?: string // classic
 }
 
-export type ScheduleLinkItem = BasicItem & {
+export type ScheduleLinkItemCategories = "video" | "resource"
+
+export type ScheduleLinkItem = ScheduleItem & {
   url?: string
   // determine outside looks layout
   is: "link"
   // determine outside looks color
-  tag?: string
+  category?: ScheduleLinkItemCategories
+  tags?: string
 }
 
-export type ScheduleTextItem = BasicItem & {
+export type ScheduleTextItem = ScheduleItem & {
   // determine outside looks layout
   is: "text"
+  category?: string
 }

@@ -41,7 +41,7 @@ export const colors = {
   buttonPrimary: "#22D1F8",
   buttonSecondary: "#8C6EEF",
   buttonSolidText: "#0B1022",
-  
+
   cardBg: cssVar("--card-bg"),
 
   // chart
@@ -62,3 +62,4 @@ export const colors = {
   semanticNeutral: "#ABC4FF",
   semanticFocus: "#A259FF",
 }
+
