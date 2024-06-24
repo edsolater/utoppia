@@ -4,6 +4,7 @@ import {
   Icon,
   Input,
   List,
+  Loop,
   Piv,
   Row,
   Text,
@@ -14,10 +15,10 @@ import {
 } from "@edsolater/pivkit"
 import { navigateToUrl } from "../../utils/url"
 import { popupWidget } from "./popupWidget"
-import type { LinkItem } from "./type"
+import type { ScheduleLinkItem } from "./type"
 import { colors } from "../../theme/colors"
 
-export function ScheduleItem(props: { item: LinkItem; onDelete?: () => void; onEdit?: () => void }) {
+export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => void; onEdit?: () => void }) {
   function handleDelete() {
     props.onDelete?.()
   }
@@ -40,14 +41,12 @@ export function ScheduleItem(props: { item: LinkItem; onDelete?: () => void; onE
           display: "grid",
           // TODO: use subgrid
           gridTemplate: `
-              "name      name     actions1" auto
-              "tags      tags     tags    " auto
-              "comment   comment  actions2" auto / auto auto auto`,
+              "category  category  category " auto
+              "name      name      actions1" auto
+              "tags      tags      tags    " auto
+              "comment   comment   actions2" auto / auto auto auto`,
           columnGap: "16px",
           rowGap: "8px",
-        },
-        {
-          backdropFilter: "brightness(1.2) contrast(1.2) saturate(4.8) blur(20px)",
         },
       ]}
     >
@@ -93,14 +92,14 @@ export function ScheduleItem(props: { item: LinkItem; onDelete?: () => void; onE
 
       <Row icss={{ gridArea: "actions1", justifySelf: "end" }}>
         <Button variant="transparent" size={"xs"} icss={icssContentClickableOpacity} onClick={handleClickLink}>
-          <Icon name="open-window" src={"/icons/link.svg"} />
+          <Icon name="open-window" src={"/icons/open_in_new.svg"} />
         </Button>
       </Row>
     </Box>
   )
 }
 
-export function SiteItem(props: { item: LinkItem; level?: number }) {
+export function SiteItem(props: { item: ScheduleLinkItem; level?: number }) {
   // const {gridContainerICSS, gridItemICSS} = useICSS('Grid')
   return (
     <Piv

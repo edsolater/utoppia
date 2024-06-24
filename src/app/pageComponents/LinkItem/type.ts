@@ -8,13 +8,13 @@ type BasicItem = {
   id: ID // (auto-generated)
   name: string
   comment?: string
-  createdTime: TimeStamp // (auto-generated)
+  creatTime: TimeStamp // (auto-generated)
   history?: HistoryRecordItem[]
   rating?: Float<0, 5>
   icon?: string // can be base64 or url
 }
 
-export type LinkItem = BasicItem & {
+export type ScheduleLinkItem = BasicItem & {
   url?: string
   // determine outside looks layout
   is: "link"
@@ -22,7 +22,7 @@ export type LinkItem = BasicItem & {
   tag?: string
 }
 
-export type TextItem = BasicItem & {
+export type ScheduleTextItem = BasicItem & {
   // determine outside looks layout
   is: "text"
 }

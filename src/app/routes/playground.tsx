@@ -111,7 +111,7 @@ function ComponentSpecList() {
         <TextExample />
       </ExamplePanel>
 
-      <ExamplePanel name="List">
+      <ExamplePanel name="Loop">
         <ListExample />
       </ExamplePanel>
 

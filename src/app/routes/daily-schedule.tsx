@@ -1,4 +1,4 @@
-import { createSubscribable, type Subscribable } from "@edsolater/fnkit"
+import { addDefaultProperties, createSubscribable, shakeNil, shakeUndefinedItem, type Subscribable } from "@edsolater/fnkit"
 import {
   Box,
   Button,
@@ -7,10 +7,12 @@ import {
   InputController,
   Item,
   List,
+  Loop,
   SchemaParser,
   SchemaParserController,
   createInputDescription,
   createRef,
+  createUUID,
   icssGrid,
   useKitProps,
   type KitProps,
@@ -19,26 +21,48 @@ import { createEffect, createSignal, on, onCleanup, onMount, type Accessor, type
 import { createStore, unwrap, type SetStoreFunction } from "solid-js/store"
 import { createIDBStoreManager } from "../../packages/cacheManager/storageManagers"
 import { ScheduleItem } from "../pageComponents/LinkItem/ScheduleItem"
-import { LinkItem } from "../pageComponents/LinkItem/type"
+import { ScheduleLinkItem } from "../pageComponents/LinkItem/type"
 import { downloadJSON, importJSONFile } from "../utils/download"
 import { FABPanel, FABPanelProps } from "../pageComponents/FABPanel"
 
 type ScheduleSchema = {
-  links?: LinkItem[]
+  links?: ScheduleLinkItem[]
 }
 
-const dailyScheduleData = createSubscribable<ScheduleSchema>({})
+const dailyScheduleData = createSubscribable<ScheduleSchema>(
+  {},
+  {
+    beforeValueSet: (inputRawValue) => {
+      if (inputRawValue.links) {
+        inputRawValue.links = inputRawValue.links.map(washScheduleItem)
+      }
+      return inputRawValue
+    },
+  },
+)
+
+function washScheduleItem(scheduleItem: Partial<ScheduleLinkItem>): ScheduleLinkItem {
+  return addDefaultProperties(scheduleItem, shakeNil({
+    id: scheduleItem.id ?? createUUID(),
+    name: scheduleItem.name ?? "",
+    url: scheduleItem.url ?? "",
+    tag: scheduleItem.tag ?? "",
+    comment: scheduleItem.comment,
+    is: "link",
+    creatTime: Date.now(),
+  }))
+}
 
 export default function DailySchedulePage() {
-  const [data, setData] = useSubscribableStore(dailyScheduleData, { cachedByIndexDB: true, name: "daily-schedule" })
+  const [data, setData] = useSubscribableStore(dailyScheduleData, { name: "daily-schedule", cachedByIndexDB: true })
 
   const [ref, setRef] = createRef<LinkCreatorFormController>()
-  function handleDeleteLink(link: LinkItem) {
+  function handleDeleteLink(link: ScheduleLinkItem) {
     setData((prev) => ({
       links: prev.links?.filter((l) => l.id !== link.id),
     }))
   }
-  function handleEdit(link: LinkItem) {
+  function handleEdit(link: ScheduleLinkItem) {
     ref()?.injectLinkToEdit(link)
   }
 
@@ -63,7 +87,7 @@ export default function DailySchedulePage() {
         <Button
           onClick={() => {
             importJSONFile().then((jsonData) => {
-              setData(jsonData)
+              dailyScheduleData.set(jsonData)
             })
           }}
         >
@@ -143,7 +167,7 @@ function NewScheduleItemCreatorForm(kitProps: KitProps<LinkCreatorFormProps>) {
   }
 
   return (
-    <Box shadowProps={shadowProps} icss={{width:'300px', height:"300px"}}>
+    <Box shadowProps={shadowProps} icss={{ width: "300px", height: "300px" }}>
       <Box icss={{ marginBottom: "32px" }}>
         <SchemaParser schema={formSchema} ref={setSchemaRef} />
       </Box>
