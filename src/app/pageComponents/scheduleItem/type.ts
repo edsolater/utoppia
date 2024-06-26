@@ -19,6 +19,8 @@ export type ScheduleItem = {
 
 export type ScheduleLinkItemCategories = "video" | "resource"
 
+export const scheduleLinkItemCategories = ["video", "resource"] as ScheduleLinkItemCategories[]
+
 export type ScheduleLinkItem = ScheduleItem & {
   url?: string
   // determine outside looks layout

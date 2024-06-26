@@ -4,20 +4,18 @@ import {
   Panel,
   createDomRef,
   cssVar,
-  getElementFromRef,
   icssCardPanel,
   icssClickable,
   useClickOutside,
   useKitProps,
+  useSelectItems,
   useShortcutsRegister,
-  type ElementRef,
   type ItemEventUtils,
   type KitProps,
   type PivChild,
   type SelectableItem,
 } from "@edsolater/pivkit"
 import { createEffect, createSignal, onMount } from "solid-js"
-import { useSelectItems } from "@edsolater/pivkit"
 
 export type SelectPanelProps<T extends SelectableItem> = {
   /** also in controller */
@@ -29,6 +27,7 @@ export type SelectPanelProps<T extends SelectableItem> = {
   defaultValue?: T
   /** value is used in onChange, value is also used as key */
   getItemValue?: (item: T) => string | number
+  canItemClickClose?: boolean
   onChange?(utils: ItemEventUtils<T>): void
   onClose?: () => void
 
@@ -49,17 +48,18 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
   loadController(controller)
 
   // items manager
-  const { item, items, index, utils, setItem, focusItem, selectPrevItem, selectNextItem } = useSelectItems<T>({
-    items: props.items,
-    defaultValue: props.defaultValue,
-    getItemValue: methods.getItemValue,
-    onChange: methods.onChange,
-  })
+  const { activeItem, items, activeItemIndex, getItemValue, setItem, focusItem, selectPrevItem, selectNextItem } =
+    useSelectItems<T>({
+      items: props.items,
+      defaultValue: props.defaultValue,
+      getItemValue: methods.getItemValue,
+      onChange: methods.onChange,
+    })
 
   // compute render functions
   const renderItem = methods.renderItem ?? (({ value }) => <>{value()}</>)
 
-  const { isFocus } = useElementState(dom)
+  const { isFocus, setDom: setIsFocusedDectectorDomRef } = useElementStateIsFocused()
 
   // keyboard shortcut
   useShortcutsRegister(
@@ -95,37 +95,38 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
   // handle item click
   const onItemClick = (_clickController, i: T) => {
     setItem(i)
-    methods.onClose?.()
+    if (methods.canItemClickClose) {
+      methods.onClose?.()
+    }
   }
 
-  // click outside to close popover
-  useClickOutside(dom, {
-    onClickOutSide: () => methods.onClose?.(),
-  })
-
   return (
-    <Panel domRef={setDom} shadowProps={shadowProps} icss={[icssCardPanel, { padding: "revert", paddingBlock: "8px" }]}>
+    <Panel
+      domRef={[setDom, setIsFocusedDectectorDomRef]}
+      shadowProps={shadowProps}
+      icss={[icssCardPanel, { padding: "8px" , borderRadius:'8px'}]}
+    >
+
+      
       <Loop items={items}>
-        {(i, idx) => {
-          const isSelected = () => i === item()
-          const itemValue = () => utils.getItemValue(i)
+        {(item, idx) => {
+          const isSelected = () => item === activeItem()
+          const itemValue = () => getItemValue(item)
           return (
             <ItemBox
-              onClick={(c) => onItemClick(c, i)}
+              onClick={(c) => onItemClick(c, item)}
               icss={[
                 icssClickable,
                 {
                   padding: "4px 8px",
                   margin: "4px 4px",
-                  borderRadius: "4px",
-                  background: isSelected() ? cssVar("--item-selected-bg", "#fff4") : undefined,
+                  borderRadius: "6px",
                   boxShadow: isSelected() ? cssVar("--item-selected-shadow", "0 0 0 4px #fff4") : undefined,
-                  color: isSelected() ? cssVar("--select-active-item-text-color", "#c8d7e0") : undefined,
                 },
               ]}
             >
               {renderItem({
-                item: () => i,
+                item: () => item,
                 index: idx,
                 value: itemValue,
                 isSelected,
@@ -137,10 +138,13 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
     </Panel>
   )
 }
-function useElementState(dom: ElementRef) {
+
+// TODO: should run only when user is required
+function useElementStateIsFocused() {
+  const { dom, setDom } = createDomRef()
   const [isFocus, setIsFocus] = createSignal(false)
   createEffect(() => {
-    const element = getElementFromRef(dom)
+    const element = dom()
     if (element) {
       element.addEventListener("focus", () => {
         setIsFocus(true)
@@ -150,5 +154,5 @@ function useElementState(dom: ElementRef) {
       })
     }
   })
-  return { isFocus }
+  return { isFocus, setDom }
 }

@@ -7,19 +7,23 @@ import {
   List,
   Piv,
   Row,
-  Select,
   Text,
   cssColorMix,
   cssOpacity,
   icssCard,
-  icssContentClickableOpacity,
-  icssRow,
+  icssContentClickableOpacity
 } from "@edsolater/pivkit"
 import { createSignal } from "solid-js"
 import { colors } from "../../theme/colors"
 import { navigateToUrl } from "../../utils/url"
+import { SelectPanel } from "./Select"
 import { popupWidget } from "./popupWidget"
-import type { ScheduleItem, ScheduleLinkItem, ScheduleLinkItemCategories } from "./type"
+import {
+  scheduleLinkItemCategories,
+  type ScheduleItem,
+  type ScheduleLinkItem,
+  type ScheduleLinkItemCategories,
+} from "./type"
 
 // user configable
 const scheduleItemColor = {
@@ -50,6 +54,7 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
   }
 
   const [itemThemeColor, setItemThemeColor] = createSignal(getScheduleItemColor(props.item))
+
   return (
     <Box
       icss={[
@@ -79,7 +84,10 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
           borderRadius: "4px",
         }}
         plugin={popupWidget.config({
-          popElement: () => <Select name="color-selector" items={["dodgerblue", "orange"] as const}></Select>,
+          canBackdropClose: true,
+          popElement: ({ closePopup }) => (
+            <SelectPanel name="category-selector" items={scheduleLinkItemCategories} onClose={closePopup} />
+          ),
         })}
       >
         {props.item.category}
@@ -133,5 +141,3 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
     </Box>
   )
 }
-
-
