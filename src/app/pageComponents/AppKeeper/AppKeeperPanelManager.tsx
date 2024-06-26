@@ -154,7 +154,7 @@ export function AppKeeperPanelManager(kitprops: KitProps<AppKeeperPanelManagerPr
         <Box // content holder (always absolute, so it has no size info)
           icss={[
             {
-              background: colors.appPanelBg,
+              background: colors.appPanel,
               position: "absolute",
               display: "grid",
               containerType: "size",

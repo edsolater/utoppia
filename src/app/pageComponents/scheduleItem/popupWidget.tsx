@@ -19,7 +19,7 @@ export type PopupWidgetPluginController = {
 }
 
 /** for {@link PopupDirection} */
-type BaseDir = "top" | "bottom" | "left" | "right"
+type BaseDir = "top" | "bottom" | "left" | "right" | "center"
 /** just util for {@link PopupDirection} */
 type NoSameDirection<D extends BaseDir> = D extends "top" | "bottom"
   ? "left" | "right"

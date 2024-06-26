@@ -147,7 +147,7 @@ export function DatabaseTable<T extends Collection>(
               paddingInline: "16px",
               paddingBlock: "8px",
               borderRadius: "12px",
-              background: colors.listHeaderBg,
+              background: colors.listHeader,
             }}
           >
             {/* collect star */}
@@ -235,7 +235,7 @@ const databaseTableRowCollapseFaceStyle = parseICSSToClassName([
   {
     paddingBlock: "20px",
     paddingInline: "16px",
-    background: colors.listItemBg,
+    background: colors.listItem,
     transition: "all 150ms",
   },
 ])

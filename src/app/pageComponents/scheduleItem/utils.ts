@@ -1,4 +1,4 @@
-import { createSubscribable } from "@edsolater/fnkit"
+import { createSubscribable, type ID } from "@edsolater/fnkit"
 import { createUUID } from "@edsolater/pivkit"
 import { ScheduleLinkItem } from "./type"
 
@@ -14,7 +14,8 @@ function washScheduleItem(scheduleItem: Partial<ScheduleLinkItem>): ScheduleLink
     id: scheduleItem.id ?? createUUID(),
     name: scheduleItem.name ?? "",
     url: scheduleItem.url ?? "",
-    tags: scheduleItem.tags ?? "",
+    //@ts-ignore
+    tags: scheduleItem.tags || scheduleItem.tag || "",
     //@ts-ignore
     category: scheduleItem.category === "other" ? "video" : scheduleItem.category ?? undefined,
     comment: scheduleItem.comment,
@@ -46,3 +47,10 @@ function deleteLink(link: ScheduleLinkItem) {
 
 /** provides utils to operate with schema without know schema's inner structure */
 export const dailySchemaUtils = { deleteLink }
+
+export function updateExistedScheduleItem(id: ID, partialNewItem: Partial<ScheduleLinkItem>) {
+  dailyScheduleData.set((prev) => ({
+    ...prev,
+    links: prev.links?.map((l) => (l.id === id ? { ...l, ...partialNewItem } : l)),
+  }))
+}

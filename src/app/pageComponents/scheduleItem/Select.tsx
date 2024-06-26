@@ -28,7 +28,7 @@ export type SelectPanelProps<T extends SelectableItem> = {
   /** value is used in onChange, value is also used as key */
   getItemValue?: (item: T) => string | number
   canItemClickClose?: boolean
-  onChange?(utils: ItemEventUtils<T>): void
+  onSelect?(utils: ItemEventUtils<T>): void
   onClose?: () => void
 
   disabled?: boolean
@@ -53,11 +53,11 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
       items: props.items,
       defaultValue: props.defaultValue,
       getItemValue: methods.getItemValue,
-      onChange: methods.onChange,
+      onChange: methods.onSelect,
     })
 
   // compute render functions
-  const renderItem = methods.renderItem ?? (({ value }) => <>{value()}</>)
+  const renderItem = methods.renderItem ?? (({ itemValue }) => <>{itemValue()}</>)
 
   const { isFocus, setDom: setIsFocusedDectectorDomRef } = useElementStateIsFocused()
 
@@ -128,7 +128,7 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
               {renderItem({
                 item: () => item,
                 index: idx,
-                value: itemValue,
+                itemValue: itemValue,
                 isSelected,
               })}
             </ItemBox>

@@ -23,9 +23,9 @@ export const colors = {
   backgroundTransparent10: "rgba(171, 196, 255, 0.1)",
 
   // component color
-  appPanelBg: cssVar("--app-panel-bg"),
-  appMainContentBg__01: cssVar("--app-main-bg__01"),
-  appMainContentBg__02: cssVar("--app-main-bg__02"),
+  appPanel: cssVar("--app-panel-bg"),
+  appMainContent__01: cssVar("--app-main-bg__01"),
+  appMainContent__02: cssVar("--app-main-bg__02"),
 
   // text
   textPrimary: cssVar("--text-primary"),
@@ -34,15 +34,15 @@ export const colors = {
   textRevertPrimary: cssVar("--text-revert-primary"),
 
   /* list */
-  listItemBg: cssVar("--list-item-bg"),
-  listHeaderBg: cssOpacity(cssVar("--list-item-bg"), 0.2),
+  listItem: cssVar("--list-item-bg"),
+  listHeader: cssOpacity(cssVar("--list-item-bg"), 0.2),
 
   // button
   buttonPrimary: "#22D1F8",
   buttonSecondary: "#8C6EEF",
   buttonSolidText: "#0B1022",
 
-  cardBg: cssVar("--card-bg"),
+  card: cssVar("--card-bg"),
 
   // chart
   chart01: "#abc4ff",

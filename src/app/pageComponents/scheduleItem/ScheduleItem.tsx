@@ -9,9 +9,10 @@ import {
   Row,
   Text,
   cssColorMix,
-  cssOpacity,
   icssCard,
-  icssContentClickableOpacity
+  icssClickable,
+  icssContentClickableOpacity,
+  type CSSColorString
 } from "@edsolater/pivkit"
 import { createSignal } from "solid-js"
 import { colors } from "../../theme/colors"
@@ -24,13 +25,14 @@ import {
   type ScheduleLinkItem,
   type ScheduleLinkItemCategories,
 } from "./type"
+import { updateExistedScheduleItem } from "./utils"
 
 // user configable
 const scheduleItemColor = {
   externalLinks: {
-    video: cssColorMix(colors.cardBg, "dodgerblue"), // only theme color
-    resource: cssColorMix(colors.cardBg, "green"), // only theme color
-  } satisfies Record<ScheduleLinkItemCategories, string>,
+    video: "dodgerblue", // only theme color
+    resource: "green", // only theme color
+  } satisfies Record<ScheduleLinkItemCategories, CSSColorString>,
   cardText: "#f5f5f5", // only theme color
 }
 
@@ -59,7 +61,7 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
     <Box
       icss={[
         // icssCard({ bg: props.item.is === 'link' scheduleItemColor.cardLink }),
-        icssCard({ bg: itemThemeColor() }),
+        icssCard({ bg: cssColorMix({ color: colors.card, percent: "95%" }, itemThemeColor()) }),
         {
           display: "grid",
           // TODO: use subgrid
@@ -75,18 +77,28 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
     >
       {/* category */}
       <Piv
-        icss={{
-          gridArea: "category",
-          color: scheduleItemColor.cardText,
-          padding: "2px 8px",
-          background: "dodgerblue",
-          width: "fit-content",
-          borderRadius: "4px",
-        }}
+        icss={[
+          {
+            gridArea: "category",
+            color: colors.textPrimary,
+            padding: "2px 8px",
+            background: cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor()),
+            width: "fit-content",
+            borderRadius: "4px",
+          },
+          icssClickable,
+        ]}
         plugin={popupWidget.config({
           canBackdropClose: true,
           popElement: ({ closePopup }) => (
-            <SelectPanel name="category-selector" items={scheduleLinkItemCategories} onClose={closePopup} />
+            <SelectPanel
+              name="category-selector"
+              items={scheduleLinkItemCategories}
+              onClose={closePopup}
+              onSelect={({ itemValue }) => {
+                updateExistedScheduleItem(props.item.id, { category: itemValue() as ScheduleLinkItemCategories })
+              }}
+            />
           ),
         })}
       >
@@ -97,18 +109,21 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
       <Text
         //TODO: defaultValue not work
         plugin={popupWidget.config({
-          popElement: () => <Input icss={{ fontSize: "1em" }} defaultValue={() => props.item.name} />,
+          popupDirection: "center",
+          popElement: () => (
+            <Input icss={{ fontSize: "1em", background: colors.appPanel }} defaultValue={() => props.item.name} />
+          ),
         })}
         icss={{ fontSize: "1.8em", gridArea: "name" }}
       >
         {props.item.name}
       </Text>
 
-      {/* tag */}
+      {/* tags */}
       <List
         icss={{
           gridArea: "tags",
-          color: cssOpacity("currentcolor", 0.6),
+          color: colors.textSecondary,
           display: "flex",
           flexWrap: "wrap",
           gap: "8px",
