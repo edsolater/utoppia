@@ -54,7 +54,7 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
       items: props.items,
       defaultValue: props.defaultValue,
       getItemValue: methods.getItemValue,
-      onChange: methods.onChange,
+      onChange: props.onChange,
     })
 
   // compute render functions
@@ -67,7 +67,7 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
   // keyboard shortcut
   useShortcutsRegister(dom, {
     close: {
-      action: () => methods.onClose?.(),
+      action: () => props.onClose?.(),
       shortcut: "Escape",
     },
     "select confirm": {
@@ -97,8 +97,8 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
   // handle item click
   const onItemClick = (_clickController, i: T) => {
     setItem(i)
-    if (methods.canItemClickClose) {
-      methods.onClose?.()
+    if (props.canItemClickClose) {
+      props.onClose?.()
     }
   }
 

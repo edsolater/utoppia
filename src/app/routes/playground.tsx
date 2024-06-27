@@ -539,7 +539,7 @@ function PropContextExample() {
       <Box icss={{ border: "solid" }}>
         <Piv innerController={{ say: () => "ControllerContext should can receive the message" }}>
           <Box
-            merge:onClick={() => {
+            onClick={() => {
               console.log("click PropContext description")
             }}
             icss={{ cursor: "pointer", border: "dashed", borderColor: cssOpacity("currentcolor", 0.6) }}

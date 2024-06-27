@@ -50,7 +50,7 @@ export const colorPickerWidget: ColorPickerWidgetPlugin = createPlugin((options)
   })
   return () => ({
     domRef: setDom,
-    "merge:onClick": ({ ev }) => {
+    onClick: ({ ev }) => {
       toggle()
     },
   })

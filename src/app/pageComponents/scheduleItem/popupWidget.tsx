@@ -110,11 +110,10 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
       // https://developer.chrome.com/blog/anchor-positioning-api?hl=zh-cn
       anchorName: `--pop-anchor-${uuid}`,
     },
-    "merge:onClick": ({ ev }) => {
+    onClick: ({ ev }) => {
       open()
     },
-    // TEMP invisiable 
-    "render:firstChild": (
+    "render:firSstChild": (
       <Show when={isOn()}>
         <PopoverPanel
           domRef={setPopoverContentDom}
