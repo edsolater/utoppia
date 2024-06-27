@@ -61,19 +61,6 @@ export function ScheduleItem(props: {
   }
 
   const itemThemeColor = createMemo(() => getScheduleItemColor(props.item))
-  createEffect(() => {
-    console.log("cate: ", props.item.category)
-  })
-  onMount(() => {
-    if (props.item.name.startsWith("B")) {
-      const id = setInterval(() => {
-        props.onCategoryChange?.(props.item.category === "resource" ? "video" : "resource")
-      }, 1000)
-      onCleanup(() => {
-        clearInterval(id)
-      })
-    }
-  })
   return (
     <Box
       icss={[
