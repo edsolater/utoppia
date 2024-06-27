@@ -16,13 +16,13 @@ import {
   type KitProps,
 } from "@edsolater/pivkit"
 import { createEffect, createSignal, on, onCleanup, onMount, type Accessor, type Setter } from "solid-js"
-import { createStore, unwrap, type SetStoreFunction } from "solid-js/store"
+import { createStore, reconcile, unwrap, type SetStoreFunction } from "solid-js/store"
 import { createIDBStoreManager } from "../../packages/cacheManager/storageManagers"
 import { FABPanel } from "../pageComponents/FABPanel"
 import { ScheduleItem } from "../pageComponents/scheduleItem/ScheduleItem"
-import { ScheduleLinkItem } from "../pageComponents/scheduleItem/type"
+import { ScheduleLinkItem, type ScheduleLinkItemCategories } from "../pageComponents/scheduleItem/type"
 import { downloadJSON, importJSONFile } from "../utils/download"
-import { dailyScheduleData, dailySchemaUtils } from "../pageComponents/scheduleItem/utils"
+import { dailyScheduleData, dailySchemaUtils, updateExistedScheduleItem } from "../pageComponents/scheduleItem/utils"
 
 export default function DailySchedulePage() {
   const [data, setData] = useSubscribableStore(dailyScheduleData, { name: "daily-schedule", cachedByIndexDB: true })
@@ -73,7 +73,17 @@ export default function DailySchedulePage() {
           gap: "16px",
         }}
       >
-        {(link) => <ScheduleItem item={link} onDelete={() => handleDeleteLink(link)} onEdit={() => handleEdit(link)} />}
+        {(link) => (
+          <ScheduleItem
+            item={link}
+            onDelete={() => handleDeleteLink(link)}
+            onEdit={() => handleEdit(link)}
+            onCategoryChange={(category) => {
+              setData("links", 3, { category })
+              // updateExistedScheduleItem(link.id, { category })
+            }}
+          />
+        )}
       </List>
 
       <FABPanel>
@@ -203,7 +213,9 @@ function useSubscribableStore<T extends object>(
     const { unsubscribe } = subscribable.subscribe(
       (s) => {
         if (s != unwrap(store)) {
-          return setStore(s)
+          // why ui not changed?
+          console.log("s11: ", s)
+          return setStore(reconcile(s))
         }
       },
       { immediately: false },

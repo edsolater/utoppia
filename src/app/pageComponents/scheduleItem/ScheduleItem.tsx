@@ -14,7 +14,7 @@ import {
   icssContentClickableOpacity,
   type CSSColorString,
 } from "@edsolater/pivkit"
-import { createSignal } from "solid-js"
+import { createEffect, createMemo, createSignal, onCleanup, onMount } from "solid-js"
 import { colors } from "../../theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { SelectPanel } from "./Select"
@@ -40,7 +40,12 @@ function getScheduleItemColor(item: ScheduleItem) {
   return switchKey(item.is, { link: switchKey(item.category, scheduleItemColor.externalLinks) })
 }
 
-export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => void; onEdit?: () => void }) {
+export function ScheduleItem(props: {
+  item: ScheduleLinkItem
+  onDelete?: () => void
+  onEdit?: () => void
+  onCategoryChange?: (category: ScheduleLinkItemCategories) => void
+}) {
   function handleDelete() {
     props.onDelete?.()
   }
@@ -55,8 +60,20 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
     props.onEdit?.()
   }
 
-  const [itemThemeColor, setItemThemeColor] = createSignal(getScheduleItemColor(props.item))
-
+  const itemThemeColor = createMemo(() => getScheduleItemColor(props.item))
+  createEffect(() => {
+    console.log("cate: ", props.item.category)
+  })
+  onMount(() => {
+    if (props.item.name.startsWith("B")) {
+      const id = setInterval(() => {
+        props.onCategoryChange?.(props.item.category === "resource" ? "video" : "resource")
+      }, 1000)
+      onCleanup(() => {
+        clearInterval(id)
+      })
+    }
+  })
   return (
     <Box
       icss={[
@@ -99,6 +116,7 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
               onChange={({ itemValue }) => {
                 // TODO: this will update DOM immediately, should fix it
                 // updateExistedScheduleItem(props.item.id, { category: itemValue() as ScheduleLinkItemCategories })
+                props.onCategoryChange?.(itemValue() as ScheduleLinkItemCategories)
               }}
             />
           ),

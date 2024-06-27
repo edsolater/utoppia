@@ -113,6 +113,7 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
     "merge:onClick": ({ ev }) => {
       open()
     },
+    // TEMP invisiable 
     "render:firstChild": (
       <Show when={isOn()}>
         <PopoverPanel

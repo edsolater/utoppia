@@ -61,40 +61,38 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
   const renderItem = methods.renderItem ?? (({ itemValue }) => <>{itemValue()}</>)
 
   const { isFocus, setDom: setIsFocusedDectectorDomRef } = useElementStateIsFocused()
-
+  createEffect(() => {
+    console.log("focusItem: ", focusItem())
+  })
   // keyboard shortcut
-  useShortcutsRegister(
-    dom,
-    {
-      close: {
-        action: () => methods.onClose?.(),
-        shortcut: "Escape",
-      },
-      "select confirm": {
-        action: () => {
-          //TODO: do with focusItem
-        },
-        shortcut: "Enter",
-      },
-      "select prev item": {
-        action: selectPrevItem,
-        shortcut: "ArrowUp",
-      },
-      "select next item": {
-        action: selectNextItem,
-        shortcut: "ArrowDown",
-      },
-      "select next item 2": {
-        action: selectNextItem,
-        shortcut: "s",
-      },
-      "select prev item 2": {
-        action: selectNextItem,
-        shortcut: "w",
-      },
+  useShortcutsRegister(dom, {
+    close: {
+      action: () => methods.onClose?.(),
+      shortcut: "Escape",
     },
-    { enabled: isFocus },
-  )
+    "select confirm": {
+      action: () => {
+        //TODO: do with focusItem
+      },
+      shortcut: "Enter",
+    },
+    "select prev item": {
+      action: selectPrevItem,
+      shortcut: "ArrowUp",
+    },
+    "select next item": {
+      action: selectNextItem,
+      shortcut: "ArrowDown",
+    },
+    "select next item 2": {
+      action: selectNextItem,
+      shortcut: "s",
+    },
+    "select prev item 2": {
+      action: selectNextItem,
+      shortcut: "w",
+    },
+  })
 
   // handle item click
   const onItemClick = (_clickController, i: T) => {
@@ -126,7 +124,7 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
                   boxShadow: isSelected() ? cssVar("--item-selected-shadow", "0 0 0 4px #fff4") : undefined,
                 },
               ]}
-              htmlProps={{ tabIndex: 0,  }} // make every child focusable
+              htmlProps={{ tabIndex: 0 }} // make every child focusable
             >
               {renderItem({
                 item: () => item,
