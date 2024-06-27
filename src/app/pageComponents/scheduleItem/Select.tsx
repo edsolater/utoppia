@@ -1,3 +1,4 @@
+import { makeFocusable } from "@edsolater/pivkit"
 import {
   ItemBox,
   Loop,
@@ -28,7 +29,7 @@ export type SelectPanelProps<T extends SelectableItem> = {
   /** value is used in onChange, value is also used as key */
   getItemValue?: (item: T) => string | number
   canItemClickClose?: boolean
-  onSelect?(utils: ItemEventUtils<T>): void
+  onChange?(utils: ItemEventUtils<T>): void
   onClose?: () => void
 
   disabled?: boolean
@@ -53,7 +54,7 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
       items: props.items,
       defaultValue: props.defaultValue,
       getItemValue: methods.getItemValue,
-      onChange: methods.onSelect,
+      onChange: methods.onChange,
     })
 
   // compute render functions
@@ -83,14 +84,17 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
         action: selectNextItem,
         shortcut: "ArrowDown",
       },
+      "select next item 2": {
+        action: selectNextItem,
+        shortcut: "s",
+      },
+      "select prev item 2": {
+        action: selectNextItem,
+        shortcut: "w",
+      },
     },
     { enabled: isFocus },
   )
-
-  // auto focus when open
-  onMount(() => {
-    dom()?.focus()
-  })
 
   // handle item click
   const onItemClick = (_clickController, i: T) => {
@@ -104,10 +108,8 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
     <Panel
       domRef={[setDom, setIsFocusedDectectorDomRef]}
       shadowProps={shadowProps}
-      icss={[icssCardPanel, { padding: "8px" , borderRadius:'8px'}]}
+      icss={[icssCardPanel, { padding: "8px", borderRadius: "8px" }]}
     >
-
-      
       <Loop items={items}>
         {(item, idx) => {
           const isSelected = () => item === activeItem()
@@ -124,6 +126,7 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
                   boxShadow: isSelected() ? cssVar("--item-selected-shadow", "0 0 0 4px #fff4") : undefined,
                 },
               ]}
+              htmlProps={{ tabIndex: 0,  }} // make every child focusable
             >
               {renderItem({
                 item: () => item,

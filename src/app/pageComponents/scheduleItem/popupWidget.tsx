@@ -6,10 +6,13 @@ import {
   createDomRef,
   createPlugin,
   createUUID,
+  focusFirstFocusableChild,
+  getFirstFocusableChild,
+  makeFocusable,
   useClickOutside,
   type PivChild,
 } from "@edsolater/pivkit"
-import { Show, createMemo, type Accessor } from "solid-js"
+import { Show, createEffect, createMemo, on, type Accessor } from "solid-js"
 
 export type PopupWidgetPluginController = {
   isOpen: Accessor<boolean>
@@ -31,12 +34,26 @@ export type PopupDirection =
   | `${BaseDir} ${"center" | NoSameDirection<BaseDir> | `span-${NoSameDirection<BaseDir>}`}`
 
 export type PopupWidgetPluginOptions = {
+  /** REQUIRED */
   popElement: (utils: PopupWidgetPluginController) => PivChild
+
   defaultOpen?: boolean
+
+  //TODO: imply it !!
+  open?: boolean
+
   noStyle?: boolean
+
+  /** user can close popup panel when user click the outside */
   canBackdropClose?: boolean
+
+  /** when open popup, focus on the popup panel's first focusable element child */
+  shouldFocusChildWhenOpen?: boolean
+
   onOpen?: () => void
   onClose?: () => void
+
+  /** usually used for popup/tooltip/dropdown/select */
   popupDirection?: PopupDirection
 }
 
@@ -76,6 +93,16 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
   }
 
   const gapInfo = createMemo(() => getPanelGapDirection(options.popupDirection ?? "right span-bottom"))
+
+  if (options.shouldFocusChildWhenOpen) {
+    createEffect(
+      on(isOn, (on) => {
+        if (on) {
+          focusFirstFocusableChild(popoverContentDom())
+        }
+      }),
+    )
+  }
 
   return () => ({
     domRef: setPopoverTriggerDom,
@@ -120,6 +147,7 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
     ),
   })
 })
+
 /**
  * get gap from  input direction
  * @param popupDirection

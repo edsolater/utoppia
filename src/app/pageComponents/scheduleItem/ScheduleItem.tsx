@@ -12,7 +12,7 @@ import {
   icssCard,
   icssClickable,
   icssContentClickableOpacity,
-  type CSSColorString
+  type CSSColorString,
 } from "@edsolater/pivkit"
 import { createSignal } from "solid-js"
 import { colors } from "../../theme/colors"
@@ -89,14 +89,16 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
           icssClickable,
         ]}
         plugin={popupWidget.config({
+          shouldFocusChildWhenOpen: true,
           canBackdropClose: true,
           popElement: ({ closePopup }) => (
             <SelectPanel
               name="category-selector"
               items={scheduleLinkItemCategories}
               onClose={closePopup}
-              onSelect={({ itemValue }) => {
-                updateExistedScheduleItem(props.item.id, { category: itemValue() as ScheduleLinkItemCategories })
+              onChange={({ itemValue }) => {
+                // TODO: this will update DOM immediately, should fix it
+                // updateExistedScheduleItem(props.item.id, { category: itemValue() as ScheduleLinkItemCategories })
               }}
             />
           ),
@@ -138,6 +140,7 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
         <Text>{props.item.comment}</Text>
       </Box>
 
+      {/* action2 */}
       <Row icss={[{ gridArea: "actions2", justifySelf: "end" }]}>
         <Button variant="transparent" size={"xs"} onClick={handleEdit} icss={icssContentClickableOpacity}>
           <Icon name="edit" src={"/icons/edit.svg"} />
@@ -148,6 +151,7 @@ export function ScheduleItem(props: { item: ScheduleLinkItem; onDelete?: () => v
         </Button>
       </Row>
 
+      {/* action 1 */}
       <Row icss={{ gridArea: "actions1", justifySelf: "end" }}>
         <Button variant="transparent" size={"xs"} icss={icssContentClickableOpacity} onClick={handleClickLink}>
           <Icon name="open-window" src={"/icons/open_in_new.svg"} />
