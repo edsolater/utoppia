@@ -79,8 +79,7 @@ export default function DailySchedulePage() {
             onDelete={() => handleDeleteLink(link)}
             onEdit={() => handleEdit(link)}
             onCategoryChange={(category) => {
-              setData("links", 3, { category })
-              // updateExistedScheduleItem(link.id, { category })
+              updateExistedScheduleItem(link.id, { category })
             }}
           />
         )}
@@ -171,7 +170,7 @@ function Test() {
  * @param subscribable
  * @returns
  */
-function useSubscribable<T>(subscribable: Subscribable<T>): [Accessor<T>, Setter<T>] {
+export function useSubscribable<T>(subscribable: Subscribable<T>): [Accessor<T>, Setter<T>] {
   const [value, setValue] = createSignal(subscribable())
   createEffect(() => {
     const { unsubscribe } = subscribable.subscribe(setValue)
@@ -213,8 +212,6 @@ function useSubscribableStore<T extends object>(
     const { unsubscribe } = subscribable.subscribe(
       (s) => {
         if (s != unwrap(store)) {
-          // why ui not changed?
-          console.log("s11: ", s)
           return setStore(reconcile(s))
         }
       },

@@ -7,10 +7,8 @@ import {
   createPlugin,
   createUUID,
   focusFirstFocusableChild,
-  getFirstFocusableChild,
-  makeFocusable,
   useClickOutside,
-  type PivChild,
+  type PivChild
 } from "@edsolater/pivkit"
 import { Show, createEffect, createMemo, on, type Accessor } from "solid-js"
 
@@ -113,7 +111,7 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
     onClick: ({ ev }) => {
       open()
     },
-    "render:firSstChild": (
+    "render:firstChild": (
       <Show when={isOn()}>
         <PopoverPanel
           domRef={setPopoverContentDom}

@@ -14,7 +14,7 @@ import {
   icssContentClickableOpacity,
   type CSSColorString,
 } from "@edsolater/pivkit"
-import { createEffect, createMemo, createSignal, onCleanup, onMount } from "solid-js"
+import { createMemo } from "solid-js"
 import { colors } from "../../theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { SelectPanel } from "./Select"
@@ -25,7 +25,6 @@ import {
   type ScheduleLinkItem,
   type ScheduleLinkItemCategories,
 } from "./type"
-import { updateExistedScheduleItem } from "./utils"
 
 // user configable
 const scheduleItemColor = {
@@ -100,9 +99,7 @@ export function ScheduleItem(props: {
               name="category-selector"
               items={scheduleLinkItemCategories}
               onClose={closePopup}
-              onChange={({ itemValue }) => {
-                // TODO: this will update DOM immediately, should fix it
-                // updateExistedScheduleItem(props.item.id, { category: itemValue() as ScheduleLinkItemCategories })
+              onChange={({ itemValue, ...rest }) => {
                 props.onCategoryChange?.(itemValue() as ScheduleLinkItemCategories)
               }}
             />
