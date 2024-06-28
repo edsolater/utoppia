@@ -49,21 +49,26 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
   loadController(controller)
 
   // items manager
-  const { activeItem, items, activeItemIndex, getItemValue, setItem, focusItem, selectPrevItem, selectNextItem } =
-    useSelectItems<T>({
-      items: props.items,
-      defaultValue: props.defaultValue,
-      getItemValue: methods.getItemValue,
-      onChange: props.onChange,
-    })
+  const {
+    selectedItem,
+    items,
+    selectFromFocusedItem,
+    selectedItemIndex,
+    getItemValue,
+    setItem,
+    focusItem,
+    focusPrevItem,
+    focusNextItem,
+  } = useSelectItems<T>({
+    items: props.items,
+    defaultValue: props.defaultValue,
+    getItemValue: methods.getItemValue,
+    onChange: props.onChange,
+  })
 
   // compute render functions
   const renderItem = methods.renderItem ?? (({ itemValue }) => <>{itemValue()}</>)
 
-  const { isFocus, setDom: setIsFocusedDectectorDomRef } = useElementStateIsFocused()
-  createEffect(() => {
-    console.log("focusItem: ", focusItem())
-  })
   // keyboard shortcut
   useShortcutsRegister(dom, {
     close: {
@@ -71,26 +76,16 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
       shortcut: "Escape",
     },
     "select confirm": {
-      action: () => {
-        //TODO: do with focusItem
-      },
-      shortcut: "Enter",
+      action: selectFromFocusedItem,
+      shortcut: ["Enter", "Space"],
     },
-    "select prev item": {
-      action: selectPrevItem,
-      shortcut: "ArrowUp",
+    "focus prev item": {
+      action: focusPrevItem,
+      shortcut: ["ArrowUp", "w"],
     },
-    "select next item": {
-      action: selectNextItem,
-      shortcut: "ArrowDown",
-    },
-    "select next item 2": {
-      action: selectNextItem,
-      shortcut: "s",
-    },
-    "select prev item 2": {
-      action: selectNextItem,
-      shortcut: "w",
+    "focus next item": {
+      action: focusNextItem,
+      shortcut: ["ArrowDown", "s"],
     },
   })
 
@@ -104,13 +99,14 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
 
   return (
     <Panel
-      domRef={[setDom, setIsFocusedDectectorDomRef]}
+      domRef={[setDom]}
       shadowProps={shadowProps}
-      icss={[icssCardPanel, { padding: "8px", borderRadius: "8px" }]}
+      icss={[icssCardPanel, { paddingBlock: "8px", borderRadius: "8px" }]}
     >
       <Loop items={items}>
         {(item, idx) => {
-          const isSelected = () => item === activeItem()
+          const isSelected = () => item === selectedItem()
+          const isFocused = () => item === focusItem()
           const itemValue = () => getItemValue(item)
           return (
             <ItemBox
@@ -118,10 +114,10 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
               icss={[
                 icssClickable,
                 {
-                  padding: "4px 8px",
-                  margin: "4px 4px",
+                  padding: "4px 12px",
+
                   borderRadius: "6px",
-                  boxShadow: isSelected() ? cssVar("--item-selected-shadow", "0 0 0 4px #fff4") : undefined,
+                  background: isSelected() ? "#fff4" : isFocused() ? "#fff2" : "transparent",
                 },
               ]}
               htmlProps={{ tabIndex: 0 }} // make every child focusable

@@ -57,6 +57,7 @@ export type PopupWidgetPluginOptions = {
 
 export type PopupWidgetPlugin = Plugin<PopupWidgetPluginOptions>
 
+//TODO: move to pivkit
 /** special plugin */
 export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
   const options = addDefaultProperties(opts, { noStyle: true })
@@ -90,7 +91,7 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
     })
   }
 
-  const gapInfo = createMemo(() => getPanelGapDirection(options.popupDirection ?? "right span-bottom"))
+  const gapInfo = createMemo(() => getPanelGapDirection(options.popupDirection ?? "bottom span-right"))
 
   if (options.shouldFocusChildWhenOpen) {
     createEffect(
@@ -134,7 +135,7 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
               // left: "anchor(left)",
               // right: "anchor(right)",
               // bottom: "anchor(bottom)",
-              insetArea: options.popupDirection ?? ("right span-bottom" as PopupDirection),
+              insetArea: options.popupDirection ?? ("bottom span-right" as PopupDirection),
               positionTryOptions: "flip-block flip-inline",
             },
           ]}

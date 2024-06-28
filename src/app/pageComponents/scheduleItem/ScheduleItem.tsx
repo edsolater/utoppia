@@ -31,6 +31,7 @@ const scheduleItemColor = {
   externalLinks: {
     video: "dodgerblue", // only theme color
     resource: "green", // only theme color
+    ai: "crimson", // only theme color
   } satisfies Record<ScheduleLinkItemCategories, CSSColorString>,
   cardText: "#f5f5f5", // only theme color
 }
@@ -64,7 +65,7 @@ export function ScheduleItem(props: {
     <Box
       icss={[
         // icssCard({ bg: props.item.is === 'link' scheduleItemColor.cardLink }),
-        icssCard({ bg: cssColorMix({ color: colors.card, percent: "95%" }, itemThemeColor()) }),
+        icssCard({ bg: cssColorMix({ color: colors.card, percent: "90%" }, itemThemeColor()) }),
         {
           display: "grid",
           // TODO: use subgrid
@@ -98,6 +99,7 @@ export function ScheduleItem(props: {
             <SelectPanel
               name="category-selector"
               items={scheduleLinkItemCategories}
+              defaultValue={props.item.category}
               onClose={closePopup}
               onChange={({ itemValue, ...rest }) => {
                 props.onCategoryChange?.(itemValue() as ScheduleLinkItemCategories)

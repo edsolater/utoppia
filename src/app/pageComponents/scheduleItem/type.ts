@@ -17,9 +17,9 @@ export type ScheduleItem = {
   category?: string // classic
 }
 
-export type ScheduleLinkItemCategories = "video" | "resource"
+export type ScheduleLinkItemCategories = "video" | "resource" | "ai"
 
-export const scheduleLinkItemCategories = ["video", "resource"] as ScheduleLinkItemCategories[]
+export const scheduleLinkItemCategories = ["video", "resource", "ai"] satisfies ScheduleLinkItemCategories[]
 
 export type ScheduleLinkItem = ScheduleItem & {
   url?: string
