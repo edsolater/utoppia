@@ -1,12 +1,10 @@
 import { capitalize, switchCase } from "@edsolater/fnkit"
 import { configUIKitTheme } from "@edsolater/pivkit"
 import { RouteSectionProps } from "@solidjs/router"
-import { Show, createEffect, createMemo, onCleanup, onMount } from "solid-js"
-import { useStorageValue } from "../../packages/cacheManager/hook"
+import { Show, createMemo } from "solid-js"
 import { createBranchStore } from "../../packages/conveyor/smartStore/branch"
 import { setShuckVisiableChecker } from "../../packages/conveyor/smartStore/shuck"
 import { createTask } from "../../packages/conveyor/smartStore/task"
-import { routes } from "../routes/routes"
 import { uikitConfig } from "../configs/uikitTheme"
 import { initAppContextConfig } from "../hooks/initAppContextConfig"
 import { AppKeeper } from "../pageComponents/AppKeeper"
@@ -14,6 +12,7 @@ import { KeyboardShortcutPanel } from "../pageComponents/KeyboardShortcutPanel"
 import { NavBar } from "../pageComponents/NavBar"
 import { ShuckInspectorPanel } from "../pageComponents/ShuckInspectorPanel"
 import { SideMenu } from "../pageComponents/SideMenu"
+import { routes } from "../routes/routes"
 
 // config uikit theme before render
 initAppContextConfig({ themeMode: "dark", onlyAltSelect: true })

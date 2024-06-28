@@ -10,17 +10,16 @@ import {
   resizablePlugin,
   useComponentContext,
   useKitProps,
+  useLocalStorageValue,
   usePlugin,
   useShortcutsRegister,
   type KeybordShortcutKeys,
 } from "@edsolater/pivkit"
 import { createEffect, createSignal } from "solid-js"
-import { useLocalStorageValue } from "../../../packages/cacheManager/hook"
 import { colors } from "../../theme/colors"
 import { documentElement } from "../../utils/documentElement"
 import { AppKeeperContext } from "./AppKeeperContext"
 import { usePanelFloatingMaster } from "./usePanelFloatingMaster"
-import { useDocumentEdgeOpen } from "./useDocumentEdgeOpen"
 
 export type AppKeeperPanelManagerProps = {
   panelName: string

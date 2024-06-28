@@ -9,6 +9,7 @@ import {
   List,
   SchemaParser,
   SchemaParserController,
+  createIDBStoreManager,
   createInputDescription,
   createRef,
   icssGrid,
@@ -17,7 +18,6 @@ import {
 } from "@edsolater/pivkit"
 import { createEffect, createSignal, on, onCleanup, onMount, type Accessor, type Setter } from "solid-js"
 import { createStore, reconcile, unwrap, type SetStoreFunction } from "solid-js/store"
-import { createIDBStoreManager } from "../../packages/cacheManager/storageManagers"
 import { FABPanel } from "../pageComponents/FABPanel"
 import { ScheduleItem } from "../pageComponents/scheduleItem/ScheduleItem"
 import { ScheduleLinkItem, type ScheduleLinkItemCategories } from "../pageComponents/scheduleItem/type"
