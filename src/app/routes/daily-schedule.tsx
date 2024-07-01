@@ -69,8 +69,9 @@ export default function DailySchedulePage() {
               plugin={popupWidget.config({
                 canBackdropClose: true,
                 defaultOpen: true,
+                isWrapperAddProps: true,
                 popElement: () => (
-                  <DraggablePanel>
+                  <DraggablePanel icss={{ padding: "32px 16px 4px" }}>
                     <NewScheduleItemCreatorForm
                       ref={setRef}
                       onDone={({ info: newformData, inEditMode }) => {

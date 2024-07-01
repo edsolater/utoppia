@@ -91,7 +91,7 @@ export function FloatingPanel(
 export function DraggablePanel(
   kitProps: KitProps<{ open?: boolean; defaultOpen?: boolean; propsofDragHandler?: PivProps }>,
 ) {
-  const { props, shadowProps } = useKitProps(kitProps, { name: "FloatingPanel" })
+  const { props, shadowProps } = useKitProps(kitProps, { name: "DraggablePanel" })
   const { dom: handler, setDom: setHandlerDom } = createDomRef()
   const [plugin] = usePlugin(draggablePlugin, {
     handlerElement: handler,
@@ -104,7 +104,9 @@ export function DraggablePanel(
       icss={[
         {
           borderRadius: "16px",
+          padding: "12px",
           paddingTop: "20px",
+          background: colors.card
         },
         icssCardPanel,
       ]}

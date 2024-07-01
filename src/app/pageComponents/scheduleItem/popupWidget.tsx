@@ -8,9 +8,9 @@ import {
   createUUID,
   focusFirstFocusableChild,
   useClickOutside,
-  type PivChild
+  type PivChild,
 } from "@edsolater/pivkit"
-import { Show, createEffect, createMemo, on, type Accessor } from "solid-js"
+import { createEffect, createMemo, on, type Accessor } from "solid-js"
 
 export type PopupWidgetPluginController = {
   isOpen: Accessor<boolean>
@@ -42,6 +42,7 @@ export type PopupWidgetPluginOptions = {
 
   noStyle?: boolean
 
+  isWrapperAddProps?: boolean
   /** user can close popup panel when user click the outside */
   canBackdropClose?: boolean
 
@@ -84,7 +85,7 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
 
   // click outside to close popover
   if (options.canBackdropClose) {
-    useClickOutside([popoverTriggerDom,popoverContentDom], {
+    useClickOutside([popoverContentDom], {
       onClickOutSide: () => {
         if (isOn()) close() // trigger is also outside of the popover
       },
@@ -113,36 +114,32 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
       open()
     },
     "render:firstChild": (
-      <Show when={isOn()}>
-        <PopoverPanel
-          domRef={setPopoverContentDom}
-          open={isOn}
-          icss={[
-            {
-              padding: "unset",
-              border: "unset",
-              background: "unset",
-              margin: "unset",
+      <PopoverPanel
+        domRef={setPopoverContentDom}
+        open={isOn}
+        isWrapperAddProps={options.isWrapperAddProps}
+        canBackdropClose={options.canBackdropClose}
+        icss={[
+          {
+            marginRight: gapInfo().leftHaveGap ? "8px" : undefined,
+            marginLeft: gapInfo().rightHaveGap ? "8px" : undefined,
+            marginBottom: gapInfo().topHaveGap ? "8px" : undefined,
+            marginTop: gapInfo().bottomHaveGap ? "8px" : undefined,
 
-              marginRight: gapInfo().leftHaveGap ? "8px" : undefined,
-              marginLeft: gapInfo().rightHaveGap ? "8px" : undefined,
-              marginBottom: gapInfo().topHaveGap ? "8px" : undefined,
-              marginTop: gapInfo().bottomHaveGap ? "8px" : undefined,
-
-              position: "fixed",
-              positionAnchor: `--pop-anchor-${uuid}`,
-              // top: "anchor(top)",
-              // left: "anchor(left)",
-              // right: "anchor(right)",
-              // bottom: "anchor(bottom)",
-              insetArea: options.popupDirection ?? ("bottom span-right" as PopupDirection),
-              positionTryOptions: "flip-block flip-inline",
-            },
-          ]}
-        >
-          {options.popElement(controller)}
-        </PopoverPanel>
-      </Show>
+            position: "fixed",
+            positionAnchor: `--pop-anchor-${uuid}`,
+            // top: "anchor(top)",
+            // left: "anchor(left)",
+            // right: "anchor(right)",
+            // bottom: "anchor(bottom)",
+            insetArea: options.popupDirection ?? ("bottom span-right" as PopupDirection),
+            positionTryOptions: "flip-block flip-inline",
+          },
+        ]}
+        onClose={close}
+      >
+        {options.popElement(controller)}
+      </PopoverPanel>
     ),
   })
 })
