@@ -13,6 +13,8 @@ import {
   icssClickable,
   icssContentClickableOpacity,
   type CSSColorString,
+  type CSSObject,
+  type ICSSObject,
 } from "@edsolater/pivkit"
 import { createMemo } from "solid-js"
 import { colors } from "../../theme/colors"
@@ -32,7 +34,8 @@ const scheduleItemColor = {
     video: "dodgerblue", // only theme color
     resource: "green", // only theme color
     ai: "crimson", // only theme color
-  } satisfies Record<ScheduleLinkItemCategories, CSSColorString>,
+    article: "darkslateblue", // only theme color
+  } satisfies Record<ScheduleLinkItemCategories, CSSObject['color']>,
   cardText: "#f5f5f5", // only theme color
 }
 

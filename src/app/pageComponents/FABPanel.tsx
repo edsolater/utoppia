@@ -58,7 +58,10 @@ export function FABPanel(kitProps: KitProps<FABPanelProps>) {
   )
 }
 
-function FloatingPanel(kitProps: KitProps<{ open?: boolean; propsofDragHandler?: PivProps }>) {
+/** should use more composable {@link DraggablePanel} */
+export function FloatingPanel(
+  kitProps: KitProps<{ open?: boolean; defaultOpen?: boolean; propsofDragHandler?: PivProps }>,
+) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "FloatingPanel" })
   const { dom: handler, setDom: setHandlerDom } = createDomRef()
   const [plugin] = usePlugin(draggablePlugin, {
@@ -69,6 +72,7 @@ function FloatingPanel(kitProps: KitProps<{ open?: boolean; propsofDragHandler?:
     <PopoverPanel
       shadowProps={shadowProps}
       open={props.open}
+      defaultOpen={props.defaultOpen}
       plugin={plugin}
       icss={[
         {
@@ -81,6 +85,33 @@ function FloatingPanel(kitProps: KitProps<{ open?: boolean; propsofDragHandler?:
       <DragHandler domRef={setHandlerDom} shadowProps={props.propsofDragHandler} />
       <Box>{props.children}</Box>
     </PopoverPanel>
+  )
+}
+
+export function DraggablePanel(
+  kitProps: KitProps<{ open?: boolean; defaultOpen?: boolean; propsofDragHandler?: PivProps }>,
+) {
+  const { props, shadowProps } = useKitProps(kitProps, { name: "FloatingPanel" })
+  const { dom: handler, setDom: setHandlerDom } = createDomRef()
+  const [plugin] = usePlugin(draggablePlugin, {
+    handlerElement: handler,
+    unsetMoveInEnd: false,
+  })
+  return (
+    <Box
+      shadowProps={shadowProps}
+      plugin={plugin}
+      icss={[
+        {
+          borderRadius: "16px",
+          paddingTop: "20px",
+        },
+        icssCardPanel,
+      ]}
+    >
+      <DragHandler domRef={setHandlerDom} shadowProps={props.propsofDragHandler} />
+      <AddProps>{props.children}</AddProps>
+    </Box>
   )
 }
 

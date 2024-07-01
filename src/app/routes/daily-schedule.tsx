@@ -3,12 +3,15 @@ import {
   Box,
   Button,
   Grid,
+  Group,
+  Icon,
   Input,
   InputController,
-  Item,
   List,
   SchemaParser,
   SchemaParserController,
+  Section,
+  createDisclosure,
   createIDBStoreManager,
   createInputDescription,
   createRef,
@@ -18,16 +21,20 @@ import {
 } from "@edsolater/pivkit"
 import { createEffect, createSignal, on, onCleanup, onMount, type Accessor, type Setter } from "solid-js"
 import { createStore, reconcile, unwrap, type SetStoreFunction } from "solid-js/store"
-import { FABPanel } from "../pageComponents/FABPanel"
+import { DraggablePanel, FloatingPanel } from "../pageComponents/FABPanel"
 import { ScheduleItem } from "../pageComponents/scheduleItem/ScheduleItem"
-import { ScheduleLinkItem, type ScheduleLinkItemCategories } from "../pageComponents/scheduleItem/type"
-import { downloadJSON, importJSONFile } from "../utils/download"
+import { ScheduleLinkItem } from "../pageComponents/scheduleItem/type"
 import { dailyScheduleData, dailySchemaUtils, updateExistedScheduleItem } from "../pageComponents/scheduleItem/utils"
+import { downloadJSON, importJSONFile } from "../utils/download"
+import { popupWidget } from "../pageComponents/scheduleItem/popupWidget"
 
 export default function DailySchedulePage() {
   const [data, setData] = useSubscribableStore(dailyScheduleData, { name: "daily-schedule", cachedByIndexDB: true })
 
   const [ref, setRef] = createRef<LinkCreatorFormController>()
+
+  const [canEdit, { toggle: toggleCreatorForm }] = createDisclosure(true)
+
   function handleDeleteLink(link: ScheduleLinkItem) {
     dailySchemaUtils.deleteLink(link)
   }
@@ -37,55 +44,100 @@ export default function DailySchedulePage() {
 
   return (
     <Grid
-      icss={icssGrid({
-        gap: "32px",
-        placeContent: "center",
-        placeItems: "center",
-        templateColumn: "2fr 1fr",
-      })}
-    >
-      <Item icss={{ gridColumn: "1 / -1", display: "flex", gap: "8px" }}>
-        <Button
-          onClick={() => {
-            downloadJSON(data, "daily-schedule.json")
-            console.log("need to export data to a file")
-          }}
-        >
-          Export
-        </Button>
-        <Button
-          onClick={() => {
-            importJSONFile().then((jsonData) => {
-              dailyScheduleData.set(jsonData)
-            })
-          }}
-        >
-          Import
-        </Button>
-      </Item>
-
-      <List
-        items={data.links}
-        icss={{
-          width: "100%",
+      icss={[
+        icssGrid({
+          gap: "32px",
+          templateColumn: "2fr 1fr",
+        }),
+        {
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
-          gap: "16px",
-        }}
-      >
-        {(link) => (
-          <ScheduleItem
-            item={link}
-            onDelete={() => handleDeleteLink(link)}
-            onEdit={() => handleEdit(link)}
-            onCategoryChange={(category) => {
-              updateExistedScheduleItem(link.id, { category })
-            }}
-          />
-        )}
-      </List>
+          transition: "grid-template 0.5s",
+          gridTemplate: `
+            "toolbar toolbar" auto
+            "main    main   " 1fr / 1fr 300px
+          `,
+        },
+      ]}
+    >
+      <Section icss={{ gridArea: "toolbar" }}>
+        <Box class="toolbar" icss={{ display: "flex", width: "100%" }}>
+          <Group class="temp-actions" icss={{ flexGrow: 1, display: "flex", gap: "8px" }}>
+            <Button
+              onClick={() => {
+                toggleCreatorForm()
+              }}
+              plugin={popupWidget.config({
+                canBackdropClose: true,
+                defaultOpen: true,
+                popElement: () => (
+                  <DraggablePanel>
+                    <NewScheduleItemCreatorForm
+                      ref={setRef}
+                      onDone={({ info: newformData, inEditMode }) => {
+                        if (inEditMode) {
+                          setData((prev) => ({
+                            links: prev.links?.map((link) => (link.id === newformData.id ? newformData : link)),
+                          }))
+                        } else {
+                          setData((prev) => ({
+                            links: [...(prev.links ?? []), { id: newformData.name, ...newformData }],
+                          }))
+                        }
+                      }}
+                    />
+                  </DraggablePanel>
+                ),
+              })}
+            >
+              <Icon src="/icons/add.svg" icss={{ display: "inline" }} /> Create New
+            </Button>
+          </Group>
+          <Group class="form-actions" icss={{ flexGrow: 1, display: "flex", gap: "8px" }}>
+            <Button
+              onClick={() => {
+                downloadJSON(data, "daily-schedule.json")
+                console.log("need to export data to a file")
+              }}
+            >
+              Export
+            </Button>
+            <Button
+              onClick={() => {
+                importJSONFile().then((jsonData) => {
+                  dailyScheduleData.set(jsonData)
+                })
+              }}
+            >
+              Import
+            </Button>
+          </Group>
+        </Box>
+      </Section>
 
-      <FABPanel>
+      <Group icss={{ gridArea: "main" }}>
+        <List
+          items={data.links}
+          icss={{
+            width: "100%",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+            gap: "16px",
+          }}
+        >
+          {(link) => (
+            <ScheduleItem
+              item={link}
+              onDelete={() => handleDeleteLink(link)}
+              onEdit={() => handleEdit(link)}
+              onCategoryChange={(category) => {
+                updateExistedScheduleItem(link.id, { category })
+              }}
+            />
+          )}
+        </List>
+      </Group>
+
+      {/* <FloatingPanel open={canEdit} defaultOpen>
         <NewScheduleItemCreatorForm
           ref={setRef}
           onDone={({ info: newformData, inEditMode }) => {
@@ -100,7 +152,7 @@ export default function DailySchedulePage() {
             }
           }}
         />
-      </FABPanel>
+      </FloatingPanel> */}
     </Grid>
   )
 }
@@ -146,12 +198,13 @@ function NewScheduleItemCreatorForm(kitProps: KitProps<LinkCreatorFormProps>) {
 
   return (
     <Box shadowProps={shadowProps} icss={{ width: "300px", height: "300px" }}>
-      <Box icss={{ marginBottom: "32px" }}>
+      <Group icss={{ marginBottom: "32px" }}>
         <SchemaParser schema={formSchema} ref={setSchemaRef} />
-      </Box>
-      <Button onClick={handleSubmit}>{isInEditMode() ? "Update" : "Create"}</Button>
-      <Button onClick={handleReset}>Reset</Button>
-      <Test />
+      </Group>
+      <Group name="button-group" icss={{ display: "flex", gap: "4px" }}>
+        <Button onClick={handleSubmit}>{isInEditMode() ? "Update" : "Create"}</Button>
+        <Button onClick={handleReset}>Reset</Button>
+      </Group>
     </Box>
   )
 }
