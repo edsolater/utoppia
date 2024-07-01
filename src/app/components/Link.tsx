@@ -30,7 +30,7 @@ export function Link(rawProps: LinkProps) {
   return (
     <Piv<"a">
       icss={linkDefaultIcss}
-      render:self={(selfProps) =>
+      defineSelf={(selfProps) =>
         renderHTMLDOM("a", selfProps, {
           href: props.href,
           rel: innerRoute() ? undefined : "nofollow noopener noreferrer",

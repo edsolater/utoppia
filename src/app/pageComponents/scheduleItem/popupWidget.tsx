@@ -113,7 +113,7 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
     onClick: ({ ev }) => {
       open()
     },
-    "render:firstChild": (
+    "defineFirstChild": (
       <PopoverPanel
         domRef={setPopoverContentDom}
         open={isOn}

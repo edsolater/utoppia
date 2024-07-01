@@ -22,7 +22,7 @@ export function Title(kitProps: TitleKitProps) {
     <Text
       id={id()}
       htmlProps={{ id: id() }}
-      render:self={(selfProps) => renderHTMLDOM(props.htmlAs, selfProps)}
+      defineSelf={(selfProps) => renderHTMLDOM(props.htmlAs, selfProps)}
       shadowProps={props}
       icss={[icssTitle, { marginBottom: "16px" }]}
     >

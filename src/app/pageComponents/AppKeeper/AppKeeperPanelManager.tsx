@@ -115,7 +115,7 @@ export function AppKeeperPanelManager(kitprops: KitProps<AppKeeperPanelManagerPr
           : "unset",
         transition: "500ms",
       }}
-      // render:self={renderAsHTMLAside}
+      // defineSelf={renderAsHTMLAside}
       style={{
         [`--${panelName}-x`]: props.canWidthResized
           ? panelWidth()

@@ -16,10 +16,10 @@ import { colors } from "../../../theme/colors"
 
 export type OptionItemBoxProps = {
   /** @default true */
-  ["render:dot"]?: boolean | PivChild | (() => PivChild)
+  ["defineDot"]?: boolean | PivChild | (() => PivChild)
   // NOTE: when start with 'visiable' this part of component can be shown, 🤔 just whether 'render:' exist is enough ?
   /** @default false */
-  ["render:arrow"]?: boolean | PivChild | (() => PivChild)
+  ["defineArrow"]?: boolean | PivChild | (() => PivChild)
   iconSrc?: string
   href?: string
 }
@@ -40,7 +40,7 @@ const icssOptionItemBox = createICSS(() => ({
 
 export function OptionItemBox(kitProps: KitProps<OptionItemBoxProps>) {
   const { props, shadowProps } = useKitProps(kitProps, {
-    defaultProps: { ["render:arrow"]: true, ["render:dot"]: true },
+    defaultProps: { ["defineArrow"]: true, ["defineDot"]: true },
   })
   const subComponentsRender = {
     dot: () => (
@@ -51,7 +51,7 @@ export function OptionItemBox(kitProps: KitProps<OptionItemBoxProps>) {
         ]}
       >
         {switchCase<boolean | PivChild | (() => PivChild), any>(
-          props["render:dot"],
+          props["defineDot"],
           [
             [(v) => isObject(v), (v) => v],
             [(v) => isFunction(v), (v) => (v as AnyFn)()],
@@ -63,7 +63,7 @@ export function OptionItemBox(kitProps: KitProps<OptionItemBoxProps>) {
     ),
     arrow: () =>
       /* TODO: add arrow */ switchCase(
-        props["render:arrow"],
+        props["defineArrow"],
         [
           [(v) => isObject(v), (v) => v],
           [(v) => isFunction(v), (v) => (v as AnyFn)()],

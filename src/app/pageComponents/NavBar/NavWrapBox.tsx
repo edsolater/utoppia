@@ -9,7 +9,7 @@ export function NaBar_NavWrapBox(kitProps: KitProps<NaBar_NavWrapBoxProps>) {
     <Piv<"nav">
       shadowProps={shadowProps}
       icss={{ userSelect: "none", padding: "16px 48px", transition: "150ms" }}
-      render:self={renderAsHTMLNav}
+      defineSelf={renderAsHTMLNav}
     />
   )
 }

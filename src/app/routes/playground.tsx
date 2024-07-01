@@ -367,7 +367,7 @@ function SwitchExample() {
     <>
       <Piv
         class={checked() ? "checked" : ""}
-        render:firstChild={
+        defineFirstChild={
           <Piv
             icss={{
               color: checked() ? "dodgerblue" : "crimson",
@@ -829,7 +829,7 @@ function DragAndDropExample() {
 }
 
 const droppableSlotsPlugin = createPlugin(() => () => ({
-  "render:firstChild": [
+  "defineFirstChild": [
     <SlotBox icss={icssSlotBox} plugin={droppablePlugin}></SlotBox>,
     <SlotBox icss={icssSlotBox} plugin={droppablePlugin}></SlotBox>,
     <SlotBox icss={icssSlotBox} plugin={droppablePlugin}></SlotBox>,
