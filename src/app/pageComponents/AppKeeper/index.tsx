@@ -82,7 +82,7 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
               height: "100%",
               zIndex: -1,
               objectFit: "cover",
-              filter: "brightness(0.5) contrast(1) saturate(1.8) blur(12px)",
+              filter: "brightness(0.5) contrast(1) saturate(1.8) blur(4px)",
             }}
           />
         </Show>

@@ -36,7 +36,10 @@ function washScheduleSchema(inputRawValue: ScheduleSchema): ScheduleSchema {
 }
 
 /** schedule data holder */
-export const dailyScheduleData = createSubscribable<ScheduleSchema>({}, { beforeValueSet: washScheduleSchema })
+export const dailyScheduleData = createSubscribable<ScheduleSchema>(
+  {},
+  { name: "daily-schedule", beforeValueSet: washScheduleSchema },
+)
 
 /**
  * in {@link dailySchemaUtils}
