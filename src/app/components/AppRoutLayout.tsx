@@ -25,7 +25,7 @@ export function AppRootLayout(props: RouteSectionProps) {
   )
   const needLayout = createMemo(() => routes.find(({ path }) => path === location.pathname)?.needAppKeeper)
   useExperimentalCode()
-  const { src: bgImageSrc } = useBingDailyImage()
+  const { src: bgImageSrc } = useAppImage()
   // useLocalStorageRpc()
   return (
     <Show when={needLayout()} fallback={props.children}>
@@ -42,9 +42,11 @@ export function AppRootLayout(props: RouteSectionProps) {
   )
 }
 
-function useBingDailyImage() {
+function useAppImage() {
   // https://bing.img.run/api.html
-  const src = "https://bing.img.run/rand.php"
+  const src = "https://bing.img.run/uhd.php"
+
+  // const src = "https://i.pximg.net/img-original/img/2023/04/06/02/02/07/106906266_p2.png"
   return { src }
 }
 
