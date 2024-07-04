@@ -8,6 +8,7 @@ import {
   SchemaParser,
   SchemaParserController,
   Section,
+  Space,
   createInputDescription,
   createRef,
   icssGrid,
@@ -53,9 +54,13 @@ export default function DailySchedulePage() {
       ]}
     >
       <Section icss={{ gridArea: "toolbar" }}>
-        <Box class="toolbar" icss={{ display: "flex", width: "100%" }}>
-          <Group class="temp-actions" icss={{ flexGrow: 1, display: "flex", gap: "8px" }}></Group>
-          <Group class="form-actions" icss={{ flexGrow: 1, display: "flex", gap: "8px" }}>
+        <Box class="toolbar" icss={{ display: "flex", width: "100%", gap: "32px" }}>
+          <Space />
+          <Group class="temp-actions" icss={{ display: "flex", gap: "8px" }}></Group>
+          <Group class="form-actions" icss={{ display: "flex", gap: "8px" }}>
+            <Button>
+              <Icon src="/icons/settings.svg" variant="inline" />
+            </Button>
             <CreatorButton
               refofNewScheduleItemCreatorForm={setLinkCreatorRef}
               onSubmit={(newformData, inEditMode) => {
@@ -75,7 +80,8 @@ export default function DailySchedulePage() {
                 downloadJSON(data, "daily-schedule.json")
               }}
             >
-              Export
+              <Icon src="/icons/download_2.svg" variant="inline" />
+              Download Profile Settings
             </Button>
             <Button
               onClick={() => {
@@ -84,7 +90,8 @@ export default function DailySchedulePage() {
                 })
               }}
             >
-              Import
+              <Icon src="/icons/upload_2.svg" variant="inline" />
+              Load Profile Settings
             </Button>
           </Group>
         </Box>
@@ -161,7 +168,7 @@ function CreatorButton(kitprops: KitProps<CreatorButtonProps>) {
         ),
       })}
     >
-      <Icon src="/icons/add.svg" icss={{ display: "inline" }} /> Create New
+      <Icon src="/icons/add.svg" variant="inline" /> Create New
     </Button>
   )
 }

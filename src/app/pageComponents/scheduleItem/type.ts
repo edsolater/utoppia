@@ -17,9 +17,16 @@ export type ScheduleItem = {
   category?: string // classic
 }
 
-export type ScheduleLinkItemCategories = "video" | "resource" | "ai" | "article"
+export type ScheduleLinkItemCategories = "video" | "resource" | "ai" | "article" | "up主"
 
-export const scheduleLinkItemCategories = ["video", "resource", "ai", "article"] satisfies ScheduleLinkItemCategories[]
+// should can dynamic create by user, like notion
+export const scheduleLinkItemCategories = [
+  "video",
+  "resource",
+  "ai",
+  "article",
+  "up主",
+] satisfies ScheduleLinkItemCategories[]
 
 export type ScheduleLinkItem = ScheduleItem & {
   url?: string

@@ -24,7 +24,7 @@ import { Show } from "solid-js"
 export type AppKeeperProps = {
   metaTitle?: string
 
-  "defineContentBanner"?: PivChild
+  defineContentBanner?: PivChild
   TopbarBanner?: PivChild
 
   //#region ---------------- root ----------------
@@ -83,6 +83,7 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
               zIndex: -1,
               objectFit: "cover",
               filter: "brightness(0.4) contrast(1) saturate(1.8) blur(2px) grayscale(0.5) opacity(0.8)",
+              backgroundAttachment: "fixed",
             }}
           />
         </Show>
