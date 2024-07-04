@@ -4,19 +4,22 @@ import {
   Button,
   Group,
   Icon,
-  Input,
   List,
   Piv,
   Row,
   Text,
+  createDisclosure,
+  createIStore,
   cssColorMix,
+  cssGrayscale,
   cssOpacity,
   icssCard,
   icssClickable,
   icssContentClickableOpacity,
   type CSSObject,
 } from "@edsolater/pivkit"
-import { createMemo } from "solid-js"
+import { createEffect, createMemo, on } from "solid-js"
+import { reconcile } from "solid-js/store"
 import { colors } from "../../theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { SelectPanel } from "./Select"
@@ -27,16 +30,17 @@ import {
   type ScheduleLinkItem,
   type ScheduleLinkItemCategories,
 } from "./type"
+import { json } from "@solidjs/router"
 
 // user configable
 // color:
 const scheduleItemColor = {
   externalLinks: {
-    video: "dodgerblue", // only theme color
+    video: "red", // only theme color
     resource: "green", // only theme color
-    ai: "yellowgreen", // only theme color
-    article: "darkslateblue", // only theme color
-    up主: "deeppink", // only theme color
+    ai: "blue", // only theme color
+    article: "purple", // only theme color
+    up主: "orange", // only theme color
   } satisfies Record<ScheduleLinkItemCategories, CSSObject["color"]>,
   defaultExternalLink: "#ffffffdd",
   cardText: "#f5f5f5", // only theme color
@@ -51,10 +55,41 @@ function getScheduleItemColor(item: ScheduleItem) {
 
 export function ScheduleItem(props: {
   item: ScheduleLinkItem
+
+  /** user  attempt to delete this item */
   onDelete?: () => void
+
+  /** detect inner edit mode is started */
   onEdit?: () => void
-  onCategoryChange?: (category: ScheduleLinkItemCategories) => void
+
+  /**
+   * detect inner item info change
+   * when end edit mode or user change item info
+   */
+  onItemInfoChange?: (newItem: ScheduleLinkItem) => void
 }) {
+  const [innerItemData, setInnerItemData] = createIStore(props.item, {
+    onChange: (innerItemData) => {
+      props.onItemInfoChange?.(innerItemData)
+    },
+  })
+
+  // reflect outer item change to inner item
+  createEffect(
+    on(
+      () => props.item,
+      () => {
+        setInnerItemData(reconcile(props.item))
+      },
+      { defer: true },
+    ),
+  )
+
+  const [inEditMode, { open: startEdit, close: endEdit, toggle: toggleEdit }] = createDisclosure(false, {
+    onClose() {
+      props.onItemInfoChange?.(innerItemData)
+    },
+  })
   function handleActionDelete() {
     props.onDelete?.()
   }
@@ -66,8 +101,13 @@ export function ScheduleItem(props: {
   }
 
   function handleActionEdit() {
+    toggleEdit()
     props.onEdit?.()
   }
+
+  createEffect(() => {
+    console.log("inEditMode(): ", inEditMode())
+  })
 
   const itemThemeColor = createMemo(() => getScheduleItemColor(props.item))
   return (
@@ -75,7 +115,7 @@ export function ScheduleItem(props: {
       icss={[
         // icssCard({ bg: props.item.is === 'link' scheduleItemColor.cardLink }),
         icssCard({
-          bg: cssOpacity(cssColorMix({ color: colors.card, percent: "80%" }, itemThemeColor()), 0.6),
+          bg: cssOpacity(cssColorMix({ color: cssGrayscale(itemThemeColor(), 0.3), percent: "30%" }, colors.card), 0.9),
         }),
         {
           display: "grid",
@@ -91,7 +131,7 @@ export function ScheduleItem(props: {
       ]}
     >
       {/* category */}
-      <Piv
+      <Text
         icss={[
           {
             gridArea: "category",
@@ -114,15 +154,15 @@ export function ScheduleItem(props: {
               items={scheduleLinkItemCategories}
               defaultValue={props.item.category}
               onClose={closePopup}
-              onChange={({ itemValue, ...rest }) => {
-                props.onCategoryChange?.(itemValue() as ScheduleLinkItemCategories)
+              onChange={({ itemValue }) => {
+                setInnerItemData("category", itemValue() as ScheduleLinkItem["category"])
               }}
             />
           ),
         })}
       >
         {props.item.category ?? " "}
-      </Piv>
+      </Text>
 
       {/* name + links */}
       <Group icss={{ gridArea: "name" }}>
@@ -166,8 +206,15 @@ export function ScheduleItem(props: {
 
       {/* action2 */}
       <Row icss={[{ gridArea: "actions2", justifySelf: "end" }]}>
-        <Button variant="plain" size={"xs"} onClick={handleActionEdit} icss={icssContentClickableOpacity}>
-          <Icon name="edit" src={"/icons/edit.svg"} />
+        <Button
+          class={"edit-btn"}
+          variant="plain"
+          isActive={inEditMode}
+          size={"xs"}
+          onClick={handleActionEdit}
+          icss={icssContentClickableOpacity}
+        >
+          {({ isActive }) => <Icon name="edit" src={isActive() ? "/icons/edit_fill.svg" : "/icons/edit.svg"} />}
         </Button>
 
         <Button variant="plain" size={"xs"} onClick={handleActionDelete} icss={icssContentClickableOpacity}>

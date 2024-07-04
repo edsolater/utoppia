@@ -112,8 +112,8 @@ export default function DailySchedulePage() {
               item={link}
               onDelete={() => handleDeleteLink(link)}
               onEdit={() => handleEdit(link)}
-              onCategoryChange={(category) => {
-                updateExistedScheduleItem(link.id, { category })
+              onItemInfoChange={(itemInfo) => {
+                updateExistedScheduleItem(link.id, itemInfo)
               }}
             />
           )}
