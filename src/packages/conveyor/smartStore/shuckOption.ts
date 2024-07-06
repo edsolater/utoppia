@@ -3,14 +3,14 @@ import { shuckOptionTag } from "./shuck"
 
 export type ShuckOption<T = any> = {
   value: T
-  visiable: boolean
+  visible: boolean
   [shuckOptionTag]: true
 }
 
-export function createShuckOption<T>(description: { value: T; visiable: boolean }): ShuckOption<T> {
+export function createShuckOption<T>(description: { value: T; visible: boolean }): ShuckOption<T> {
   return {
     value: description.value,
-    visiable: description.visiable,
+    visible: description.visible,
     [shuckOptionTag]: true,
   }
 }

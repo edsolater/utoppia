@@ -9,15 +9,15 @@ interface ShuckMemo<T> extends Subscribable<T> {
   /**
    * used by TaskExecutor to track subscribable's visiability
    *
-   * when no visiableCheckers, means this subscribable is hidden
-   * when any of visiableCheckers is true, means this subscribable is visiable;
-   * when all of visiableCheckers is false, means this subscribable is hidden
+   * when no visibleCheckers, means this subscribable is hidden
+   * when any of visibleCheckers is true, means this subscribable is visible;
+   * when all of visibleCheckers is false, means this subscribable is hidden
    *
-   * only effect exector will auto run if it's any observed Shuck is visiable \
-   * visiable, so effect is meaningful 0for user
+   * only effect exector will auto run if it's any observed Shuck is visible \
+   * visible, so effect is meaningful 0for user
    */
-  visiable: Subscribable<boolean>
-  visiableCheckers: Map<any, boolean>
+  visible: Subscribable<boolean>
+  visibleCheckers: Map<any, boolean>
   // when set this, means this object is a observable-subscribable
   subscribedExecutors: Set<TaskRunner>
 }

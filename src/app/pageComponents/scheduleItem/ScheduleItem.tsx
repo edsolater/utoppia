@@ -5,7 +5,6 @@ import {
   Group,
   Icon,
   List,
-  Piv,
   Row,
   Text,
   createDisclosure,
@@ -23,6 +22,7 @@ import { reconcile } from "solid-js/store"
 import { colors } from "../../theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { SelectPanel } from "./Select"
+import { editablePlugin } from "./editablePlugin"
 import { popupWidget } from "./popupWidget"
 import {
   scheduleLinkItemCategories,
@@ -30,7 +30,7 @@ import {
   type ScheduleLinkItem,
   type ScheduleLinkItemCategories,
 } from "./type"
-import { json } from "@solidjs/router"
+import { visiblePlugin } from "./visiablePlugin"
 
 // user configable
 // color:
@@ -68,18 +68,14 @@ export function ScheduleItem(props: {
    */
   onItemInfoChange?: (newItem: ScheduleLinkItem) => void
 }) {
-  const [innerItemData, setInnerItemData] = createIStore(props.item, {
-    onChange: (innerItemData) => {
-      props.onItemInfoChange?.(innerItemData)
-    },
-  })
+  const [innerItemData, setInnerItemData] = createIStore({...props.item})
 
   // reflect outer item change to inner item
   createEffect(
     on(
       () => props.item,
       () => {
-        setInnerItemData(reconcile(props.item))
+        setInnerItemData(reconcile({...props.item}))
       },
       { defer: true },
     ),
@@ -90,6 +86,15 @@ export function ScheduleItem(props: {
       props.onItemInfoChange?.(innerItemData)
     },
   })
+
+  // should only reflect to item's name
+  const [isTextNameInEditMode, { open: startTextNameEdit, close: endTextNameEdit, toggle: toggleTextNameEditMode }] =
+    createDisclosure(false, {
+      onClose() {
+        props.onItemInfoChange?.(innerItemData)
+      },
+    })
+
   function handleActionDelete() {
     props.onDelete?.()
   }
@@ -105,11 +110,8 @@ export function ScheduleItem(props: {
     props.onEdit?.()
   }
 
-  createEffect(() => {
-    console.log("inEditMode(): ", inEditMode())
-  })
-
   const itemThemeColor = createMemo(() => getScheduleItemColor(props.item))
+
   return (
     <Box
       icss={[
@@ -122,7 +124,7 @@ export function ScheduleItem(props: {
           // TODO: use subgrid
           gridTemplate: `
               "category  category  actions2 " auto
-              "name      name      name" auto
+              "name      name      actions1" auto
               "tags      tags      tags    " 1fr
               "comment   comment   comment" auto / 1fr 1fr 1fr`,
           columnGap: "16px",
@@ -152,7 +154,7 @@ export function ScheduleItem(props: {
             <SelectPanel
               name="category-selector"
               items={scheduleLinkItemCategories}
-              defaultValue={props.item.category}
+              defaultValue={innerItemData.category}
               onClose={closePopup}
               onChange={({ itemValue }) => {
                 setInnerItemData("category", itemValue() as ScheduleLinkItem["category"])
@@ -166,23 +168,32 @@ export function ScheduleItem(props: {
 
       {/* name + links */}
       <Group icss={{ gridArea: "name" }}>
-        <Box icss={{ display: "flex", gap: "8px" }} onClick={handleActionOpenLink}>
+        <Box icss={{ display: "flex", gap: "8px" }}>
           <Text
-            // plugin={popupWidget.config({
-            //   popupDirection: "center",
-            //   popElement: () => (
-            //     <Input icss={{ fontSize: "1em", background: colors.appPanel }} defaultValue={() => props.item.name} />
-            //   ),
-            // })}
-            icss={{ fontSize: "1.8em", "&:hover": { textDecoration: "underline solid", cursor: "pointer" } }}
+            icss={{ flexGrow: 1, fontSize: "1.8em" }}
+            plugin={editablePlugin.config({
+              isOn: isTextNameInEditMode(),
+              onInput: (newText) => {
+                setInnerItemData("name", newText)
+              },
+            })}
           >
             {props.item.name}
           </Text>
-          {/* action 1 */}
-          <Button variant="plain" size={"xs"} icss={icssContentClickableOpacity}>
-            <Icon name="open-window" src={"/icons/open_in_new.svg"} />
-          </Button>
+          <Icon
+            name="edit-trigger"
+            src={isTextNameInEditMode() ? "/icons/check.svg" : "/icons/edit.svg"}
+            onClick={() => toggleTextNameEditMode()}
+            plugin={visiblePlugin.config({ isOn: inEditMode })}
+          />
         </Box>
+      </Group>
+
+      {/* action 1 */}
+      <Group icss={{ gridArea: "actions1", justifySelf: "end" }}>
+        <Button variant="plain" size={"xs"} icss={icssContentClickableOpacity} onClick={handleActionOpenLink}>
+          <Icon name="open-window" src={"/icons/open_in_new.svg"} />
+        </Button>
       </Group>
 
       {/* tags */}
@@ -194,14 +205,14 @@ export function ScheduleItem(props: {
           flexWrap: "wrap",
           gap: "8px",
         }}
-        items={props.item.tags?.split(" ")}
+        items={innerItemData.tags?.split(" ")}
       >
         {(tag) => <Text icss={{ alignContent: "center" }}>{tag}</Text>}
       </List>
 
       {/* comment */}
       <Box icss={{ gridArea: "comment" }}>
-        <Text>{props.item.comment}</Text>
+        <Text>{innerItemData.comment}</Text>
       </Box>
 
       {/* action2 */}

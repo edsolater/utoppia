@@ -1,18 +1,18 @@
 import { Accessor, Setter, createMemo, createSignal, onCleanup, onMount } from "solid-js"
-import { Shuck, makeShuckInvisiable, makeShuckVisiable } from "../smartStore/shuck"
+import { Shuck, makeShuckInvisible, makeShuckvisible } from "../smartStore/shuck"
 import { createStore, reconcile, type SetStoreFunction } from "solid-js/store"
 
 let globalShuckInstanceSignalID = 1
 export function useShuck<T>(shuck: Shuck<T>): [Accessor<T>, Setter<T>] {
-  // TODO: if multi has subscribed this shuck, shuck's visiable should depends on multi of them
+  // TODO: if multi has subscribed this shuck, shuck's visible should depends on multi of them
   const innerID = globalShuckInstanceSignalID++
 
   const [accessor, set] = createSignal(shuck())
 
   onMount(() => {
-    makeShuckVisiable(shuck, innerID)
+    makeShuckvisible(shuck, innerID)
     onCleanup(() => {
-      makeShuckInvisiable(shuck, innerID)
+      makeShuckInvisible(shuck, innerID)
     })
   })
 
@@ -30,15 +30,15 @@ export function useShuckAsStore<T extends object | undefined>(
   shuck: Shuck<T>,
   defaultValue?: NonNullable<T>,
 ): [T, SetStoreFunction<T>] {
-  // TODO: if multi has subscribed this shuck, shuck's visiable should depends on multi of them
+  // TODO: if multi has subscribed this shuck, shuck's visible should depends on multi of them
   const innerID = globalShuckInstanceSignalID++
 
   const [store, setStore] = createStore<any>(shuck() ?? defaultValue)
 
   onMount(() => {
-    makeShuckVisiable(shuck, innerID)
+    makeShuckvisible(shuck, innerID)
     onCleanup(() => {
-      makeShuckInvisiable(shuck, innerID)
+      makeShuckInvisible(shuck, innerID)
     })
   })
 

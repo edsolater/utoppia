@@ -4,15 +4,15 @@
  * *********
  */
 import { createSubscribable, shrinkFn, invoke, asyncInvoke, assignObject } from "@edsolater/fnkit"
-import { Shuck, isShuckVisiable } from "./shuck"
+import { Shuck, isShuckvisible } from "./shuck"
 
 export type TaskRunner = {
   (): Promise<void>
   relatedShucks: Shuck<any>[]
-  readonly visiable: boolean // TODO: need to be a subscribable
+  readonly visible: boolean // TODO: need to be a subscribable
 }
 export type TaskManager = {
-  // main method of task, run if needed (any of shucks is visiable)
+  // main method of task, run if needed (any of shucks is visible)
   run(): void
   taskRunner: TaskRunner
   destory(): void
@@ -23,13 +23,13 @@ const keyedTasks = new Map<string, TaskManager>()
  * like solidjs's createEffect, will track all subscribable's getValue option in it
  * try to re-invoke when shunk's value or shuck's visiablity changed
  *
- * when relatedShucks is hinted, task function will only run when relatedShucks is visiable
+ * when relatedShucks is hinted, task function will only run when relatedShucks is visible
  * otherwise, initly task function must it to track the subscribables
  *
  *
  * @example
  * const testObserverableSubscribable = createLeaf(1)
- * const testObserverableSubscribableB = createLeaf(1, { visiable: true })
+ * const testObserverableSubscribableB = createLeaf(1, { visible: true })
  *
  * const task = createTask([testObserverableSubscribable, testObserverableSubscribableB], async (get) => {
  *   await Promise.resolve(3)
@@ -40,52 +40,52 @@ export function createTask(
   dependOns: Shuck<any>[],
   task: () => void,
   options?: {
-    visiable?: boolean | ((shucks: Shuck<any>[]) => boolean)
+    visible?: boolean | ((shucks: Shuck<any>[]) => boolean)
     /** if multi same key subscribeFns are registered, only last one will work  */
     key?: string
   },
 ) {
-  const isTaskVisiable = createSubscribable(checkAnyDependsVisiable(dependOns))
+  const isTaskvisible = createSubscribable(checkAnyDependsvisible(dependOns))
   const taskRunner = (() => asyncInvoke(task)) as TaskRunner
   const unsubscribes: Set<() => void> = new Set()
 
   assignObject(taskRunner, {
     relatedShucks: dependOns,
-    get visiable() {
-      return shrinkFn(options?.visiable, [dependOns]) ?? dependOns.some(isShuckVisiable)
+    get visible() {
+      return shrinkFn(options?.visible, [dependOns]) ?? dependOns.some(isShuckvisible)
     },
   })
 
   for (const shuck of dependOns) {
     // attachTaskToShuck(taskRunner, shuck) // task is triggered by subscribed shucks, but also attach shack to taskRunner make it easy to debug (easy for human to monitor the app tasks)
     const { unsubscribe: unsubscribeShuck } = shuck.subscribe((v) => {
-      if (isTaskVisiable()) {
+      if (isTaskvisible()) {
         taskRunner()
       }
     })
     unsubscribes.add(unsubscribeShuck)
-    const { unsubscribe: unsubscribeShuckVisiable } = shuck.visiable.subscribe(() => {
-      const isAnyVisiable = checkAnyDependsVisiable(dependOns)
-      isTaskVisiable.set(isAnyVisiable)
+    const { unsubscribe: unsubscribeShuckvisible } = shuck.visible.subscribe(() => {
+      const isAnyvisible = checkAnyDependsvisible(dependOns)
+      isTaskvisible.set(isAnyvisible)
     })
-    unsubscribes.add(unsubscribeShuckVisiable)
+    unsubscribes.add(unsubscribeShuckvisible)
   }
 
-  const taskVisiableSubscription = isTaskVisiable.subscribe((v) => {
+  const taskvisibleSubscription = isTaskvisible.subscribe((v) => {
     if (v) {
       taskRunner()
     }
   })
 
-  unsubscribes.add(taskVisiableSubscription.unsubscribe)
+  unsubscribes.add(taskvisibleSubscription.unsubscribe)
 
   const manager: TaskManager = {
     taskRunner,
     run(config?: { force?: boolean }) {
-      if (config?.force ?? taskRunner.visiable) taskRunner()
+      if (config?.force ?? taskRunner.visible) taskRunner()
     },
     destory() {
-      unsubscribes.forEach(invoke)
+      unsubscribes.forEach((v) => v())
       unsubscribes.clear()
     },
   }
@@ -100,6 +100,6 @@ export function createTask(
   return manager
 }
 
-function checkAnyDependsVisiable(dependOns: Shuck<any>[]) {
-  return dependOns.some((shuck) => shuck.visiable)
+function checkAnyDependsvisible(dependOns: Shuck<any>[]) {
+  return dependOns.some((shuck) => shuck.visible)
 }

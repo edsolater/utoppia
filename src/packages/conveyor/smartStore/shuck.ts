@@ -22,20 +22,20 @@ export interface Shuck<T> extends Subscribable<T> {
   /**
    * used by TaskExecutor to track subscribable's visiability
    *
-   * when no visiableCheckers, means this subscribable is hidden
-   * when any of visiableCheckers is true, means this subscribable is visiable;
-   * when all of visiableCheckers is false, means this subscribable is hidden
+   * when no visibleCheckers, means this subscribable is hidden
+   * when any of visibleCheckers is true, means this subscribable is visible;
+   * when all of visibleCheckers is false, means this subscribable is hidden
    *
-   * only effect exector will auto run if it's any observed Shuck is visiable \
-   * visiable, so effect is meaningful 0for user
+   * only effect exector will auto run if it's any observed Shuck is visible \
+   * visible, so effect is meaningful 0for user
    */
-  visiable: Subscribable<boolean>
-  visiableCheckers: Map<any, boolean>
+  visible: Subscribable<boolean>
+  visibleCheckers: Map<any, boolean>
 }
 
 export interface CreateShuckOptions<T> {
-  visiable?: boolean | "auto" // TODO: inply it means auto
-  onChangeToVisiable?: () => void
+  visible?: boolean | "auto" // TODO: inply it means auto
+  onChangeTovisible?: () => void
 }
 
 /** create special subscribable */
@@ -62,13 +62,13 @@ export function createShuck<T>(
   const proxiedSubscribable = Object.assign(subscribable, {
     [shuckTag]: true,
     /**
-     * only effect exector will auto run if it's any observed Shuck is visiable \
-     * visiable, so effect is meaningful for user
+     * only effect exector will auto run if it's any observed Shuck is visible \
+     * visible, so effect is meaningful for user
      */
-    visiable: createSubscribable(Boolean(options?.visiable), {
-      onSet: options?.onChangeToVisiable,
+    visible: createSubscribable(Boolean(options?.visible), {
+      onSet: options?.onChangeTovisible,
     }),
-    visiableCheckers: new Map(),
+    visibleCheckers: new Map(),
     subscribedExecutors: new Set<TaskRunner>(),
   }) as Shuck<T>
   return proxiedSubscribable as Shuck<T>
@@ -78,46 +78,46 @@ export function isShuck<T>(value: any): value is Shuck<T> {
   return Boolean(isSubscribable(value) && value[shuckTag])
 }
 
-export function isShuckVisiable<T>(value: Shuck<T>) {
-  return value.visiable()
+export function isShuckvisible<T>(value: Shuck<T>) {
+  return value.visible()
 }
 
 export function isShuckHidden<T>(value: Shuck<T>) {
-  return !value.visiable()
+  return !value.visible()
 }
 
 /** **only place** to invoke task taskrunner */
 export function invokeTaskRunner(taskrunner: TaskRunner) {
-  if (taskrunner.visiable) {
+  if (taskrunner.visible) {
     asyncInvoke(taskrunner)
   }
 }
 
-export function updateShuckVisiable<T>(shuck: Shuck<T>) {
-  for (const isVisiable of shuck.visiableCheckers.values()) {
-    if (isVisiable) {
-      shuck.visiable.set(true)
+export function updateShuckvisible<T>(shuck: Shuck<T>) {
+  for (const isvisible of shuck.visibleCheckers.values()) {
+    if (isvisible) {
+      shuck.visible.set(true)
       return
     }
   }
-  shuck.visiable.set(false)
+  shuck.visible.set(false)
   return
 }
 
-export function setShuckVisiableChecker<T>(shuck: Shuck<T>, visiable: boolean, key: any) {
-  shuck.visiableCheckers.set(key, visiable)
-  updateShuckVisiable(shuck)
+export function setShuckvisibleChecker<T>(shuck: Shuck<T>, visible: boolean, key: any) {
+  shuck.visibleCheckers.set(key, visible)
+  updateShuckvisible(shuck)
 }
 
 export function deleteShuckVisibaleChecker<T>(shuck: Shuck<T>, key: any) {
-  shuck.visiableCheckers.delete(key)
-  updateShuckVisiable(shuck)
+  shuck.visibleCheckers.delete(key)
+  updateShuckvisible(shuck)
 }
 
-export function makeShuckVisiable<T>(shuck: Shuck<T>, key: any) {
-  setShuckVisiableChecker(shuck, true, key)
+export function makeShuckvisible<T>(shuck: Shuck<T>, key: any) {
+  setShuckvisibleChecker(shuck, true, key)
 }
 
-export function makeShuckInvisiable<T>(shuck: Shuck<T>, key: any) {
-  setShuckVisiableChecker(shuck, false, key)
+export function makeShuckInvisible<T>(shuck: Shuck<T>, key: any) {
+  setShuckvisibleChecker(shuck, false, key)
 }

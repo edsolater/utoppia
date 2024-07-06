@@ -6,7 +6,7 @@ type HistoryRecordItem = {
 
 export type ScheduleItem = {
   id: ID // (auto-generated)
-  name: string
+  name?: string
   comment?: string
   creatTime: TimeStamp // (auto-generated)
   history?: HistoryRecordItem[]

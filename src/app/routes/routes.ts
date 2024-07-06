@@ -7,7 +7,7 @@ type RouteItem = {
   icon?: string
 
   /**
-   * hiddenLink is only visiable through type in url directly
+   * hiddenLink is only visible through type in url directly
    * @default false
    */
   isHiddenLink?: boolean

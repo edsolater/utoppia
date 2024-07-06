@@ -3,7 +3,7 @@ import { configUIKitTheme } from "@edsolater/pivkit"
 import { RouteSectionProps } from "@solidjs/router"
 import { Show, createMemo } from "solid-js"
 import { createBranchStore } from "../../packages/conveyor/smartStore/branch"
-import { setShuckVisiableChecker } from "../../packages/conveyor/smartStore/shuck"
+import { setShuckvisibleChecker } from "../../packages/conveyor/smartStore/shuck"
 import { createTask } from "../../packages/conveyor/smartStore/task"
 import { uikitConfig } from "../configs/uikitTheme"
 import { initAppContextConfig } from "../hooks/initAppContextConfig"
@@ -60,7 +60,7 @@ function useExperimentalCode() {
   })
   effect.run()
   testCount.set((n) => n + 1)
-  setShuckVisiableChecker(testCount, true, undefined)
+  setShuckvisibleChecker(testCount, true, undefined)
   testCount.set((n) => n + 1)
   setTimeout(() => {
     console.log("effectRunCount: ", effectRunCount)
