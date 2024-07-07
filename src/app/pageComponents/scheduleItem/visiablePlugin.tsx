@@ -1,6 +1,6 @@
 import { shrinkFn } from "@edsolater/fnkit"
 import { createDomRef, createPlugin, useKitProps, type KitProps, type PivProps, type Plugin } from "@edsolater/pivkit"
-import { createEffect, type Accessor } from "solid-js"
+import { type Accessor } from "solid-js"
 
 export type visiblePluginPluginController = {
   isOn: Accessor<boolean>
@@ -23,18 +23,12 @@ export const visiblePlugin: visiblePluginPlugin = createPlugin(
     const { props: options } = useKitProps(opts)
     const { dom: selfDom, setDom: setSelfDom } = createDomRef()
     return () =>
-      {
-        const isOnnn = shrinkFn(opts.isOn)
-        createEffect(() => {
-          console.log('isOnnn: ', isOnnn)
-        })
-        return ({
-          domRef: setSelfDom,
-          get icss() {
-            return { visibility: shrinkFn(opts.isOn) ? "visible" : "hidden" }
-          },
-        }) as PivProps
-      }
+      ({
+        domRef: setSelfDom,
+        get icss() {
+          return { visibility: shrinkFn(opts.isOn) ? "visible" : "hidden" }
+        },
+      }) as PivProps
   },
   { name: "visiblePlugin" },
 )

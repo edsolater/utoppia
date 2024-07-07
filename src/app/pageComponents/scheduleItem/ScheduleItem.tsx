@@ -2,19 +2,20 @@ import { switchKey } from "@edsolater/fnkit"
 import {
   Box,
   Button,
-  Group,
-  Icon,
-  List,
-  Row,
-  Text,
   createDisclosure,
   createIStore,
   cssColorMix,
   cssGrayscale,
   cssOpacity,
+  Detector,
+  Group,
+  Icon,
   icssCard,
   icssClickable,
   icssContentClickableOpacity,
+  List,
+  Row,
+  Text,
   type CSSObject,
 } from "@edsolater/pivkit"
 import { createEffect, createMemo, on } from "solid-js"
@@ -22,7 +23,7 @@ import { reconcile } from "solid-js/store"
 import { colors } from "../../theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { SelectPanel } from "./Select"
-import { editablePlugin } from "./editablePlugin"
+import { editablePlugin, EditablePluginWrapper } from "./editablePlugin"
 import { popupWidget } from "./popupWidget"
 import {
   scheduleLinkItemCategories,
@@ -68,14 +69,14 @@ export function ScheduleItem(props: {
    */
   onItemInfoChange?: (newItem: ScheduleLinkItem) => void
 }) {
-  const [innerItemData, setInnerItemData] = createIStore({...props.item})
+  const [innerItemData, setInnerItemData] = createIStore({ ...props.item })
 
   // reflect outer item change to inner item
   createEffect(
     on(
       () => props.item,
       () => {
-        setInnerItemData(reconcile({...props.item}))
+        setInnerItemData(reconcile({ ...props.item }))
       },
       { defer: true },
     ),
@@ -168,25 +169,43 @@ export function ScheduleItem(props: {
 
       {/* name + links */}
       <Group icss={{ gridArea: "name" }}>
-        <Box icss={{ display: "flex", gap: "8px" }}>
-          <Text
-            icss={{ flexGrow: 1, fontSize: "1.8em" }}
-            plugin={editablePlugin.config({
-              isOn: isTextNameInEditMode(),
-              onInput: (newText) => {
-                setInnerItemData("name", newText)
-              },
-            })}
-          >
-            {props.item.name}
-          </Text>
-          <Icon
-            name="edit-trigger"
-            src={isTextNameInEditMode() ? "/icons/check.svg" : "/icons/edit.svg"}
-            onClick={() => toggleTextNameEditMode()}
-            plugin={visiblePlugin.config({ isOn: inEditMode })}
-          />
-        </Box>
+        {/* TODO: may be this mode is strightforward but too complex to type */}
+        <Detector>
+          {({ isHovered }) => (
+            <Box icss={{ display: "flex", gap: "8px" }}>
+              <EditablePluginWrapper
+                isOn={isTextNameInEditMode}
+                onInput={(newText) => {
+                  setInnerItemData("name", newText)
+                }}
+              >
+                {({ isOn }) => (
+                  <Text icss={{ flexGrow: 1, fontSize: "1.8em", outline: isOn() ? "solid" : undefined }}>
+                    {props.item.name}
+                  </Text>
+                )}
+              </EditablePluginWrapper>
+
+              {/* // can this be a plugin? it's more readable
+              <Text
+                icss={({ isOn }) => ({ flexGrow: 1, fontSize: "1.8em", outline: isOn() ? "solid" : undefined })}
+                plugin={editablePlugin.config({
+                  isOn: isTextNameInEditMode,
+                  onInput: (newText) => setInnerItemData({ name: newText }),
+                })}
+              >
+                {props.item.name}
+              </Text> */}
+
+              <Icon
+                name="edit-trigger"
+                src={isTextNameInEditMode() ? "/icons/check.svg" : "/icons/edit.svg"}
+                onClick={() => toggleTextNameEditMode()}
+                plugin={visiblePlugin.config({ isOn: isHovered })}
+              />
+            </Box>
+          )}
+        </Detector>
       </Group>
 
       {/* action 1 */}
