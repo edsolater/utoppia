@@ -206,15 +206,7 @@ export function ScheduleItem(props: {
 
               {/* // TODO: can this be a plugin? it's more readable */}
               <Text
-                icss={({ isOn }: { isOn: Accessor<boolean> }) => {
-                  // console.log("isOn: ", isOn)
-                  // console.log("params: ", Object.keys(params[0]))
-                  return {
-                    flexGrow: 1,
-                    fontSize: "1.8em",
-                    outline: isOn() ? "solid" : undefined,
-                  }
-                }}
+                icss={{ flexGrow: 1, fontSize: "1.8em" }}
                 plugin={editablePlugin.config({
                   isOn: isTextNameInEditMode,
                   onInput: (newText) => setInnerItemData({ name: newText }),
