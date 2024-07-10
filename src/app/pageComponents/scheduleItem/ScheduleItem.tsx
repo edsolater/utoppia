@@ -18,7 +18,7 @@ import {
   Text,
   type CSSObject,
 } from "@edsolater/pivkit"
-import { createEffect, createMemo, on } from "solid-js"
+import { createEffect, createMemo, on, type Accessor } from "solid-js"
 import { reconcile } from "solid-js/store"
 import { colors } from "../../theme/colors"
 import { navigateToUrl } from "../../utils/url"
@@ -113,6 +113,10 @@ export function ScheduleItem(props: {
 
   const itemThemeColor = createMemo(() => getScheduleItemColor(props.item))
 
+  createEffect(() => {
+    console.log("isTextNameInEditMode: ", isTextNameInEditMode())
+  })
+
   return (
     <Box
       icss={[
@@ -173,7 +177,7 @@ export function ScheduleItem(props: {
         <Detector>
           {({ isHovered }) => (
             <Box icss={{ display: "flex", gap: "8px" }}>
-              <EditablePluginWrapper
+              {/* <EditablePluginWrapper
                 isOn={isTextNameInEditMode}
                 onInput={(newText) => {
                   setInnerItemData("name", newText)
@@ -184,11 +188,14 @@ export function ScheduleItem(props: {
                     {props.item.name}
                   </Text>
                 )}
-              </EditablePluginWrapper>
-
-              {/* // can this be a plugin? it's more readable
-              <Text
-                icss={({ isOn }) => ({ flexGrow: 1, fontSize: "1.8em", outline: isOn() ? "solid" : undefined })}
+              </EditablePluginWrapper> */}
+              {/* // TODO: can this be a plugin? it's more readable */}
+              {/* <Text
+                icss={({ isOn }: { isOn: Accessor<boolean> }) => ({
+                  flexGrow: 1,
+                  fontSize: "1.8em",
+                  outline: isOn() ? "solid" : undefined,
+                })}
                 plugin={editablePlugin.config({
                   isOn: isTextNameInEditMode,
                   onInput: (newText) => setInnerItemData({ name: newText }),
@@ -197,10 +204,31 @@ export function ScheduleItem(props: {
                 {props.item.name}
               </Text> */}
 
+              {/* // TODO: can this be a plugin? it's more readable */}
+              <Text
+                icss={({ isOn }: { isOn: Accessor<boolean> }) => {
+                  // console.log("isOn: ", isOn)
+                  // console.log("params: ", Object.keys(params[0]))
+                  return {
+                    flexGrow: 1,
+                    fontSize: "1.8em",
+                    outline: isOn() ? "solid" : undefined,
+                  }
+                }}
+                plugin={editablePlugin.config({
+                  isOn: isTextNameInEditMode,
+                  onInput: (newText) => setInnerItemData({ name: newText }),
+                })}
+              >
+                {props.item.name}
+              </Text>
               <Icon
                 name="edit-trigger"
                 src={isTextNameInEditMode() ? "/icons/check.svg" : "/icons/edit.svg"}
-                onClick={() => toggleTextNameEditMode()}
+                onClick={() => {
+                  console.log("click") // why click invoke 2 times?
+                  toggleTextNameEditMode()
+                }}
                 plugin={visiblePlugin.config({ isOn: isHovered })}
               />
             </Box>

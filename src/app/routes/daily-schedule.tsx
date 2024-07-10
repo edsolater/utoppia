@@ -161,7 +161,7 @@ function CreatorButton(kitprops: KitProps<CreatorButtonProps>) {
             <NewScheduleItemCreatorForm
               ref={props.refofNewScheduleItemCreatorForm}
               onDone={({ info: newformData, inEditMode }) => {
-                props.onSubmit(newformData, Boolean(inEditMode))
+                props.onSubmit?.(newformData, Boolean(inEditMode))
               }}
             />
           </DraggablePanel>

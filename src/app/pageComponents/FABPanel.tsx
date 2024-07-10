@@ -79,7 +79,7 @@ export function FloatingPanel(
           borderRadius: "16px",
           paddingTop: "20px",
         },
-        icssCardPanel,
+        icssCardPanel(),
       ]}
     >
       <DragHandler domRef={setHandlerDom} shadowProps={props.propsofDragHandler} />
