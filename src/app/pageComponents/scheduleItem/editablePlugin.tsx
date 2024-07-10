@@ -4,12 +4,14 @@ import {
   createDomRef,
   createLazyMemo,
   createPlugin,
+  createSyncSignal,
   listenDomEvent,
+  useClickOutside,
   useKitProps,
   type KitProps,
   type PivProps,
 } from "@edsolater/pivkit"
-import { createEffect, type Accessor, type JSXElement } from "solid-js"
+import { createEffect, createSignal, type Accessor, type JSXElement } from "solid-js"
 
 export type EditablePluginPluginController = {
   isEnabled: Accessor<boolean>
@@ -21,7 +23,12 @@ export type EditablePluginPluginOptions = KitProps<{
    * usually, u should pass a accessor as a signal
    **/
   isEnabled?: boolean
+
+  /** use click outside */
+  cancelWhenClickOutside?: boolean
   onInput?: (newText: string) => void
+  // TODO: imply it !!
+  onEnter?: (newText: string) => void
 }>
 
 //TODO: contenteditable should also be a buildin plugin in `<Text />`
@@ -33,7 +40,7 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
     })
     const { dom: selfDom, setDom: setSelfDom } = createDomRef()
 
-    const isEnabled = createLazyMemo(() => Boolean(options.isEnabled))
+    const [isEnabled, setIsEnabled] = createSyncSignal({ value: () => Boolean(options.isEnabled) })
 
     // make elemet contenteditable
     createEffect(() => {
@@ -55,6 +62,15 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
         options.onInput?.(allText ?? "")
       })
     })
+
+    if (options.cancelWhenClickOutside) {
+      useClickOutside(selfDom, {
+        enabled: isEnabled,
+        onClickOutSide: () => {
+          setIsEnabled(false)
+        },
+      })
+    }
 
     return { plugin: () => ({ domRef: setSelfDom }) as PivProps, state: { isEnabled } }
   },

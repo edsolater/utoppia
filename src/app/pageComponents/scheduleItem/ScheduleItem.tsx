@@ -179,7 +179,9 @@ export function ScheduleItem(props: {
                   fontSize: "1.8em",
                   outline: isEnabled() ? "solid" : undefined,
                 })}
+                onClick={startTextNameEdit}
                 plugin={editablePlugin.config({
+                  cancelWhenClickOutside: true,
                   isEnabled: isTextNameInEditMode,
                   onInput: (newText) => setInnerItemData({ name: newText }),
                 })}
