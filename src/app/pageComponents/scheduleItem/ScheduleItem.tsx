@@ -23,7 +23,7 @@ import { reconcile } from "solid-js/store"
 import { colors } from "../../theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { SelectPanel } from "./Select"
-import { editablePlugin, EditablePluginWrapper } from "./editablePlugin"
+import { editablePlugin, EditablePluginWrapper, type EditablePluginPluginController } from "./editablePlugin"
 import { popupWidget } from "./popupWidget"
 import {
   scheduleLinkItemCategories,
@@ -113,10 +113,6 @@ export function ScheduleItem(props: {
 
   const itemThemeColor = createMemo(() => getScheduleItemColor(props.item))
 
-  createEffect(() => {
-    console.log("isTextNameInEditMode: ", isTextNameInEditMode())
-  })
-
   return (
     <Box
       icss={[
@@ -177,38 +173,14 @@ export function ScheduleItem(props: {
         <Detector>
           {({ isHovered }) => (
             <Box icss={{ display: "flex", gap: "8px" }}>
-              {/* <EditablePluginWrapper
-                isOn={isTextNameInEditMode}
-                onInput={(newText) => {
-                  setInnerItemData("name", newText)
-                }}
-              >
-                {({ isOn }) => (
-                  <Text icss={{ flexGrow: 1, fontSize: "1.8em", outline: isOn() ? "solid" : undefined }}>
-                    {props.item.name}
-                  </Text>
-                )}
-              </EditablePluginWrapper> */}
-              {/* // TODO: can this be a plugin? it's more readable */}
-              {/* <Text
-                icss={({ isOn }: { isOn: Accessor<boolean> }) => ({
+              <Text
+                icss={({ isEnabled }: EditablePluginPluginController) => ({
                   flexGrow: 1,
                   fontSize: "1.8em",
-                  outline: isOn() ? "solid" : undefined,
+                  outline: isEnabled() ? "solid" : undefined,
                 })}
                 plugin={editablePlugin.config({
-                  isOn: isTextNameInEditMode,
-                  onInput: (newText) => setInnerItemData({ name: newText }),
-                })}
-              >
-                {props.item.name}
-              </Text> */}
-
-              {/* // TODO: can this be a plugin? it's more readable */}
-              <Text
-                icss={{ flexGrow: 1, fontSize: "1.8em" }}
-                plugin={editablePlugin.config({
-                  isOn: isTextNameInEditMode,
+                  isEnabled: isTextNameInEditMode,
                   onInput: (newText) => setInnerItemData({ name: newText }),
                 })}
               >
@@ -218,7 +190,7 @@ export function ScheduleItem(props: {
                 name="edit-trigger"
                 src={isTextNameInEditMode() ? "/icons/check.svg" : "/icons/edit.svg"}
                 onClick={() => {
-                  console.log("click") // why click invoke 2 times?
+                  console.log("Toggle text name edit mode") // why click invoke 2 times?
                   toggleTextNameEditMode()
                 }}
                 plugin={visiblePlugin.config({ isOn: isHovered })}

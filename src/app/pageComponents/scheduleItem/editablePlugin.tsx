@@ -12,7 +12,7 @@ import {
 import { createEffect, type Accessor, type JSXElement } from "solid-js"
 
 export type EditablePluginPluginController = {
-  isOn: Accessor<boolean>
+  isEnabled: Accessor<boolean>
 }
 
 export type EditablePluginPluginOptions = KitProps<{
@@ -20,7 +20,7 @@ export type EditablePluginPluginOptions = KitProps<{
    * directly can type , or only type when js callback was trigger.
    * usually, u should pass a accessor as a signal
    **/
-  isOn?: boolean
+  isEnabled?: boolean
   onInput?: (newText: string) => void
 }>
 
@@ -33,13 +33,13 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
     })
     const { dom: selfDom, setDom: setSelfDom } = createDomRef()
 
-    const isOn = createLazyMemo(() => Boolean(options.isOn))
+    const isEnabled = createLazyMemo(() => Boolean(options.isEnabled))
 
     // make elemet contenteditable
     createEffect(() => {
       const selfEl = selfDom()
       if (!selfEl) return
-      const isOn = options.isOn
+      const isOn = options.isEnabled
       if (isOn) {
         selfEl.setAttribute("contenteditable", "plaintext-only")
       } else {
@@ -56,7 +56,7 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
       })
     })
 
-    return { plugin: () => ({ domRef: setSelfDom }) as PivProps, state: { isOn } }
+    return { plugin: () => ({ domRef: setSelfDom }) as PivProps, state: { isEnabled } }
   },
 )
 
@@ -67,7 +67,7 @@ export function EditablePluginWrapper(
   },
 ) {
   return (
-    <PluginWrapper plugin={editablePlugin} isOn={rawProps.isOn} onInput={rawProps.onInput}>
+    <PluginWrapper plugin={editablePlugin} isEnabled={rawProps.isEnabled} onInput={rawProps.onInput}>
       {rawProps.children}
     </PluginWrapper>
   )
