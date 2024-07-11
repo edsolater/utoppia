@@ -10,7 +10,7 @@ import {
   type KitProps,
   type PivProps,
 } from "@edsolater/pivkit"
-import { createEffect, type Accessor, type JSXElement } from "solid-js"
+import { createEffect, createSignal, type Accessor, type JSXElement } from "solid-js"
 
 export type EditablePluginPluginController = {
   isEnabled: Accessor<boolean>
@@ -66,7 +66,7 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
 
     const [isEnabled, setIsEnabled] = createSyncSignal({
       value: () => Boolean(options.isEnabled),
-      onValueSet(value) {
+      onSet(value) {
         options.onEnabledChange?.(value)
       },
     })

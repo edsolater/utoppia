@@ -98,7 +98,6 @@ export function ScheduleItem(props: {
     },
   })
 
-
   function handleActionDelete() {
     props.onDelete?.()
   }
@@ -183,21 +182,16 @@ export function ScheduleItem(props: {
                   outline: isEnabled() ? "solid" : undefined,
                 })}
                 plugin={editablePlugin.config({
-                  isEnabled: isTextNameInEditMode,
-                  onEnabledChange: setTextNameEditState,
                   onInput: (newText) => setInnerItemData({ name: newText }),
+                  onEnabledChange: (b) => {
+                    if (!b) {
+                      props.onItemInfoChange?.(innerItemData)
+                    }
+                  },
                 })}
               >
                 {props.item.name}
               </Text>
-              {/* <Icon
-                name="edit-trigger"
-                src={isTextNameInEditMode() ? "/icons/check.svg" : "/icons/edit.svg"}
-                onClick={() => {
-                  toggleTextNameEditMode()
-                }}
-                plugin={visiblePlugin.config({ isOn: isHovered })}
-              /> */}
             </Box>
           )}
         </Detector>
