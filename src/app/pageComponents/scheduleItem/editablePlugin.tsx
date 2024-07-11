@@ -2,16 +2,15 @@ import {
   Plugin,
   PluginWrapper,
   createDomRef,
-  createLazyMemo,
   createPlugin,
   createSyncSignal,
-  listenDomEvent,
   useClickOutside,
+  useDOMEventListener,
   useKitProps,
   type KitProps,
   type PivProps,
 } from "@edsolater/pivkit"
-import { createEffect, createSignal, type Accessor, type JSXElement } from "solid-js"
+import { createEffect, type Accessor, type JSXElement } from "solid-js"
 
 export type EditablePluginPluginController = {
   isEnabled: Accessor<boolean>
@@ -23,12 +22,32 @@ export type EditablePluginPluginOptions = KitProps<{
    * usually, u should pass a accessor as a signal
    **/
   isEnabled?: boolean
+  /** with onEnabledChange, it will be a two-way binding */
+  onEnabledChange?: (isEnabled: boolean) => void
 
-  /** use click outside */
-  cancelWhenClickOutside?: boolean
   onInput?: (newText: string) => void
-  // TODO: imply it !!
   onEnter?: (newText: string) => void
+
+  /**
+   * use click outside
+   * @default true
+   */
+  endEditWhenClickOutside?: boolean
+  /**
+   * start edit when click
+   * @default true
+   */
+  startEditWhenClick?: boolean
+  /**
+   * use more strightforward enter to
+   * @default true
+   */
+  okWhenTypeEnter?: boolean
+
+  /** init cursor position
+   * @default "end"
+   */
+  initEditCursorPlacement?: "start" | "end"
 }>
 
 //TODO: contenteditable should also be a buildin plugin in `<Text />`
@@ -36,34 +55,87 @@ export type EditablePluginPluginOptions = KitProps<{
 export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginPluginController> = createPlugin(
   (kitOptions) => {
     const { props: options } = useKitProps(kitOptions, {
-      // defaultProps: isObject(kitOptions) && "isOn" in kitOptions ? undefined : { isOn: true },
+      defaultProps: {
+        startEditWhenClick: true,
+        endEditWhenClickOutside: true,
+        okWhenTypeEnter: true,
+        initEditCursorPlacement: "end",
+      },
     })
     const { dom: selfDom, setDom: setSelfDom } = createDomRef()
 
-    const [isEnabled, setIsEnabled] = createSyncSignal({ value: () => Boolean(options.isEnabled) })
+    const [isEnabled, setIsEnabled] = createSyncSignal({
+      value: () => Boolean(options.isEnabled),
+      onValueSet(value) {
+        options.onEnabledChange?.(value)
+      },
+    })
 
-    // make elemet contenteditable
-    createEffect(() => {
-      const selfEl = selfDom()
-      if (!selfEl) return
-      const isOn = options.isEnabled
-      if (isOn) {
-        selfEl.setAttribute("contenteditable", "plaintext-only")
-      } else {
-        selfEl.removeAttribute("contenteditable")
+    useDOMEventListener(selfDom, "click", () => {
+      if (options.startEditWhenClick) {
+        setIsEnabled(true)
       }
     })
 
+    // make element focus when enabled
     createEffect(() => {
       const selfEl = selfDom()
       if (!selfEl) return
-      listenDomEvent(selfEl, "input", ({ ev, el }) => {
-        const allText = el.textContent
-        options.onInput?.(allText ?? "")
-      })
+      if (isEnabled()) {
+        // Focus the element to ensure that the selection is visible
+        selfEl.setAttribute("tabindex", "0")
+        selfEl.focus()
+        // make elemet contenteditable
+        selfEl.setAttribute("contenteditable", "plaintext-only")
+      } else {
+        selfEl.removeAttribute("tabindex")
+        selfEl.blur()
+        selfEl.removeAttribute("contenteditable")
+      }
+
+      //if hasn's cursor , then mannually set cursor
+      if (!hasCursor()) {
+        const initEditCursorPlacement = options.initEditCursorPlacement // default to "end"
+
+        // Create a new range
+        const range = document.createRange()
+        const selection = window.getSelection()
+        if (!selection) return
+
+        // Attempt to find a text node within selfEl
+        let textNode = null as Text | null
+        let position: number = 0
+        if (initEditCursorPlacement === "end") {
+          for (const child of selfEl.childNodes) {
+            if (isDomNodeTextNode(child)) {
+              textNode = child
+              position = textNode.length // End of the text node
+              break
+            }
+          }
+        }
+
+        if (textNode) {
+          // If a text node is found, set the range start to the text node with the determined position
+          range.setStart(textNode, position)
+        } else {
+          // If no text node is found and the cursor is set to start, fall back to setting the range on selfEl
+          // This is a fallback and may not always result in visible cursor if selfEl has no text content
+          range.setStart(selfEl, 0)
+        }
+
+        range.collapse(true) // Collapse the range to the start position to move the cursor
+        selection.removeAllRanges()
+        selection.addRange(range)
+      }
     })
 
-    if (options.cancelWhenClickOutside) {
+    useDOMEventListener(selfDom, "input", ({ el }) => {
+      const allText = el.textContent
+      options.onInput?.(allText ?? "")
+    })
+
+    if (options.endEditWhenClickOutside) {
       useClickOutside(selfDom, {
         enabled: isEnabled,
         onClickOutSide: () => {
@@ -71,6 +143,20 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
         },
       })
     }
+
+    useDOMEventListener(selfDom, "keydown", ({ ev }) => {
+      if (ev.key === "Enter") {
+        // handle enter
+        if (options.onEnter) {
+          options.onEnter?.(selfDom()?.textContent ?? "")
+        }
+
+        // if okWhenTypeEnter, then disable
+        if (options.okWhenTypeEnter) {
+          setIsEnabled(false)
+        }
+      }
+    })
 
     return { plugin: () => ({ domRef: setSelfDom }) as PivProps, state: { isEnabled } }
   },
@@ -87,4 +173,17 @@ export function EditablePluginWrapper(
       {rawProps.children}
     </PluginWrapper>
   )
+}
+
+function isDomNodeTextNode(node: Node): node is Text {
+  return node.nodeType === Node.TEXT_NODE
+}
+
+/**
+ * document has cursor
+ */
+function hasCursor() {
+  const selection = window.getSelection()
+  if (!selection) return false
+  return selection.rangeCount > 0
 }

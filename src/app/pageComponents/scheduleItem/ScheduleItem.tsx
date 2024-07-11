@@ -89,12 +89,15 @@ export function ScheduleItem(props: {
   })
 
   // should only reflect to item's name
-  const [isTextNameInEditMode, { open: startTextNameEdit, close: endTextNameEdit, toggle: toggleTextNameEditMode }] =
-    createDisclosure(false, {
-      onClose() {
-        props.onItemInfoChange?.(innerItemData)
-      },
-    })
+  const [
+    isTextNameInEditMode,
+    { open: startTextNameEdit, close: endTextNameEdit, toggle: toggleTextNameEditMode, set: setTextNameEditState },
+  ] = createDisclosure(false, {
+    onClose() {
+      props.onItemInfoChange?.(innerItemData)
+    },
+  })
+
 
   function handleActionDelete() {
     props.onDelete?.()
@@ -179,24 +182,22 @@ export function ScheduleItem(props: {
                   fontSize: "1.8em",
                   outline: isEnabled() ? "solid" : undefined,
                 })}
-                onClick={startTextNameEdit}
                 plugin={editablePlugin.config({
-                  cancelWhenClickOutside: true,
                   isEnabled: isTextNameInEditMode,
+                  onEnabledChange: setTextNameEditState,
                   onInput: (newText) => setInnerItemData({ name: newText }),
                 })}
               >
                 {props.item.name}
               </Text>
-              <Icon
+              {/* <Icon
                 name="edit-trigger"
                 src={isTextNameInEditMode() ? "/icons/check.svg" : "/icons/edit.svg"}
                 onClick={() => {
-                  console.log("Toggle text name edit mode") // why click invoke 2 times?
                   toggleTextNameEditMode()
                 }}
                 plugin={visiblePlugin.config({ isOn: isHovered })}
-              />
+              /> */}
             </Box>
           )}
         </Detector>
