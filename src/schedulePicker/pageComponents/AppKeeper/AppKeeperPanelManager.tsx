@@ -16,7 +16,7 @@ import {
   type KeybordShortcutKeys,
 } from "@edsolater/pivkit"
 import { createEffect, createSignal } from "solid-js"
-import { colors } from "../../theme/colors"
+import { colors } from "../../../app/theme/colors"
 import { documentElement } from "../../utils/documentElement"
 import { AppKeeperContext } from "./AppKeeperContext"
 import { usePanelFloatingMaster } from "./usePanelFloatingMaster"

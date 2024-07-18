@@ -12,7 +12,7 @@ import {
   useKitProps,
 } from "@edsolater/pivkit"
 import { Link } from "../../../components/Link"
-import { colors } from "../../../theme/colors"
+import { colors } from "../../../../app/theme/colors"
 
 export type OptionItemBoxProps = {
   /** @default true */

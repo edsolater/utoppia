@@ -47,10 +47,10 @@ import {
 } from "@edsolater/pivkit"
 import { Accessor, JSXElement, createContext, createEffect, createSignal, onCleanup } from "solid-js"
 import { createStore } from "solid-js/store"
-import { ExamplePanel } from "../components/ExamplePanel"
-import { RefreshCircle } from "../components/RefreshCircle"
-import { ViewTransitionSliderBox } from "../components/ViewTransitionSliderBox"
-import { FABPanel, FABPanelProps } from "../pageComponents/FABPanel"
+import { ExamplePanel } from "../../schedulePicker/components/ExamplePanel"
+import { RefreshCircle } from "../../schedulePicker/components/RefreshCircle"
+import { ViewTransitionSliderBox } from "../../schedulePicker/components/ViewTransitionSliderBox"
+import { FABPanel, FABPanelProps } from "../../schedulePicker/pageComponents/FABPanel"
 import { colors } from "../theme/colors"
 
 export default function PlaygroundPage() {
@@ -829,7 +829,7 @@ function DragAndDropExample() {
 }
 
 const droppableSlotsPlugin = createPlugin(() => () => ({
-  "defineFirstChild": [
+  defineFirstChild: [
     <SlotBox icss={icssSlotBox} plugin={droppablePlugin}></SlotBox>,
     <SlotBox icss={icssSlotBox} plugin={droppablePlugin}></SlotBox>,
     <SlotBox icss={icssSlotBox} plugin={droppablePlugin}></SlotBox>,

@@ -18,7 +18,7 @@ import {
 import { useMetaTitle } from "../../hooks/useDocumentMetaTitle"
 import { AppKeeperContext } from "./AppKeeperContext"
 import { AppKeeperPanelManager } from "./AppKeeperPanelManager"
-import { colors } from "../../theme/colors"
+import { colors } from "../../../app/theme/colors"
 import { Show } from "solid-js"
 
 export type AppKeeperProps = {

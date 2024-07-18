@@ -23,8 +23,8 @@ import {
   type PivChild,
 } from "@edsolater/pivkit"
 import { createContext, createMemo, createSignal, useContext, type Accessor } from "solid-js"
-import { colors } from "../../theme/colors"
-import { scrollbarWidth } from "../../theme/misc"
+import { colors } from "../../../app/theme/colors"
+import { scrollbarWidth } from "../../../app/theme/misc"
 import { Title } from "../BoardTitle"
 import { CyberPanel } from "../CyberPanel"
 

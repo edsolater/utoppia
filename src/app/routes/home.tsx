@@ -1,5 +1,5 @@
-import { Box, jFetch } from "@edsolater/pivkit"
-import { Link } from "../components/Link"
+import { Box } from "@edsolater/pivkit"
+import { Link } from "../../schedulePicker/components/Link"
 import { bilibiliStore } from "../../vedioCollector/fetchData"
 
 export default function HomePage() {

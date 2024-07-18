@@ -13,7 +13,7 @@ import {
   useKitProps,
   usePlugin,
 } from "@edsolater/pivkit"
-import { colors } from "../theme/colors"
+import { colors } from "../../app/theme/colors"
 
 export type FABPanelProps = {
   thumbnailIcon?: PivChild

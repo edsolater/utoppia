@@ -12,7 +12,7 @@ import { KeyboardShortcutPanel } from "../pageComponents/KeyboardShortcutPanel"
 import { NavBar } from "../pageComponents/NavBar"
 import { ShuckInspectorPanel } from "../pageComponents/ShuckInspectorPanel"
 import { SideMenu } from "../pageComponents/SideMenu"
-import { routes } from "../routes/routes"
+import { routes } from "../../app/routes/routes"
 
 // config uikit theme before render
 initAppContextConfig({ themeMode: "dark", onlyAltSelect: true })

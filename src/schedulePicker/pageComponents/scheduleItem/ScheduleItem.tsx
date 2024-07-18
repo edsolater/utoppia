@@ -20,7 +20,7 @@ import {
 } from "@edsolater/pivkit"
 import { createEffect, createMemo, on, type Accessor } from "solid-js"
 import { reconcile } from "solid-js/store"
-import { colors } from "../../theme/colors"
+import { colors } from "../../../app/theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { SelectPanel } from "./Select"
 import { editablePlugin, EditablePluginWrapper, type EditablePluginPluginController } from "./editablePlugin"

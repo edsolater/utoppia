@@ -3,7 +3,7 @@ import { Box, Icon, InfiniteScrollList, Piv, Text, cssColors } from "@edsolater/
 import { shuck_isMobile } from "../stores/data/store"
 import { useShuckValue } from "../../packages/conveyor/solidjsAdapter/useShuck"
 import { FABPanel, FABPanelProps } from "./FABPanel"
-import { colors } from "../theme/colors"
+import { colors } from "../../app/theme/colors"
 
 /**
  *
