@@ -1,22 +1,9 @@
-import {
-  Accessify,
-  Box,
-  Icon,
-  KitProps,
-  List,
-  Loop,
-  Piv,
-  Row,
-  cssOpacity,
-  cssVar,
-  icssCol,
-  useKitProps,
-} from "@edsolater/pivkit"
+import { Accessify, Box, Icon, KitProps, List, Piv, Row, cssOpacity, icssCol, useKitProps } from "@edsolater/pivkit"
 import { useLocation } from "@solidjs/router"
 import { Show, createMemo, createSelector } from "solid-js"
 import { routes } from "../../routes/routes"
-import { Link } from "../Link"
 import { colors } from "../../theme/colors"
+import { Link } from "../Link"
 
 export function NavRouteItems() {
   const location = useLocation()

@@ -17,16 +17,12 @@ import {
   type KitProps,
 } from "@edsolater/pivkit"
 import { createSignal } from "solid-js"
-import { ScheduleItem } from "../../schedulePicker/pageComponents/scheduleItem/ScheduleItem"
-import { popupWidget } from "../../schedulePicker/pageComponents/scheduleItem/popupWidget"
-import { ScheduleLinkItem } from "../../schedulePicker/pageComponents/scheduleItem/type"
-import {
-  dailyScheduleData,
-  dailySchemaUtils,
-  updateExistedScheduleItem,
-} from "../../schedulePicker/pageComponents/scheduleItem/utils"
-import { downloadJSON, importJSONFile } from "../../schedulePicker/utils/download"
-import { DraggablePanel } from "../components/FABPanel"
+import { DraggablePanel } from "../app/components/FABPanel"
+import { popupWidget } from "./pageComponents/scheduleItem/popupWidget"
+import { ScheduleItem } from "./pageComponents/scheduleItem/ScheduleItem"
+import type { ScheduleLinkItem } from "./pageComponents/scheduleItem/type"
+import { dailyScheduleData, dailySchemaUtils, updateExistedScheduleItem } from "./pageComponents/scheduleItem/utils"
+import { downloadJSON, importJSONFile } from "./utils/download"
 
 export default function DailySchedulePage() {
   const [data, setData] = useSubscribableStore(dailyScheduleData, { canCachedByIndexDB: true })

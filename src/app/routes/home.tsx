@@ -1,15 +1,20 @@
-import { Box } from "@edsolater/pivkit"
+import { Box, Loop } from "@edsolater/pivkit"
+import { Show } from "solid-js"
 import { Link } from "../components/Link"
-import { bilibiliStore } from "../../vedioCollector/fetchData"
+import { routes } from "./routes"
 
 export default function HomePage() {
-  const videoResource = bilibiliStore.ups.getVideos({ mid: "94727573" })
-  videoResource.then((data) => console.log(data))
   return (
     <Box>
-      <Link href={"/playground"} innerRoute>
-        Playground
-      </Link>
+      <Loop items={routes}>
+        {(route) => (
+          <Show when={!route.isHiddenLink}>
+            <Link href={route.path} innerRoute>
+              {route.name}
+            </Link>
+          </Show>
+        )}
+      </Loop>
     </Box>
   )
 }

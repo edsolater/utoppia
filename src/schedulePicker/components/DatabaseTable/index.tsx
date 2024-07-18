@@ -11,6 +11,7 @@ import {
   Loop,
   Row,
   Text,
+  Title,
   createICSS,
   icssCenterY,
   icssClickable,
@@ -20,12 +21,11 @@ import {
   useKitProps,
   type InfiniteScrollListKitProps,
   type KitProps,
-  type PivChild,
+  type PivChild
 } from "@edsolater/pivkit"
 import { createContext, createMemo, createSignal, useContext, type Accessor } from "solid-js"
 import { colors } from "../../../app/theme/colors"
 import { scrollbarWidth } from "../../../app/theme/misc"
-import { Title } from "../BoardTitle"
 import { CyberPanel } from "../CyberPanel"
 
 // for sort and search

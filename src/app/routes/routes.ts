@@ -28,22 +28,28 @@ function createRouteItem(options: RouteItem): RouteItem {
 
 export const routeItems = {
   home: createRouteItem({
-    name: "home",
+    name: "Home",
     path: "/",
     component: lazy(() => import("./home")),
     needAppKeeper: true,
     isHiddenLink: true,
   }),
   playground: createRouteItem({
-    name: "playground",
+    name: "Playground",
     path: "/playground",
     component: lazy(() => import("./playground")),
     needAppKeeper: true,
   }),
   dailySchedule: createRouteItem({
-    name: "daily schedule",
+    name: "Daily schedule",
     path: "/daily-schedule",
-    component: lazy(() => import("./daily-schedule")),
+    component: lazy(() => import("../../schedulePicker/page")),
+    needAppKeeper: true,
+  }),
+  vedioCollector: createRouteItem({
+    name: "Vedio collector",
+    path: "/vedio-collector",
+    component: lazy(() => import("../../vedioCollector/page")),
     needAppKeeper: true,
   }),
 }

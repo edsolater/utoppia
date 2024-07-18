@@ -17,6 +17,7 @@ const linkDefaultIcss = () =>
   parseICSSToClassName({
     transition: "150ms",
     cursor: "pointer",
+    display: "block",
     "&:hover": { textDecoration: "underline" },
   })
 

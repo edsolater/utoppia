@@ -1,9 +1,8 @@
 import { Accessify, Row } from "@edsolater/pivkit"
 import { Accessor } from "solid-js"
-import { NaBar_NavWrapBoxProps } from "./NavWrapBox"
-import { AppLogo } from "../AppLogo"
+import { AppLogo } from "./AppLogo"
 
-export type NavBarProps = NaBar_NavWrapBoxProps
+export type NavBarProps = {}
 
 export function NavBar(props: NavBarProps) {
   return (
