@@ -1,9 +1,9 @@
 import { isObject, isUndefined } from "@edsolater/fnkit"
 import { Box, Icon, InfiniteScrollList, Piv, Text, cssColors } from "@edsolater/pivkit"
-import { shuck_isMobile } from "../stores/data/store"
+import { shuck_isMobile } from "../../schedulePicker/stores/data/store"
 import { useShuckValue } from "../../packages/conveyor/solidjsAdapter/useShuck"
 import { FABPanel, FABPanelProps } from "./FABPanel"
-import { colors } from "../../app/theme/colors"
+import { colors } from "../theme/colors"
 
 /**
  *

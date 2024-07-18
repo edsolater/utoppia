@@ -8,11 +8,10 @@ import {
   Span,
   createICSS,
   cssOpacity,
-  cssVar,
-  useKitProps,
+  useKitProps
 } from "@edsolater/pivkit"
-import { Link } from "../../../components/Link"
-import { colors } from "../../../../app/theme/colors"
+import { Link } from "../Link"
+import { colors } from "../../theme/colors"
 
 export type OptionItemBoxProps = {
   /** @default true */

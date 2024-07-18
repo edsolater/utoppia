@@ -50,8 +50,8 @@ import { createStore } from "solid-js/store"
 import { ExamplePanel } from "../../schedulePicker/components/ExamplePanel"
 import { RefreshCircle } from "../../schedulePicker/components/RefreshCircle"
 import { ViewTransitionSliderBox } from "../../schedulePicker/components/ViewTransitionSliderBox"
-import { FABPanel, FABPanelProps } from "../../schedulePicker/pageComponents/FABPanel"
 import { colors } from "../theme/colors"
+import { FABPanel } from "../components/FABPanel"
 
 export default function PlaygroundPage() {
   return (

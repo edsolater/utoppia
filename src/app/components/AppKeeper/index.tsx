@@ -15,10 +15,10 @@ import {
   type KeybordShortcutKeys,
   type PivChild,
 } from "@edsolater/pivkit"
-import { useMetaTitle } from "../../hooks/useDocumentMetaTitle"
+import { useMetaTitle } from "../../../schedulePicker/hooks/useDocumentMetaTitle"
 import { AppKeeperContext } from "./AppKeeperContext"
 import { AppKeeperPanelManager } from "./AppKeeperPanelManager"
-import { colors } from "../../../app/theme/colors"
+import { colors } from "../../theme/colors"
 import { Show } from "solid-js"
 
 export type AppKeeperProps = {

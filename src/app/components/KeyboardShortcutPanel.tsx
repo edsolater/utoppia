@@ -13,9 +13,9 @@ import {
   useShortcutsRegister
 } from "@edsolater/pivkit"
 import { useNavigate } from "@solidjs/router"
-import { globalRouteShortcuts } from "../configs/globalShortcuts"
-import { colors } from "../../app/theme/colors"
-import { documentElement } from "../utils/documentElement"
+import { globalRouteShortcuts } from "../../schedulePicker/configs/globalShortcuts"
+import { colors } from "../theme/colors"
+import { documentElement } from "../../schedulePicker/utils/documentElement"
 import { FABPanel } from "./FABPanel"
 
 /**

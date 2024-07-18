@@ -2,7 +2,7 @@ import { Col, Grid, KitProps, useComponentContext, useKitProps } from "@edsolate
 import { NavRouteItems } from "./NavigationItems"
 import { createEffect } from "solid-js"
 import { AppKeeperContext } from "../AppKeeper/AppKeeperContext"
-import { OptionAdditionalItems } from "./OptionAdditionalItems"
+import { OptionAdditionalItems } from "./OptionItemList"
 
 /**
  * for easier to code and read
