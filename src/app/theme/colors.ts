@@ -31,6 +31,9 @@ export const colors = {
   textPrimary: cssVar("--text-primary"),
   textSecondary: cssVar("--text-secondary"),
   textTernary: cssVar("--text-ternary"),
+
+  textLink: cssVar("--text-ternary"),
+  textVisitedLink: cssVar("--text-primary"),
   textRevertPrimary: cssVar("--text-revert-primary"),
 
   /* list */
@@ -62,4 +65,3 @@ export const colors = {
   semanticNeutral: "#ABC4FF",
   semanticFocus: "#A259FF",
 }
-

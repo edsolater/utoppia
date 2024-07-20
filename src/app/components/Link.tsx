@@ -1,4 +1,4 @@
-import { KitProps, Piv, parseICSSToClassName, renderHTMLDOM, useKitProps } from "@edsolater/pivkit"
+import { KitProps, Piv, cssOpacity, parseICSSToClassName, renderHTMLDOM, useKitProps } from "@edsolater/pivkit"
 import { createMemo } from "solid-js"
 
 export interface LinkRawProps {
@@ -17,7 +17,7 @@ const linkDefaultIcss = () =>
   parseICSSToClassName({
     transition: "150ms",
     cursor: "pointer",
-    display: "block",
+    textDecoration: "none",
     "&:hover": { textDecoration: "underline" },
   })
 

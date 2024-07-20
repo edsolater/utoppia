@@ -9,7 +9,7 @@ export default function HomePage() {
       <Loop items={routes}>
         {(route) => (
           <Show when={!route.isHiddenLink}>
-            <Link href={route.path} innerRoute>
+            <Link icss={{ display: "block" }} href={route.path} innerRoute>
               {route.name}
             </Link>
           </Show>

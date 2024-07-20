@@ -1,5 +1,5 @@
 
-export const bilibiliUPs = [
+export const ups = [
   {
     id: "科学认识论",
     name: "科学认识论",
