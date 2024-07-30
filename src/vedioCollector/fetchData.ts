@@ -7,9 +7,10 @@ import type { BriefVedioInfo } from "./data/briefVedioInfo"
  */
 export const bilibiliStore = {
   ups: {
-    async getVideos(payload: { mid: string }): Promise<BriefVedioInfo[] | undefined> {
-      return jFetch(`http://localhost:3000/bilibili/user-video-list?${toQueryString(payload)}`)
-    },
+    getVideos: async (payload: { mid: string }): Promise<BriefVedioInfo[] | undefined> =>
+      jFetch(`http://localhost:3000/bilibili/user-video-list?${toQueryString(payload)}`),
+    getPopularVideos: async (): Promise<BriefVedioInfo[] | undefined> =>
+      jFetch(`http://localhost:3000/bilibili/popular`),
   },
 }
 

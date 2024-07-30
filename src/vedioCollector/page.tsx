@@ -1,12 +1,8 @@
 import {
   Box,
-  cssColorMix,
-  cssGrayscale,
   cssOpacity,
-  Group,
   Icon,
   icssCard,
-  icssTitle,
   Image,
   List,
   Section,
@@ -14,19 +10,25 @@ import {
   useKitProps,
   type KitProps,
 } from "@edsolater/pivkit"
-import { createResource } from "solid-js"
+import { createEffect, createResource } from "solid-js"
 import { Link } from "../app/components/Link"
 import { colors } from "../app/theme/colors"
+import type { BriefVedioInfo } from "./data/briefVedioInfo"
 import { bilibiliStore } from "./fetchData"
 import { ups } from "./upList"
-import type { BriefVedioInfo } from "./data/briefVedioInfo"
 
 /**
  * Renders the VideoCollectorPage component.
  * This component fetches and displays a list of videos from the bilibiliStore.
  */
 export default function VideoCollectorPage() {
-  const [videoList, { mutate, refetch }] = createResource(() => bilibiliStore.ups.getVideos({ mid: ups[1].mid }))
+  const [videoList, videoListManager] = createResource(() => bilibiliStore.ups.getVideos({ mid: ups[1].mid }))
+  const [videoPopularList, videoPopularListManger] = createResource(() => bilibiliStore.ups.getPopularVideos())
+
+  createEffect(() => {
+    console.log("videoList: ", videoList())
+    console.log("videoPopularList: ", videoPopularList())
+  })
 
   return (
     <List
@@ -72,11 +74,20 @@ function BriefVideoInfoCard(props: { info: BriefVedioInfo }) {
       </Section>
 
       <Section icss={{ gridArea: "thumbnail", alignSelf: "end", justifySelf: "end" }}>
-        <Image
-          src={props.info.pic}
-          icss={{ width: "100px", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: "4px" }}
-        />
-        <Text icss={{ color: colors.textSecondary, textAlign: "center", fontSize: ".8em", padding: "4px" }}>
+        <Box icss={{ position: "relative" }}>
+          <Image
+            src={props.info.thumbnail}
+            icss={{ width: "100px", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: "4px" }}
+          />
+          <Text
+            icss={{ fontSize: ".8em", fontWeight: 700, position: "absolute", bottom: 0, left: 0, background: "#0008" }}
+          >
+            {props.info.length}
+          </Text>
+        </Box>
+        <Text
+          icss={{ color: colors.textSecondary, textAlign: "center", fontSize: ".8em", fontWeight: 700, padding: "4px" }}
+        >
           {props.info.authorName}
         </Text>
       </Section>
@@ -91,8 +102,6 @@ function BriefVideoInfoCard(props: { info: BriefVedioInfo }) {
             <Icon src="/icons/bilibili/comment.svg"></Icon>
             <Text icss={{ fontSize: ".8em" }}>{props.info.comment}</Text>
           </Box>
-
-          <Text icss={{ fontSize: ".8em" }}>length: {props.info.length}</Text>
         </Box>
       </Section>
     </Card>

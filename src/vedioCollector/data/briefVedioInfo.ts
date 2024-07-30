@@ -1,14 +1,15 @@
 import type { Url, ID, TimeStamp } from "@edsolater/fnkit"
 
 export type BriefVedioInfo = {
-  pic: Url
+  id: ID // (an alias of bvid)
+  thumbnail: Url
   bvid: string
   mid: ID
   authorName: string
   authorFace?: Url
 
   /** 分区号 */
-  typeid: number
+  tid: number
   /** 播放次数 */
   play: number
   /** 评论数 */
