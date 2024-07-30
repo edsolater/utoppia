@@ -13,21 +13,19 @@ import {
 import { createEffect, createResource } from "solid-js"
 import { Link } from "../app/components/Link"
 import { colors } from "../app/theme/colors"
+import { serverOrigin } from "./configs/env"
 import type { BriefVedioInfo } from "./data/briefVedioInfo"
 import { bilibiliStore } from "./fetchData"
-import { ups } from "./upList"
 
 /**
  * Renders the VideoCollectorPage component.
  * This component fetches and displays a list of videos from the bilibiliStore.
  */
 export default function VideoCollectorPage() {
-  const [videoList, videoListManager] = createResource(() => bilibiliStore.ups.getVideos({ mid: ups[1].mid }))
-  const [videoPopularList, videoPopularListManger] = createResource(() => bilibiliStore.ups.getPopularVideos())
+  const [videoList, videoListManager] = createResource(() => bilibiliStore.ups.getVideos())
 
   createEffect(() => {
     console.log("videoList: ", videoList())
-    console.log("videoPopularList: ", videoPopularList())
   })
 
   return (
@@ -49,6 +47,8 @@ export default function VideoCollectorPage() {
  * @param props - The props containing the video information.
  */
 function BriefVideoInfoCard(props: { info: BriefVedioInfo }) {
+  const thumbnailSrc = `${serverOrigin}/bilibili/img-proxy?url=${props.info.thumbnail}@672w_378h_1c_!web-home-common-cover.avif`
+  const authorFaceSrc = `${serverOrigin}/bilibili/img-proxy?url=${props.info.authorFace}@96w_96h_1c_1s_!web-avatar.avif`
   return (
     <Card
       name="brief-video-info-card"
@@ -76,13 +76,13 @@ function BriefVideoInfoCard(props: { info: BriefVedioInfo }) {
       <Section icss={{ gridArea: "thumbnail", alignSelf: "end", justifySelf: "end" }}>
         <Box icss={{ position: "relative" }}>
           <Image
-            src={props.info.thumbnail}
+            src={thumbnailSrc}
             icss={{ width: "100px", aspectRatio: "16 / 9", objectFit: "cover", borderRadius: "4px" }}
           />
           <Text
             icss={{ fontSize: ".8em", fontWeight: 700, position: "absolute", bottom: 0, left: 0, background: "#0008" }}
           >
-            {props.info.length}
+            {props.info.duration}
           </Text>
         </Box>
         <Text

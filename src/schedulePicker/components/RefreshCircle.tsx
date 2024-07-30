@@ -12,7 +12,7 @@ interface RefreshCircleRawProps {
   // can be trigger by user manually reset or one round auto reset
   onRefresh?: () => void
 
-  /** @default 1000 * 60 ms */
+  /** @default 60 s */
   duration?: number
 }
 
@@ -21,14 +21,14 @@ type RefreshCircleProps = KitProps<RefreshCircleRawProps>
 // TODO: should move to pivkit in future
 export function RefreshCircle(kitProps: RefreshCircleProps) {
   const { props, shadowProps } = useKitProps(kitProps, { defaultProps: { svgWidth: 36, strokeWidth: 3, percent: 0.3 } })
-  const totalDuration = props.duration ?? 1000 * 60
+  const totalDuration = props.duration ?? 60
   const r = createMemo(() => (0.5 * props.svgWidth) / 2)
   const c = createMemo(() => 2 * r() * Math.PI)
   const { percent, reset } = usePercentLoop({
     onRoundEnd: () => {
       props.onRefresh?.()
     },
-    eachSecondPercent: 1000 / totalDuration,
+    eachSecondPercent: 1 / totalDuration,
     canRoundCountOverOne: true,
   })
   const dashOffset = createMemo(() => {

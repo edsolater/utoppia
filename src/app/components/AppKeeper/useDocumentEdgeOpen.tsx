@@ -1,36 +1,36 @@
-import { shrinkFn, type AnyFn } from "@edsolater/fnkit";
-import type { Accessify } from "@edsolater/pivkit";
-import { createEffect, onCleanup } from "solid-js";
-import { useHoveredDocumentEdge } from "./useHoveredDocumentEdge";
+import { setTimeoutWithSecondes, shrinkFn, type AnyFn } from "@edsolater/fnkit"
+import type { Accessify } from "@edsolater/pivkit"
+import { createEffect, onCleanup } from "solid-js"
+import { useHoveredDocumentEdge } from "./useHoveredDocumentEdge"
 
 type DocumentEdgeOpenOptions = {
-  enabled?: boolean | Accessify<boolean>;
-  floatingEdge: Accessify<"top" | "right" | "bottom" | "left">;
-  onClose?: AnyFn;
-  onOpen?: AnyFn;
+  enabled?: boolean | Accessify<boolean>
+  floatingEdge: Accessify<"top" | "right" | "bottom" | "left">
+  onClose?: AnyFn
+  onOpen?: AnyFn
   /**
-   * @default 200
+   * @default .2
    */
-  delay?: number;
-};
+  delay?: number
+}
 
 export function useDocumentEdgeOpen(options: DocumentEdgeOpenOptions) {
   // fast open
-  const { hoveredEdge } = useHoveredDocumentEdge();
+  const { hoveredEdge } = useHoveredDocumentEdge()
   createEffect(() => {
-    const enabled = "enabled" in options ? shrinkFn(options.enabled) : true;
-    if (!enabled) return;
-    const hoveredEdgeValue = hoveredEdge();
-    const floatingEdgeValue = shrinkFn(options.floatingEdge);
-    const timeId = setTimeout(() => {
+    const enabled = "enabled" in options ? shrinkFn(options.enabled) : true
+    if (!enabled) return
+    const hoveredEdgeValue = hoveredEdge()
+    const floatingEdgeValue = shrinkFn(options.floatingEdge)
+    const timeId = setTimeoutWithSecondes(() => {
       if (hoveredEdgeValue === floatingEdgeValue) {
-        options.onOpen?.();
+        options.onOpen?.()
       } else {
-        options.onClose?.();
+        options.onClose?.()
       }
-    }, options.delay ?? 200);
+    }, options.delay ?? 0.2)
     onCleanup(() => {
-      clearTimeout(timeId);
-    });
-  });
+      clearTimeout(timeId)
+    })
+  })
 }

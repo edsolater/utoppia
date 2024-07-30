@@ -3,6 +3,7 @@ import type { Url, ID, TimeStamp } from "@edsolater/fnkit"
 export type BriefVedioInfo = {
   id: ID // (an alias of bvid)
   thumbnail: Url
+
   bvid: string
   mid: ID
   authorName: string
@@ -15,7 +16,7 @@ export type BriefVedioInfo = {
   /** 评论数 */
   comment: number
   /** 视频时长 */
-  length: string
+  duration: number
   /** 视频标题 */
   title: string
   /** 视频发布时间(s) */
@@ -37,4 +38,9 @@ export type BriefVedioInfo = {
     /** 合集的总数 */
     count: number
   }
+
+  /** for AI to analyse
+   *
+   */
+  signatureText: string
 }

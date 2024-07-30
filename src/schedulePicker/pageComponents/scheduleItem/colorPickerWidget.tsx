@@ -1,3 +1,4 @@
+import { setTimeoutWithSecondes } from "@edsolater/fnkit"
 import { Plugin, createDisclosure, createDomRef, createPlugin, createUUID, type PivChild } from "@edsolater/pivkit"
 
 export type ColorPickerWidgetPluginOptions = {
@@ -29,9 +30,9 @@ export const colorPickerWidget: ColorPickerWidgetPlugin = createPlugin((options)
     // newHTMLColorPickerInput.style.position = "fixed"
     htmlColorPicker = newHTMLColorPickerInput
     anchorElement.appendChild(newHTMLColorPickerInput)
-    setTimeout(() => {
+    setTimeoutWithSecondes(() => {
       newHTMLColorPickerInput.showPicker()
-    }, 10)
+    }, 0.01)
   }
   function closeColorPicker() {
     if (htmlColorPicker) {

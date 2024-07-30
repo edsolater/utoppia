@@ -1,4 +1,4 @@
-import { createSubscribable, type ID } from "@edsolater/fnkit"
+import { createSubscribable, getNow, type ID } from "@edsolater/fnkit"
 import { createUUID } from "@edsolater/pivkit"
 import { ScheduleLinkItem } from "./type"
 
@@ -20,7 +20,7 @@ function washScheduleItem(scheduleItem: Partial<ScheduleLinkItem>): ScheduleLink
     category: scheduleItem.category === "other" ? "video" : scheduleItem.category ?? undefined,
     comment: scheduleItem.comment,
     is: "link",
-    creatTime: Date.now(),
+    creatTime: getNow(),
   }
 }
 

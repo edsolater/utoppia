@@ -1,4 +1,4 @@
-import { toFixedDecimal, type MayArray } from "@edsolater/fnkit"
+import { setTimeoutWithSecondes, toFixedDecimal, type MayArray } from "@edsolater/fnkit"
 import {
   Box,
   KitProps,
@@ -59,7 +59,7 @@ export function AppKeeperPanelManager(kitprops: KitProps<AppKeeperPanelManagerPr
     },
   })
   createEffect(() => {
-    setTimeout(() => {
+    setTimeoutWithSecondes(() => {
       console.log("isPanelFloating(), panelName: ", isPanelFloating(), panelName)
     })
   })

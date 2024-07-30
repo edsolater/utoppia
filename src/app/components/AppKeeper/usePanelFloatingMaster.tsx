@@ -12,7 +12,7 @@ type AutoCloseIfNotInterestOptions = {
   onClose?: AnyFn
   onOpen?: AnyFn
   /**
-   * @default 200
+   * @default .2
    */
   delay?: number
 }
@@ -37,7 +37,7 @@ export function usePanelFloatingMaster(options: AutoCloseIfNotInterestOptions) {
     const enabled = "enabled" in options ? shrinkFn(options.enabled) : true
     if (!enabled) return
     if (!isHoveringEl() && !isInterested() && !isHoveringEdge()) {
-      const { cancel } = close({ delay: options.delay ?? 200 })
+      const { cancel } = close({ delay: options.delay ?? .2 })
       onCleanup(cancel)
     } else {
       const { cancel } = open()

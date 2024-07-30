@@ -43,23 +43,6 @@ export function delayDo<F extends AnyFn>(
 /**
  * delay method
  */
-export function delayDo_doInMicroLoop<T>(task: () => Promise<T> | T): Promise<T> {
+function delayDo_doInMicroLoop<T>(task: () => Promise<T> | T): Promise<T> {
   return Promise.resolve().then(() => task())
-}
-
-export function delayDo_doInNextFrame<T>(delayTime = 0) {
-  return function delayDo_setTimeOut(task: () => Promise<T> | T): Promise<T> {
-    return new Promise((resolve, reject) => {
-      let timeoutId
-      try {
-        timeoutId = globalThis.setTimeout(() => {
-          const result = task()
-          resolve(result)
-        }, delayTime)
-      } catch (err) {
-        globalThis.clearTimeout(timeoutId)
-        reject(err)
-      }
-    })
-  }
 }

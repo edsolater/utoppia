@@ -1,4 +1,4 @@
-import { capitalize, switchCase } from "@edsolater/fnkit"
+import { capitalize, setTimeoutWithSecondes, switchCase } from "@edsolater/fnkit"
 import { configUIKitTheme } from "@edsolater/pivkit"
 import { RouteSectionProps } from "@solidjs/router"
 import { Show, createMemo } from "solid-js"
@@ -7,12 +7,12 @@ import { setShuckvisibleChecker } from "../../packages/conveyor/smartStore/shuck
 import { createTask } from "../../packages/conveyor/smartStore/task"
 import { uikitConfig } from "../../schedulePicker/configs/uikitTheme"
 import { initAppContextConfig } from "../../schedulePicker/hooks/initAppContextConfig"
+import { routes } from "../routes/routes"
 import { AppKeeper } from "./AppKeeper"
+import { NavBar } from "./AppNavBar"
 import { KeyboardShortcutPanel } from "./KeyboardShortcutPanel"
 import { ShuckInspectorPanel } from "./ShuckInspectorPanel"
 import { SideMenu } from "./SideMenu"
-import { routes } from "../routes/routes"
-import { NavBar } from "./AppNavBar"
 
 // config uikit theme before render
 initAppContextConfig({ themeMode: "dark", onlyAltSelect: true })
@@ -62,7 +62,7 @@ function useExperimentalCode() {
   testCount.set((n) => n + 1)
   setShuckvisibleChecker(testCount, true, undefined)
   testCount.set((n) => n + 1)
-  setTimeout(() => {
+  setTimeoutWithSecondes(() => {
     console.log("effectRunCount: ", effectRunCount)
   })
 }

@@ -1,4 +1,10 @@
-import { MayPromise, createInvoker, switchCase } from "@edsolater/fnkit"
+import {
+  MayPromise,
+  createInvoker,
+  setIntervalWithSecondes,
+  setTimeoutWithSecondes,
+  switchCase,
+} from "@edsolater/fnkit"
 import {
   AddProps,
   Box,
@@ -159,9 +165,9 @@ function ComponentSpecList() {
 function Foo() {
   const [count, setCount] = createSignal(0)
   createEffect(() => {
-    const timeoutId = setInterval(() => {
+    const timeoutId = setIntervalWithSecondes(() => {
       setCount((c) => c + 1)
-    }, 1000)
+    }, 1)
     onCleanup(() => clearInterval(timeoutId))
   })
   return (
@@ -342,9 +348,9 @@ function SelectExample() {
 
 function InputExample() {
   const [controlledValue, setControlledValue] = createSignal<string>()
-  setInterval(() => {
+  setIntervalWithSecondes(() => {
     setControlledValue((s) => (s ?? "") + "1")
-  }, 500)
+  }, 0.5)
   return (
     <Input
       value={controlledValue}
@@ -451,9 +457,9 @@ function ListExample() {
   const [data, setData] = createSignal<typeof mockData>([])
   const increaseCount = createIncreasingSeed()
   createEffect(() => {
-    setTimeout(() => {
+    setTimeoutWithSecondes(() => {
       setData(mockData)
-    }, 100)
+    }, 0.1)
   })
   return (
     <InfiniteScrollList items={data} initRenderCount={10} icss={[icssCol({ gap: "16px" }), { height: "30dvh" }]}>
@@ -482,9 +488,9 @@ function ComponentFactoryExample() {
   }
   const [store, setStore] = createStore(data)
   createEffect(() => {
-    setInterval(() => {
+    setIntervalWithSecondes(() => {
       setStore("isOpen", (b) => !b)
-    }, 1000)
+    }, 1)
   })
   return (
     <>
@@ -670,9 +676,9 @@ function ViewTransitionSliderBoxExample() {
       <Button
         onClick={() => {
           setContentIndex((n) => n + 1)
-          setTimeout(() => {
+          setTimeoutWithSecondes(() => {
             setCount((c) => c + 1)
-          }, 0)
+          })
         }}
       >
         Increase Count

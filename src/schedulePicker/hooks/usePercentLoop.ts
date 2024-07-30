@@ -1,6 +1,6 @@
 import { createEffect, createSignal, on, onCleanup, onMount, type Accessor } from "solid-js"
 import { requestLoopAnimationFrame } from "@edsolater/pivkit"
-import type { AnyFn } from "@edsolater/fnkit"
+import { createTimeStamp, type AnyFn } from "@edsolater/fnkit"
 
 /**
  * 0 ~ 1
@@ -11,9 +11,9 @@ export function usePercentLoop({
   canRoundCountOverOne,
   onRoundEnd,
   eachSecondPercent = 1 / 10,
-  updateEach = 1000,
+  updateEach = 1,
 }: {
-  updateEach?: number // default 1000ms
+  updateEach?: number // default 1s
   canRoundCountOverOne?: boolean
   onRoundEnd?: () => void
   eachSecondPercent?: number
@@ -26,7 +26,7 @@ export function usePercentLoop({
   const { startLoop, stopLoop } = useIntervalLoop({
     cb: () => {
       setPercent((percent) => {
-        const nextPercent = percent + eachSecondPercent / (updateEach / 1000)
+        const nextPercent = percent + eachSecondPercent / updateEach
         if (nextPercent >= 1) {
           if (canRoundCountOverOne) {
             onRoundEnd?.()
@@ -57,7 +57,7 @@ export function usePercentLoop({
 
 export function useIntervalLoop({
   cb,
-  delay = 1000,
+  delay = 1,
   immediate = true,
 }: {
   cb?: () => void
@@ -93,7 +93,7 @@ export function useIntervalLoop({
   }
 
   function invokeOnce() {
-    setLastInvokeTime(Date.now())
+    setLastInvokeTime(createTimeStamp())
     cb?.()
   }
 
