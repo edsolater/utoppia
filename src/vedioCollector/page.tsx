@@ -1,5 +1,6 @@
 import {
   Box,
+  createDisclosure,
   cssOpacity,
   Icon,
   icssCard,
@@ -10,11 +11,11 @@ import {
   useKitProps,
   type KitProps,
 } from "@edsolater/pivkit"
-import { createEffect, createResource } from "solid-js"
+import { createEffect, createResource, Show } from "solid-js"
 import { Link } from "../app/components/Link"
 import { colors } from "../app/theme/colors"
 import { serverOrigin } from "./configs/env"
-import type { BriefVedioInfo } from "./data/briefVedioInfo"
+import type { BriefVideoInfo } from "./data/briefVedioInfo"
 import { bilibiliStore } from "./fetchData"
 
 /**
@@ -22,7 +23,7 @@ import { bilibiliStore } from "./fetchData"
  * This component fetches and displays a list of videos from the bilibiliStore.
  */
 export default function VideoCollectorPage() {
-  const [videoList, videoListManager] = createResource(() => bilibiliStore.ups.getVideos())
+  const [videoList, videoListManager] = createResource(() => bilibiliStore.getVideos())
 
   createEffect(() => {
     console.log("videoList: ", videoList())
@@ -46,9 +47,13 @@ export default function VideoCollectorPage() {
  * Renders a card displaying brief information about a video.
  * @param props - The props containing the video information.
  */
-function BriefVideoInfoCard(props: { info: BriefVedioInfo }) {
+function BriefVideoInfoCard(props: { info: BriefVideoInfo }) {
   const thumbnailSrc = `${serverOrigin}/bilibili/img-proxy?url=${props.info.thumbnail}@672w_378h_1c_!web-home-common-cover.avif`
   const authorFaceSrc = `${serverOrigin}/bilibili/img-proxy?url=${props.info.authorFace}@96w_96h_1c_1s_!web-avatar.avif`
+  const [watched, { open, close, toggle }] = createDisclosure(() => Boolean(props.info.watched), {
+    onOpen: () => bilibiliStore.flagVideoWatched(props.info.bvid),
+    onClose: () => bilibiliStore.flagVideoUnwatched(props.info.bvid),
+  })
   return (
     <Card
       name="brief-video-info-card"
@@ -65,6 +70,9 @@ function BriefVideoInfoCard(props: { info: BriefVedioInfo }) {
       ]}
     >
       <Section icss={{ gridArea: "title" }}>
+        <Text icss={{ display: "inline-block" }} onClick={() => toggle()}>
+          {watched() ? "✅" : "✨"}
+        </Text>
         <Link icss={{ color: colors.textLink }} href={`https://www.bilibili.com/video/${props.info.bvid}`}>
           {props.info.title}
         </Link>
@@ -102,6 +110,20 @@ function BriefVideoInfoCard(props: { info: BriefVedioInfo }) {
             <Icon src="/icons/bilibili/comment.svg"></Icon>
             <Text icss={{ fontSize: ".8em" }}>{props.info.comment}</Text>
           </Box>
+          <Show when={props.info.like}>
+            <Box icss={{ display: "flex" }}>
+              {/* TODO: why css fontSize not work */}
+              <Icon src="/icons/bilibili/like.svg" icss={{ fontSize: ".5em" }}></Icon>
+              <Text icss={{ fontSize: ".8em" }}>{props.info.like}</Text>
+            </Box>
+          </Show>
+          <Show when={props.info.favorite}>
+            <Box icss={{ display: "flex" }}>
+              {/* TODO: why css fontSize not work */}
+              <Icon src="/icons/bilibili/favorite.svg" icss={{ fontSize: ".5em" }}></Icon>
+              <Text icss={{ fontSize: ".8em" }}>{props.info.favorite}</Text>
+            </Box>
+          </Show>
         </Box>
       </Section>
     </Card>
