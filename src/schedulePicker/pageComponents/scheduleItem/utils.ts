@@ -17,7 +17,7 @@ function washScheduleItem(scheduleItem: Partial<ScheduleLinkItem>): ScheduleLink
     //@ts-ignore
     tags: scheduleItem.tags || scheduleItem.tag || "",
     //@ts-ignore
-    category: scheduleItem.category === "other" ? "video" : scheduleItem.category ?? undefined,
+    category: scheduleItem.category === "other" ? "video" : (scheduleItem.category ?? undefined),
     comment: scheduleItem.comment,
     is: "link",
     creatTime: getNow(),
@@ -42,14 +42,23 @@ export const dailyScheduleData = createSubscribable<ScheduleSchema>(
 )
 
 /**
- * in {@link dailySchemaUtils}
+ * a dailySchema util
  */
-function deleteLink(link: ScheduleLinkItem) {
+export function deleteLinkScheduleItem(link: ScheduleLinkItem) {
   dailyScheduleData.set((prev) => ({ ...prev, links: prev.links?.filter((l) => l.id !== link.id) }))
 }
 
-/** provides utils to operate with schema without know schema's inner structure */
-export const dailySchemaUtils = { deleteLink }
+/**
+ * a dailySchema util
+ * 
+ * create an emty link item and add it to the dailySchema
+ * @returns the new link item's id
+ */
+export function createNewLinkScheduleItem(): ID {
+  const itemId = createUUID()
+  dailyScheduleData.set((prev) => ({ ...prev, links: [...(prev.links ?? []), { id: itemId }] }))
+  return itemId
+}
 
 export function updateExistedScheduleItem(id: ID, partialNewItem: Partial<ScheduleLinkItem>) {
   dailyScheduleData.set((prev) => ({

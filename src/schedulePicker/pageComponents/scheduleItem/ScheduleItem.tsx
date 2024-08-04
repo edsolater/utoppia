@@ -16,13 +16,15 @@ import {
   List,
   Row,
   Text,
+  useKitProps,
   type CSSObject,
+  type KitProps,
 } from "@edsolater/pivkit"
 import { createEffect, createMemo, on, type Accessor } from "solid-js"
 import { reconcile } from "solid-js/store"
 import { colors } from "../../../app/theme/colors"
 import { navigateToUrl } from "../../utils/url"
-import { SelectPanel } from "./Select"
+import { SelectPanel, type SelectPanelProps } from "./Select"
 import { editablePlugin, EditablePluginWrapper, type EditablePluginPluginController } from "./editablePlugin"
 import { popupWidget } from "./popupWidget"
 import {
@@ -32,6 +34,7 @@ import {
   type ScheduleLinkItemCategories,
 } from "./type"
 import { visiblePlugin } from "./visiablePlugin"
+import { updateExistedScheduleItem } from "./utils"
 
 // user configable
 // color:
@@ -54,7 +57,10 @@ function getScheduleItemColor(item: ScheduleItem) {
   )
 }
 
-export function ScheduleItem(props: {
+/**
+ * main component of page
+ */
+export function ScheduleItemCard(props: {
   item: ScheduleLinkItem
 
   /** user  attempt to delete this item */
@@ -69,14 +75,21 @@ export function ScheduleItem(props: {
    */
   onItemInfoChange?: (newItem: ScheduleLinkItem) => void
 }) {
-  const [innerItemData, setInnerItemData] = createIStore({ ...props.item })
+  const [innerItemData, setInnerCacheItemData] = createIStore(
+    { ...props.item },
+    {
+      onChange(newStore) {
+        updateExistedScheduleItem(newStore.id, newStore)
+      },
+    },
+  )
 
   // reflect outer item change to inner item
   createEffect(
     on(
       () => props.item,
       () => {
-        setInnerItemData(reconcile({ ...props.item }))
+        setInnerCacheItemData(reconcile({ ...props.item }))
       },
       { defer: true },
     ),
@@ -136,38 +149,19 @@ export function ScheduleItem(props: {
       ]}
     >
       {/* category */}
-      <Text
-        icss={[
-          {
-            gridArea: "category",
-            color: colors.textPrimary,
-            padding: "2px 8px",
-            background: cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor()),
-            width: "fit-content",
-            minWidth: "3em",
-            borderRadius: "4px",
-            textAlign: "center",
-          },
-          icssClickable,
-        ]}
-        plugin={popupWidget.config({
-          shouldFocusChildWhenOpen: true,
-          canBackdropClose: true,
-          popElement: ({ closePopup }) => (
-            <SelectPanel
-              name="category-selector"
-              items={scheduleLinkItemCategories}
-              defaultValue={innerItemData.category}
-              onClose={closePopup}
-              onChange={({ itemValue }) => {
-                setInnerItemData("category", itemValue() as ScheduleLinkItem["category"])
-              }}
-            />
-          ),
-        })}
+      <Tag
+        bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
+        scheduleLinkItemCategories={scheduleLinkItemCategories}
+        value={innerItemData.category}
+        defaultValue={innerItemData.category}
+        onChange={({ itemValue }) => {
+          const newCategory = itemValue() as ScheduleLinkItem["category"]
+          console.log("newCategory: ", newCategory)
+          setInnerCacheItemData("category", newCategory)
+        }}
       >
-        {props.item.category ?? " "}
-      </Text>
+        {props.item.category}
+      </Tag>
 
       {/* name + links */}
       <Group icss={{ gridArea: "name" }}>
@@ -182,7 +176,7 @@ export function ScheduleItem(props: {
                   outline: isEnabled() ? "solid" : undefined,
                 })}
                 plugin={editablePlugin.config({
-                  onInput: (newText) => setInnerItemData({ name: newText }),
+                  onInput: (newText) => setInnerCacheItemData({ name: newText }),
                   onEnabledChange: (b) => {
                     if (!b) {
                       props.onItemInfoChange?.(innerItemData)
@@ -241,5 +235,52 @@ export function ScheduleItem(props: {
         </Button>
       </Row>
     </Box>
+  )
+}
+
+/**
+ * TODO: should normalized and move to pivkit
+ */
+function Tag(
+  kitProps: KitProps<{
+    bg: string
+    scheduleLinkItemCategories: ScheduleLinkItemCategories[]
+    defaultValue: ScheduleLinkItem["category"]
+    value: ScheduleLinkItem["category"]
+    onChange: SelectPanelProps<ScheduleLinkItem["category"]>["onChange"]
+  }>,
+) {
+  const { props } = useKitProps(kitProps, { name: "Tag" })
+  return (
+    <Text
+      icss={[
+        {
+          gridArea: "category",
+          color: colors.textPrimary,
+          padding: "2px 8px",
+          background: props.bg,
+          width: "fit-content",
+          minWidth: "3em",
+          borderRadius: "4px",
+          textAlign: "center",
+        },
+        icssClickable,
+      ]}
+      plugin={popupWidget.config({
+        shouldFocusChildWhenOpen: true,
+        canBackdropClose: true,
+        popElement: ({ closePopup }) => (
+          <SelectPanel
+            name="category-selector"
+            items={scheduleLinkItemCategories}
+            defaultValue={props.defaultValue}
+            onClose={closePopup}
+            onChange={props.onChange}
+          />
+        ),
+      })}
+    >
+      {props.value ?? " "}
+    </Text>
   )
 }

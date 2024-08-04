@@ -11,6 +11,7 @@ import {
   Space,
   createInputDescription,
   createRef,
+  createUUID,
   icssGrid,
   useKitProps,
   useSubscribableStore,
@@ -19,9 +20,14 @@ import {
 import { createSignal } from "solid-js"
 import { DraggablePanel } from "../app/components/FABPanel"
 import { popupWidget } from "./pageComponents/scheduleItem/popupWidget"
-import { ScheduleItem } from "./pageComponents/scheduleItem/ScheduleItem"
+import { ScheduleItemCard } from "./pageComponents/scheduleItem/ScheduleItem"
 import type { ScheduleLinkItem } from "./pageComponents/scheduleItem/type"
-import { dailyScheduleData, dailySchemaUtils, updateExistedScheduleItem } from "./pageComponents/scheduleItem/utils"
+import {
+  createNewLinkScheduleItem,
+  dailyScheduleData,
+  deleteLinkScheduleItem,
+  updateExistedScheduleItem,
+} from "./pageComponents/scheduleItem/utils"
 import { downloadJSON, importJSONFile } from "./utils/download"
 
 export default function DailySchedulePage() {
@@ -30,7 +36,7 @@ export default function DailySchedulePage() {
   const [linkCreatorFormRef, setLinkCreatorRef] = createRef<LinkCreatorFormController>()
 
   function handleDeleteLink(link: ScheduleLinkItem) {
-    dailySchemaUtils.deleteLink(link)
+    deleteLinkScheduleItem(link)
   }
   function handleEdit(link: ScheduleLinkItem) {
     linkCreatorFormRef()?.injectLinkToEdit(link)
@@ -61,20 +67,13 @@ export default function DailySchedulePage() {
             <Button>
               <Icon src="/icons/settings.svg" variant="inline" />
             </Button>
-            <CreatorButton
-              refofNewScheduleItemCreatorForm={setLinkCreatorRef}
-              onSubmit={(newformData, inEditMode) => {
-                if (inEditMode) {
-                  setData((prev) => ({
-                    links: prev.links?.map((link) => (link.id === newformData.id ? newformData : link)),
-                  }))
-                } else {
-                  setData((prev) => ({
-                    links: [...(prev.links ?? []), { id: newformData.name, ...newformData }],
-                  }))
-                }
+            <Button
+              onClick={() => {
+                createNewLinkScheduleItem()
               }}
-            />
+            >
+              <Icon src="/icons/add.svg" variant="inline" /> Create New
+            </Button>
             <Button
               onClick={() => {
                 downloadJSON(data, "daily-schedule.json")
@@ -108,7 +107,7 @@ export default function DailySchedulePage() {
           }}
         >
           {(link) => (
-            <ScheduleItem
+            <ScheduleItemCard
               item={link}
               onDelete={() => handleDeleteLink(link)}
               onEdit={() => handleEdit(link)}
@@ -140,15 +139,16 @@ export default function DailySchedulePage() {
   )
 }
 
-type CreatorButtonProps = {
-  refofNewScheduleItemCreatorForm: (cl: LinkCreatorFormController) => void
-  onSubmit: (newformData: any, inEditMode: boolean) => void
-}
-
 /**
  * user can create new ScheduleItem by click the button
+ * @deprecated just template
  */
-function CreatorButton(kitprops: KitProps<CreatorButtonProps>) {
+function Deprecated_PopoverFormCreatorButton(
+  kitprops: KitProps<{
+    refOfNewScheduleItemCreatorForm: (cl: LinkCreatorFormController) => void
+    onSubmit?: (newformData: any, inEditMode: boolean) => void
+  }>,
+) {
   const { props, shadowProps } = useKitProps(kitprops, { name: "CreatorButton" })
   return (
     <Button
@@ -159,7 +159,7 @@ function CreatorButton(kitprops: KitProps<CreatorButtonProps>) {
         popElement: () => (
           <DraggablePanel icss={{ padding: "32px 16px 4px" }}>
             <NewScheduleItemCreatorForm
-              ref={props.refofNewScheduleItemCreatorForm}
+              ref={props.refOfNewScheduleItemCreatorForm}
               onDone={({ info: newformData, inEditMode }) => {
                 props.onSubmit?.(newformData, Boolean(inEditMode))
               }}

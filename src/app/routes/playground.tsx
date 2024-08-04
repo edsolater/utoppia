@@ -552,16 +552,10 @@ function PropContextExample() {
           >
             PropContext can pass to deep nested components
           </Box>
-          <ControllerContextExample />
         </Piv>
       </Box>
     </AddProps>
   )
-}
-function ControllerContextExample(kitProps: ValidProps) {
-  const { contextController } = useKitProps(kitProps, { name: "ControllerContextExample" })
-  const { say } = contextController as { say: () => string }
-  return <Box>{say?.()}</Box>
 }
 
 function UploadExample() {

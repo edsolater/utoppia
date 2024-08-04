@@ -8,12 +8,12 @@ export type ScheduleItem = {
   id: ID // (auto-generated)
   name?: string
   comment?: string
-  creatTime: TimeStamp // (auto-generated)
+  creatTime?: TimeStamp // (auto-generated)
   history?: HistoryRecordItem[]
   rating?: Float<0, 5>
   icon?: string // can be base64 or url
 
-  is: string
+  is?: string
   category?: string // classic
 }
 
@@ -31,7 +31,7 @@ export const scheduleLinkItemCategories = [
 export type ScheduleLinkItem = ScheduleItem & {
   url?: string
   // determine outside looks layout
-  is: "link"
+  is?: "link"
   // determine outside looks color
   category?: ScheduleLinkItemCategories
   tags?: string
