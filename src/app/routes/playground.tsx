@@ -12,6 +12,7 @@ import {
   CollapseBox,
   Drawer,
   DrawerController,
+  FormFactory,
   Group,
   InfiniteScrollList,
   Input,
@@ -19,12 +20,10 @@ import {
   ModalController,
   Piv,
   Radio,
-  RenderFactory,
   Select,
   Switch,
   Tabs,
   Text,
-  ValidProps,
   buildPopover,
   createDisclosure,
   createIncreasingSeed,
@@ -48,7 +47,6 @@ import {
   renderSwitchThumb,
   useControllerByID,
   useHoverPlugin,
-  useKitProps,
   type ICSS,
 } from "@edsolater/pivkit"
 import { Accessor, JSXElement, createContext, createEffect, createSignal, onCleanup } from "solid-js"
@@ -56,8 +54,8 @@ import { createStore } from "solid-js/store"
 import { ExamplePanel } from "../../schedulePicker/components/ExamplePanel"
 import { RefreshCircle } from "../../schedulePicker/components/RefreshCircle"
 import { ViewTransitionSliderBox } from "../../schedulePicker/components/ViewTransitionSliderBox"
-import { colors } from "../theme/colors"
 import { FABPanel } from "../components/FABPanel"
+import { colors } from "../theme/colors"
 
 export default function PlaygroundPage() {
   return (
@@ -494,7 +492,7 @@ function ComponentFactoryExample() {
   })
   return (
     <>
-      <RenderFactory
+      <FormFactory
         data={store}
         widgetCreateRule={(value) =>
           switchCase<any, any>(

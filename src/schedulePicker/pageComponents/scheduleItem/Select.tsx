@@ -23,7 +23,7 @@ export type SelectPanelProps<T extends SelectableItem> = {
   name?: string
 
   // variant?: 'filled' | 'filledFlowDark' | 'filledDark' | 'roundedFilledFlowDark' | 'roundedFilledDark'
-  items?: T[]
+  candidates?: T[]
   value?: T
   defaultValue?: T
   /** value is used in onChange, value is also used as key */
@@ -60,7 +60,7 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
     focusPrevItem,
     focusNextItem,
   } = useSelectItems<T>({
-    items: props.items,
+    items: props.candidates,
     defaultValue: props.defaultValue,
     getItemValue: methods.getItemValue,
     onChange: props.onChange,

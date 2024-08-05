@@ -7,34 +7,30 @@ import {
   cssColorMix,
   cssGrayscale,
   cssOpacity,
-  Detector,
   Group,
   Icon,
   icssCard,
-  icssClickable,
   icssContentClickableOpacity,
   List,
   Row,
   Text,
-  useKitProps,
   type CSSObject,
-  type KitProps,
 } from "@edsolater/pivkit"
-import { createEffect, createMemo, on, type Accessor } from "solid-js"
+import { createEffect, createMemo, on } from "solid-js"
 import { reconcile } from "solid-js/store"
 import { colors } from "../../../app/theme/colors"
 import { navigateToUrl } from "../../utils/url"
-import { SelectPanel, type SelectPanelProps } from "./Select"
-import { editablePlugin, EditablePluginWrapper, type EditablePluginPluginController } from "./editablePlugin"
-import { popupWidget } from "./popupWidget"
+import { Tag } from "./Tag"
+import { editablePlugin, type EditablePluginPluginController } from "./editablePlugin"
 import {
   scheduleLinkItemCategories,
   type ScheduleItem,
   type ScheduleLinkItem,
   type ScheduleLinkItemCategories,
 } from "./type"
-import { visiblePlugin } from "./visiablePlugin"
 import { updateExistedScheduleItem } from "./utils"
+import { SelectPanel } from "./Select"
+import { popupWidget } from "./popupWidget"
 
 // user configable
 // color:
@@ -139,10 +135,10 @@ export function ScheduleItemCard(props: {
           display: "grid",
           // TODO: use subgrid
           gridTemplate: `
-              "category  category  actions2 " auto
+              "category  category  actions2" auto
               "name      name      actions1" auto
-              "tags      tags      tags    " 1fr
-              "comment   comment   comment" auto / 1fr 1fr 1fr`,
+              "tags      tags      .       " 1fr
+              "comment   comment   actions3" auto / 1fr 1fr 1fr`,
           columnGap: "16px",
           rowGap: "8px",
         },
@@ -151,7 +147,7 @@ export function ScheduleItemCard(props: {
       {/* category */}
       <Tag
         bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
-        scheduleLinkItemCategories={scheduleLinkItemCategories}
+        candidates={scheduleLinkItemCategories}
         value={innerItemData.category}
         defaultValue={innerItemData.category}
         onChange={({ itemValue }) => {
@@ -165,36 +161,53 @@ export function ScheduleItemCard(props: {
 
       {/* name + links */}
       <Group icss={{ gridArea: "name" }}>
-        {/* TODO: may be this mode is strightforward but too complex to type */}
-        <Detector>
-          {({ isHovered }) => (
-            <Box icss={{ display: "flex", gap: "8px" }}>
-              <Text
-                icss={({ isEnabled }: EditablePluginPluginController) => ({
-                  flexGrow: 1,
-                  fontSize: "1.8em",
-                  outline: isEnabled() ? "solid" : undefined,
-                })}
-                plugin={editablePlugin.config({
-                  onInput: (newText) => setInnerCacheItemData({ name: newText }),
-                  onEnabledChange: (b) => {
-                    if (!b) {
-                      props.onItemInfoChange?.(innerItemData)
-                    }
-                  },
-                })}
-              >
-                {props.item.name}
-              </Text>
-            </Box>
-          )}
-        </Detector>
+        <Text
+          icss={({ isEnabled }: EditablePluginPluginController) => ({
+            display: "inline-block",
+            width: "100%",
+            fontSize: "1.6em",
+            outline: isEnabled() ? "solid" : undefined,
+          })}
+          plugin={editablePlugin.config({
+            placeholder: "Title",
+            onInput: (newText) => setInnerCacheItemData({ name: newText }),
+            onEnabledChange: (b) => {
+              if (!b) {
+                props.onItemInfoChange?.(innerItemData)
+              }
+            },
+          })}
+        >
+          {props.item.name}
+        </Text>
       </Group>
 
       {/* action 1 */}
       <Group icss={{ gridArea: "actions1", justifySelf: "end" }}>
         <Button variant="plain" size={"xs"} icss={icssContentClickableOpacity} onClick={handleActionOpenLink}>
           <Icon name="open-window" src={"/icons/open_in_new.svg"} />
+        </Button>
+      </Group>
+
+      {/* action 3 */}
+      <Group icss={{ gridArea: "actions3", placeSelf: "end" }}>
+        <Button
+          variant="plain"
+          size={"xs"}
+          icss={icssContentClickableOpacity}
+          plugin={popupWidget.config({
+            shouldFocusChildWhenOpen: true,
+            canBackdropClose: true,
+            popElement: ({ closePopup }) => (
+              <SelectPanel
+                name="edit-new-widget-selector"
+                candidates={["tags", "comment", "title"]}
+                onClose={closePopup}
+              />
+            ),
+          })}
+        >
+          <Icon name="open-window" src={"/icons/add_box.svg"} />
         </Button>
       </Group>
 
@@ -235,52 +248,5 @@ export function ScheduleItemCard(props: {
         </Button>
       </Row>
     </Box>
-  )
-}
-
-/**
- * TODO: should normalized and move to pivkit
- */
-function Tag(
-  kitProps: KitProps<{
-    bg: string
-    scheduleLinkItemCategories: ScheduleLinkItemCategories[]
-    defaultValue: ScheduleLinkItem["category"]
-    value: ScheduleLinkItem["category"]
-    onChange: SelectPanelProps<ScheduleLinkItem["category"]>["onChange"]
-  }>,
-) {
-  const { props } = useKitProps(kitProps, { name: "Tag" })
-  return (
-    <Text
-      icss={[
-        {
-          gridArea: "category",
-          color: colors.textPrimary,
-          padding: "2px 8px",
-          background: props.bg,
-          width: "fit-content",
-          minWidth: "3em",
-          borderRadius: "4px",
-          textAlign: "center",
-        },
-        icssClickable,
-      ]}
-      plugin={popupWidget.config({
-        shouldFocusChildWhenOpen: true,
-        canBackdropClose: true,
-        popElement: ({ closePopup }) => (
-          <SelectPanel
-            name="category-selector"
-            items={scheduleLinkItemCategories}
-            defaultValue={props.defaultValue}
-            onClose={closePopup}
-            onChange={props.onChange}
-          />
-        ),
-      })}
-    >
-      {props.value ?? " "}
-    </Text>
   )
 }

@@ -4,6 +4,7 @@ import {
   createDomRef,
   createPlugin,
   createSyncSignal,
+  cssOpacity,
   useClickOutside,
   useDOMEventListener,
   useKitProps,
@@ -24,6 +25,9 @@ export type EditablePluginPluginOptions = KitProps<{
   isEnabled?: boolean
   /** with onEnabledChange, it will be a two-way binding */
   onEnabledChange?: (isEnabled: boolean) => void
+
+  /** when innerText is empty. placeholderText will always has .4 opacity */
+  placeholder?: string
 
   onInput?: (newText: string) => void
   onEnter?: (newText: string) => void
@@ -158,7 +162,24 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
       }
     })
 
-    return { plugin: () => ({ domRef: setSelfDom }) as PivProps, state: { isEnabled } }
+    return {
+      plugin: () =>
+        ({
+          domRef: setSelfDom,
+          htmlProps: {
+            "data-placeholder": options.placeholder,
+          },
+          icss: () => ({
+            "&:empty": {
+              color: cssOpacity('currentColor', 0.4),
+              "&::before": {
+                content: "attr(data-placeholder)",
+              },
+            },
+          }),
+        }) as PivProps,
+      state: { isEnabled },
+    }
   },
 )
 

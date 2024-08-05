@@ -85,8 +85,9 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
 
   // click outside to close popover
   if (options.canBackdropClose) {
-    useClickOutside([popoverContentDom], {
+    useClickOutside(popoverContentDom, {
       onClickOutSide: () => {
+        console.log("onClickOutSide: ",popoverContentDom())
         if (isOn()) close() // trigger is also outside of the popover
       },
     })
@@ -113,7 +114,7 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
     onClick: ({ ev }) => {
       open()
     },
-    "defineNextSibling": (
+    defineNextSibling: (
       <PopoverPanel
         domRef={setPopoverContentDom}
         open={isOn}
