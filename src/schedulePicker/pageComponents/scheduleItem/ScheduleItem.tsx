@@ -8,6 +8,7 @@ import {
   cssGrayscale,
   cssOpacity,
   FormFactory,
+  FormFactoryBlock,
   Group,
   Icon,
   icssCard,
@@ -147,26 +148,26 @@ export function ScheduleItemCard(props: {
     >
       {/* name + links */}
       <Group icss={{ gridArea: "form", display: "flex", gap: ".125em", flexDirection: "column" }}>
-        <FormFactory
-          formObj={innerItemData}
-          keyOrder={["category", "name", "tags", "comment"]}
-          widgetMap={{
-            // maybe it's not readable enough🤔, should more XML🤔?
-            category: (value) => (
+        <FormFactory formObj={innerItemData}>
+          <FormFactoryBlock name="category">
+            {(currentCategoryValue) => (
               <Tag
                 bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
                 candidates={scheduleLinkItemCategories}
-                value={value}
-                defaultValue={value}
+                value={currentCategoryValue}
+                defaultValue={currentCategoryValue}
                 onChange={({ itemValue }) => {
                   const newCategory = itemValue() as ScheduleLinkItem["category"]
                   setInnerCacheItemData("category", newCategory)
                 }}
               >
-                {value}
+                {currentCategoryValue}
               </Tag>
-            ),
-            name: (value) => (
+            )}
+          </FormFactoryBlock>
+
+          <FormFactoryBlock name="name">
+            {(currentNameValue) => (
               <Text
                 icss={({ isEnabled }: EditablePluginPluginController) => ({
                   display: "inline-block",
@@ -184,10 +185,13 @@ export function ScheduleItemCard(props: {
                   },
                 })}
               >
-                {value}
+                {currentNameValue}
               </Text>
-            ),
-            tags: (value) => (
+            )}
+          </FormFactoryBlock>
+
+          <FormFactoryBlock name="tags" when={(v) => v}>
+            {(tagString) => (
               <List
                 icss={{
                   gridArea: "tags",
@@ -196,14 +200,17 @@ export function ScheduleItemCard(props: {
                   flexWrap: "wrap",
                   gap: "8px",
                 }}
-                items={value?.split(" ")}
+                items={tagString?.split(" ")}
               >
-                {(tag) => <Text icss={{ alignContent: "center" }}>{tag}</Text>}
+                {(tag) => <Text icss={{ alignContent: "center" }}>{tag as any}</Text>}
               </List>
-            ),
-            comment: (value) => <Text>{value}</Text>,
-          }}
-        />
+            )}
+          </FormFactoryBlock>
+
+          <FormFactoryBlock name="comment" when={(v) => v}>
+            {(value) => <Text>{value}</Text>}
+          </FormFactoryBlock>
+        </FormFactory>
       </Group>
 
       {/* action 1 */}
