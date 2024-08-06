@@ -1,4 +1,4 @@
-import { switchKey } from "@edsolater/fnkit"
+import { setTimeoutWithSecondes, switchKey } from "@edsolater/fnkit"
 import {
   Box,
   Button,
@@ -190,7 +190,7 @@ export function ScheduleItemCard(props: {
             )}
           </FormFactoryBlock>
 
-          <FormFactoryBlock name="tags" when={(v) => v}>
+          <FormFactoryBlock name="tags" when={(v) => v()}>
             {(tagString) => (
               <List
                 icss={{
@@ -200,14 +200,14 @@ export function ScheduleItemCard(props: {
                   flexWrap: "wrap",
                   gap: "8px",
                 }}
-                items={tagString?.split(" ")}
+                items={() => tagString()?.split(" ")}
               >
                 {(tag) => <Text icss={{ alignContent: "center" }}>{tag as any}</Text>}
               </List>
             )}
           </FormFactoryBlock>
 
-          <FormFactoryBlock name="comment" when={(v) => v}>
+          <FormFactoryBlock name="comment" when={(v) => v()}>
             {(value) => <Text>{value}</Text>}
           </FormFactoryBlock>
         </FormFactory>
@@ -233,8 +233,14 @@ export function ScheduleItemCard(props: {
             popElement: ({ closePopup }) => (
               <SelectPanel
                 name="edit-new-widget-selector"
-                candidates={["tags", "comment", "title"]}
+                candidates={[{ value: "tags", disabled: true }, "comment", "title"]}
                 onClose={closePopup}
+                onSelect={({ itemValue }) => {
+                  console.log("itemValue(): ", itemValue())
+                  setTimeoutWithSecondes(() => {
+                    closePopup()
+                  }, 0.2)
+                }}
               />
             ),
           })}

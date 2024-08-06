@@ -171,7 +171,7 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
           },
           icss: () => ({
             "&:empty": {
-              color: cssOpacity('currentColor', 0.4),
+              color: cssOpacity("currentColor", 0.4),
               "&::before": {
                 content: "attr(data-placeholder)",
               },

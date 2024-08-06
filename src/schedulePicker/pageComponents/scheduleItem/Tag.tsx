@@ -14,7 +14,7 @@ export function Tag(
     candidates: string[]
     defaultValue?: string
     value?: string
-    onChange?: SelectPanelProps<string>["onChange"]
+    onChange?: SelectPanelProps<string>["onSelect"]
   }>,
 ) {
   const { props } = useKitProps(kitProps, { name: "Tag" })
@@ -43,7 +43,7 @@ export function Tag(
             candidates={props.candidates}
             defaultValue={props.defaultValue}
             onClose={closePopup}
-            onChange={props.onChange}
+            onSelect={props.onChange}
           />
         ),
       })}

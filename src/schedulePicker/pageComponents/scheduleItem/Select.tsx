@@ -1,22 +1,35 @@
-import { makeFocusable } from "@edsolater/pivkit"
+import { isString, type AnyObj } from "@edsolater/fnkit"
 import {
   ItemBox,
   Loop,
   Panel,
+  Text,
   createDomRef,
-  cssVar,
   icssCardPanel,
   icssClickable,
-  useClickOutside,
   useKitProps,
   useSelectItems,
   useShortcutsRegister,
   type ItemEventUtils,
   type KitProps,
   type PivChild,
-  type SelectableItem,
 } from "@edsolater/pivkit"
-import { createEffect, createSignal, onMount } from "solid-js"
+import { createEffect, createMemo, createSignal } from "solid-js"
+
+type SelectableItemObj<V extends string = string> = {
+  value: V
+  label?: V
+  /* when set, it will have muted style */
+  disabled?: boolean
+}
+
+type SelectableItem = string | SelectableItemObj
+
+type GetSelectableItemValue<T extends SelectableItem> = T extends string
+  ? string
+  : T extends AnyObj
+    ? T["value"]
+    : never
 
 export type SelectPanelProps<T extends SelectableItem> = {
   /** also in controller */
@@ -24,24 +37,44 @@ export type SelectPanelProps<T extends SelectableItem> = {
 
   // variant?: 'filled' | 'filledFlowDark' | 'filledDark' | 'roundedFilledFlowDark' | 'roundedFilledDark'
   candidates?: T[]
-  value?: T
-  defaultValue?: T
-  /** value is used in onChange, value is also used as key */
-  getItemValue?: (item: T) => string | number
+  value?: GetSelectableItemValue<T>
+  defaultValue?: GetSelectableItemValue<T>
+
+  /** @default true */
   canItemClickClose?: boolean
-  onChange?(utils: ItemEventUtils<T>): void
+
+  onSelect?(utils: Omit<ItemEventUtils<SelectableItemObj>, "isSelected">): void
+
   onClose?: () => void
 
   disabled?: boolean
+
+  /**
+   * when nothing has selected
+   */
   placeholder?: PivChild
-  renderItem?(utils: ItemEventUtils<T>): PivChild
+
+  renderItem?(utils: ItemEventUtils<SelectableItemObj>): PivChild
 }
 type SelectPanelController = {}
 // TODO: imply it !!
 
+function toSelectableItemObj<T extends SelectableItem>(item: T): T extends string ? SelectableItemObj<T> : T {
+  // @ts-expect-error froce type
+  return isString(item) ? { value: item, label: item } : item
+}
+/** if user haven't provide `props:renderItem`, then will use this component to render Select item */
+function DefaultSelectPanelItem(props: { item: SelectableItemObj }) {
+  const isMuted = createMemo(() => props.item.disabled)
+  return <Text icss={{ opacity: isMuted() ? 0.5 : undefined }}>{props.item.label ?? props.item.value}</Text>
+}
+
 export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectPanelProps<T>>) {
   const { props, methods, shadowProps, loadController } = useKitProps(kitProps, { name: "SelectPanel" })
-
+  const candidates = createMemo(() => props.candidates?.map(toSelectableItemObj) ?? [])
+  const defaultItem = createMemo(() =>
+    props.defaultValue ? candidates().find((c) => c.value === props.defaultValue) : undefined,
+  )
   const { dom, setDom } = createDomRef()
 
   // controller
@@ -59,15 +92,19 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
     focusItem,
     focusPrevItem,
     focusNextItem,
-  } = useSelectItems<T>({
-    items: props.candidates,
-    defaultValue: props.defaultValue,
-    getItemValue: methods.getItemValue,
-    onChange: props.onChange,
+  } = useSelectItems<SelectableItemObj>({
+    items: candidates(),
+    defaultValue: defaultItem(),
+    getItemValue: (i) => i.value,
+    onChange: props.onSelect,
   })
 
+  const defaultRenderItem = ({ item }: ItemEventUtils<SelectableItemObj<string>>) => (
+    <DefaultSelectPanelItem item={item()} />
+  )
+
   // compute render functions
-  const renderItem = methods.renderItem ?? (({ itemValue }) => <>{itemValue()}</>)
+  const renderItem = methods.renderItem ?? defaultRenderItem
 
   // keyboard shortcut
   useShortcutsRegister(dom, {
@@ -90,7 +127,7 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
   })
 
   // handle item click
-  const onItemClick = (_clickController, i: T) => {
+  const onItemClick = (_clickController, i: SelectableItemObj) => {
     setItem(i)
     if (props.canItemClickClose) {
       props.onClose?.()

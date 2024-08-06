@@ -7,10 +7,9 @@ import {
   createPlugin,
   createUUID,
   focusFirstFocusableChild,
-  useClickOutside,
-  type PivChild,
+  type PivChild
 } from "@edsolater/pivkit"
-import { createDeferred, createEffect, createMemo, on, type Accessor } from "solid-js"
+import { createEffect, createMemo, on, type Accessor } from "solid-js"
 
 export type PopupWidgetPluginController = {
   isOpen: Accessor<boolean>
@@ -102,7 +101,6 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
       anchorName: `--pop-anchor-${uuid}`,
     },
     onClick: ({ ev }) => {
-      console.log("onClick popover trigger")
       open()
     },
     defineNextSibling: (
@@ -129,7 +127,6 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
           },
         ]}
         onClose={() => {
-          console.log("close popover")
           close()
         }}
       >
