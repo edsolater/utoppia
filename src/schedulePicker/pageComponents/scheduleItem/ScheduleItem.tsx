@@ -7,6 +7,7 @@ import {
   cssColorMix,
   cssGrayscale,
   cssOpacity,
+  FormFactory,
   Group,
   Icon,
   icssCard,
@@ -20,8 +21,10 @@ import { createEffect, createMemo, on } from "solid-js"
 import { reconcile } from "solid-js/store"
 import { colors } from "../../../app/theme/colors"
 import { navigateToUrl } from "../../utils/url"
+import { SelectPanel } from "./Select"
 import { Tag } from "./Tag"
 import { editablePlugin, type EditablePluginPluginController } from "./editablePlugin"
+import { popupWidget } from "./popupWidget"
 import {
   scheduleLinkItemCategories,
   type ScheduleItem,
@@ -29,8 +32,6 @@ import {
   type ScheduleLinkItemCategories,
 } from "./type"
 import { updateExistedScheduleItem } from "./utils"
-import { SelectPanel } from "./Select"
-import { popupWidget } from "./popupWidget"
 
 // user configable
 // color:
@@ -135,51 +136,74 @@ export function ScheduleItemCard(props: {
           display: "grid",
           // TODO: use subgrid
           gridTemplate: `
-              "category  category  actions2" auto
-              "name      name      actions1" auto
-              "tags      tags      .       " 1fr
-              "comment   comment   actions3" auto / 1fr 1fr 1fr`,
+              "form  form  actions2" auto
+              "form  form  actions1" auto
+              "form  form  .       " 1fr
+              "form  form  actions3" auto / 1fr 1fr 1fr`,
           columnGap: "16px",
           rowGap: "8px",
         },
       ]}
     >
-      {/* category */}
-      <Tag
-        bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
-        candidates={scheduleLinkItemCategories}
-        value={innerItemData.category}
-        defaultValue={innerItemData.category}
-        onChange={({ itemValue }) => {
-          const newCategory = itemValue() as ScheduleLinkItem["category"]
-          console.log("newCategory: ", newCategory)
-          setInnerCacheItemData("category", newCategory)
-        }}
-      >
-        {props.item.category}
-      </Tag>
-
       {/* name + links */}
-      <Group icss={{ gridArea: "name" }}>
-        <Text
-          icss={({ isEnabled }: EditablePluginPluginController) => ({
-            display: "inline-block",
-            width: "100%",
-            fontSize: "1.6em",
-            outline: isEnabled() ? "solid" : undefined,
-          })}
-          plugin={editablePlugin.config({
-            placeholder: "Title",
-            onInput: (newText) => setInnerCacheItemData({ name: newText }),
-            onEnabledChange: (b) => {
-              if (!b) {
-                props.onItemInfoChange?.(innerItemData)
-              }
-            },
-          })}
-        >
-          {props.item.name}
-        </Text>
+      <Group icss={{ gridArea: "form", display: "flex", gap: ".125em", flexDirection: "column" }}>
+        <FormFactory
+          formObj={innerItemData}
+          keyOrder={["category", "name", "tags", "comment"]}
+          widgetMap={{
+            // maybe it's not readable enough🤔, should more XML🤔?
+            category: (value) => (
+              <Tag
+                bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
+                candidates={scheduleLinkItemCategories}
+                value={value}
+                defaultValue={value}
+                onChange={({ itemValue }) => {
+                  const newCategory = itemValue() as ScheduleLinkItem["category"]
+                  setInnerCacheItemData("category", newCategory)
+                }}
+              >
+                {value}
+              </Tag>
+            ),
+            name: (value) => (
+              <Text
+                icss={({ isEnabled }: EditablePluginPluginController) => ({
+                  display: "inline-block",
+                  width: "100%",
+                  fontSize: "1.6em",
+                  outline: isEnabled() ? "solid" : undefined,
+                })}
+                plugin={editablePlugin.config({
+                  placeholder: "Title",
+                  onInput: (newText) => setInnerCacheItemData({ name: newText }),
+                  onEnabledChange: (b) => {
+                    if (!b) {
+                      props.onItemInfoChange?.(innerItemData)
+                    }
+                  },
+                })}
+              >
+                {value}
+              </Text>
+            ),
+            tags: (value) => (
+              <List
+                icss={{
+                  gridArea: "tags",
+                  color: colors.textSecondary,
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "8px",
+                }}
+                items={value?.split(" ")}
+              >
+                {(tag) => <Text icss={{ alignContent: "center" }}>{tag}</Text>}
+              </List>
+            ),
+            comment: (value) => <Text>{value}</Text>,
+          }}
+        />
       </Group>
 
       {/* action 1 */}
@@ -210,25 +234,6 @@ export function ScheduleItemCard(props: {
           <Icon name="open-window" src={"/icons/add_box.svg"} />
         </Button>
       </Group>
-
-      {/* tags */}
-      <List
-        icss={{
-          gridArea: "tags",
-          color: colors.textSecondary,
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "8px",
-        }}
-        items={innerItemData.tags?.split(" ")}
-      >
-        {(tag) => <Text icss={{ alignContent: "center" }}>{tag}</Text>}
-      </List>
-
-      {/* comment */}
-      <Box icss={{ gridArea: "comment" }}>
-        <Text>{innerItemData.comment}</Text>
-      </Box>
 
       {/* action2 */}
       <Row icss={[{ gridArea: "actions2", justifySelf: "end" }]}>

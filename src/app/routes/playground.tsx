@@ -135,10 +135,6 @@ function ComponentSpecList() {
         <PopoverExample />
       </ExamplePanel> */}
 
-      <ExamplePanel name="ComponentFactory">
-        <ComponentFactoryExample />
-      </ExamplePanel>
-
       <ExamplePanel name="upload">
         <UploadExample />
       </ExamplePanel>
@@ -477,39 +473,6 @@ function RadioExample() {
     setChecked((b) => !b)
   }, 1200)
   return <Radio option="gender" isChecked={checked()} />
-}
-
-function ComponentFactoryExample() {
-  const data = {
-    isOpen: false,
-    text: "hello world",
-  }
-  const [store, setStore] = createStore(data)
-  createEffect(() => {
-    setIntervalWithSecondes(() => {
-      setStore("isOpen", (b) => !b)
-    }, 1)
-  })
-  return (
-    <>
-      <FormFactory
-        data={store}
-        widgetCreateRule={(value) =>
-          switchCase<any, any>(
-            value,
-            [
-              [
-                (v) => typeof v === "boolean",
-                () => (storeValue: Accessor<boolean>) => <Switch isChecked={storeValue} />,
-              ],
-              [(v) => typeof v === "string", () => (storeValue: Accessor<string>) => <Input value={storeValue} />],
-            ],
-            value,
-          )
-        }
-      />
-    </>
-  )
 }
 
 function PopoverExample() {
