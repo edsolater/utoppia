@@ -85,16 +85,16 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
     createEffect(() => {
       const selfEl = selfDom()
       if (!selfEl) return
+      // make elemet contenteditable
+      selfEl.setAttribute("contenteditable", "plaintext-only")
+
       if (isEnabled()) {
         // Focus the element to ensure that the selection is visible
         selfEl.setAttribute("tabindex", "0")
         selfEl.focus()
-        // make elemet contenteditable
-        selfEl.setAttribute("contenteditable", "plaintext-only")
       } else {
         selfEl.removeAttribute("tabindex")
         selfEl.blur()
-        selfEl.removeAttribute("contenteditable")
       }
 
       //if hasn's cursor , then mannually set cursor
