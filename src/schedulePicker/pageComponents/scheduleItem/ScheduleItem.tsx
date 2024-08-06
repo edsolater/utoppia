@@ -177,16 +177,15 @@ export function ScheduleItemCard(props: {
                 })}
                 plugin={editablePlugin.config({
                   placeholder: "Title",
-                  // onInput: (newText) => setInnerCacheItemData({ name: newText }), //FIXME: if affect currentName, even inputValue is the same as currentText, it will trigger re-render
+                  onInput: (newText) => setInnerCacheItemData({ name: newText }),
                   onEnabledChange: (b) => {
                     if (!b) {
                       props.onItemInfoChange?.(innerItemData)
                     }
                   },
                 })}
-              >
-                {currentNameValue}
-              </Text>
+                defaultValue={currentNameValue}
+              />
             )}
           </FormFactoryBlock>
 

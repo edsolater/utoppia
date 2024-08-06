@@ -96,7 +96,6 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
         selfEl.removeAttribute("tabindex")
         selfEl.blur()
       }
-
       //if hasn's cursor , then mannually set cursor
       if (!hasCursor()) {
         const initEditCursorPlacement = options.initEditCursorPlacement // default to "end"
@@ -177,6 +176,7 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
               },
             },
           }),
+          children: "44",
         }) as PivProps,
       state: { isEnabled },
     }
