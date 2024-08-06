@@ -10,7 +10,7 @@ import {
   useClickOutside,
   type PivChild,
 } from "@edsolater/pivkit"
-import { createEffect, createMemo, on, type Accessor } from "solid-js"
+import { createDeferred, createEffect, createMemo, on, type Accessor } from "solid-js"
 
 export type PopupWidgetPluginController = {
   isOpen: Accessor<boolean>
@@ -83,16 +83,6 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
     togglePopup: toggle,
   }
 
-  // click outside to close popover
-  if (options.canBackdropClose) {
-    useClickOutside(popoverContentDom, {
-      onClickOutSide: () => {
-        console.log("onClickOutSide: ",popoverContentDom())
-        if (isOn()) close() // trigger is also outside of the popover
-      },
-    })
-  }
-
   const gapInfo = createMemo(() => getPanelGapDirection(options.popupDirection ?? "bottom span-right"))
 
   if (options.shouldFocusChildWhenOpen) {
@@ -112,6 +102,7 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
       anchorName: `--pop-anchor-${uuid}`,
     },
     onClick: ({ ev }) => {
+      console.log("onClick popover trigger")
       open()
     },
     defineNextSibling: (
@@ -137,7 +128,10 @@ export const popupWidget: PopupWidgetPlugin = createPlugin((opts) => {
             positionTryOptions: "flip-block, flip-inline",
           },
         ]}
-        onClose={close}
+        onClose={() => {
+          console.log("close popover")
+          close()
+        }}
       >
         {options.popElement(controller)}
       </PopoverPanel>

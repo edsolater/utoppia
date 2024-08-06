@@ -222,6 +222,7 @@ export function ScheduleItemCard(props: {
 
       {/* action 3 */}
       <Group icss={{ gridArea: "actions3", placeSelf: "end" }}>
+        {/* name="action button: add_form_block " */}
         <Button
           variant="plain"
           size={"xs"}
@@ -238,7 +239,7 @@ export function ScheduleItemCard(props: {
             ),
           })}
         >
-          <Icon name="open-window" src={"/icons/add_box.svg"} />
+          <Icon src={"/icons/add_box.svg"} />
         </Button>
       </Group>
 
