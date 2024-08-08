@@ -1,4 +1,5 @@
-import { type KitProps, icssClickable, Text, useKitProps } from "@edsolater/pivkit"
+import { type KitProps, icssClickable, List, Text, useKitProps } from "@edsolater/pivkit"
+import { createEffect, createSignal, on } from "solid-js"
 import { colors } from "../../../app/theme/colors"
 import { popupWidget } from "./popupWidget"
 import { type SelectPanelProps, SelectPanel } from "./Select"
@@ -6,6 +7,7 @@ import { type SelectPanelProps, SelectPanel } from "./Select"
 /**
  * TODO: should normalized and move to pivkit
  * - temporary just simple  mode, feature:multiple mode is ongoing
+ * just a special type of `<Text>`
  *
  */
 export function Tag(
@@ -17,10 +19,11 @@ export function Tag(
     onChange?: SelectPanelProps<string>["onSelect"]
   }>,
 ) {
-  const { props } = useKitProps(kitProps, { name: "Tag" })
+  const { props, shadowProps } = useKitProps(kitProps, { name: "Tag" })
   const defaultTagBg = "#888"
   return (
     <Text
+      shadowProps={shadowProps}
       icss={[
         {
           gridArea: "category",
@@ -50,5 +53,57 @@ export function Tag(
     >
       {props.value ?? " "}
     </Text>
+  )
+}
+
+const defaultTagBg = "light-dark(#fff6, #0006)"
+export function TagRow(
+  kitProps: KitProps<{
+    value: string[]
+    defaultValue?: string[]
+    bg?: string // icss:bg
+    candidates?: string[] // apply to all tags
+    onChange?: (newTags: string[]) => void
+  }>,
+) {
+  const { props, shadowProps } = useKitProps(kitProps, { name: "TagsLine" })
+
+  const [innerData, setInnerData] = createSignal(props.value)
+  // apply onChange callbacks
+  createEffect(
+    on(
+      innerData,
+      (currentInnerData) => {
+        props.onChange?.(currentInnerData)
+      },
+      { defer: true },
+    ),
+  )
+
+  return (
+    <List
+      shadowProps={shadowProps}
+      icss={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "8px",
+      }}
+      items={innerData}
+    >
+      {(tag: string, idx) => (
+        <Tag
+          bg={props.bg ?? defaultTagBg}
+          candidates={props.candidates ?? []}
+          value={tag}
+          defaultValue={tag}
+          // icss={{ textTransform: "capitalize" }}
+          onChange={({ itemValue }) => {
+            setInnerData((prev) => prev.map((t, i) => (i === idx() ? itemValue() : t)))
+          }}
+        >
+          {tag}
+        </Tag>
+      )}
+    </List>
   )
 }

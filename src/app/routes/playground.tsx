@@ -390,7 +390,7 @@ function SwitchExample() {
 }
 
 function TextExample() {
-  return <Text editable>can edit content</Text>
+  return <Text>can edit content</Text>
 }
 
 function ListExample() {

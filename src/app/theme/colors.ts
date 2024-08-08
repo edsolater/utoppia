@@ -1,4 +1,4 @@
-import { cssOpacity, cssVar } from "@edsolater/pivkit"
+import { cssColorMix, cssOpacity, cssVar } from "@edsolater/pivkit"
 
 /** define in [app](./app.css) */
 // https://edsolaters.notion.site/f491339a26f3480f804bda4e1d7ece7d
@@ -46,6 +46,7 @@ export const colors = {
   buttonSolidText: "#0B1022",
 
   card: cssVar("--card-bg"),
+  tag: cssColorMix({ color:cssVar("--card-bg"), percent: "80%" }, 'light-dark(white, black)'),
 
   // chart
   chart01: "#abc4ff",

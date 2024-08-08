@@ -1,4 +1,4 @@
-import { setTimeoutWithSecondes, switchKey } from "@edsolater/fnkit"
+import { pipeFns, setTimeoutWithSecondes, switchKey } from "@edsolater/fnkit"
 import {
   Box,
   Button,
@@ -23,7 +23,7 @@ import { reconcile } from "solid-js/store"
 import { colors } from "../../../app/theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { SelectPanel } from "./Select"
-import { Tag } from "./Tag"
+import { Tag, TagRow } from "./Tag"
 import { editablePlugin, type EditablePluginPluginController } from "./editablePlugin"
 import { popupWidget } from "./popupWidget"
 import {
@@ -48,7 +48,7 @@ const scheduleItemColor = {
   cardText: "#f5f5f5", // only theme color
 }
 
-function getScheduleItemColor(item: ScheduleItem) {
+function getScheduleItemColor(item: ScheduleLinkItem) {
   return (
     switchKey(item.is, { link: switchKey(item.category, scheduleItemColor.externalLinks) }) ??
     scheduleItemColor.defaultExternalLink
@@ -126,6 +126,13 @@ export function ScheduleItemCard(props: {
 
   const itemThemeColor = createMemo(() => getScheduleItemColor(props.item))
 
+  function updateTempItemData(propertyName: keyof ScheduleLinkItem, newValue: any) {
+    setInnerCacheItemData(propertyName, newValue)
+  }
+  // innerMethod: end the input
+  function commitTempItemDataToReal() {
+    props.onItemInfoChange?.(innerItemData)
+  }
   return (
     <Box
       icss={[
@@ -146,7 +153,7 @@ export function ScheduleItemCard(props: {
         },
       ]}
     >
-      {/* name + links */}
+      {/* content form */}
       <Group icss={{ gridArea: "form", display: "flex", gap: ".125em", flexDirection: "column" }}>
         <FormFactory formObj={innerItemData}>
           <FormFactoryBlock name="category">
@@ -157,8 +164,7 @@ export function ScheduleItemCard(props: {
                 value={currentCategoryValue}
                 defaultValue={currentCategoryValue}
                 onChange={({ itemValue }) => {
-                  const newCategory = itemValue() as ScheduleLinkItem["category"]
-                  setInnerCacheItemData("category", newCategory)
+                  updateTempItemData("category", itemValue())
                 }}
               >
                 {currentCategoryValue}
@@ -177,10 +183,10 @@ export function ScheduleItemCard(props: {
                 })}
                 plugin={editablePlugin.config({
                   placeholder: "Title",
-                  onInput: (newText) => setInnerCacheItemData({ name: newText }),
+                  onInput: (t) => updateTempItemData("name", t),
                   onEnabledChange: (b) => {
                     if (!b) {
-                      props.onItemInfoChange?.(innerItemData)
+                      commitTempItemDataToReal()
                     }
                   },
                 })}
@@ -188,25 +194,43 @@ export function ScheduleItemCard(props: {
               />
             )}
           </FormFactoryBlock>
-
-          <FormFactoryBlock name="tags" when={(v) => v()}>
-            {(tagString) => (
-              <List
-                icss={{
-                  gridArea: "tags",
+          <FormFactoryBlock name="url">
+            {(currentUrlValue) => (
+              <Text
+                icss={({ isEnabled }: EditablePluginPluginController) => ({
+                  display: "inline-block",
+                  width: "100%",
+                  fontSize: ".8em",
                   color: colors.textSecondary,
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "8px",
-                }}
-                items={() => tagString()?.split(" ")}
-              >
-                {(tag) => <Text icss={{ alignContent: "center" }}>{tag as any}</Text>}
-              </List>
+                  outline: isEnabled() ? "solid" : undefined,
+                })}
+                plugin={editablePlugin.config({
+                  placeholder: "https://example.com",
+                  onInput: (t) => updateTempItemData("url", t),
+                  onEnabledChange: (b) => {
+                    if (!b) {
+                      commitTempItemDataToReal()
+                    }
+                  },
+                })}
+                defaultValue={currentUrlValue}
+              />
             )}
           </FormFactoryBlock>
 
-          <FormFactoryBlock name="comment" when={(v) => v()}>
+          <FormFactoryBlock name="tags">
+            {(tags) => (
+              <TagRow
+                candidates={scheduleLinkItemCategories}
+                value={tags}
+                icss={{ color: colors.textSecondary }}
+                onChange={(tags) => {
+                  updateTags(tags)
+                }}
+              />
+            )}
+          </FormFactoryBlock>
+          <FormFactoryBlock name="comment" defaultValue={"maybe it's colorful"}>
             {(value) => <Text>{value}</Text>}
           </FormFactoryBlock>
         </FormFactory>
@@ -235,7 +259,6 @@ export function ScheduleItemCard(props: {
                 candidates={[{ value: "tags", disabled: true }, "comment", "title"]}
                 onClose={closePopup}
                 onSelect={({ itemValue }) => {
-                  console.log("itemValue(): ", itemValue())
                   setTimeoutWithSecondes(() => {
                     closePopup()
                   }, 0.2)
