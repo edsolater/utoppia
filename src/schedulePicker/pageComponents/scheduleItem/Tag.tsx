@@ -22,17 +22,17 @@ export function Tag(
   const { props, shadowProps } = useKitProps(kitProps, { name: "Tag" })
   const defaultTagBg = "#888"
   return (
-    <Text
+    <Piv
       shadowProps={shadowProps}
       icss={[
         {
-          gridArea: "category",
-          color: colors.textPrimary,
-          padding: "2px 8px",
+          display: "block",
+          padding: ".125rem .5rem",
           background: props.bg ?? defaultTagBg,
           width: "fit-content",
-          minWidth: "3em",
-          borderRadius: "4px",
+          minWidth: "2em",
+          minHeight: "calc(1lh + .125em * 2)",
+          borderRadius: ".25rem",
           textAlign: "center",
         },
         icssClickable,
@@ -51,8 +51,8 @@ export function Tag(
         ),
       })}
     >
-      {props.value ?? " "}
-    </Text>
+      {props.value}
+    </Piv>
   )
 }
 
@@ -94,10 +94,10 @@ export function TagRow(
                   right: 0,
                   translate: "50% -50%",
                   zIndex: 1,
-                  background: "white",
+                  background: "#0002",
                   borderRadius: "50%",
                   padding: ".25rem",
-                  scale: ".5",
+                  scale: ".4",
                   transition: "all 300ms",
                 },
                 icssClickable(),
@@ -106,7 +106,7 @@ export function TagRow(
                 setInnerData((prev) => prev.filter((_, i) => i !== idx()))
               }}
             >
-              ❌
+              <Icon src="/icons/close.svg" />
             </Piv>
             <Tag
               bg={props.bg ?? defaultTagBg}

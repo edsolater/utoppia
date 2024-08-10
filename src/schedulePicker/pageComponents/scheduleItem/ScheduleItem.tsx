@@ -1,4 +1,4 @@
-import { pipeFns, setTimeoutWithSecondes, switchKey } from "@edsolater/fnkit"
+import { setTimeoutWithSecondes, switchKey } from "@edsolater/fnkit"
 import {
   Box,
   Button,
@@ -7,13 +7,13 @@ import {
   cssColorMix,
   cssGrayscale,
   cssOpacity,
+  EditableText,
   FormFactory,
   FormFactoryBlock,
   Group,
   Icon,
   icssCard,
   icssContentClickableOpacity,
-  List,
   Row,
   Text,
   type CSSObject,
@@ -24,14 +24,8 @@ import { colors } from "../../../app/theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { SelectPanel } from "./Select"
 import { Tag, TagRow } from "./Tag"
-import { editablePlugin, type EditablePluginPluginController } from "./editablePlugin"
 import { popupWidget } from "./popupWidget"
-import {
-  scheduleLinkItemCategories,
-  type ScheduleItem,
-  type ScheduleLinkItem,
-  type ScheduleLinkItemCategories,
-} from "./type"
+import { scheduleLinkItemCategories, type ScheduleLinkItem, type ScheduleLinkItemCategories } from "./type"
 import { updateExistedScheduleItem } from "./utils"
 
 // user configable
@@ -147,14 +141,14 @@ export function ScheduleItemCard(props: {
               "form  form  actions2" auto
               "form  form  actions1" auto
               "form  form  .       " 1fr
-              "form  form  actions3" auto / 1fr 1fr 1fr`,
+              "form  form  actions3" auto / 1fr 1fr auto`,
           columnGap: "16px",
           rowGap: "8px",
         },
       ]}
     >
       {/* content form */}
-      <Group icss={{ gridArea: "form", display: "flex", gap: ".25em", flexDirection: "column" }}>
+      <Group icss={{ gridArea: "form", display: "flex", gap: ".5em", flexDirection: "column" }}>
         <FormFactory formObj={innerItemData}>
           <FormFactoryBlock name="category">
             {(currentCategoryValue) => (
@@ -171,49 +165,44 @@ export function ScheduleItemCard(props: {
               </Tag>
             )}
           </FormFactoryBlock>
-
           <FormFactoryBlock name="name">
             {(currentNameValue) => (
-              <Text
-                icss={({ isEnabled }: EditablePluginPluginController) => ({
+              <EditableText
+                icss={({ isEnabled }) => ({
                   display: "inline-block",
                   width: "100%",
                   fontSize: "1.6em",
                   outline: isEnabled() ? "solid" : undefined,
                 })}
-                plugin={editablePlugin.config({
-                  placeholder: "Title",
-                  onInput: (t) => updateTempItemData("name", t),
-                  onEnabledChange: (b) => {
-                    if (!b) {
-                      commitTempItemDataToReal()
-                    }
-                  },
-                })}
+                placeholder="Title"
+                onInput={(t) => updateTempItemData("name", t)}
+                onEnabledChange={(b) => {
+                  if (!b) {
+                    commitTempItemDataToReal()
+                  }
+                }}
                 defaultValue={currentNameValue}
               />
             )}
           </FormFactoryBlock>
           <FormFactoryBlock name="url">
             {(currentUrlValue) => (
-              <Text
-                icss={({ isEnabled }: EditablePluginPluginController) => ({
+              <EditableText
+                icss={({ isEnabled }) => ({
                   display: "inline-block",
                   width: "100%",
                   fontSize: ".8em",
                   color: colors.textSecondary,
                   outline: isEnabled?.() ? "solid" : undefined,
                 })}
-                plugin={editablePlugin.config({
-                  placeholder: "https://example.com",
-                  onInput: (t) => updateTempItemData("url", t),
-                  onEnabledChange: (b) => {
-                    if (!b) {
-                      commitTempItemDataToReal()
-                    }
-                  },
-                })}
                 defaultValue={currentUrlValue}
+                placeholder="https://example.com"
+                onInput={(t) => updateTempItemData("url", t)}
+                onEnabledChange={(b) => {
+                  if (!b) {
+                    commitTempItemDataToReal()
+                  }
+                }}
               />
             )}
           </FormFactoryBlock>
@@ -229,8 +218,20 @@ export function ScheduleItemCard(props: {
               />
             )}
           </FormFactoryBlock>
-          <FormFactoryBlock name="comment" defaultValue={"maybe it's colorful"}>
-            {(value) => <Text>{value}</Text>}
+          <FormFactoryBlock name="comment">
+            {(value) => (
+              <EditableText
+                icss={{ color: colors.textSecondary }}
+                defaultValue={value}
+                placeholder={"maybe it's colorful"}
+                onInput={(t) => updateTempItemData("comment", t)}
+                onEnabledChange={(b) => {
+                  if (!b) {
+                    commitTempItemDataToReal()
+                  }
+                }}
+              />
+            )}
           </FormFactoryBlock>
         </FormFactory>
       </Group>

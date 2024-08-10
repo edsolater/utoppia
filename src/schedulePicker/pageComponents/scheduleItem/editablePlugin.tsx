@@ -11,13 +11,13 @@ import {
   type KitProps,
   type PivProps,
 } from "@edsolater/pivkit"
-import { createEffect, createSignal, type Accessor, type JSXElement } from "solid-js"
+import { createEffect, type Accessor, type JSXElement } from "solid-js"
 
 export type EditablePluginPluginController = {
   isEnabled: Accessor<boolean>
 }
 
-export type EditablePluginPluginOptions = KitProps<{
+export type EditablePluginOptions = {
   /** for debug */
   debugName?: string
   /**
@@ -27,13 +27,10 @@ export type EditablePluginPluginOptions = KitProps<{
   isEnabled?: boolean
   /** with onEnabledChange, it will be a two-way binding */
   onEnabledChange?: (isEnabled: boolean) => void
-
   /** when innerText is empty. placeholderText will always has .4 opacity */
   placeholder?: string
-
   onInput?: (newText: string) => void
   onEnter?: (newText: string) => void
-
   /**
    * use click outside
    * @default true
@@ -49,16 +46,17 @@ export type EditablePluginPluginOptions = KitProps<{
    * @default true
    */
   okWhenTypeEnter?: boolean
-
   /** init cursor position
    * @default "end"
    */
   initEditCursorPlacement?: "start" | "end"
-}>
+}
+
+export type EditablePluginKitOptions = KitProps<EditablePluginOptions>
 
 //TODO: contenteditable should also be a buildin plugin in `<Text />`
 /** special plugin */
-export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginPluginController> = createPlugin(
+export const editablePlugin: Plugin<EditablePluginKitOptions, EditablePluginPluginController> = createPlugin(
   (kitOptions) => {
     const { props: options } = useKitProps(kitOptions, {
       defaultProps: {
@@ -191,7 +189,7 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
 
 /** component version of {@link editablePlugin} */
 export function EditablePluginWrapper(
-  rawProps: Omit<EditablePluginPluginOptions, "children"> & {
+  rawProps: Omit<EditablePluginKitOptions, "children"> & {
     children?: (state: EditablePluginPluginController) => JSXElement
   },
 ) {
