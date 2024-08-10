@@ -1,5 +1,5 @@
-import { type KitProps, icssClickable, List, Text, useKitProps } from "@edsolater/pivkit"
-import { createEffect, createSignal, on } from "solid-js"
+import { type KitProps, Box, Icon, icssClickable, List, Loop, Piv, Text, useKitProps } from "@edsolater/pivkit"
+import { createEffect, createSignal, on, type JSXElement } from "solid-js"
 import { colors } from "../../../app/theme/colors"
 import { popupWidget } from "./popupWidget"
 import { type SelectPanelProps, SelectPanel } from "./Select"
@@ -57,6 +57,7 @@ export function Tag(
 }
 
 const defaultTagBg = "light-dark(#fff6, #0006)"
+
 export function TagRow(
   kitProps: KitProps<{
     value: string[]
@@ -81,29 +82,74 @@ export function TagRow(
   )
 
   return (
-    <List
-      shadowProps={shadowProps}
-      icss={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "8px",
-      }}
-      items={innerData}
-    >
-      {(tag: string, idx) => (
-        <Tag
-          bg={props.bg ?? defaultTagBg}
-          candidates={props.candidates ?? []}
-          value={tag}
-          defaultValue={tag}
-          // icss={{ textTransform: "capitalize" }}
-          onChange={({ itemValue }) => {
-            setInnerData((prev) => prev.map((t, i) => (i === idx() ? itemValue() : t)))
-          }}
-        >
-          {tag}
-        </Tag>
-      )}
-    </List>
+    <Box shadowProps={shadowProps} icss={{ display: "flex", flexWrap: "wrap", gap: ".5rem" }}>
+      <Loop items={innerData}>
+        {(tag: string, idx) => (
+          <Box icss={{ position: "relative" }}>
+            <Piv
+              icss={[
+                {
+                  position: "absolute",
+                  top: 0,
+                  right: 0,
+                  translate: "50% -50%",
+                  zIndex: 1,
+                  background: "white",
+                  borderRadius: "50%",
+                  padding: ".25rem",
+                  scale: ".5",
+                  transition: "all 300ms",
+                },
+                icssClickable(),
+              ]}
+              onClick={() => {
+                setInnerData((prev) => prev.filter((_, i) => i !== idx()))
+              }}
+            >
+              ❌
+            </Piv>
+            <Tag
+              bg={props.bg ?? defaultTagBg}
+              candidates={props.candidates ?? []}
+              value={tag}
+              defaultValue={tag}
+              // icss={{ textTransform: "capitalize" }}
+              onChange={({ itemValue }) => {
+                setInnerData((prev) => prev.map((t, i) => (i === idx() ? itemValue() : t)))
+              }}
+            >
+              {tag}
+            </Tag>
+          </Box>
+        )}
+      </Loop>
+
+      <Icon
+        icss={[icssClickable(), { color: colors.textTernary, alignSelf: "center", opacity: 0.5 }]}
+        src="/icons/add.svg"
+        onClick={() => {
+          setInnerData((prev) => [...prev, ""])
+        }}
+      />
+    </Box>
+  )
+}
+
+/**
+ * @example
+ * <DecoratorWrapper>
+ *
+ *
+ */
+function DecoratorWrapper(
+  kitProps: KitProps<{
+    placement?: "top right" | "top left" | "bottom right" | "bottom left" | "center"
+  }>,
+) {
+  const { props, shadowProps } = useKitProps(kitProps, { name: "DecoratorWrapper" })
+  return (
+    <Box shadowProps={shadowProps} icss={{ position: "relative" }}>
+      {props.children}
+    </Box>
   )
 }

@@ -18,6 +18,8 @@ export type EditablePluginPluginController = {
 }
 
 export type EditablePluginPluginOptions = KitProps<{
+  /** for debug */
+  debugName?: string
   /**
    * directly can type , or only type when js callback was trigger.
    * usually, u should pass a accessor as a signal
@@ -164,7 +166,12 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
     return {
       plugin: () =>
         ({
-          domRef: setSelfDom,
+          domRef: (el) => {
+            if (options.debugName) {
+              console.log("el: ", el, options.debugName)
+            }
+            return setSelfDom(el)
+          },
           htmlProps: {
             "data-placeholder": options.placeholder,
           },
@@ -176,7 +183,6 @@ export const editablePlugin: Plugin<EditablePluginPluginOptions, EditablePluginP
               },
             },
           }),
-          children: "44",
         }) as PivProps,
       state: { isEnabled },
     }

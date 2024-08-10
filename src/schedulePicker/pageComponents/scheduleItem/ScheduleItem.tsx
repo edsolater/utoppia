@@ -154,7 +154,7 @@ export function ScheduleItemCard(props: {
       ]}
     >
       {/* content form */}
-      <Group icss={{ gridArea: "form", display: "flex", gap: ".125em", flexDirection: "column" }}>
+      <Group icss={{ gridArea: "form", display: "flex", gap: ".25em", flexDirection: "column" }}>
         <FormFactory formObj={innerItemData}>
           <FormFactoryBlock name="category">
             {(currentCategoryValue) => (
@@ -202,7 +202,7 @@ export function ScheduleItemCard(props: {
                   width: "100%",
                   fontSize: ".8em",
                   color: colors.textSecondary,
-                  outline: isEnabled() ? "solid" : undefined,
+                  outline: isEnabled?.() ? "solid" : undefined,
                 })}
                 plugin={editablePlugin.config({
                   placeholder: "https://example.com",
@@ -217,7 +217,6 @@ export function ScheduleItemCard(props: {
               />
             )}
           </FormFactoryBlock>
-
           <FormFactoryBlock name="tags">
             {(tags) => (
               <TagRow
@@ -225,7 +224,7 @@ export function ScheduleItemCard(props: {
                 value={tags}
                 icss={{ color: colors.textSecondary }}
                 onChange={(tags) => {
-                  updateTags(tags)
+                  updateTempItemData("tags", tags)
                 }}
               />
             )}
@@ -283,7 +282,6 @@ export function ScheduleItemCard(props: {
         >
           {({ isActive }) => <Icon name="edit" src={isActive() ? "/icons/edit_fill.svg" : "/icons/edit.svg"} />}
         </Button>
-
         <Button variant="plain" size={"xs"} onClick={handleActionDelete} icss={icssContentClickableOpacity}>
           <Icon name="delete" src={"/icons/delete.svg"} />
         </Button>
