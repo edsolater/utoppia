@@ -15,7 +15,6 @@ import {
   icssCard,
   icssContentClickableOpacity,
   Row,
-  Text,
   type CSSObject,
 } from "@edsolater/pivkit"
 import { createEffect, createMemo, on } from "solid-js"
@@ -23,7 +22,7 @@ import { reconcile } from "solid-js/store"
 import { colors } from "../../../app/theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { SelectPanel } from "./Select"
-import { TagWidget, TagRow } from "./Tag"
+import { TagRow, TagWidget } from "./Tag"
 import { popupWidget } from "./popupWidget"
 import { scheduleLinkItemCategories, type ScheduleLinkItem, type ScheduleLinkItemCategories } from "./type"
 import { updateExistedScheduleItem } from "./utils"
