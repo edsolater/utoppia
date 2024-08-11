@@ -23,7 +23,7 @@ import { reconcile } from "solid-js/store"
 import { colors } from "../../../app/theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { SelectPanel } from "./Select"
-import { Tag, TagRow } from "./Tag"
+import { TagWidget, TagRow } from "./Tag"
 import { popupWidget } from "./popupWidget"
 import { scheduleLinkItemCategories, type ScheduleLinkItem, type ScheduleLinkItemCategories } from "./type"
 import { updateExistedScheduleItem } from "./utils"
@@ -152,7 +152,7 @@ export function ScheduleItemCard(props: {
         <FormFactory formObj={innerItemData}>
           <FormFactoryBlock name="category">
             {(currentCategoryValue) => (
-              <Tag
+              <TagWidget
                 bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
                 candidates={scheduleLinkItemCategories}
                 value={currentCategoryValue}
@@ -162,7 +162,7 @@ export function ScheduleItemCard(props: {
                 }}
               >
                 {currentCategoryValue}
-              </Tag>
+              </TagWidget>
             )}
           </FormFactoryBlock>
           <FormFactoryBlock name="name">
@@ -209,7 +209,7 @@ export function ScheduleItemCard(props: {
           <FormFactoryBlock name="tags">
             {(tags) => (
               <TagRow
-                candidates={scheduleLinkItemCategories}
+                candidateKey={"test"}
                 value={tags}
                 icss={{ color: colors.textSecondary }}
                 onChange={(tags) => {

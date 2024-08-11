@@ -1,8 +1,41 @@
-import { type KitProps, Box, Icon, icssClickable, List, Loop, Piv, Text, useKitProps } from "@edsolater/pivkit"
-import { createEffect, createSignal, on, type JSXElement } from "solid-js"
+import {
+  type KitProps,
+  Box,
+  Icon,
+  icssCardPanel,
+  icssClickable,
+  Input,
+  Loop,
+  Piv,
+  useKitProps,
+} from "@edsolater/pivkit"
+import { createEffect, createSignal, on } from "solid-js"
 import { colors } from "../../../app/theme/colors"
 import { popupWidget } from "./popupWidget"
 import { type SelectPanelProps, SelectPanel } from "./Select"
+
+const recordTagCandidates: Map<string /* candidateKey */, string[]> = new Map()
+
+type TagAtomProps = {
+  bg?: string
+  defaultValue?: string
+  value?: string
+}
+
+type TagWidgetProps = TagAtomProps & {
+  candidates?: string[]
+  onChange?: SelectPanelProps<string>["onSelect"]
+  candidateKey?: string
+}
+
+type TagRowProps = {
+  value?: string[]
+  defaultValue?: string[]
+  bg?: string // icss:bg
+  candidates?: string[] // apply to all tags
+  onChange?: (newTags: string[]) => void
+  candidateKey?: string
+}
 
 /**
  * TODO: should normalized and move to pivkit
@@ -10,16 +43,45 @@ import { type SelectPanelProps, SelectPanel } from "./Select"
  * just a special type of `<Text>`
  *
  */
-export function Tag(
-  kitProps: KitProps<{
-    bg?: string
-    candidates: string[]
-    defaultValue?: string
-    value?: string
-    onChange?: SelectPanelProps<string>["onSelect"]
-  }>,
-) {
-  const { props, shadowProps } = useKitProps(kitProps, { name: "Tag" })
+export function TagWidget(kitProps: KitProps<TagWidgetProps>) {
+  const { props, shadowProps } = useKitProps(kitProps, { name: "TagWidget" })
+  const candidates = () => props.candidates ?? recordTagCandidates.get(props.candidateKey ?? "") ?? []
+  return (
+    <TagAtom
+      shadowProps={shadowProps}
+      plugin={popupWidget.config({
+        shouldFocusChildWhenOpen: true,
+        canBackdropClose: true,
+        popElement: ({ closePopup }) => (
+          <Box icss={[icssCardPanel, { paddingBlock: "8px", borderRadius: "8px" }]}>
+            <Input
+              icss={{ marginBottom: ".5em" }}
+              onEnter={(value) => {
+                if (value) {
+                  recordTagCandidates.set(props.candidateKey ?? "", [...candidates(), value])
+                }
+              }}
+            />
+            <SelectPanel
+              name="category-selector"
+              variant={"no-style"}
+              candidates={candidates}
+              defaultValue={props.defaultValue}
+              onClose={closePopup}
+              onSelect={(...e) => {
+                return props.onChange?.(...e)
+              }}
+            />
+          </Box>
+        ),
+      })}
+    />
+  )
+}
+
+/** just a pure <div> */
+export function TagAtom(kitProps: KitProps<TagAtomProps>) {
+  const { props, shadowProps } = useKitProps(kitProps, { name: "TagAtom" })
   const defaultTagBg = "#888"
   return (
     <Piv
@@ -35,21 +97,7 @@ export function Tag(
           borderRadius: ".25rem",
           textAlign: "center",
         },
-        icssClickable,
       ]}
-      plugin={popupWidget.config({
-        shouldFocusChildWhenOpen: true,
-        canBackdropClose: true,
-        popElement: ({ closePopup }) => (
-          <SelectPanel
-            name="category-selector"
-            candidates={props.candidates}
-            defaultValue={props.defaultValue}
-            onClose={closePopup}
-            onSelect={props.onChange}
-          />
-        ),
-      })}
     >
       {props.value}
     </Piv>
@@ -58,24 +106,15 @@ export function Tag(
 
 const defaultTagBg = "light-dark(#fff6, #0006)"
 
-export function TagRow(
-  kitProps: KitProps<{
-    value: string[]
-    defaultValue?: string[]
-    bg?: string // icss:bg
-    candidates?: string[] // apply to all tags
-    onChange?: (newTags: string[]) => void
-  }>,
-) {
+export function TagRow(kitProps: KitProps<TagRowProps>) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "TagsLine" })
-
   const [innerData, setInnerData] = createSignal(props.value)
   // apply onChange callbacks
   createEffect(
     on(
       innerData,
       (currentInnerData) => {
-        props.onChange?.(currentInnerData)
+        if (currentInnerData) props.onChange?.(currentInnerData)
       },
       { defer: true },
     ),
@@ -97,29 +136,30 @@ export function TagRow(
                   background: "#0002",
                   borderRadius: "50%",
                   padding: ".25rem",
-                  scale: ".4",
+                  scale: ".5",
                   transition: "all 300ms",
                 },
                 icssClickable(),
               ]}
               onClick={() => {
-                setInnerData((prev) => prev.filter((_, i) => i !== idx()))
+                setInnerData((prev) => prev?.filter((_, i) => i !== idx()))
               }}
             >
               <Icon src="/icons/close.svg" />
             </Piv>
-            <Tag
+            <TagWidget
               bg={props.bg ?? defaultTagBg}
-              candidates={props.candidates ?? []}
+              candidates={props.candidates}
               value={tag}
               defaultValue={tag}
               // icss={{ textTransform: "capitalize" }}
               onChange={({ itemValue }) => {
-                setInnerData((prev) => prev.map((t, i) => (i === idx() ? itemValue() : t)))
+                setInnerData((prev) => prev?.map((t, i) => (i === idx() ? itemValue() : t)))
               }}
+              candidateKey={props.candidateKey}
             >
               {tag}
-            </Tag>
+            </TagWidget>
           </Box>
         )}
       </Loop>
@@ -128,28 +168,9 @@ export function TagRow(
         icss={[icssClickable(), { color: colors.textTernary, alignSelf: "center", opacity: 0.5 }]}
         src="/icons/add.svg"
         onClick={() => {
-          setInnerData((prev) => [...prev, ""])
+          setInnerData((prev) => [...(prev ?? []), ""])
         }}
       />
-    </Box>
-  )
-}
-
-/**
- * @example
- * <DecoratorWrapper>
- *
- *
- */
-function DecoratorWrapper(
-  kitProps: KitProps<{
-    placement?: "top right" | "top left" | "bottom right" | "bottom left" | "center"
-  }>,
-) {
-  const { props, shadowProps } = useKitProps(kitProps, { name: "DecoratorWrapper" })
-  return (
-    <Box shadowProps={shadowProps} icss={{ position: "relative" }}>
-      {props.children}
     </Box>
   )
 }

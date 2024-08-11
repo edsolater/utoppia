@@ -35,6 +35,7 @@ export type SelectPanelProps<T extends SelectableItem> = {
   /** also in controller */
   name?: string
 
+  variant?: "no-style"
   // variant?: 'filled' | 'filledFlowDark' | 'filledDark' | 'roundedFilledFlowDark' | 'roundedFilledDark'
   candidates?: T[]
   value?: GetSelectableItemValue<T>
@@ -138,7 +139,7 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
     <Panel
       domRef={[setDom]}
       shadowProps={shadowProps}
-      icss={[icssCardPanel, { paddingBlock: "8px", borderRadius: "8px" }]}
+      icss={props.variant === "no-style" ? undefined : [icssCardPanel, { paddingBlock: "8px", borderRadius: "8px" }]}
     >
       <Loop items={items}>
         {(item, idx) => {
