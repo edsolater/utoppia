@@ -7,13 +7,12 @@ import {
   Piv,
   useIDBValue,
   useKitProps,
-  useStorageValue,
-  useTimeout,
+  useSubscribable,
 } from "@edsolater/pivkit"
-import { createEffect, createSignal, on, onMount } from "solid-js"
+import { createEffect, createMemo, createSignal, on } from "solid-js"
 import { popupWidget } from "./popupWidget"
 import { type SelectPanelProps, SelectPanel } from "./Select"
-import { isFunction, pipeFns } from "@edsolater/fnkit"
+import { createSubscribable, setItem } from "@edsolater/fnkit"
 
 const recordTagCandidates: Map<string /* candidateKey */, string[]> = new Map()
 type TagAtomProps = {
@@ -106,9 +105,21 @@ export function TagAtom(kitProps: KitProps<TagAtomProps>) {
 
 const defaultTagBg = "light-dark(#fff6, #0006)"
 
+const availableTags = createSubscribable<Map<string, Set<string>>>(new Map())
+
 export function TagRow(kitProps: KitProps<TagRowProps>) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "TagsLine" })
   const [innerSelectedTags, setInnerSelectedTags] = createSignal(props.value)
+  const [candidates, setCandidates] = useSubscribable(availableTags, {
+    pick: (subscribable) => subscribable.get(props.candidateKey) ?? (new Set() as Set<string>),
+    set: (tags, subscribable) => {
+      subscribable.set((prev) => {
+        const next = new Map(prev)
+        next.set(props.candidateKey, tags)
+        return next
+      })
+    },
+  })
 
   // apply onChange callbacks
   createEffect(
@@ -120,6 +131,21 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
       { defer: true },
     ),
   )
+  // //
+  // createEffect(
+  //   on(innerSelectedTags, (currentInnerData) => {
+  //     if (currentInnerData) {
+  //       setAvailableTags((prev) => {
+  //         const next = new Map(prev)
+  //         setItem(next, props.candidateKey, (prev) =>
+  //           prev ? new Set([...prev, ...currentInnerData]) : new Set(currentInnerData),
+  //         )
+  //         return next
+  //       })
+  //     }
+  //   }),
+  // )
+
   // const candidates = () => props.candidates ?? recordTagCandidates.get(props.candidateKey ?? "") ?? []
   // TODO: temporary use string
   // const [candidatesString, _setCandidates] = useStorageValue({
@@ -139,16 +165,12 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
   //   }
   // }
 
-  // createEffect(() => {
-  //   console.log("candidates: ", candidates())
+  // // FIXME: why not work?
+  // const [candidates, setCandidates] = useIDBValue<string[]>({
+  //   dbName: "tag-row",
+  //   key: props.candidateKey,
+  //   defaultValue: props.candidates ?? [],
   // })
-
-  // FIXME: why not work?
-  const [candidates, setCandidates] = useIDBValue<string[]>({
-    dbName: "tag-row",
-    key: props.candidateKey,
-    defaultValue: props.candidates ?? [],
-  })
 
   return (
     <Box
@@ -165,7 +187,11 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
                 if (value) {
                   // recordTagCandidates.set(props.candidateKey ?? "", [...candidates(), value])
                   console.log("value: ", value)
-                  setCandidates((prev) => [...(prev ?? []), value])
+                  setCandidates((prev) => {
+                    const s = new Set(prev)
+                    s.add(value)
+                    return s
+                  })
                 }
               }}
             />

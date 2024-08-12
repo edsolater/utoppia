@@ -37,7 +37,7 @@ export type SelectPanelProps<T extends SelectableItem> = {
 
   variant?: "no-style"
   // variant?: 'filled' | 'filledFlowDark' | 'filledDark' | 'roundedFilledFlowDark' | 'roundedFilledDark'
-  candidates?: T[]
+  candidates?: Iterable<T>
   value?: GetSelectableItemValue<T>
   defaultValue?: GetSelectableItemValue<T>
 
@@ -72,7 +72,7 @@ function DefaultSelectPanelItem(props: { item: SelectableItemObj }) {
 
 export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectPanelProps<T>>) {
   const { props, methods, shadowProps, loadController } = useKitProps(kitProps, { name: "SelectPanel" })
-  const candidates = createMemo(() => props.candidates?.map(toSelectableItemObj) ?? [])
+  const candidates = createMemo(() => (props.candidates ? Array.from(props.candidates).map(toSelectableItemObj) : []))
   const defaultItem = createMemo(() =>
     props.defaultValue ? candidates().find((c) => c.value === props.defaultValue) : undefined,
   )
@@ -94,8 +94,8 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
     focusPrevItem,
     focusNextItem,
   } = useSelectItems<SelectableItemObj>({
-    items: candidates(),
-    defaultValue: defaultItem(),
+    items: candidates,
+    defaultValue: defaultItem,
     getItemValue: (i) => i.value,
     onChange: props.onSelect,
   })
@@ -134,6 +134,10 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
       props.onClose?.()
     }
   }
+
+  createEffect(() => {
+    console.log("candidates: ", candidates(), items())
+  })
 
   return (
     <Panel
