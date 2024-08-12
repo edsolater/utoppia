@@ -134,11 +134,6 @@ export function SelectPanel<T extends SelectableItem>(kitProps: KitProps<SelectP
       props.onClose?.()
     }
   }
-
-  createEffect(() => {
-    console.log("candidates: ", candidates(), items())
-  })
-
   return (
     <Panel
       domRef={[setDom]}

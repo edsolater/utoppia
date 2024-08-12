@@ -1,18 +1,18 @@
+import { createSubscribable } from "@edsolater/fnkit"
 import {
   type KitProps,
   Box,
+  createIDBStoreManager,
   icssCardPanel,
   Input,
   Loop,
   Piv,
-  useIDBValue,
   useKitProps,
   useSubscribable,
 } from "@edsolater/pivkit"
-import { createEffect, createMemo, createSignal, on } from "solid-js"
+import { createEffect, createSignal, on } from "solid-js"
 import { popupWidget } from "./popupWidget"
 import { type SelectPanelProps, SelectPanel } from "./Select"
-import { createSubscribable, setItem } from "@edsolater/fnkit"
 
 const recordTagCandidates: Map<string /* candidateKey */, string[]> = new Map()
 type TagAtomProps = {
@@ -105,8 +105,28 @@ export function TagAtom(kitProps: KitProps<TagAtomProps>) {
 
 const defaultTagBg = "light-dark(#fff6, #0006)"
 
-const availableTags = createSubscribable<Map<string, Set<string>>>(new Map())
+// ---------------- availableTags in indexedDB ----------------
+const idbManager = createIDBStoreManager({
+  dbName: "form-widget-settings",
+  storeName: "tags",
+})
+const availableTags = createSubscribable<Map<string, Set<string>>>(new Map(), {
+  onSet(value, prevValue) {
+    for (const [key, tags] of value) {
+      const prevTags = prevValue?.get(key)
+      if (prevTags !== tags) {
+        idbManager.set(key, tags)
+      }
+    }
+  },
+  onInit({ set }) {
+    idbManager.getAll().then((data) => {
+      set(new Map(data?.map(({ key, value: tags }) => [key as string, new Set(tags)])))
+    })
+  },
+})
 
+// ---------------- multi Tags (tag input list) ----------------
 export function TagRow(kitProps: KitProps<TagRowProps>) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "TagsLine" })
   const [innerSelectedTags, setInnerSelectedTags] = createSignal(props.value)
@@ -131,46 +151,6 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
       { defer: true },
     ),
   )
-  // //
-  // createEffect(
-  //   on(innerSelectedTags, (currentInnerData) => {
-  //     if (currentInnerData) {
-  //       setAvailableTags((prev) => {
-  //         const next = new Map(prev)
-  //         setItem(next, props.candidateKey, (prev) =>
-  //           prev ? new Set([...prev, ...currentInnerData]) : new Set(currentInnerData),
-  //         )
-  //         return next
-  //       })
-  //     }
-  //   }),
-  // )
-
-  // const candidates = () => props.candidates ?? recordTagCandidates.get(props.candidateKey ?? "") ?? []
-  // TODO: temporary use string
-  // const [candidatesString, _setCandidates] = useStorageValue({
-  //   key: props.candidateKey ?? "",
-  //   defaultValue: props.candidates?.join(","),
-  // })
-  // createEffect(() => {
-  //   console.log("candidatesString: ", candidatesString())
-  // })
-
-  // const candidates = pipeFns(candidatesString, (s) => s?.split(",") ?? [])
-  // const setCandidates = (n: any) => {
-  //   if (isFunction(n)) {
-  //     _setCandidates(n(candidates()))
-  //   } else {
-  //     _setCandidates(n)
-  //   }
-  // }
-
-  // // FIXME: why not work?
-  // const [candidates, setCandidates] = useIDBValue<string[]>({
-  //   dbName: "tag-row",
-  //   key: props.candidateKey,
-  //   defaultValue: props.candidates ?? [],
-  // })
 
   return (
     <Box
@@ -185,8 +165,6 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
               icss={{ marginBottom: ".5em" }}
               onEnter={(value) => {
                 if (value) {
-                  // recordTagCandidates.set(props.candidateKey ?? "", [...candidates(), value])
-                  console.log("value: ", value)
                   setCandidates((prev) => {
                     const s = new Set(prev)
                     s.add(value)
