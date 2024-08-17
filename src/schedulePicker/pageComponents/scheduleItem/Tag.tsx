@@ -1,8 +1,9 @@
-import { createSubscribable } from "@edsolater/fnkit"
+import { createSubscribable, isShallowEqual, isSubCollectorOf, setItem } from "@edsolater/fnkit"
 import {
   type KitProps,
   Box,
   createIDBStoreManager,
+  createUUID,
   icssCardPanel,
   Input,
   Loop,
@@ -110,33 +111,54 @@ const idbManager = createIDBStoreManager({
   dbName: "form-widget-settings",
   storeName: "tags",
 })
-const availableTags = createSubscribable<Map<string, Set<string>>>(new Map(), {
+const availableTags = createSubscribable<Map<string, Set<string> | undefined>>(new Map(), {
   onSet(value, prevValue) {
+    // console.log('set 0', value, prevValue)
     for (const [key, tags] of value) {
       const prevTags = prevValue?.get(key)
-      if (prevTags !== tags) {
+      if (!isSubCollectorOf(prevTags, tags)) {
+        // console.log("idb set tags: ", tags, prevTags)
         idbManager.set(key, tags)
       }
     }
   },
   onInit({ set }) {
+    // console.log("idb init")
     idbManager.getAll().then((data) => {
-      set(new Map(data?.map(({ key, value: tags }) => [key as string, new Set(tags)])))
+      // console.log("idb init: ", data)
+      set((prev) => {
+        // console.log("prev, data: ", prev, data)
+        if (isShallowEqual(data, prev) || isSubCollectorOf(prev, data)) return prev
+        return new Map(data?.map(({ key, value: tags }) => [key as string, new Set(tags)]))
+      })
     })
   },
 })
 
-// ---------------- multi Tags (tag input list) ----------------
+/**
+ * Uikit Component (for form)
+ *
+ * multi Tags (tag input list)
+ *
+ */
 export function TagRow(kitProps: KitProps<TagRowProps>) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "TagsLine" })
   const [innerSelectedTags, setInnerSelectedTags] = createSignal(props.value)
   const [candidates, setCandidates] = useSubscribable(availableTags, {
-    pick: (subscribable) => subscribable.get(props.candidateKey) ?? (new Set() as Set<string>),
-    set: (tags, subscribable) => {
+    onPickFromSubscribable: (subscribable) => {
+      // console.log('pick')
+      const pickedValue = subscribable.get(props.candidateKey)
+      return pickedValue
+    },
+    onSetToSubscribable: (tags, subscribable) => {
+      // console.log("onSet tags: ", subscribable(), tags)
+      if (!tags?.size) return
+      if (isSubCollectorOf(subscribable().get(props.candidateKey), tags)) return
+      // console.log("real set tags: ", subscribable(), tags)
       subscribable.set((prev) => {
-        const next = new Map(prev)
-        next.set(props.candidateKey, tags)
-        return next
+        const newMap = new Map(prev)
+        setItem(newMap, props.candidateKey, (storeTags) => new Set([...(storeTags ?? []), ...tags]))
+        return newMap
       })
     },
   })
@@ -145,11 +167,31 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
   createEffect(
     on(
       innerSelectedTags,
-      (currentInnerData) => {
-        if (currentInnerData) props.onChange?.(currentInnerData)
+      (currentInnerTags) => {
+        // console.log("currentInnerTags: ", currentInnerTags)
+        if (currentInnerTags) props.onChange?.(currentInnerTags)
       },
       { defer: true },
     ),
+  )
+
+  // copy change current tag to candidates
+  createEffect(
+    on(innerSelectedTags, (currentInnerTags) => {
+      if (currentInnerTags) {
+        const candidatesTags = candidates()
+        for (const innerTag of currentInnerTags) {
+          if (!candidatesTags?.has(innerTag)) {
+            setCandidates((prev) => {
+              const s = new Set([...(prev ?? [])])
+              // console.log("innerTag: ", innerTag, s)
+              s.add(innerTag)
+              return s
+            })
+          }
+        }
+      }
+    }),
   )
 
   return (
