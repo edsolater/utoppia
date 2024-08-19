@@ -131,7 +131,7 @@ export function ScheduleItemCard(props: {
       icss={[
         // icssCard({ bg: props.item.is === 'link' scheduleItemColor.cardLink }),
         icssCard({
-          bg: cssOpacity(cssColorMix({ color: cssGrayscale(itemThemeColor(), 0.3), percent: "30%" }, colors.card), 0.9),
+          bg: cssOpacity(cssColorMix({ color: cssGrayscale(itemThemeColor(), 0.3), percent: "15%" }, colors.card), 0.9),
         }),
         {
           display: "grid",
@@ -143,6 +143,7 @@ export function ScheduleItemCard(props: {
               "form  form  actions3" auto / 1fr 1fr auto`,
           columnGap: "16px",
           rowGap: "8px",
+          backdropFilter: "blur(6px)",
         },
       ]}
     >
@@ -208,8 +209,9 @@ export function ScheduleItemCard(props: {
           <FormFactoryBlock name="tags">
             {(tags) => (
               <TagRow
-                candidateKey={"test"}
+                candidateKey={"schedule-item-tags"}
                 value={tags}
+                defaultValue={[" "]}
                 icss={{ color: colors.textSecondary }}
                 onChange={(tags) => {
                   updateTempItemData("tags", tags)
@@ -222,7 +224,7 @@ export function ScheduleItemCard(props: {
               <EditableText
                 icss={{ color: colors.textSecondary }}
                 defaultValue={value}
-                placeholder={"maybe it's colorful"}
+                placeholder={"empty comments"}
                 onInput={(t) => updateTempItemData("comment", t)}
                 onEnabledChange={(b) => {
                   if (!b) {

@@ -72,6 +72,7 @@ function BilibiliPlayer(props: { video: BriefVideoInfo | undefined }) {
  * @param props - The props containing the video information.
  */
 function BriefVideoInfoCard(props: { video: BriefVideoInfo; onClickTitle: (info: BriefVideoInfo) => void }) {
+  // const thumbnailSrc = `https://i2.hdslb.com/bfs/archive/bdb840f1fb337adac124f41e3fe4f264331ec19b.jpg`
   const thumbnailSrc = `${serverOrigin}/bilibili/img-proxy?url=${props.video.thumbnail}@672w_378h_1c_!web-home-common-cover.avif`
   const authorFaceSrc = `${serverOrigin}/bilibili/img-proxy?url=${props.video.authorFace}@96w_96h_1c_1s_!web-avatar.avif`
   const [watched, { open: flagIsWatched, toggle: toggleTheWatchedFlag }] = createDisclosure(

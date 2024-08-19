@@ -3,24 +3,20 @@ import {
   type KitProps,
   Box,
   createIDBStoreManager,
-  createUUID,
+  Icon,
   icssCardPanel,
+  icssClickable,
   Input,
   Loop,
   Piv,
   useKitProps,
   useSubscribable,
 } from "@edsolater/pivkit"
-import { createEffect, createSignal, on } from "solid-js"
+import { createEffect, createSignal, on, type JSXElement } from "solid-js"
 import { popupWidget } from "./popupWidget"
 import { type SelectPanelProps, SelectPanel } from "./Select"
 
 const recordTagCandidates: Map<string /* candidateKey */, string[]> = new Map()
-type TagAtomProps = {
-  bg?: string
-  defaultValue?: string
-  value?: string
-}
 
 type TagWidgetProps = TagAtomProps & {
   candidates?: string[]
@@ -79,6 +75,12 @@ export function TagWidget(kitProps: KitProps<TagWidgetProps>) {
   )
 }
 
+type TagAtomProps = {
+  bg?: string
+  defaultValue?: string
+  value?: string
+  renderSuffix?: JSXElement
+}
 /** just a pure <div> */
 export function TagAtom(kitProps: KitProps<TagAtomProps>) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "TagAtom" })
@@ -86,9 +88,10 @@ export function TagAtom(kitProps: KitProps<TagAtomProps>) {
   return (
     <Piv
       shadowProps={shadowProps}
+      defineLastChild={props.renderSuffix}
       icss={[
         {
-          display: "block",
+          display: "flex",
           padding: ".125rem .5rem",
           background: props.bg ?? defaultTagBg,
           width: "fit-content",
@@ -99,7 +102,7 @@ export function TagAtom(kitProps: KitProps<TagAtomProps>) {
         },
       ]}
     >
-      {props.value}
+      {props.value ?? props.children}
     </Piv>
   )
 }
@@ -111,6 +114,7 @@ const idbManager = createIDBStoreManager({
   dbName: "form-widget-settings",
   storeName: "tags",
 })
+
 const availableTags = createSubscribable<Map<string, Set<string> | undefined>>(new Map(), {
   onSet(value, prevValue) {
     // console.log('set 0', value, prevValue)
@@ -155,13 +159,16 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
       if (!tags?.size) return
       if (isSubCollectorOf(subscribable().get(props.candidateKey), tags)) return
       // console.log("real set tags: ", subscribable(), tags)
-      subscribable.set((prev) => {
-        const newMap = new Map(prev)
-        setItem(newMap, props.candidateKey, (storeTags) => new Set([...(storeTags ?? []), ...tags]))
-        return newMap
-      })
+      subscribable.set((prevStore) =>
+        setItem(prevStore, props.candidateKey, (storeTags) => new Set([...(storeTags ?? []), ...tags])),
+      )
     },
   })
+
+  // tag action
+  const addTag = (newTagName: string) => setInnerSelectedTags((prev) => prev?.concat(newTagName))
+  // tag action
+  const deleteTag = (tagName: string) => setInnerSelectedTags((prev) => prev?.filter((tag) => tag !== tagName))
 
   // apply onChange callbacks
   createEffect(
@@ -194,11 +201,23 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
     }),
   )
 
+  const [isPopupOpen, setIsPopupOpen] = createSignal(false)
+
   return (
     <Box
       shadowProps={shadowProps}
-      icss={{ display: "flex", flexWrap: "wrap", gap: ".5rem" }}
+      icss={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: ".5rem",
+        background: isPopupOpen() ? "#0002" : "transparent",
+        padding: ".25rem",
+        margin: "-.25rem",
+        borderRadius: ".25rem",
+      }}
       plugin={popupWidget.config({
+        onOpen: () => setIsPopupOpen(true),
+        onClose: () => setIsPopupOpen(false),
         shouldFocusChildWhenOpen: true,
         canBackdropClose: true,
         popElement: ({ closePopup }) => (
@@ -221,16 +240,16 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
               candidates={candidates}
               onClose={closePopup}
               onSelect={({ itemValue }) => {
-                setInnerSelectedTags((prev) => prev?.concat(itemValue()))
+                addTag(itemValue())
               }}
             />
           </Box>
         ),
       })}
     >
-      <Loop items={innerSelectedTags}>
-        {(tag: string, idx) => (
-          <Box icss={{ position: "relative" }}>
+      <Loop items={innerSelectedTags} fallbackItem={undefined}>
+        {(tag: string | undefined) => (
+          <Box icss={{ position: "relative" }} class={"tag"}>
             {/* <Piv
               icss={[
                 {
@@ -253,7 +272,19 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
             >
               <Icon src="/icons/close.svg" />
             </Piv> */}
-            <TagAtom bg={props.bg ?? defaultTagBg} value={tag} defaultValue={tag}>
+            <TagAtom
+              icss={isPopupOpen() ? undefined : icssClickable()}
+              bg={props.bg ?? defaultTagBg}
+              renderSuffix={
+                <Icon
+                  icss={isPopupOpen() && tag ? icssClickable() : { display: "none" }}
+                  onClick={() => {
+                    if (tag) deleteTag(tag)
+                  }}
+                  src={"/icons/close.svg"}
+                />
+              }
+            >
               {tag}
             </TagAtom>
           </Box>

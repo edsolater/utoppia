@@ -1,4 +1,4 @@
-import { createSubscribable, getNow, isString, shakeFalsy, unifyItem, type ID } from "@edsolater/fnkit"
+import { createSubscribable, getNow, type ID } from "@edsolater/fnkit"
 import { createUUID } from "@edsolater/pivkit"
 import { ScheduleLinkItem } from "./type"
 
@@ -11,15 +11,11 @@ function washScheduleItemFromOld(scheduleItem: Partial<ScheduleLinkItem>): Sched
   //@ts-ignore
   return {
     ...scheduleItem,
-    id: scheduleItem.id ?? createUUID(),
-    name: scheduleItem.name ?? "",
-    url: scheduleItem.url ?? "",
     //@ts-ignore
-    tags: scheduleItem.tags[0] === scheduleItem.category ? (scheduleItem.tags?.slice(1) ?? []) : scheduleItem.tags,
+    tags: scheduleItem.tags?.[0] === scheduleItem.category ? (scheduleItem.tags?.slice(1) ?? []) : scheduleItem.tags,
     //@ts-ignore
     category: scheduleItem.category === "other" ? "video" : (scheduleItem.category ?? undefined),
     comment: scheduleItem.comment,
-    is: "link",
     creatTime: getNow(),
   }
 }
