@@ -119,9 +119,6 @@ const defaultTagBg = "light-dark(#fff6, #0006)"
  */
 export function TagRow(kitProps: KitProps<TagRowProps>) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "TagsLine" })
-  createEffect(() => {
-    console.log("props.candidateKey: ", props.key)
-  })
   const { innerSelectedTags, candidates, selectTag, deleteCandidate, addCandidate } = useTagsManager({
     key: () => props.key ?? "unknown",
     defaultSelectedTags: props.value ?? props.defaultValue ?? [],

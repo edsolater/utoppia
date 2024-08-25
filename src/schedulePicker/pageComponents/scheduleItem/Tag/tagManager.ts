@@ -73,12 +73,8 @@ export function useTagsManager(
 ) {
   const { props: options } = useKitProps(rawOptions, { name: "useTagsManager" })
   const [innerSelectedTags, setInnerSelectedTags] = createSignal(options.defaultSelectedTags)
-  const [candidates, setCandidates] = useSubscribable(availableTags, {
-    onPickFromSubscribable: (subscribable) => {
-      // console.log('pick')
-      const pickedValue = subscribable.get(options.key)
-      return pickedValue
-    },
+  const [candidates, setCandidates, { refresh: refreshCandidates }] = useSubscribable(availableTags, {
+    onPickFromSubscribable: (subscribable) => subscribable.get(options.key),
     onSetToSubscribable: (tags, subscribable) => {
       // console.log("onSet tags: ", subscribable(), tags)
       if (!tags?.size) return
@@ -89,6 +85,14 @@ export function useTagsManager(
       )
     },
   })
+
+  createEffect(
+    on(
+      () => options.key,
+      () => refreshCandidates(),
+      { defer: true },
+    ),
+  )
 
   /** tag action */
   const selectTag = (newTagName: string) => setInnerSelectedTags((prev) => prev?.concat(newTagName))
