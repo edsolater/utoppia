@@ -42,10 +42,7 @@ const scheduleItemColor = {
 }
 
 function getScheduleItemColor(item: ScheduleLinkItem) {
-  return (
-    switchKey(item.is, { link: switchKey(item.category, scheduleItemColor.externalLinks) }) ??
-    scheduleItemColor.defaultExternalLink
-  )
+  return switchKey(item.category, scheduleItemColor.externalLinks)
 }
 
 /**
@@ -66,7 +63,7 @@ export function ScheduleItemCard(props: {
    */
   onItemInfoChange?: (newItem: ScheduleLinkItem) => void
 }) {
-  const [innerItemData, setInnerCacheItemData] = createIStore(
+  const [innerScheduleItem, setInnerCacheItemData] = createIStore(
     { ...props.item },
     {
       onChange(newStore) {
@@ -88,7 +85,7 @@ export function ScheduleItemCard(props: {
 
   const [inEditMode, { open: startEdit, close: endEdit, toggle: toggleEdit }] = createDisclosure(false, {
     onClose() {
-      props.onItemInfoChange?.(innerItemData)
+      props.onItemInfoChange?.(innerScheduleItem)
     },
   })
 
@@ -98,7 +95,7 @@ export function ScheduleItemCard(props: {
     { open: startTextNameEdit, close: endTextNameEdit, toggle: toggleTextNameEditMode, set: setTextNameEditState },
   ] = createDisclosure(false, {
     onClose() {
-      props.onItemInfoChange?.(innerItemData)
+      props.onItemInfoChange?.(innerScheduleItem)
     },
   })
 
@@ -124,7 +121,7 @@ export function ScheduleItemCard(props: {
   }
   // innerMethod: end the input
   function commitTempItemDataToReal() {
-    props.onItemInfoChange?.(innerItemData)
+    props.onItemInfoChange?.(innerScheduleItem)
   }
   return (
     <Box
@@ -149,24 +146,24 @@ export function ScheduleItemCard(props: {
     >
       {/* content form */}
       <Group icss={{ gridArea: "form", display: "flex", gap: ".5em", flexDirection: "column" }}>
-        <FormFactory formObj={innerItemData}>
+        <FormFactory formObj={innerScheduleItem}>
           <FormFactoryBlock name="category">
-            {(currentCategoryValue) => (
+            {(scheduleItemCategory) => (
               <TagWidget
                 bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
                 candidates={scheduleLinkItemCategories}
-                value={currentCategoryValue}
-                defaultValue={currentCategoryValue}
+                value={scheduleItemCategory}
+                defaultValue={scheduleItemCategory}
                 onChange={({ itemValue }) => {
                   updateTempItemData("category", itemValue())
                 }}
               >
-                {currentCategoryValue}
+                {scheduleItemCategory}
               </TagWidget>
             )}
           </FormFactoryBlock>
           <FormFactoryBlock name="name">
-            {(currentNameValue) => (
+            {(scheduleItemName) => (
               <EditableText
                 icss={({ isEnabled }) => ({
                   display: "inline-block",
@@ -181,12 +178,12 @@ export function ScheduleItemCard(props: {
                     commitTempItemDataToReal()
                   }
                 }}
-                defaultValue={currentNameValue}
+                defaultValue={scheduleItemName}
               />
             )}
           </FormFactoryBlock>
           <FormFactoryBlock name="url">
-            {(currentUrlValue) => (
+            {(scheduleItemUrl) => (
               <EditableText
                 icss={({ isEnabled }) => ({
                   display: "inline-block",
@@ -195,7 +192,7 @@ export function ScheduleItemCard(props: {
                   color: colors.textSecondary,
                   outline: isEnabled?.() ? "solid" : undefined,
                 })}
-                defaultValue={currentUrlValue}
+                defaultValue={scheduleItemUrl}
                 placeholder="https://example.com"
                 onInput={(t) => updateTempItemData("url", t)}
                 onEnabledChange={(b) => {
@@ -207,10 +204,10 @@ export function ScheduleItemCard(props: {
             )}
           </FormFactoryBlock>
           <FormFactoryBlock name="tags">
-            {(tags) => (
+            {(scheduleItemTags) => (
               <TagRow
                 candidateKey={"schedule-item-tags"}
-                value={tags}
+                value={scheduleItemTags}
                 defaultValue={[" "]}
                 icss={{ color: colors.textSecondary }}
                 onChange={(tags) => {
@@ -220,10 +217,10 @@ export function ScheduleItemCard(props: {
             )}
           </FormFactoryBlock>
           <FormFactoryBlock name="comment">
-            {(value) => (
+            {(scheduleItemComment) => (
               <EditableText
                 icss={{ color: colors.textSecondary }}
-                defaultValue={value}
+                defaultValue={scheduleItemComment}
                 placeholder={"empty comments"}
                 onInput={(t) => updateTempItemData("comment", t)}
                 onEnabledChange={(b) => {
