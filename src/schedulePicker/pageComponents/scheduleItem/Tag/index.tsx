@@ -9,7 +9,7 @@ import {
   Piv,
   useKitProps,
 } from "@edsolater/pivkit"
-import { type JSXElement, createSignal } from "solid-js"
+import { type JSXElement, createEffect, createSignal } from "solid-js"
 import { popupWidget } from "../popupWidget"
 import { SelectPanel } from "../Select"
 import { useTagManager, useTagsManager } from "./tagManager"
@@ -17,7 +17,7 @@ import { useTagManager, useTagsManager } from "./tagManager"
 type TagWidgetProps = TagAtomProps & {
   candidates?: string[]
   onChange?: (newTag: string) => void
-  candidateKey?: string
+  key?: string
 }
 
 type TagRowProps = {
@@ -27,7 +27,7 @@ type TagRowProps = {
   candidates?: string[] // apply to all tags
   onChange?: (newTags: string[]) => void
   /** candidates will default be candidates with same candidateKey */
-  candidateKey?: string
+  key?: string
 }
 
 /**
@@ -39,7 +39,7 @@ type TagRowProps = {
 export function TagWidget(kitProps: KitProps<TagWidgetProps>) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "TagWidget" })
   const { innerTag, candidates, selectTag, deleteCandidate, addCandidate } = useTagManager({
-    candidateGroupName: props.candidateKey ?? "unknown",
+    candidateGroupName: props.key ?? "unknown",
     defaultSelectedTag: props.value ?? props.defaultValue ?? "",
     onSelectedTagChange: (tag) => props.onChange?.(tag),
     defaultCandidates: props.candidates,
@@ -119,8 +119,11 @@ const defaultTagBg = "light-dark(#fff6, #0006)"
  */
 export function TagRow(kitProps: KitProps<TagRowProps>) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "TagsLine" })
+  createEffect(() => {
+    console.log("props.candidateKey: ", props.key)
+  })
   const { innerSelectedTags, candidates, selectTag, deleteCandidate, addCandidate } = useTagsManager({
-    candidateGroupName: props.candidateKey ?? "unknown",
+    key: () => props.key ?? "unknown",
     defaultSelectedTags: props.value ?? props.defaultValue ?? [],
     onSelectedTagsChange: props.onChange,
     defaultCandidates: props.candidates,

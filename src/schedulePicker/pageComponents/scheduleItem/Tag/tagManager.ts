@@ -1,5 +1,5 @@
 import { addItem, createSubscribable, isSubCollectorOf, setItem } from "@edsolater/fnkit"
-import { useSubscribable } from "@edsolater/pivkit"
+import { useKitProps, useSubscribable, type KitProps } from "@edsolater/pivkit"
 import { createEffect, createMemo, createSignal, on } from "solid-js"
 
 // ---------------- candidates in indexedDB ----------------
@@ -39,17 +39,20 @@ const availableTags = createSubscribable<Map<string, Set<string> | undefined>>(n
  * solidjs hook for managing tags(candidate and selected)
  *
  */
-export function useTagManager(opts: {
-  candidateGroupName: string
-  defaultSelectedTag: string
-  defaultCandidates?: string[]
-  onSelectedTagChange?: (tag: string) => void
-}) {
+export function useTagManager(
+  rawOptions: KitProps<{
+    candidateGroupName: string
+    defaultSelectedTag: string
+    defaultCandidates?: string[]
+    onSelectedTagChange?: (tag: string) => void
+  }>,
+) {
+  const { props: options } = useKitProps(rawOptions, { name: "useTagManager" })
   const { innerSelectedTags, ...rest } = useTagsManager({
-    candidateGroupName: opts.candidateGroupName,
-    defaultSelectedTags: [opts.defaultSelectedTag],
-    defaultCandidates: opts.defaultCandidates,
-    onSelectedTagsChange: (tags: string[]) => opts.onSelectedTagChange?.(tags.at(-1)!),
+    key: options.candidateGroupName,
+    defaultSelectedTags: [options.defaultSelectedTag],
+    defaultCandidates: options.defaultCandidates,
+    onSelectedTagsChange: (tags: string[]) => options.onSelectedTagChange?.(tags.at(-1)!),
   })
   const innerTag = createMemo(() => innerSelectedTags().at(-1)!)
   return { innerTag, ...rest }
@@ -59,27 +62,30 @@ export function useTagManager(opts: {
  * Multiple Mode, (single mode is {@link useTagsManager})
  * solidjs hook for managing tags(candidate and selected)
  */
-export function useTagsManager(opts: {
-  candidateGroupName: string
-  defaultSelectedTags: string[]
-  onSelectedTagsChange?: (tags: string[]) => void
-  // TODO: imply it!!
-  defaultCandidates?: string[]
-}) {
-  const [innerSelectedTags, setInnerSelectedTags] = createSignal(opts.defaultSelectedTags)
+export function useTagsManager(
+  rawOptions: KitProps<{
+    key: string
+    defaultSelectedTags: string[]
+    onSelectedTagsChange?: (tags: string[]) => void
+    // TODO: imply it!!
+    defaultCandidates?: string[]
+  }>,
+) {
+  const { props: options } = useKitProps(rawOptions, { name: "useTagsManager" })
+  const [innerSelectedTags, setInnerSelectedTags] = createSignal(options.defaultSelectedTags)
   const [candidates, setCandidates] = useSubscribable(availableTags, {
     onPickFromSubscribable: (subscribable) => {
       // console.log('pick')
-      const pickedValue = subscribable.get(opts.candidateGroupName)
+      const pickedValue = subscribable.get(options.key)
       return pickedValue
     },
     onSetToSubscribable: (tags, subscribable) => {
       // console.log("onSet tags: ", subscribable(), tags)
       if (!tags?.size) return
-      if (isSubCollectorOf(subscribable().get(opts.candidateGroupName), tags)) return
+      if (isSubCollectorOf(subscribable().get(options.key), tags)) return
       // console.log("real set tags: ", subscribable(), tags)
       subscribable.set((prevStore) =>
-        setItem(prevStore, opts.candidateGroupName, (storeTags) => new Set([...(storeTags ?? []), ...tags])),
+        setItem(prevStore, options.key, (storeTags) => new Set([...(storeTags ?? []), ...tags])),
       )
     },
   })
@@ -99,7 +105,7 @@ export function useTagsManager(opts: {
       innerSelectedTags,
       (currentInnerTags) => {
         // console.log("currentInnerTags: ", currentInnerTags)
-        if (currentInnerTags) opts.onSelectedTagsChange?.(currentInnerTags)
+        if (currentInnerTags) options.onSelectedTagsChange?.(currentInnerTags)
       },
       { defer: true },
     ),
