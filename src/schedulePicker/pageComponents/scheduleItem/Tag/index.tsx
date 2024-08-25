@@ -1,8 +1,6 @@
-import { createSubscribable, isShallowEqual, isSubCollectorOf, setItem } from "@edsolater/fnkit"
 import {
   type KitProps,
   Box,
-  createIDBStoreManager,
   Icon,
   icssCardPanel,
   icssClickable,
@@ -10,17 +8,15 @@ import {
   Loop,
   Piv,
   useKitProps,
-  useSubscribable,
 } from "@edsolater/pivkit"
-import { createEffect, createSignal, on, type JSXElement } from "solid-js"
-import { popupWidget } from "./popupWidget"
-import { type SelectPanelProps, SelectPanel } from "./Select"
-
-const recordTagCandidates: Map<string /* candidateKey */, string[]> = new Map()
+import { type JSXElement, createSignal } from "solid-js"
+import { popupWidget } from "../popupWidget"
+import { SelectPanel } from "../Select"
+import { useTagManager, useTagsManager } from "./tagManager"
 
 type TagWidgetProps = TagAtomProps & {
   candidates?: string[]
-  onChange?: SelectPanelProps<string>["onSelect"]
+  onChange?: (newTag: string) => void
   candidateKey?: string
 }
 
@@ -30,7 +26,8 @@ type TagRowProps = {
   bg?: string // icss:bg
   candidates?: string[] // apply to all tags
   onChange?: (newTags: string[]) => void
-  candidateKey: string
+  /** candidates will default be candidates with same candidateKey */
+  candidateKey?: string
 }
 
 /**
@@ -41,7 +38,12 @@ type TagRowProps = {
  */
 export function TagWidget(kitProps: KitProps<TagWidgetProps>) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "TagWidget" })
-  const candidates = () => props.candidates ?? recordTagCandidates.get(props.candidateKey ?? "") ?? []
+  const { innerTag, candidates, selectTag, deleteCandidate, addCandidate } = useTagManager({
+    candidateGroupName: props.candidateKey ?? "unknown",
+    defaultSelectedTag: props.value ?? props.defaultValue ?? "",
+    onSelectedTagChange: (tag) => props.onChange?.(tag),
+    defaultCandidates: props.candidates,
+  })
   return (
     <TagAtom
       shadowProps={shadowProps}
@@ -54,7 +56,7 @@ export function TagWidget(kitProps: KitProps<TagWidgetProps>) {
               icss={{ marginBottom: ".5em" }}
               onEnter={(value) => {
                 if (value) {
-                  recordTagCandidates.set(props.candidateKey ?? "", [...candidates(), value])
+                  addCandidate(value)
                 }
               }}
             />
@@ -64,8 +66,8 @@ export function TagWidget(kitProps: KitProps<TagWidgetProps>) {
               candidates={candidates}
               defaultValue={props.defaultValue}
               onClose={closePopup}
-              onSelect={(...e) => {
-                return props.onChange?.(...e)
+              onSelect={({ itemValue }) => {
+                selectTag(itemValue())
               }}
             />
           </Box>
@@ -109,36 +111,6 @@ export function TagAtom(kitProps: KitProps<TagAtomProps>) {
 
 const defaultTagBg = "light-dark(#fff6, #0006)"
 
-// ---------------- availableTags in indexedDB ----------------
-const idbManager = createIDBStoreManager({
-  dbName: "form-widget-settings",
-  storeName: "tags",
-})
-
-const availableTags = createSubscribable<Map<string, Set<string> | undefined>>(new Map(), {
-  onSet(value, prevValue) {
-    // console.log('set 0', value, prevValue)
-    for (const [key, tags] of value) {
-      const prevTags = prevValue?.get(key)
-      if (!isSubCollectorOf(prevTags, tags)) {
-        // console.log("idb set tags: ", tags, prevTags)
-        idbManager.set(key, tags)
-      }
-    }
-  },
-  onInit({ set }) {
-    // console.log("idb init")
-    idbManager.getAll().then((data) => {
-      // console.log("idb init: ", data)
-      set((prev) => {
-        // console.log("prev, data: ", prev, data)
-        if (isShallowEqual(data, prev) || isSubCollectorOf(prev, data)) return prev
-        return new Map(data?.map(({ key, value: tags }) => [key as string, new Set(tags)]))
-      })
-    })
-  },
-})
-
 /**
  * Uikit Component (for form)
  *
@@ -147,59 +119,12 @@ const availableTags = createSubscribable<Map<string, Set<string> | undefined>>(n
  */
 export function TagRow(kitProps: KitProps<TagRowProps>) {
   const { props, shadowProps } = useKitProps(kitProps, { name: "TagsLine" })
-  const [innerSelectedTags, setInnerSelectedTags] = createSignal(props.value)
-  const [candidates, setCandidates] = useSubscribable(availableTags, {
-    onPickFromSubscribable: (subscribable) => {
-      // console.log('pick')
-      const pickedValue = subscribable.get(props.candidateKey)
-      return pickedValue
-    },
-    onSetToSubscribable: (tags, subscribable) => {
-      // console.log("onSet tags: ", subscribable(), tags)
-      if (!tags?.size) return
-      if (isSubCollectorOf(subscribable().get(props.candidateKey), tags)) return
-      // console.log("real set tags: ", subscribable(), tags)
-      subscribable.set((prevStore) =>
-        setItem(prevStore, props.candidateKey, (storeTags) => new Set([...(storeTags ?? []), ...tags])),
-      )
-    },
+  const { innerSelectedTags, candidates, selectTag, deleteCandidate, addCandidate } = useTagsManager({
+    candidateGroupName: props.candidateKey ?? "unknown",
+    defaultSelectedTags: props.value ?? props.defaultValue ?? [],
+    onSelectedTagsChange: props.onChange,
+    defaultCandidates: props.candidates,
   })
-
-  // tag action
-  const addTag = (newTagName: string) => setInnerSelectedTags((prev) => prev?.concat(newTagName))
-  // tag action
-  const deleteTag = (tagName: string) => setInnerSelectedTags((prev) => prev?.filter((tag) => tag !== tagName))
-
-  // apply onChange callbacks
-  createEffect(
-    on(
-      innerSelectedTags,
-      (currentInnerTags) => {
-        // console.log("currentInnerTags: ", currentInnerTags)
-        if (currentInnerTags) props.onChange?.(currentInnerTags)
-      },
-      { defer: true },
-    ),
-  )
-
-  // copy change current tag to candidates
-  createEffect(
-    on(innerSelectedTags, (currentInnerTags) => {
-      if (currentInnerTags) {
-        const candidatesTags = candidates()
-        for (const innerTag of currentInnerTags) {
-          if (!candidatesTags?.has(innerTag)) {
-            setCandidates((prev) => {
-              const s = new Set([...(prev ?? [])])
-              // console.log("innerTag: ", innerTag, s)
-              s.add(innerTag)
-              return s
-            })
-          }
-        }
-      }
-    }),
-  )
 
   const [isPopupOpen, setIsPopupOpen] = createSignal(false)
 
@@ -226,11 +151,7 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
               icss={{ marginBottom: ".5em" }}
               onEnter={(value) => {
                 if (value) {
-                  setCandidates((prev) => {
-                    const s = new Set(prev)
-                    s.add(value)
-                    return s
-                  })
+                  addCandidate(value)
                 }
               }}
             />
@@ -240,7 +161,7 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
               candidates={candidates}
               onClose={closePopup}
               onSelect={({ itemValue }) => {
-                addTag(itemValue())
+                selectTag(itemValue())
               }}
             />
           </Box>
@@ -279,7 +200,7 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
                 <Icon
                   icss={isPopupOpen() && tag ? icssClickable() : { display: "none" }}
                   onClick={() => {
-                    if (tag) deleteTag(tag)
+                    if (tag) deleteCandidate(tag)
                   }}
                   src={"/icons/close.svg"}
                 />

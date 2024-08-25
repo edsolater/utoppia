@@ -152,10 +152,12 @@ export function ScheduleItemCard(props: {
               <TagWidget
                 bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
                 candidates={scheduleLinkItemCategories}
+                candidateKey={"scheduleItemCategory"}
                 value={scheduleItemCategory}
                 defaultValue={scheduleItemCategory}
-                onChange={({ itemValue }) => {
-                  updateTempItemData("category", itemValue())
+                onChange={(tag) => {
+                  console.log("tag: ", tag)
+                  updateTempItemData("category", tag)
                 }}
               >
                 {scheduleItemCategory}
@@ -206,7 +208,7 @@ export function ScheduleItemCard(props: {
           <FormFactoryBlock name="tags">
             {(scheduleItemTags) => (
               <TagRow
-                candidateKey={"schedule-item-tags"}
+                candidateKey={`scheduleItemTags:${innerScheduleItem.category}`}
                 value={scheduleItemTags}
                 defaultValue={[" "]}
                 icss={{ color: colors.textSecondary }}
