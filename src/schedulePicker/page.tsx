@@ -14,11 +14,11 @@ import {
   icssGrid,
   useKitProps,
   useSubscribableStore,
+  withPopupWidget,
   type KitProps,
 } from "@edsolater/pivkit"
 import { createSignal } from "solid-js"
 import { DraggablePanel } from "../app/components/FABPanel"
-import { popupWidget } from "./pageComponents/scheduleItem/popupWidget"
 import { ScheduleItemCard } from "./pageComponents/scheduleItem/ScheduleItem"
 import type { ScheduleLinkItem } from "./pageComponents/scheduleItem/type"
 import {
@@ -152,7 +152,7 @@ function Deprecated_PopoverFormCreatorButton(
   return (
     <Button
       shadowProps={shadowProps}
-      plugin={popupWidget.config({
+      plugin={withPopupWidget.config({
         canBackdropClose: true,
         isWrapperAddProps: true,
         popElement: () => (

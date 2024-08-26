@@ -7,11 +7,11 @@ import {
   Input,
   Loop,
   Piv,
+  SelectPanel,
   useKitProps,
+  withPopupWidget,
 } from "@edsolater/pivkit"
 import { type JSXElement, createEffect, createSignal } from "solid-js"
-import { popupWidget } from "../popupWidget"
-import { SelectPanel } from "../Select"
 import { useTagManager, useTagsManager } from "./tagManager"
 
 type TagWidgetProps = TagAtomProps & {
@@ -47,7 +47,7 @@ export function TagWidget(kitProps: KitProps<TagWidgetProps>) {
   return (
     <TagAtom
       shadowProps={shadowProps}
-      plugin={popupWidget.config({
+      plugin={withPopupWidget.config({
         shouldFocusChildWhenOpen: true,
         canBackdropClose: true,
         popElement: ({ closePopup }) => (
@@ -140,7 +140,7 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
         margin: "-.25rem",
         borderRadius: ".25rem",
       }}
-      plugin={popupWidget.config({
+      plugin={withPopupWidget.config({
         onOpen: () => setIsPopupOpen(true),
         onClose: () => setIsPopupOpen(false),
         shouldFocusChildWhenOpen: true,

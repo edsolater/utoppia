@@ -4,6 +4,7 @@ import {
   Button,
   createDisclosure,
   createIStore,
+  createPlugin,
   cssColorMix,
   cssGrayscale,
   cssOpacity,
@@ -16,15 +17,15 @@ import {
   icssContentClickableOpacity,
   Iframe,
   Row,
+  SelectPanel,
+  withPopupWidget,
   type CSSObject,
 } from "@edsolater/pivkit"
 import { createEffect, createMemo, on, Show } from "solid-js"
 import { reconcile } from "solid-js/store"
 import { colors } from "../../../app/theme/colors"
 import { navigateToUrl } from "../../utils/url"
-import { SelectPanel } from "./Select"
 import { TagRow, TagWidget } from "./Tag"
-import { popupWidget } from "./popupWidget"
 import { scheduleLinkItemCategories, type ScheduleLinkItem, type ScheduleLinkItemCategories } from "./type"
 import { updateExistedScheduleItem } from "./utils"
 
@@ -255,7 +256,7 @@ export function ScheduleItemCard(props: {
             variant="plain"
             size={"xs"}
             icss={icssContentClickableOpacity}
-            plugin={popupWidget.config({
+            plugin={withPopupWidget.config({
               shouldFocusChildWhenOpen: true,
               canBackdropClose: true,
               popElement: ({ closePopup }) => (
@@ -306,3 +307,21 @@ export function ScheduleItemCard(props: {
     </Box>
   )
 }
+
+/** also a exte */
+const withTooltip = withPopupWidget.config({
+  shouldFocusChildWhenOpen: true,
+  canBackdropClose: true,
+  popElement: ({ closePopup }) => (
+    <SelectPanel
+      name="edit-new-widget-selector"
+      candidates={[{ value: "tags", disabled: true }, "comment", "title"]}
+      onClose={closePopup}
+      onSelect={({ itemValue }) => {
+        setTimeoutWithSecondes(() => {
+          closePopup()
+        }, 0.2)
+      }}
+    />
+  ),
+})
