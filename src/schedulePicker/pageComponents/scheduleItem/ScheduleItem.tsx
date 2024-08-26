@@ -14,10 +14,11 @@ import {
   Icon,
   icssCard,
   icssContentClickableOpacity,
+  Iframe,
   Row,
   type CSSObject,
 } from "@edsolater/pivkit"
-import { createEffect, createMemo, on } from "solid-js"
+import { createEffect, createMemo, on, Show } from "solid-js"
 import { reconcile } from "solid-js/store"
 import { colors } from "../../../app/theme/colors"
 import { navigateToUrl } from "../../utils/url"
@@ -89,6 +90,9 @@ export function ScheduleItemCard(props: {
     },
   })
 
+  const [isIframePreviewOpen, { open: openIframePreview, close: closeIframePreview, toggle: toggleIframePreview }] =
+    createDisclosure(false)
+
   // should only reflect to item's name
   const [
     isTextNameInEditMode,
@@ -107,6 +111,10 @@ export function ScheduleItemCard(props: {
     if (props.item.url) {
       navigateToUrl(props.item.url, { blank: true })
     }
+  }
+
+  function handleToggleIframePreview() {
+    toggleIframePreview()
   }
 
   function handleActionEdit() {
@@ -130,163 +138,171 @@ export function ScheduleItemCard(props: {
         icssCard({
           bg: cssOpacity(cssColorMix({ color: cssGrayscale(itemThemeColor(), 0.3), percent: "15%" }, colors.card), 0.9),
         }),
-        {
-          display: "grid",
-          // TODO: use subgrid
-          gridTemplate: `
-              "form  form  actions2" auto
-              "form  form  actions1" auto
-              "form  form  .       " 1fr
-              "form  form  actions3" auto / 1fr 1fr auto`,
-          columnGap: "16px",
-          rowGap: "8px",
-          backdropFilter: "blur(6px)",
-        },
+        { backdropFilter: "blur(6px)" },
       ]}
     >
-      {/* content form */}
-      <Group icss={{ gridArea: "form", display: "flex", gap: ".5em", flexDirection: "column" }}>
-        <FormFactory formObj={innerScheduleItem}>
-          <FormFactoryBlock name="category">
-            {(scheduleItemCategory) => (
-              <TagWidget
-                bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
-                candidates={scheduleLinkItemCategories}
-                key="scheduleItemCategory"
-                value={scheduleItemCategory}
-                defaultValue={scheduleItemCategory}
-                onChange={(tag) => {
-                  console.log("tag: ", tag)
-                  updateTempItemData("category", tag)
-                }}
-              >
-                {scheduleItemCategory}
-              </TagWidget>
-            )}
-          </FormFactoryBlock>
-          <FormFactoryBlock name="name">
-            {(scheduleItemName) => (
-              <EditableText
-                icss={({ isEnabled }) => ({
-                  display: "inline-block",
-                  width: "100%",
-                  fontSize: "1.6em",
-                  outline: isEnabled() ? "solid" : undefined,
-                })}
-                placeholder="Title"
-                onInput={(t) => updateTempItemData("name", t)}
-                onEnabledChange={(b) => {
-                  if (!b) {
-                    commitTempItemDataToReal()
-                  }
-                }}
-                defaultValue={scheduleItemName}
-              />
-            )}
-          </FormFactoryBlock>
-          <FormFactoryBlock name="url">
-            {(scheduleItemUrl) => (
-              <EditableText
-                icss={({ isEnabled }) => ({
-                  display: "inline-block",
-                  width: "100%",
-                  fontSize: ".8em",
-                  color: colors.textSecondary,
-                  outline: isEnabled?.() ? "solid" : undefined,
-                })}
-                defaultValue={scheduleItemUrl}
-                placeholder="https://example.com"
-                onInput={(t) => updateTempItemData("url", t)}
-                onEnabledChange={(b) => {
-                  if (!b) {
-                    commitTempItemDataToReal()
-                  }
-                }}
-              />
-            )}
-          </FormFactoryBlock>
-          <FormFactoryBlock name="tags">
-            {(scheduleItemTags) => (
-              <TagRow
-                key={`scheduleItemTags:${innerScheduleItem.category}`}
-                value={scheduleItemTags}
-                defaultValue={[" "]}
-                icss={{ color: colors.textSecondary }}
-                onChange={(tags) => {
-                  updateTempItemData("tags", tags)
-                }}
-              />
-            )}
-          </FormFactoryBlock>
-          <FormFactoryBlock name="comment">
-            {(scheduleItemComment) => (
-              <EditableText
-                icss={{ color: colors.textSecondary }}
-                defaultValue={scheduleItemComment}
-                placeholder={"empty comments"}
-                onInput={(t) => updateTempItemData("comment", t)}
-                onEnabledChange={(b) => {
-                  if (!b) {
-                    commitTempItemDataToReal()
-                  }
-                }}
-              />
-            )}
-          </FormFactoryBlock>
-        </FormFactory>
-      </Group>
+      <Box
+        icss={[
+          {
+            display: "grid",
+            // TODO: use subgrid
+            gridTemplate: `
+            "form  form  topActions  " auto
+            "form  form  .            " auto
+            "form  form  .           " 1fr
+            "form  form  buttonActions" auto / 1fr 1fr auto`,
+            columnGap: "16px",
+            rowGap: "8px",
+          },
+        ]}
+      >
+        {/* content form */}
+        <Group icss={{ gridArea: "form", display: "flex", gap: ".5em", flexDirection: "column" }}>
+          <FormFactory formObj={innerScheduleItem}>
+            <FormFactoryBlock name="category">
+              {(scheduleItemCategory) => (
+                <TagWidget
+                  bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
+                  candidates={scheduleLinkItemCategories}
+                  key="scheduleItemCategory"
+                  value={scheduleItemCategory}
+                  defaultValue={scheduleItemCategory}
+                  onChange={(tag) => {
+                    console.log("tag: ", tag)
+                    updateTempItemData("category", tag)
+                  }}
+                >
+                  {scheduleItemCategory}
+                </TagWidget>
+              )}
+            </FormFactoryBlock>
+            <FormFactoryBlock name="name">
+              {(scheduleItemName) => (
+                <EditableText
+                  icss={({ isEnabled }) => ({
+                    display: "inline-block",
+                    width: "100%",
+                    fontSize: "1.6em",
+                    outline: isEnabled() ? "solid" : undefined,
+                  })}
+                  placeholder="Title"
+                  onInput={(t) => updateTempItemData("name", t)}
+                  onEnabledChange={(b) => {
+                    if (!b) {
+                      commitTempItemDataToReal()
+                    }
+                  }}
+                  defaultValue={scheduleItemName}
+                />
+              )}
+            </FormFactoryBlock>
+            <FormFactoryBlock name="url">
+              {(scheduleItemUrl) => (
+                <EditableText
+                  icss={({ isEnabled }) => ({
+                    display: "inline-block",
+                    width: "100%",
+                    fontSize: ".8em",
+                    color: colors.textSecondary,
+                    outline: isEnabled?.() ? "solid" : undefined,
+                  })}
+                  defaultValue={scheduleItemUrl}
+                  placeholder="https://example.com"
+                  onInput={(t) => updateTempItemData("url", t)}
+                  onEnabledChange={(b) => {
+                    if (!b) {
+                      commitTempItemDataToReal()
+                    }
+                  }}
+                />
+              )}
+            </FormFactoryBlock>
+            <FormFactoryBlock name="tags">
+              {(scheduleItemTags) => (
+                <TagRow
+                  key={`scheduleItemTags:${innerScheduleItem.category}`}
+                  value={scheduleItemTags}
+                  defaultValue={[" "]}
+                  icss={{ color: colors.textSecondary }}
+                  onChange={(tags) => {
+                    updateTempItemData("tags", tags)
+                  }}
+                />
+              )}
+            </FormFactoryBlock>
+            <FormFactoryBlock name="comment">
+              {(scheduleItemComment) => (
+                <EditableText
+                  icss={{ color: colors.textSecondary }}
+                  defaultValue={scheduleItemComment}
+                  placeholder={"empty comments"}
+                  onInput={(t) => updateTempItemData("comment", t)}
+                  onEnabledChange={(b) => {
+                    if (!b) {
+                      commitTempItemDataToReal()
+                    }
+                  }}
+                />
+              )}
+            </FormFactoryBlock>
+          </FormFactory>
+        </Group>
 
-      {/* action 1 */}
-      <Group icss={{ gridArea: "actions1", justifySelf: "end" }}>
-        <Button variant="plain" size={"xs"} icss={icssContentClickableOpacity} onClick={handleActionOpenLink}>
-          <Icon name="open-window" src={"/icons/open_in_new.svg"} />
-        </Button>
-      </Group>
+        {/* buttonActions */}
+        <Group icss={{ gridArea: "buttonActions", placeSelf: "end" }}>
+          {/* name="action button: add_form_block " */}
+          <Button
+            variant="plain"
+            size={"xs"}
+            icss={icssContentClickableOpacity}
+            plugin={popupWidget.config({
+              shouldFocusChildWhenOpen: true,
+              canBackdropClose: true,
+              popElement: ({ closePopup }) => (
+                <SelectPanel
+                  name="edit-new-widget-selector"
+                  candidates={[{ value: "tags", disabled: true }, "comment", "title"]}
+                  onClose={closePopup}
+                  onSelect={({ itemValue }) => {
+                    setTimeoutWithSecondes(() => {
+                      closePopup()
+                    }, 0.2)
+                  }}
+                />
+              ),
+            })}
+          >
+            <Icon src={"/icons/add_box.svg"} />
+          </Button>
+        </Group>
 
-      {/* action 3 */}
-      <Group icss={{ gridArea: "actions3", placeSelf: "end" }}>
-        {/* name="action button: add_form_block " */}
-        <Button
-          variant="plain"
-          size={"xs"}
-          icss={icssContentClickableOpacity}
-          plugin={popupWidget.config({
-            shouldFocusChildWhenOpen: true,
-            canBackdropClose: true,
-            popElement: ({ closePopup }) => (
-              <SelectPanel
-                name="edit-new-widget-selector"
-                candidates={[{ value: "tags", disabled: true }, "comment", "title"]}
-                onClose={closePopup}
-                onSelect={({ itemValue }) => {
-                  setTimeoutWithSecondes(() => {
-                    closePopup()
-                  }, 0.2)
-                }}
-              />
-            ),
-          })}
-        >
-          <Icon src={"/icons/add_box.svg"} />
-        </Button>
-      </Group>
+        {/* topActions */}
+        <Row icss={[{ gridArea: "topActions", justifySelf: "end" }]}>
+          <Button variant="plain" size={"xs"} icss={icssContentClickableOpacity} onClick={handleToggleIframePreview}>
+            <Icon name="show-iframe" src={"/icons/preview.svg"} />
+          </Button>
+          <Button variant="plain" size={"xs"} icss={icssContentClickableOpacity} onClick={handleActionOpenLink}>
+            <Icon name="open-window" src={"/icons/open_in_new.svg"} />
+          </Button>
+          {/* edit-button */}
+          <Button
+            variant="plain"
+            isActive={inEditMode}
+            size={"xs"}
+            onClick={handleActionEdit}
+            icss={icssContentClickableOpacity}
+          >
+            {({ isActive }) => <Icon name="edit" src={isActive() ? "/icons/edit_fill.svg" : "/icons/edit.svg"} />}
+          </Button>
+          <Button variant="plain" size={"xs"} onClick={handleActionDelete} icss={icssContentClickableOpacity}>
+            <Icon name="delete" src={"/icons/delete.svg"} />
+          </Button>
+        </Row>
+      </Box>
 
-      {/* action2 */}
-      <Row icss={[{ gridArea: "actions2", justifySelf: "end" }]}>
-        <Button
-          class={"edit-btn"}
-          variant="plain"
-          isActive={inEditMode}
-          size={"xs"}
-          onClick={handleActionEdit}
-          icss={icssContentClickableOpacity}
-        >
-          {({ isActive }) => <Icon name="edit" src={isActive() ? "/icons/edit_fill.svg" : "/icons/edit.svg"} />}
-        </Button>
-        <Button variant="plain" size={"xs"} onClick={handleActionDelete} icss={icssContentClickableOpacity}>
-          <Icon name="delete" src={"/icons/delete.svg"} />
-        </Button>
-      </Row>
+      <Show when={isIframePreviewOpen()}>
+        <Iframe src={props.item.url} icss={{ width: "100%", aspectRatio: "16 / 9" }} />
+      </Show>
     </Box>
   )
 }
