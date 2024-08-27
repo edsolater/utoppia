@@ -4,7 +4,6 @@ import {
   Button,
   createDisclosure,
   createIStore,
-  createPlugin,
   cssColorMix,
   cssGrayscale,
   cssOpacity,
@@ -18,6 +17,8 @@ import {
   Iframe,
   Row,
   SelectPanel,
+  Text,
+  TooltipPanel,
   withPopupWidget,
   type CSSObject,
 } from "@edsolater/pivkit"
@@ -148,10 +149,9 @@ export function ScheduleItemCard(props: {
             display: "grid",
             // TODO: use subgrid
             gridTemplate: `
-            "form  form  topActions  " auto
-            "form  form  .            " auto
-            "form  form  .           " 1fr
-            "form  form  buttonActions" auto / 1fr 1fr auto`,
+              "form  form  form" auto
+              "form  form  form" 1fr
+              "form  form  form" auto / 1fr 1fr 1fr`,
             columnGap: "16px",
             rowGap: "8px",
           },
@@ -169,7 +169,6 @@ export function ScheduleItemCard(props: {
                   value={scheduleItemCategory}
                   defaultValue={scheduleItemCategory}
                   onChange={(tag) => {
-                    console.log("tag: ", tag)
                     updateTempItemData("category", tag)
                   }}
                 >
@@ -249,8 +248,65 @@ export function ScheduleItemCard(props: {
           </FormFactory>
         </Group>
 
+        {/* topActions */}
+        <Row icss={[{ gridArea: "1 / -2 ", justifySelf: "end" }]}>
+          <Button
+            variant="plain"
+            plugin={withPopupWidget.config({
+              // TODO: should show with hover
+              shouldFocusChildWhenOpen: true,
+              popupDirection: "bottom",
+              elementHtmlTitle: "show iframe",
+              triggerBy: "hover",
+              popElement: () => (
+                <TooltipPanel>
+                  <Text>show iframe</Text>
+                </TooltipPanel>
+              ),
+            })}
+            size={"xs"}
+            icss={icssContentClickableOpacity}
+            onClick={handleToggleIframePreview}
+          >
+            <Icon name="show-iframe" src={"/icons/preview.svg"} />
+          </Button>
+          <Button
+            variant="plain"
+            plugin={withPopupWidget.config({
+              // TODO: should show with hover
+              shouldFocusChildWhenOpen: true,
+              popupDirection: "bottom",
+              elementHtmlTitle: "open in new tab",
+              triggerBy: "hover",
+              popElement: () => (
+                <TooltipPanel>
+                  <Text>open in new tab</Text>
+                </TooltipPanel>
+              ),
+            })}
+            size={"xs"}
+            icss={icssContentClickableOpacity}
+            onClick={handleActionOpenLink}
+          >
+            <Icon name="open-tab" src={"/icons/open_in_new.svg"} />
+          </Button>
+          {/* edit-button */}
+          <Button
+            variant="plain"
+            isActive={inEditMode}
+            size={"xs"}
+            onClick={handleActionEdit}
+            icss={icssContentClickableOpacity}
+          >
+            {({ isActive }) => <Icon name="edit" src={isActive() ? "/icons/edit_fill.svg" : "/icons/edit.svg"} />}
+          </Button>
+          <Button variant="plain" size={"xs"} onClick={handleActionDelete} icss={icssContentClickableOpacity}>
+            <Icon name="delete" src={"/icons/delete.svg"} />
+          </Button>
+        </Row>
+
         {/* buttonActions */}
-        <Group icss={{ gridArea: "buttonActions", placeSelf: "end" }}>
+        <Group icss={{ gridArea: " -2 / -2 ", justifySelf: "end" }}>
           {/* name="action button: add_form_block " */}
           <Button
             variant="plain"
@@ -258,7 +314,6 @@ export function ScheduleItemCard(props: {
             icss={icssContentClickableOpacity}
             plugin={withPopupWidget.config({
               shouldFocusChildWhenOpen: true,
-              canBackdropClose: true,
               popElement: ({ closePopup }) => (
                 <SelectPanel
                   name="edit-new-widget-selector"
@@ -276,29 +331,6 @@ export function ScheduleItemCard(props: {
             <Icon src={"/icons/add_box.svg"} />
           </Button>
         </Group>
-
-        {/* topActions */}
-        <Row icss={[{ gridArea: "topActions", justifySelf: "end" }]}>
-          <Button variant="plain" size={"xs"} icss={icssContentClickableOpacity} onClick={handleToggleIframePreview}>
-            <Icon name="show-iframe" src={"/icons/preview.svg"} />
-          </Button>
-          <Button variant="plain" size={"xs"} icss={icssContentClickableOpacity} onClick={handleActionOpenLink}>
-            <Icon name="open-window" src={"/icons/open_in_new.svg"} />
-          </Button>
-          {/* edit-button */}
-          <Button
-            variant="plain"
-            isActive={inEditMode}
-            size={"xs"}
-            onClick={handleActionEdit}
-            icss={icssContentClickableOpacity}
-          >
-            {({ isActive }) => <Icon name="edit" src={isActive() ? "/icons/edit_fill.svg" : "/icons/edit.svg"} />}
-          </Button>
-          <Button variant="plain" size={"xs"} onClick={handleActionDelete} icss={icssContentClickableOpacity}>
-            <Icon name="delete" src={"/icons/delete.svg"} />
-          </Button>
-        </Row>
       </Box>
 
       <Show when={isIframePreviewOpen()}>
@@ -307,21 +339,3 @@ export function ScheduleItemCard(props: {
     </Box>
   )
 }
-
-/** also a exte */
-const withTooltip = withPopupWidget.config({
-  shouldFocusChildWhenOpen: true,
-  canBackdropClose: true,
-  popElement: ({ closePopup }) => (
-    <SelectPanel
-      name="edit-new-widget-selector"
-      candidates={[{ value: "tags", disabled: true }, "comment", "title"]}
-      onClose={closePopup}
-      onSelect={({ itemValue }) => {
-        setTimeoutWithSecondes(() => {
-          closePopup()
-        }, 0.2)
-      }}
-    />
-  ),
-})

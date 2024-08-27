@@ -153,7 +153,7 @@ function Deprecated_PopoverFormCreatorButton(
     <Button
       shadowProps={shadowProps}
       plugin={withPopupWidget.config({
-        canBackdropClose: true,
+        popoverMode: true,
         isWrapperAddProps: true,
         popElement: () => (
           <DraggablePanel icss={{ padding: "32px 16px 4px" }}>

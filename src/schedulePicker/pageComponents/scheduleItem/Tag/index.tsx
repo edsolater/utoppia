@@ -49,7 +49,6 @@ export function TagWidget(kitProps: KitProps<TagWidgetProps>) {
       shadowProps={shadowProps}
       plugin={withPopupWidget.config({
         shouldFocusChildWhenOpen: true,
-        canBackdropClose: true,
         popElement: ({ closePopup }) => (
           <Box icss={[icssCardPanel, { paddingBlock: "8px", borderRadius: "8px" }]}>
             <Input
@@ -144,7 +143,7 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
         onOpen: () => setIsPopupOpen(true),
         onClose: () => setIsPopupOpen(false),
         shouldFocusChildWhenOpen: true,
-        canBackdropClose: true,
+        popoverMode: true,
         popElement: ({ closePopup }) => (
           <Box icss={[icssCardPanel, { paddingBlock: "8px", borderRadius: "8px" }]}>
             <Input
