@@ -55,6 +55,7 @@ export default function DailySchedulePage() {
             "toolbar toolbar" auto
             "main    main   " 1fr / 1fr 300px
           `,
+          contain: "size",
         },
       ]}
     >
@@ -95,9 +96,9 @@ export default function DailySchedulePage() {
         </Box>
       </Section>
 
-      <Group icss={{ gridArea: "main" }}>
+      <Section icss={{ gridArea: "main", overflowY: "scroll" }}>
         <List
-          items={data.links}
+          items={data.links?.slice(3)}
           icss={{
             width: "100%",
             display: "grid",
@@ -116,7 +117,7 @@ export default function DailySchedulePage() {
             />
           )}
         </List>
-      </Group>
+      </Section>
 
       {/* <FloatingPanel open={canEdit} defaultOpen>
         <NewScheduleItemCreatorForm
@@ -153,7 +154,7 @@ function Deprecated_PopoverFormCreatorButton(
     <Button
       shadowProps={shadowProps}
       plugin={withPopupWidget.config({
-        popoverMode: true,
+        popoverMode: "auto",
         isWrapperAddProps: true,
         popElement: () => (
           <DraggablePanel icss={{ padding: "32px 16px 4px" }}>
