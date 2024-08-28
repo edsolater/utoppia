@@ -15,12 +15,14 @@ import { type JSXElement, createEffect, createSignal } from "solid-js"
 import { useTagManager, useTagsManager } from "./tagManager"
 
 type TagWidgetProps = TagAtomProps & {
+  $debug?: boolean
   candidates?: string[]
   onChange?: (newTag: string) => void
   key?: string
 }
 
 type TagRowProps = {
+  $debug?: boolean
   value?: string[]
   defaultValue?: string[]
   bg?: string // icss:bg
@@ -44,6 +46,13 @@ export function TagWidget(kitProps: KitProps<TagWidgetProps>) {
     onSelectedTagChange: (tag) => props.onChange?.(tag),
     defaultCandidates: props.candidates,
   })
+
+  if (props.$debug) {
+    createEffect(() => {
+      console.log("innerTag(): ", JSON.stringify(innerTag()), candidates())
+    })
+  }
+
   return (
     <TagAtom
       shadowProps={shadowProps}
@@ -143,7 +152,6 @@ export function TagRow(kitProps: KitProps<TagRowProps>) {
         onOpen: () => setIsPopupOpen(true),
         onClose: () => setIsPopupOpen(false),
         shouldFocusChildWhenOpen: true,
-        popoverMode: true,
         popElement: ({ closePopup }) => (
           <Box icss={[icssCardPanel, { paddingBlock: "8px", borderRadius: "8px" }]}>
             <Input

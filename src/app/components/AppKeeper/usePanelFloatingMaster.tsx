@@ -28,7 +28,7 @@ export function usePanelFloatingMaster(options: AutoCloseIfNotInterestOptions) {
       options.onOpen?.()
     },
   })
-  const { isHover: isHoveringEl } = useGestureHover({ el: options.el })
+  const { isHover: isHoveringEl } = useGestureHover(options.el)
   const { isInterested } = useIsElementInterestedChecker({ el: options.el })
   const { hoveredEdge } = useHoveredDocumentEdge()
   const isHoveringEdge = createMemo(() => hoveredEdge() === shrinkFn(options.floatingEdge))
@@ -37,7 +37,7 @@ export function usePanelFloatingMaster(options: AutoCloseIfNotInterestOptions) {
     const enabled = "enabled" in options ? shrinkFn(options.enabled) : true
     if (!enabled) return
     if (!isHoveringEl() && !isInterested() && !isHoveringEdge()) {
-      const { cancel } = close({ delay: options.delay ?? .2 })
+      const { cancel } = close({ delay: options.delay ?? 0.2 })
       onCleanup(cancel)
     } else {
       const { cancel } = open()

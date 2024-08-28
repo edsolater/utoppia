@@ -44,9 +44,8 @@ const scheduleItemColor = {
   cardText: "#f5f5f5", // only theme color
 }
 
-function getScheduleItemColor(item: ScheduleLinkItem) {
-  return switchKey(item.category, scheduleItemColor.externalLinks)
-}
+const getScheduleItemColor = (item: ScheduleLinkItem) =>
+  switchKey(item.category, scheduleItemColor.externalLinks, scheduleItemColor.defaultExternalLink)
 
 /**
  * main component of page
@@ -160,9 +159,10 @@ export function ScheduleItemCard(props: {
         {/* content form */}
         <Group icss={{ gridArea: "form", display: "flex", gap: ".5em", flexDirection: "column" }}>
           <FormFactory formObj={innerScheduleItem}>
-            <FormFactoryBlock name="category">
+            <FormFactoryBlock visiable name="category">
               {(scheduleItemCategory) => (
                 <TagWidget
+                  $debug
                   bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
                   candidates={scheduleLinkItemCategories}
                   key="scheduleItemCategory"
