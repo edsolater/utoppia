@@ -32,7 +32,7 @@ import { updateExistedScheduleItem } from "./utils"
 
 // user configable
 // color:
-const scheduleItemColor = {
+const scheduleItemCSSColor = {
   externalLinks: {
     video: "red", // only theme color
     resource: "green", // only theme color
@@ -44,8 +44,8 @@ const scheduleItemColor = {
   cardText: "#f5f5f5", // only theme color
 }
 
-const getScheduleItemColor = (item: ScheduleLinkItem) =>
-  switchKey(item.category, scheduleItemColor.externalLinks, scheduleItemColor.defaultExternalLink)
+const getScheduleItemCSSColor = (item: ScheduleLinkItem) =>
+  switchKey(item.category, scheduleItemCSSColor.externalLinks, scheduleItemCSSColor.defaultExternalLink)
 
 /**
  * main component of page
@@ -123,7 +123,7 @@ export function ScheduleItemCard(props: {
     props.onEdit?.()
   }
 
-  const itemThemeColor = createMemo(() => getScheduleItemColor(props.item))
+  const itemThemeCSSColor = createMemo(() => getScheduleItemCSSColor(props.item))
 
   function updateTempItemData(propertyName: keyof ScheduleLinkItem, newValue: any) {
     setInnerCacheItemData(propertyName, newValue)
@@ -137,7 +137,7 @@ export function ScheduleItemCard(props: {
       icss={[
         // icssCard({ bg: props.item.is === 'link' scheduleItemColor.cardLink }),
         icssCard({
-          bg: cssOpacity(cssColorMix({ color: cssGrayscale(itemThemeColor(), 0.3), percent: "15%" }, colors.card), 0.9),
+          bg: cssOpacity(cssColorMix({ color: cssGrayscale(itemThemeCSSColor(), 0.3), percent: "15%" }, colors.card), 0.9),
         }),
         { backdropFilter: "blur(6px)" },
       ]}
@@ -163,7 +163,7 @@ export function ScheduleItemCard(props: {
               {(scheduleItemCategory) => (
                 <TagWidget
                   $debug
-                  bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeColor())}
+                  bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeCSSColor())}
                   candidates={scheduleLinkItemCategories}
                   key="scheduleItemCategory"
                   value={scheduleItemCategory}
