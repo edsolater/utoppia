@@ -15,12 +15,14 @@ import {
   icssCard,
   icssContentClickableOpacity,
   Iframe,
+  Piv,
   Row,
   SelectPanel,
   Text,
   TooltipPanel,
   withPopupWidget,
   type CSSObject,
+  withEditable,
 } from "@edsolater/pivkit"
 import { createEffect, createMemo, on, Show } from "solid-js"
 import { reconcile } from "solid-js/store"
@@ -137,7 +139,10 @@ export function ScheduleItemCard(props: {
       icss={[
         // icssCard({ bg: props.item.is === 'link' scheduleItemColor.cardLink }),
         icssCard({
-          bg: cssOpacity(cssColorMix({ color: cssGrayscale(itemThemeCSSColor(), 0.3), percent: "15%" }, colors.card), 0.9),
+          bg: cssOpacity(
+            cssColorMix({ color: cssGrayscale(itemThemeCSSColor(), 0.3), percent: "15%" }, colors.card),
+            0.9,
+          ),
         }),
         { backdropFilter: "blur(6px)" },
       ]}
@@ -246,6 +251,14 @@ export function ScheduleItemCard(props: {
               )}
             </FormFactoryBlock>
           </FormFactory>
+
+          <Piv
+            icss={{ width: "10rem", height: "10rem", background: "#fff2", display: "grid", placeContent: "center" }}
+            htmlProps={{ contentEditable: "inherit" }}
+            // plugin={withEditable.config({})}
+          >
+            {/* <Icon icss={{ opacity: 0.6 }} src={"/icons/add_box.svg"} /> */}
+          </Piv>
         </Group>
 
         {/* topActions */}
