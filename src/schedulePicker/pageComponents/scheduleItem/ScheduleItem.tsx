@@ -160,7 +160,7 @@ export function ScheduleItemCard(props: {
             0.9,
           ),
         }),
-        { backdropFilter: "blur(6px)" },
+        // { backdropFilter: "blur(6px)" }, // NOTE: Mute it!! for faster render
       ]}
     >
       <Box
