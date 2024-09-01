@@ -1,4 +1,4 @@
-import { setTimeoutWithSecondes, switchKey } from "@edsolater/fnkit"
+import { isPromise, setTimeoutWithSecondes, switchKey } from "@edsolater/fnkit"
 import {
   Box,
   Button,
@@ -10,22 +10,27 @@ import {
   EditableText,
   FormFactory,
   FormFactoryBlock,
+  getFromIDB,
   Group,
   Icon,
   icssCard,
   icssContentClickableOpacity,
   Iframe,
+  Image,
+  Loop,
   Piv,
   Row,
   SelectPanel,
+  setToIDB,
   Text,
   TooltipPanel,
+  withImageUploader,
   withPopupWidget,
   type CSSObject,
-  withEditable,
+  type IDBStoreManagerConfiguration,
 } from "@edsolater/pivkit"
-import { createEffect, createMemo, on, Show } from "solid-js"
-import { reconcile } from "solid-js/store"
+import { createEffect, createMemo, createSignal, on, Show, type Accessor } from "solid-js"
+import { reconcile, unwrap } from "solid-js/store"
 import { colors } from "../../../app/theme/colors"
 import { navigateToUrl } from "../../utils/url"
 import { TagRow, TagWidget } from "./Tag"
@@ -58,7 +63,7 @@ export function ScheduleItemCard(props: {
   /** user  attempt to delete this item */
   onDelete?: () => void
 
-  /** detect inner edit mode is started */
+  /** detect inner edit mOode is started */
   onEdit?: () => void
 
   /**
@@ -71,7 +76,7 @@ export function ScheduleItemCard(props: {
     { ...props.item },
     {
       onChange(newStore) {
-        updateExistedScheduleItem(newStore.id, newStore)
+        updateExistedScheduleItem(newStore.id, structuredClone(unwrap(newStore)))
       },
     },
   )
@@ -127,13 +132,24 @@ export function ScheduleItemCard(props: {
 
   const itemThemeCSSColor = createMemo(() => getScheduleItemCSSColor(props.item))
 
-  function updateTempItemData(propertyName: keyof ScheduleLinkItem, newValue: any) {
+  function updateTempItemData<T extends keyof ScheduleLinkItem>(
+    propertyName: T,
+    newValue: ScheduleLinkItem[T] | ((prev: ScheduleLinkItem[T]) => ScheduleLinkItem[T]),
+  ) {
     setInnerCacheItemData(propertyName, newValue)
   }
   // innerMethod: end the input
   function commitTempItemDataToReal() {
     props.onItemInfoChange?.(innerScheduleItem)
   }
+
+  const idbPathConfig = { storeName: "store-images", dbName: "daily-schedule" }
+
+  const imageSrcs = createMemo(() =>
+    innerScheduleItem.screenShots?.map((key) => getBlobUrlFromIDBKey(key, idbPathConfig)),
+  )
+  const awaitedImageSrcs = useAsyncResources(imageSrcs) // TODO: useKitProps should also can accept promise value
+
   return (
     <Box
       icss={[
@@ -167,10 +183,9 @@ export function ScheduleItemCard(props: {
             <FormFactoryBlock visiable name="category">
               {(scheduleItemCategory) => (
                 <TagWidget
-                  $debug
+                  key="scheduleItemCategory"
                   bg={cssColorMix({ color: colors.card, percent: "60%" }, itemThemeCSSColor())}
                   candidates={scheduleLinkItemCategories}
-                  key="scheduleItemCategory"
                   value={scheduleItemCategory}
                   defaultValue={scheduleItemCategory}
                   onChange={(tag) => {
@@ -255,10 +270,18 @@ export function ScheduleItemCard(props: {
           <Piv
             icss={{ width: "10rem", height: "10rem", background: "#fff2", display: "grid", placeContent: "center" }}
             htmlProps={{ contentEditable: "inherit" }}
-            // plugin={withEditable.config({})}
-          >
-            {/* <Icon icss={{ opacity: 0.6 }} src={"/icons/add_box.svg"} /> */}
-          </Piv>
+            plugin={[
+              withImageUploader.config({
+                onImagePaste: (imgBlob) => {
+                  const key = createIDBKeyFromBlob(imgBlob)
+                  console.log("createdkey: ", { key })
+                  setToIDB(idbPathConfig, key, imgBlob)
+                  updateTempItemData("screenShots", (p) => [...(p ?? []), key])
+                },
+              }),
+            ]}
+          ></Piv>
+          <Loop items={awaitedImageSrcs}>{(src) => <Image src={src} />}</Loop>
         </Group>
 
         {/* topActions */}
@@ -351,4 +374,61 @@ export function ScheduleItemCard(props: {
       </Show>
     </Box>
   )
+}
+
+/**
+ *
+ * @example
+ * getRawResourceKey("blob:http://localhost:3011/ed5c6e49-2465-473e-9")
+ * // => ed5c6e49-2465-473e-9
+ */
+function getRawResourceKey(url: string): string {
+  return url.split("/").pop()!
+}
+
+function createIDBKeyFromBlob(blob: Blob): string {
+  return `blob:indexedDB:${getRawResourceKey(URL.createObjectURL(blob))}`
+}
+
+async function getBlobFromIDBKey(key: string, config: IDBStoreManagerConfiguration): Promise<Blob | undefined> {
+  return getFromIDB<Blob>(config, key)
+}
+
+async function getBlobUrlFromIDBKey(key: string, config: IDBStoreManagerConfiguration): Promise<string> {
+  const blob = await getBlobFromIDBKey(key, config)
+  if (blob) {
+    return URL.createObjectURL(blob)
+  } else {
+    console.error(`blob not found in indexedDB`, { key })
+    throw new Error(`blob not found in indexedDB`)
+  }
+}
+
+/**
+ *
+ * helper hook: make async resources to be sync(signals)
+ *
+ * @param resources (unknown | Promise<unknown>)[]
+ */
+function useAsyncResources<T>(resources: Accessor<T[] | undefined>): Accessor<(Awaited<T> | undefined)[]> {
+  const promises = resources() ?? []
+  const [awaitedImageResources, setAwaitedImageResources] = createSignal(
+    promises.map((r) => (isPromise(r) ? undefined : r)),
+  )
+  createEffect(() => {
+    for (const actionResult of promises) {
+      if (isPromise(actionResult)) {
+        actionResult.then((v) => {
+          setAwaitedImageResources((prev) => {
+            const index = promises.indexOf(actionResult)
+            prev[index] = v as T
+            return [...prev]
+          })
+        })
+      }
+    }
+  })
+
+  // @ts-expect-error froce
+  return awaitedImageResources
 }

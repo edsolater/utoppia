@@ -34,6 +34,7 @@ export type ScheduleLinkItem = ScheduleItem & {
   url?: string
   // determine outside looks layout
   is?: "link"
+  screenShots?:  string[] // can be base64 or url
 }
 
 export type ScheduleTextItem = ScheduleItem & {
