@@ -1,4 +1,4 @@
-import { isPromise, setTimeoutWithSecondes, switchKey } from "@edsolater/fnkit"
+import { configPromiseDefault, isPromise, setTimeoutWithSecondes, switchKey } from "@edsolater/fnkit"
 import {
   Box,
   Button,
@@ -145,11 +145,6 @@ export function ScheduleItemCard(props: {
 
   const idbPathConfig = { storeName: "store-images", dbName: "daily-schedule" }
 
-  const imageSrcs = createMemo(() =>
-    innerScheduleItem.screenShots?.map((key) => getBlobUrlFromIDBKey(key, idbPathConfig)),
-  )
-  const awaitedImageSrcs = useAsyncResources(imageSrcs) // TODO: useKitProps should also can accept promise value
-
   return (
     <Box
       icss={[
@@ -281,7 +276,9 @@ export function ScheduleItemCard(props: {
               }),
             ]}
           ></Piv>
-          <Loop items={awaitedImageSrcs}>{(src) => <Image src={src} />}</Loop>
+          <Loop items={innerScheduleItem.screenShots}>
+            {(key) => <Image src={configPromiseDefault(getBlobUrlFromIDBKey(key, idbPathConfig), undefined)} />}
+          </Loop>
         </Group>
 
         {/* topActions */}

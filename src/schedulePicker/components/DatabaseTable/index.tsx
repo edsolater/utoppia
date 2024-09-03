@@ -34,7 +34,7 @@ export type TabelHeaderConfigs<T extends Collection> = {
 }[]
 
 type DatabaseTableProps<T extends Collection> = {
-  items: MayFn<T | undefined>
+  items: T
   propForList?: InfiniteScrollListKitProps<GetCollectionValue<T>>
   // essiential for collection/favorite system
   getKey: (item: GetCollectionValue<T>) => string
@@ -163,7 +163,7 @@ export function DatabaseTable<T extends Collection>(
           <Group name="items">
             <InfiniteScrollList // FIXME why can't be <Loop> ? 🤔
               shadowProps={props.propForList}
-              items={props.items}
+              items={props.items as Collection}
               icss={{
                 maxHeight: "100%",
                 overflowY: "scroll",

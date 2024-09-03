@@ -149,7 +149,7 @@ function Deprecated_PopoverFormCreatorButton(
     onSubmit?: (newformData: any, inEditMode: boolean) => void
   }>,
 ) {
-  const { props, shadowProps } = useKitProps(kitprops, { name: "CreatorButton" })
+  const { props, rawProps, shadowProps } = useKitProps(kitprops, { name: "CreatorButton" })
   return (
     <Button
       shadowProps={shadowProps}
@@ -159,7 +159,7 @@ function Deprecated_PopoverFormCreatorButton(
         popElement: () => (
           <DraggablePanel icss={{ padding: "32px 16px 4px" }}>
             <NewScheduleItemCreatorForm
-              ref={props.refOfNewScheduleItemCreatorForm}
+              ref={rawProps.refOfNewScheduleItemCreatorForm}
               onDone={({ info: newformData, inEditMode }) => {
                 props.onSubmit?.(newformData, Boolean(inEditMode))
               }}
