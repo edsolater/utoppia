@@ -31,6 +31,23 @@ import {
 import { downloadJSON, importJSONFile } from "./utils/download"
 import { createSubscribable } from "@edsolater/fnkit"
 
+/**
+ * all action with extension:cross-tab-speaker should handle after mainThread connected
+ */
+function waveWithExtensionCrossTabSpeaker() {
+  const isExtensionCrossTabSpeakerReady = createSubscribable(false)
+  window.addEventListener("message", ({ data: message = {} }) => {
+    if (message.command === "extension:cross-tab-speaker.status:ready") {
+      isExtensionCrossTabSpeakerReady.set(true)
+    }
+  })
+  // init message action 
+  Promise.resolve().then(() => {
+    window.postMessage({ command: "mainThread.status:ready" })
+  })
+  return isExtensionCrossTabSpeakerReady
+}
+
 export default function DailySchedulePage() {
   const [data, setData] = useSubscribableStore(dailyScheduleData, { canCachedByIndexDB: true })
 
@@ -44,8 +61,7 @@ export default function DailySchedulePage() {
   }
 
   onMount(() => {
-    const isExtensionCrossTabSpeakerReady = createSubscribable(false)
-    window.postMessage({ command: "mainThread.status:ready" })
+    const isExtensionCrossTabSpeakerReady = waveWithExtensionCrossTabSpeaker()
 
     isExtensionCrossTabSpeakerReady.subscribe((isReady) => {
       if (isReady) {
@@ -59,12 +75,9 @@ export default function DailySchedulePage() {
       }
     })
 
-    window.addEventListener("message", (event) => {
-      const message = event.data ?? {}
+    window.addEventListener("message", ({ data: message = {} }) => {
       if (message.command === "extension:cross-tab-speaker.receive-message") {
-        console.log('[innerJS] message.data: ', message.data)
-      } else if (message.command === "extension:cross-tab-speaker.status:ready") {
-        isExtensionCrossTabSpeakerReady.set(true)
+        console.log("[innerJS] message.data: ", message.data)
       }
     })
   })
