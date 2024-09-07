@@ -10,7 +10,7 @@ import {
   EditableText,
   FormFactory,
   FormFactoryBlock,
-  getFromIDB,
+  getIDBStoreValue,
   Group,
   Icon,
   icssCard,
@@ -21,7 +21,7 @@ import {
   Piv,
   Row,
   SelectPanel,
-  setToIDB,
+  setIDBStoreValue,
   Text,
   TooltipPanel,
   withImageUploader,
@@ -270,7 +270,7 @@ export function ScheduleItemCard(props: {
                 onImagePaste: (imgBlob) => {
                   const key = createIDBKeyFromBlob(imgBlob)
                   console.log("createdkey: ", { key })
-                  setToIDB(idbPathConfig, key, imgBlob)
+                  setIDBStoreValue(idbPathConfig, key, imgBlob)
                   updateTempItemData("screenShots", (p) => [...(p ?? []), key])
                 },
               }),
@@ -388,7 +388,7 @@ function createIDBKeyFromBlob(blob: Blob): string {
 }
 
 async function getBlobFromIDBKey(key: string, config: IDBStoreManagerConfiguration): Promise<Blob | undefined> {
-  return getFromIDB<Blob>(config, key)
+  return getIDBStoreValue<Blob>(config, key)
 }
 
 async function getBlobUrlFromIDBKey(key: string, config: IDBStoreManagerConfiguration): Promise<string> {

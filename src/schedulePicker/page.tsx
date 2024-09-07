@@ -11,13 +11,14 @@ import {
   Space,
   createInputDescription,
   createRef,
+  getIDBScreenshot,
   icssGrid,
   useKitProps,
   useSubscribableStore,
   withPopupWidget,
   type KitProps,
 } from "@edsolater/pivkit"
-import { createSignal } from "solid-js"
+import { createSignal, onMount } from "solid-js"
 import { DraggablePanel } from "../app/components/FABPanel"
 import { ScheduleItemCard } from "./pageComponents/scheduleItem/ScheduleItem"
 import type { ScheduleLinkItem } from "./pageComponents/scheduleItem/type"
@@ -28,6 +29,7 @@ import {
   updateExistedScheduleItem,
 } from "./pageComponents/scheduleItem/utils"
 import { downloadJSON, importJSONFile } from "./utils/download"
+import { createSubscribable } from "@edsolater/fnkit"
 
 export default function DailySchedulePage() {
   const [data, setData] = useSubscribableStore(dailyScheduleData, { canCachedByIndexDB: true })
@@ -40,6 +42,32 @@ export default function DailySchedulePage() {
   function handleEdit(link: ScheduleLinkItem) {
     linkCreatorFormRef()?.injectLinkToEdit(link)
   }
+
+  onMount(() => {
+    const isExtensionCrossTabSpeakerReady = createSubscribable(false)
+    window.postMessage({ command: "mainThread.status:ready" })
+
+    isExtensionCrossTabSpeakerReady.subscribe((isReady) => {
+      if (isReady) {
+        const indexedDBData = getIDBScreenshot({ dbName: "daily-schedule" })
+        indexedDBData.then((storedData) => {
+          window.postMessage({
+            command: "extension:cross-tab-speaker.send-message",
+            data: storedData,
+          })
+        })
+      }
+    })
+
+    window.addEventListener("message", (event) => {
+      const message = event.data ?? {}
+      if (message.command === "extension:cross-tab-speaker.receive-message") {
+        console.log('[innerJS] message.data: ', message.data)
+      } else if (message.command === "extension:cross-tab-speaker.status:ready") {
+        isExtensionCrossTabSpeakerReady.set(true)
+      }
+    })
+  })
 
   return (
     <Grid

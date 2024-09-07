@@ -42,13 +42,13 @@ export function createFakeTree<O extends object, FakeNodeTree extends object = F
    */
   function set(dispatcher: MayFn<Partial<O>, [old: O]>) {
     const inputObject = shrinkFn(dispatcher, [rawObj]) as Partial<O> // TODO: type of `shringFn` is wrong
-    travelObject(inputObject, ({ keyPaths, value }) => {
+    travelObject(inputObject, ({ path, value }) => {
       // set raw
-      setByPath({ obj: rawObj, path: keyPaths, value })
+      setByPath({ obj: rawObj, path: path, value })
 
       // set tree
-      const rawValue = getByPath(rawObj, keyPaths)
-      const infinityNode = getByPath(tree, keyPaths)
+      const rawValue = getByPath(rawObj, path)
+      const infinityNode = getByPath(tree, path)
       loadInfinityObjNode(infinityNode, (nodeValue) =>
         nodeValue
           ? options?.injectValueToExistLeaf
