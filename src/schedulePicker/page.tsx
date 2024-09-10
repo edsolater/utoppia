@@ -1,18 +1,23 @@
+import { createSubscribable } from "@edsolater/fnkit"
 import {
   Box,
   Button,
   Grid,
   Group,
   Icon,
+  Input,
   List,
   SchemaParser,
   SchemaParserController,
   Section,
   Space,
+  Text,
   createInputDescription,
   createRef,
   getIDBScreenshot,
   icssGrid,
+  listenDomEvent,
+  setIDBFromScreenshot,
   useKitProps,
   useSubscribableStore,
   withPopupWidget,
@@ -29,19 +34,18 @@ import {
   updateExistedScheduleItem,
 } from "./pageComponents/scheduleItem/utils"
 import { downloadJSON, importJSONFile } from "./utils/download"
-import { createSubscribable } from "@edsolater/fnkit"
 
 /**
  * all action with extension:cross-tab-speaker should handle after mainThread connected
  */
-function waveWithExtensionCrossTabSpeaker() {
+function shakeHandWithExtensionCrossTabSpeaker() {
   const isExtensionCrossTabSpeakerReady = createSubscribable(false)
   window.addEventListener("message", ({ data: message = {} }) => {
     if (message.command === "extension:cross-tab-speaker.status:ready") {
       isExtensionCrossTabSpeakerReady.set(true)
     }
   })
-  // init message action 
+  // init message action
   Promise.resolve().then(() => {
     window.postMessage({ command: "mainThread.status:ready" })
   })
@@ -61,26 +65,29 @@ export default function DailySchedulePage() {
   }
 
   onMount(() => {
-    const isExtensionCrossTabSpeakerReady = waveWithExtensionCrossTabSpeaker()
+    const isExtensionCrossTabSpeakerReady = shakeHandWithExtensionCrossTabSpeaker()
 
-    isExtensionCrossTabSpeakerReady.subscribe((isReady) => {
-      if (isReady) {
-        const indexedDBData = getIDBScreenshot({ dbName: "daily-schedule" })
-        indexedDBData.then((storedData) => {
-          window.postMessage({
-            command: "extension:cross-tab-speaker.send-message",
-            data: storedData,
-          })
-        })
-      }
-    })
+    // isExtensionCrossTabSpeakerReady.subscribe((isReady) => {
+    //   if (isReady) {
+    //     const indexedDBData = getIDBScreenshot({ dbName: "daily-schedule" })
+    //     indexedDBData.then((storedData) => {
+    //       window.postMessage({
+    //         command: "extension:cross-tab-speaker.send-message",
+    //         data: storedData,
+    //       })
+    //     })
+    //   }
+    // })
 
     window.addEventListener("message", ({ data: message = {} }) => {
       if (message.command === "extension:cross-tab-speaker.receive-message") {
-        console.log("[innerJS] message.data: ", message.data)
+        const data = message.data
+        setIDBFromScreenshot({ dbName: "daily-schedule" }, data)
       }
     })
   })
+
+  onMount(() => {})
 
   return (
     <Grid
@@ -103,7 +110,7 @@ export default function DailySchedulePage() {
       <Section icss={{ gridArea: "toolbar" }}>
         <Box class="toolbar" icss={{ display: "flex", width: "100%", gap: "32px" }}>
           <Space />
-          <Group class="temp-actions" icss={{ display: "flex", gap: "8px" }}></Group>
+          <TempTaskButtons />
           <Group class="form-actions" icss={{ display: "flex", gap: "8px" }}>
             <Button>
               <Icon src="/icons/settings.svg" variant="inline" />
@@ -177,6 +184,59 @@ export default function DailySchedulePage() {
         />
       </FloatingPanel> */}
     </Grid>
+  )
+}
+
+function TempTaskButtons(kitprops: KitProps<{}>) {
+  const { props, shadowProps } = useKitProps(kitprops, { name: "TempTaskButtons" })
+  const [innerValue, setInnerValue] = createSignal<string>()
+
+  /** should be `createButtonAction((onAbort)=>{...do the logic})` */
+  function sendIndexedDBDataToTab() {
+    const tabId = Number(innerValue())
+    if (tabId) {
+      window.postMessage({
+        command: "extension:cross-tab-speaker.checkTabIdExist",
+        targetTabId: tabId,
+      })
+      listenDomEvent(
+        window,
+        "message",
+        ({ ev: { data: message = {} } }) => {
+          if (message.command === "extension:cross-tab-speaker.responseTabIdExist") {
+            const tabIdExist = message.data.exist
+            console.log("tabIdExist: ", tabIdExist)
+          }
+        },
+        { once: true },
+      )
+      getIDBScreenshot({ dbName: "daily-schedule" }).then((idbScreenshot) => {
+        // really need?🤔
+      })
+      // window.postMessage({ command: "extension:cross-tab-speaker.send-message" })
+    }
+  }
+  return (
+    <Group class="temp-actions" icss={{ display: "flex", gap: "8px" }}>
+      <Box>
+        <Text>send indexedDB data to tab: </Text>
+        <Input
+          tooltip="targetTabId"
+          placeholder="1719898615"
+          value={innerValue}
+          onInput={(s) => {
+            setInnerValue(s)
+          }}
+        />
+      </Box>
+      <Button
+        onClick={() => {
+          sendIndexedDBDataToTab()
+        }}
+      >
+        Send
+      </Button>
+    </Group>
   )
 }
 
