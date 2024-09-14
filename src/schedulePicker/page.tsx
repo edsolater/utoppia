@@ -21,6 +21,7 @@ import {
   useKitProps,
   useSubscribableStore,
   withPopupWidget,
+  type EventListenerOptions,
   type KitProps,
 } from "@edsolater/pivkit"
 import { createSignal, onMount } from "solid-js"
@@ -43,13 +44,38 @@ function shakeHandWithExtensionCrossTabSpeaker() {
   window.addEventListener("message", ({ data: message = {} }) => {
     if (message.command === "extension:cross-tab-speaker.status:ready") {
       isExtensionCrossTabSpeakerReady.set(true)
+      window.postMessage({ command: "mainThread.status:ready" })
     }
   })
   // init message action
   Promise.resolve().then(() => {
     window.postMessage({ command: "mainThread.status:ready" })
   })
-  return isExtensionCrossTabSpeakerReady
+
+  const porter = {
+    postMessage: (message: { toTabId?: number; data: any }) => {
+      window.postMessage({
+        command: "extension:cross-tab-speaker.send-message",
+        to: {
+          tabId: message.toTabId,
+        },
+        data: message.data,
+      })
+    },
+    onListenMessage: (callback: (message: any) => void, listenOptions?: EventListenerOptions) => {
+      listenDomEvent(
+        window,
+        "message",
+        ({ ev: { data: message } }) => {
+          if (message?.command === "extension:cross-tab-speaker.receive-message") {
+            callback(message.data)
+          }
+        },
+        listenOptions,
+      )
+    },
+  }
+  return { isExtensionCrossTabSpeakerReady, extensionMessagePort: porter }
 }
 
 export default function DailySchedulePage() {
@@ -65,7 +91,7 @@ export default function DailySchedulePage() {
   }
 
   onMount(() => {
-    const isExtensionCrossTabSpeakerReady = shakeHandWithExtensionCrossTabSpeaker()
+    const { isExtensionCrossTabSpeakerReady, extensionMessagePort } = shakeHandWithExtensionCrossTabSpeaker()
 
     // isExtensionCrossTabSpeakerReady.subscribe((isReady) => {
     //   if (isReady) {
