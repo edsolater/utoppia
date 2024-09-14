@@ -1,4 +1,14 @@
-import { configPromiseDefault, isPromise, setTimeoutWithSecondes, switchKey } from "@edsolater/fnkit"
+import {
+  clone,
+  configPromiseDefault,
+  isArray,
+  isObjectLiteral,
+  isPrimitive,
+  isPromise,
+  map,
+  setTimeoutWithSecondes,
+  switchKey,
+} from "@edsolater/fnkit"
 import {
   Box,
   Button,
@@ -76,7 +86,9 @@ export function ScheduleItemCard(props: {
     { ...props.item },
     {
       onChange(newStore) {
-        updateExistedScheduleItem(newStore.id, structuredClone(unwrap(newStore)))
+        const pureNewStore = unwrap(newStore)
+        const clonedNewStore = clone(pureNewStore)
+        updateExistedScheduleItem(newStore.id, clonedNewStore)
       },
     },
   )

@@ -12,5 +12,6 @@
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
     "types": ["vite/client", "@testing-library/jest-dom"]
-  }
+  },
+  "exclude": ["node_modules", "dist"]
 }
