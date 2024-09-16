@@ -25,5 +25,5 @@ export default defineConfig({
   server: { port: 3000 },
   define: { "process.env": { NODE_ENV: JSON.stringify(process.env.NODE_ENV) } },
   worker: { format: "es" },
-  build: { target: "esnext" },
+  build: { target: "esnext", minify: false, terserOptions: { mangle: false } },
 })

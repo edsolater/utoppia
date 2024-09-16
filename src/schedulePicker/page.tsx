@@ -24,7 +24,7 @@ import {
   type EventListenerOptions,
   type KitProps,
 } from "@edsolater/pivkit"
-import { createSignal, onMount } from "solid-js"
+import { createEffect, createSignal, onMount } from "solid-js"
 import { DraggablePanel } from "../app/components/FABPanel"
 import { ScheduleItemCard } from "./pageComponents/scheduleItem/ScheduleItem"
 import type { ScheduleLinkItem } from "./pageComponents/scheduleItem/type"
@@ -79,7 +79,7 @@ function shakeHandWithExtensionCrossTabSpeaker() {
 }
 
 export default function DailySchedulePage() {
-  const [data, setData] = useSubscribableStore(dailyScheduleData, { canCachedByIndexDB: true })
+  const [data, setData] = useSubscribableStore(dailyScheduleData)
 
   const [linkCreatorFormRef, setLinkCreatorRef] = createRef<LinkCreatorFormController>()
 
