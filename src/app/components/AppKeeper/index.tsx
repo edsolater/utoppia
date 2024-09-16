@@ -141,11 +141,9 @@ export function AppKeeper(kitProps: KitProps<AppKeeperProps>) {
                   flexGrow: 1,
                   height: 0,
                   isolation: "isolate",
-                  padding: "24px",
+                  padding: "12px",
                   display: "grid",
                   gridAutoFlow: "column",
-                  overflowY: "scroll",
-                  overflowX: "hidden",
                 },
               ]}
             >
