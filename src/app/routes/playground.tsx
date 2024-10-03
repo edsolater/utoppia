@@ -58,21 +58,19 @@ import { FABPanel } from "../components/FABPanel"
 import { colors } from "../theme/colors"
 
 export default function PlaygroundPage() {
-  return (
-    <Piv>
-      <ComponentSpecList />
-    </Piv>
-  )
+  return <ComponentSpecList />
 }
 
 function ComponentSpecList() {
   return (
     <Box
+      class={"ComponentSpecList"}
       icss={{
         display: "grid",
         gridTemplateColumns: "repeat(1, minmax(400px, 1fr))",
         padding: "32px",
         gap: "4vw",
+        overflowY: "auto",
       }}
     >
       <ExamplePanel name="Drap and Drop">

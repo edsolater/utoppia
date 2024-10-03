@@ -1,4 +1,3 @@
-import { createSubscribable } from "@edsolater/fnkit"
 import {
   Box,
   Button,
@@ -21,10 +20,9 @@ import {
   useKitProps,
   useSubscribableStore,
   withPopupWidget,
-  type EventListenerOptions,
   type KitProps,
 } from "@edsolater/pivkit"
-import { createEffect, createSignal, onMount } from "solid-js"
+import { createSignal, onMount } from "solid-js"
 import { DraggablePanel } from "../app/components/FABPanel"
 import { ScheduleItemCard } from "./pageComponents/scheduleItem/ScheduleItem"
 import type { ScheduleLinkItem } from "./pageComponents/scheduleItem/type"
@@ -40,42 +38,68 @@ import { downloadJSON, importJSONFile } from "./utils/download"
  * all action with extension:cross-tab-speaker should handle after mainThread connected
  */
 function shakeHandWithExtensionCrossTabSpeaker() {
-  const isExtensionCrossTabSpeakerReady = createSubscribable(false)
-  window.addEventListener("message", ({ data: message = {} }) => {
-    if (message.command === "extension:cross-tab-speaker.status:ready") {
-      isExtensionCrossTabSpeakerReady.set(true)
-      window.postMessage({ command: "mainThread.status:ready" })
-    }
+  // const isExtensionCrossTabSpeakerReady = createSubscribable(false)
+  // window.addEventListener("message", ({ data: message = {} }) => {
+  //   if (message.command === "extension:cross-tab-speaker.status:ready") {
+  //     isExtensionCrossTabSpeakerReady.set(true)
+  //     window.postMessage({ command: "mainThread.status:ready" })
+  //   }
+  // })
+  // // init message action
+  // Promise.resolve().then(() => {
+  //   window.postMessage({ command: "mainThread.status:ready" })
+  // })
+  // const porter = {
+  //   postMessage: (message: { toTabId?: number; data: any }) => {
+  //     window.postMessage({
+  //       command: "extension:cross-tab-speaker.send-message",
+  //       to: {
+  //         tabId: message.toTabId,
+  //       },
+  //       data: message.data,
+  //     })
+  //   },
+  //   onListenMessage: (callback: (message: any) => void, listenOptions?: EventListenerOptions) => {
+  //     listenDomEvent(
+  //       window,
+  //       "message",
+  //       ({ ev: { data: message } }) => {
+  //         if (message?.command === "extension:cross-tab-speaker.receive-message") {
+  //           callback(message.data)
+  //         }
+  //       },
+  //       listenOptions,
+  //     )
+  //   },
+  // }
+  // return { isExtensionCrossTabSpeakerReady, extensionMessagePort: porter }
+}
+
+async function saveScreenshotToExtension() {
+  const indexedDBData = await getIDBScreenshot({ dbName: "daily-schedule" })
+  console.log("send screenshot to extension", indexedDBData)
+  globalThis.postMessage({
+    command: "extension:cross-tab-speaker.saveIDBScreenshot",
+    data: { key: "daily-schedule-screenshot", screenshot: indexedDBData },
   })
-  // init message action
-  Promise.resolve().then(() => {
-    window.postMessage({ command: "mainThread.status:ready" })
+}
+
+/**
+ *  fetch screenshot from extension:cross-tab-speaker
+ */
+async function getScreenshotFromExtension() {
+  globalThis.postMessage({
+    command: "extension:cross-tab-speaker.loadIDBScreenshot",
+    data: { key: "daily-schedule-screenshot" },
   })
 
-  const porter = {
-    postMessage: (message: { toTabId?: number; data: any }) => {
-      window.postMessage({
-        command: "extension:cross-tab-speaker.send-message",
-        to: {
-          tabId: message.toTabId,
-        },
-        data: message.data,
-      })
-    },
-    onListenMessage: (callback: (message: any) => void, listenOptions?: EventListenerOptions) => {
-      listenDomEvent(
-        window,
-        "message",
-        ({ ev: { data: message } }) => {
-          if (message?.command === "extension:cross-tab-speaker.receive-message") {
-            callback(message.data)
-          }
-        },
-        listenOptions,
-      )
-    },
-  }
-  return { isExtensionCrossTabSpeakerReady, extensionMessagePort: porter }
+  listenDomEvent(globalThis.window, "message", ({ ev: { data: message }, abortListener }) => {
+    if (message?.command === "__@back__extension:cross-tab-speaker.loadIDBScreenshot") {
+      console.log("receive message.data from extension: ", message.data)
+      setIDBFromScreenshot({ dbName: "daily-schedule" }, message.data)
+      abortListener()
+    }
+  })
 }
 
 export default function DailySchedulePage() {
@@ -91,20 +115,6 @@ export default function DailySchedulePage() {
   }
 
   onMount(() => {
-    const { isExtensionCrossTabSpeakerReady, extensionMessagePort } = shakeHandWithExtensionCrossTabSpeaker()
-
-    // isExtensionCrossTabSpeakerReady.subscribe((isReady) => {
-    //   if (isReady) {
-    //     const indexedDBData = getIDBScreenshot({ dbName: "daily-schedule" })
-    //     indexedDBData.then((storedData) => {
-    //       window.postMessage({
-    //         command: "extension:cross-tab-speaker.send-message",
-    //         data: storedData,
-    //       })
-    //     })
-    //   }
-    // })
-
     window.addEventListener("message", ({ data: message = {} }) => {
       if (message.command === "extension:cross-tab-speaker.receive-message") {
         const data = message.data
@@ -138,6 +148,8 @@ export default function DailySchedulePage() {
           <Space />
           <TempTaskButtons />
           <Group class="form-actions" icss={{ display: "flex", gap: "8px" }}>
+            <Button onClick={saveScreenshotToExtension}>Save</Button>
+            <Button onClick={getScreenshotFromExtension}>Load</Button>
             <Button>
               <Icon src="/icons/settings.svg" variant="inline" />
             </Button>
@@ -162,6 +174,7 @@ export default function DailySchedulePage() {
                   dailyScheduleData.set(jsonData)
                 })
               }}
+              
             >
               <Icon src="/icons/upload_2.svg" variant="inline" />
               Load Profile Settings

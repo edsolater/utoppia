@@ -1,17 +1,9 @@
-import {
-  clone,
-  configPromiseDefault,
-  isArray,
-  isObjectLiteral,
-  isPrimitive,
-  isPromise,
-  map,
-  setTimeoutWithSecondes,
-  switchKey,
-} from "@edsolater/fnkit"
+import { clone, configPromiseDefault, isPromise, setTimeoutWithSecondes, switchKey } from "@edsolater/fnkit"
 import {
   Box,
   Button,
+  buttonSizeXS,
+  buttonVariantPlain,
   createDisclosure,
   createIStore,
   cssColorMix,
@@ -32,12 +24,11 @@ import {
   Row,
   SelectPanel,
   setIDBStoreValue,
-  Text,
-  TooltipPanel,
   withImageUploader,
   withPopupWidget,
+  withTextTooltip,
   type CSSObject,
-  type IDBStoreManagerConfiguration,
+  type IDBStoreManagerConfiguration
 } from "@edsolater/pivkit"
 import { createEffect, createMemo, createSignal, on, Show, type Accessor } from "solid-js"
 import { reconcile, unwrap } from "solid-js/store"
@@ -294,58 +285,35 @@ export function ScheduleItemCard(props: {
         </Group>
 
         {/* topActions */}
-        <Row icss={[{ gridArea: "1 / -2 ", justifySelf: "end" }]}>
+        <Row icss={[{ gridArea: "1 / -2", justifySelf: "end" }]}>
           <Button
-            variant="plain"
-            plugin={withPopupWidget.config({
-              // TODO: should show with hover
-              shouldFocusChildWhenOpen: true,
-              popupDirection: "bottom",
-              elementHtmlTitle: "show iframe",
-              triggerBy: "hover",
-              popElement: () => (
-                <TooltipPanel>
-                  <Text>show iframe</Text>
-                </TooltipPanel>
-              ),
-            })}
-            size={"xs"}
-            icss={icssContentClickableOpacity}
+            icss={[icssContentClickableOpacity, buttonVariantPlain, buttonSizeXS]}
+            plugin={withTextTooltip({ text: "show iframe", popupDirection: "bottom" })}
             onClick={handleToggleIframePreview}
           >
             <Icon name="show-iframe" src={"/icons/preview.svg"} />
           </Button>
           <Button
-            variant="plain"
-            plugin={withPopupWidget.config({
-              // TODO: should show with hover
-              shouldFocusChildWhenOpen: true,
-              popupDirection: "bottom",
-              elementHtmlTitle: "open in new tab",
-              triggerBy: "hover",
-              popElement: () => (
-                <TooltipPanel>
-                  <Text>open in new tab</Text>
-                </TooltipPanel>
-              ),
-            })}
-            size={"xs"}
-            icss={icssContentClickableOpacity}
+            icss={[icssContentClickableOpacity, buttonVariantPlain, buttonSizeXS]}
+            plugin={withTextTooltip({ text: "open in new tab", popupDirection: "bottom" })}
             onClick={handleActionOpenLink}
           >
             <Icon name="open-tab" src={"/icons/open_in_new.svg"} />
           </Button>
           {/* edit-button */}
           <Button
-            variant="plain"
+            icss={[icssContentClickableOpacity, buttonVariantPlain, buttonSizeXS]}
+            plugin={withTextTooltip({ text: "edit", popupDirection: "bottom" })}
             isActive={inEditMode}
-            size={"xs"}
             onClick={handleActionEdit}
-            icss={icssContentClickableOpacity}
           >
             {({ isActive }) => <Icon name="edit" src={isActive() ? "/icons/edit_fill.svg" : "/icons/edit.svg"} />}
           </Button>
-          <Button variant="plain" size={"xs"} onClick={handleActionDelete} icss={icssContentClickableOpacity}>
+          <Button
+            icss={[icssContentClickableOpacity, buttonVariantPlain, buttonSizeXS]}
+            plugin={withTextTooltip({ text: "delete", popupDirection: "bottom" })}
+            onClick={handleActionDelete}
+          >
             <Icon name="delete" src={"/icons/delete.svg"} />
           </Button>
         </Row>
@@ -354,9 +322,7 @@ export function ScheduleItemCard(props: {
         <Group icss={{ gridArea: " -2 / -2 ", justifySelf: "end" }}>
           {/* name="action button: add_form_block " */}
           <Button
-            variant="plain"
-            size={"xs"}
-            icss={icssContentClickableOpacity}
+            icss={[icssContentClickableOpacity, buttonVariantPlain, buttonSizeXS]}
             plugin={withPopupWidget.config({
               shouldFocusChildWhenOpen: true,
               popElement: ({ closePopup }) => (
