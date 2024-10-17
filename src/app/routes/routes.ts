@@ -52,6 +52,12 @@ export const routeItems = {
     component: lazy(() => import("../../vedioCollector/page")),
     needAppKeeper: true,
   }),
+  bcoin: createRouteItem({
+    name: "Bcoin",
+    path: "/bcoin",
+    component: lazy(() => import("../../bcoin/page")),
+    needAppKeeper: true,
+  }),
 }
 
 export const routes = Object.values(routeItems)

@@ -29,7 +29,7 @@ export function RefreshCircle(kitProps: RefreshCircleProps) {
       props.onRefresh?.()
     },
     eachSecondPercent: 1 / totalDuration,
-    canRoundCountOverOne: true,
+    loop: true,
   })
   const dashOffset = createMemo(() => {
     const mod = percent() % 1

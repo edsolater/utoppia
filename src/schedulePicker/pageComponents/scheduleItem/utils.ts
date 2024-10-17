@@ -41,7 +41,7 @@ export const dailyScheduleData = createSubscribable<ScheduleSchema>(
   {},
   {
     name: "daily-schedule",
-    beforeValueSet: washScheduleSchema,
+    beforeSet: washScheduleSchema,
     plugins: [autoCacheInIndexedDB({ dbName: "daily-schedule", keyName: "store" })],
   },
 )

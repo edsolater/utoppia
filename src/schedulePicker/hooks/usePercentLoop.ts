@@ -1,6 +1,5 @@
+import { createTimeStamp, setIntervalWithSecondes, type AnyFn } from "@edsolater/fnkit"
 import { createEffect, createSignal, on, onCleanup, onMount, type Accessor } from "solid-js"
-import { requestLoopAnimationFrame } from "@edsolater/pivkit"
-import { createTimeStamp, type AnyFn } from "@edsolater/fnkit"
 
 /**
  * 0 ~ 1
@@ -8,13 +7,13 @@ import { createTimeStamp, type AnyFn } from "@edsolater/fnkit"
  * @todo is it possible to use css not js thread?
  */
 export function usePercentLoop({
-  canRoundCountOverOne,
+  loop,
   onRoundEnd,
   eachSecondPercent = 1 / 10,
   updateEach = 1,
 }: {
-  updateEach?: number // default 1s
-  canRoundCountOverOne?: boolean
+  updateEach?: number // default 1s 1 second each interval
+  loop?: boolean
   onRoundEnd?: () => void
   eachSecondPercent?: number
 } = {}): {
@@ -28,10 +27,11 @@ export function usePercentLoop({
       setPercent((percent) => {
         const nextPercent = percent + eachSecondPercent / updateEach
         if (nextPercent >= 1) {
-          if (canRoundCountOverOne) {
+          if (loop) {
             onRoundEnd?.()
             return 0
           } else {
+            stopLoop()
             return 1
           }
         } else {
@@ -39,7 +39,7 @@ export function usePercentLoop({
         }
       })
     },
-    delay: updateEach,
+    interval: updateEach,
   })
 
   onMount(() => {
@@ -57,11 +57,11 @@ export function usePercentLoop({
 
 export function useIntervalLoop({
   cb,
-  delay = 1,
+  interval = 1,
   immediate = true,
 }: {
   cb?: () => void
-  delay?: number
+  interval?: number
   immediate?: boolean
 } = {}): {
   isRunning: Accessor<boolean>
@@ -77,9 +77,9 @@ export function useIntervalLoop({
   function startLoop() {
     if (isRunning()) return () => {}
     setIsRunning(true)
-    intervalId = setInterval(() => {
+    intervalId = setIntervalWithSecondes(() => {
       invokeOnce()
-    }, delay)
+    }, interval)
     if (immediate) {
       invokeOnce()
     }
