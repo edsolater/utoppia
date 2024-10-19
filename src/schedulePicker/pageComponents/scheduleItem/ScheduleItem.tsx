@@ -2,8 +2,6 @@ import { clone, configPromiseDefault, isPromise, setTimeoutWithSecondes, switchK
 import {
   Box,
   Button,
-  buttonSizeXS,
-  buttonVariantPlain,
   createDisclosure,
   createIStore,
   cssColorMix,
@@ -287,14 +285,16 @@ export function ScheduleItemCard(props: {
         {/* topActions */}
         <Row icss={[{ gridArea: "1 / -2", justifySelf: "end" }]}>
           <Button
-            icss={[icssContentClickableOpacity, buttonVariantPlain, buttonSizeXS]}
+            variant="plain xs"
+            icss={icssContentClickableOpacity}
             plugin={withTextTooltip({ text: "show iframe", popupDirection: "bottom" })}
             onClick={handleToggleIframePreview}
           >
             <Icon name="show-iframe" src={"/icons/preview.svg"} />
           </Button>
           <Button
-            icss={[icssContentClickableOpacity, buttonVariantPlain, buttonSizeXS]}
+            variant="plain xs"
+            icss={icssContentClickableOpacity}
             plugin={withTextTooltip({ text: "open in new tab", popupDirection: "bottom" })}
             onClick={handleActionOpenLink}
           >
@@ -302,7 +302,8 @@ export function ScheduleItemCard(props: {
           </Button>
           {/* edit-button */}
           <Button
-            icss={[icssContentClickableOpacity, buttonVariantPlain, buttonSizeXS]}
+            variant="plain xs"
+            icss={icssContentClickableOpacity}
             plugin={withTextTooltip({ text: "edit", popupDirection: "bottom" })}
             isActive={inEditMode}
             onClick={handleActionEdit}
@@ -310,7 +311,8 @@ export function ScheduleItemCard(props: {
             {({ isActive }) => <Icon name="edit" src={isActive() ? "/icons/edit_fill.svg" : "/icons/edit.svg"} />}
           </Button>
           <Button
-            icss={[icssContentClickableOpacity, buttonVariantPlain, buttonSizeXS]}
+            variant="plain xs"
+            icss={icssContentClickableOpacity}
             plugin={withTextTooltip({ text: "delete", popupDirection: "bottom" })}
             onClick={handleActionDelete}
           >
@@ -322,7 +324,8 @@ export function ScheduleItemCard(props: {
         <Group icss={{ gridArea: " -2 / -2 ", justifySelf: "end" }}>
           {/* name="action button: add_form_block " */}
           <Button
-            icss={[icssContentClickableOpacity, buttonVariantPlain, buttonSizeXS]}
+            variant="plain xs"
+            icss={icssContentClickableOpacity}
             plugin={withPopupWidget.config({
               shouldFocusChildWhenOpen: true,
               popElement: ({ closePopup }) => (
